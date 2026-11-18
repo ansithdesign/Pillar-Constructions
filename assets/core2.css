@@ -59,3 +59,10 @@ html.px-lb-on .px-loupe{opacity:0}
 .k-word span{display:block}
 .k-meta{display:flex;justify-content:space-between;gap:20px;padding:22px 0 30px;border-top:1px solid var(--k-c-line,var(--k-line));font:500 11px/1.4 var(--k-text);letter-spacing:.12em;text-transform:uppercase;color:var(--k-c-mute,var(--k-mute))}
 .k-meta a{color:inherit}
+
+/* Pillar's own logo (assets/img/pillar-logo.svg), kept out of the nav's blend so its colours stay true */
+.k-logo-fx{position:fixed;left:var(--k-gut,40px);top:15px;z-index:801;display:block;line-height:0}
+.k-logo-fx img{height:34px;width:auto;display:block}
+.k-brand{width:150px}
+.k-flogo{display:flex;align-items:center;gap:18px}
+.k-flogo img{height:26px;width:auto}

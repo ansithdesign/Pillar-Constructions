@@ -16,7 +16,7 @@
   const honours = D.awards.reduce((n, a) => n + a.items.length, 0);
 
   function nav(links = [['#work', 'Work'], ['#services', 'Services'], ['#index', 'Index'], ['#contact', 'Contact']]) {
-    return `<header class="k-nav"><a class="k-brand" href="#top" aria-label="Pillar Construction">${PX.logo('k-logo')}<span>Pillar</span></a>
+    return `<a class="k-logo-fx" href="#top" aria-label="Pillar Construction, back to top"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction" width="139" height="34"></a><header class="k-nav"><span class="k-brand" aria-hidden="true"></span>
       <nav aria-label="Sections">${links.map(([h, t]) => `<a href="${h}">${t}</a>`).join('')}</nav>
       <a class="k-cta" href="#contact" data-mag="10">Start a project</a></header>`;
   }
@@ -55,7 +55,7 @@
       <div class="k-offices">${D.offices.map((o) => `<div><b>${esc(o.c)}</b><span>${o.a.map(esc).join('<br>')}</span><span>${esc(o.p)}</span><i data-tz="${TZ[o.c] || 'America/New_York'}"></i></div>`).join('')}</div>
     </div>
     <footer class="k-foot"><div class="k-word" aria-hidden="true">${'PILLAR'.split('').map((l) => `<span>${l}</span>`).join('')}</div>
-      <div class="k-meta"><span>© ${new Date().getFullYear()} ${esc(c.legal)}</span><span>Concept direction · graded photography · atmosphere images from Unsplash</span><a href="index-v2.html">All six options</a></div></footer></section>`;
+      <div class="k-meta"><span class="k-flogo"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction" width="122" height="30">© ${new Date().getFullYear()} ${esc(c.legal)}</span><span>Concept direction · graded photography · atmosphere images from Unsplash</span><a href="index-v2.html">All six options</a></div></footer></section>`;
     return html;
   }
   function wireContact() {
