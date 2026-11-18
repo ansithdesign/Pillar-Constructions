@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Warmth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,100,400&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<style>
+/* Layout: sand paper with section numbers in brackets; galleries drift in three speeds. */
+:root{
+  --sand:#f2ede4; --sand-2:#e9e2d5; --ink:#171715; --mute:#857b6f; --line:rgba(23,23,21,.12); --umber:#6b5644;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --gut:max(18px,env(safe-area-inset-left,0px));
+  --px-lb-bg:#1c1814; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-sw-bg:rgba(28,24,20,.86);
+}
+body{background:var(--sand);color:var(--ink);font:400 14px/1.5 var(--sans)}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.03em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.n sup,.ttl sup{font-size:10px;letter-spacing:0;vertical-align:top;margin-left:6px;position:relative;top:.6em;color:var(--mute)}
+.ttl{font-size:clamp(48px,5.4vw,84px);line-height:.95;letter-spacing:-.04em}
+.btn{display:inline-flex;gap:10px;align-items:center;background:var(--ink);color:var(--sand);padding:9px 12px;font-size:11px;transition:background .3s}
+.btn::after{content:"";width:7px;height:7px;border:1px solid currentColor;border-radius:50%}
+.btn:hover{background:var(--umber)}
+.btn.lt{background:var(--sand);color:var(--ink)}
+
+.hd{position:fixed;inset:0 0 auto;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-top:14px;padding-bottom:14px;color:#fff;transition:color .5s,background .5s}
+.hd.solid{color:var(--ink);background:rgba(242,237,228,.86);backdrop-filter:blur(10px)}
+.hd b{font-weight:500;font-size:16px;letter-spacing:-.03em}
+.hd nav{display:flex;gap:18px;font-size:12px}
+.hd nav a{position:relative}
+.hd nav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transition:transform .4s var(--px-ease)}
+.hd nav a:hover::after{transform:scaleX(1)}
+.hd .r{justify-self:end;font-size:12px;display:flex;gap:6px;align-items:center;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden;color:#f7f6f2}
+.hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,22,14,.5),rgba(30,22,14,.05) 60%),linear-gradient(0deg,rgba(30,22,14,.35),transparent 40%)}
+.hero .t{position:absolute;left:var(--gut);top:40%;z-index:2}
+.hero .t small{font-size:11px;display:block;margin-bottom:10px;opacity:.9}
+.hero h1{font-size:clamp(64px,7vw,112px);line-height:.92;letter-spacing:-.035em;text-transform:uppercase;font-stretch:96%}
+.hero h1 .l2{display:block;padding-left:1.6em}
+.hero .side{position:absolute;right:var(--gut);bottom:30px;z-index:2;width:min(330px,28vw);font-size:12px;line-height:1.45}
+.hero .side p{margin:0 0 22px;opacity:.9}
+
+/* studio */
+.studio{padding-block:110px 90px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.studio .meta{display:flex;align-items:center;gap:16px;font-size:12px;margin-top:150px}
+.studio .meta i{flex:0 0 90px;height:1px;background:var(--line)}
+.studio p{font-size:clamp(15px,1.15vw,18px);line-height:1.45;max-width:46ch;justify-self:end;margin:60px 0 0}
+
+/* featured gallery: three columns drifting at different speeds */
+.feat{padding-block:20px 120px}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:50px;align-items:start}
+.gc{display:grid;gap:60px;will-change:transform}
+.gc:nth-child(1){padding-top:0}.gc:nth-child(2){padding-top:0}.gc:nth-child(3){padding-top:260px}.gc:nth-child(4){padding-top:120px}
+.gi{display:grid;gap:8px;text-align:left;cursor:zoom-in}
+.gi .ph{overflow:hidden;background:var(--sand-2)}
+.gi .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--px-ease),filter .6s}
+.gi:hover .ph img{transform:scale(1.05)}
+.gi span{font-size:11px}
+.gi .ph{aspect-ratio:4/5}.gi.w .ph{aspect-ratio:16/10}
+
+/* services */
+.svc{padding-block:60px 120px}
+.svc .hd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:50px}
+.svc .hd2 .r{justify-self:end;text-align:right;display:grid;gap:14px;justify-items:end}
+.svc .hd2 p{font-size:12px;color:var(--mute);margin:0;max-width:44ch}
+.tabs{display:flex;gap:4px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.tabs button{padding:12px 16px;font-size:13px;color:var(--mute);border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
+.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--ink)}
+.srow{display:grid;grid-template-columns:230px 1.2fr 1fr;gap:30px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line)}
+.srow .ph{aspect-ratio:3/2;overflow:hidden}.srow .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--px-ease)}
+.srow:hover .ph img{transform:scale(1.06)}
+.srow small{font-size:10px;color:var(--mute)}
+.srow h3{font-size:24px;margin:6px 0 10px}
+.srow p{font-size:12px;color:var(--mute);margin:0 0 16px;max-width:44ch}
+.srow ul{list-style:none;padding:0;margin:0;columns:2;font-size:11px;line-height:1.9}
+.srow ul li::before{content:"• "}
+.srow{scroll-margin-top:120px}
+.srow.hl{background:linear-gradient(90deg,rgba(107,86,68,.07),transparent)}
+
+/* inside */
+.inside{position:relative;height:200vh}
+.inside .stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+.inside .win{position:relative;width:46vw;height:56vh;overflow:hidden}
+.inside .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.inside .cap{position:absolute;left:var(--gut);right:var(--gut);bottom:40px;display:flex;justify-content:space-between;align-items:end;color:#fff;z-index:2;opacity:0}
+.inside .cap p{max-width:36ch;font-size:12px;margin:0}
+.inside .lbl{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:10px;color:var(--mute)}
+
+/* process */
+.proc{padding-block:120px}
+.proc .hd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:50px}
+.proc .hd2 p{justify-self:end;text-align:right;font-size:12px;color:var(--mute);max-width:44ch;margin:0}
+.pcs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc .ph{aspect-ratio:1.1;overflow:hidden;position:relative}
+.pc .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--px-ease)}
+.pc:hover .ph img{transform:scale(1.05)}
+.pc h3{font-size:18px;margin-top:12px}
+.pc p{font-size:12px;color:var(--mute);margin:6px 0 0;max-height:1.5em;overflow:hidden;transition:max-height .7s var(--px-ease)}
+.pc:hover p{max-height:7em}
+
+/* testimonial */
+.tst{padding-block:60px 120px}
+.tst .hd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:50px}
+.tst .hd2 p{justify-self:end;text-align:right;font-size:12px;color:var(--mute);max-width:44ch;margin:0}
+.tg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;align-items:end}
+.tg .ph{aspect-ratio:1;overflow:hidden;position:relative}
+.tg .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s}
+.tq{transition:opacity .5s,transform .7s var(--px-ease)}
+.tq.out{opacity:0;transform:translateY(12px)}
+.tq blockquote{margin:0 0 20px;font-size:clamp(15px,1.2vw,19px);line-height:1.38}
+.tq b{display:block;font-weight:500;font-size:12px}.tq span{font-size:11px;color:var(--mute)}
+.tctl{grid-column:2/4;display:flex;justify-content:space-between;font-size:11px;border-top:1px solid var(--line);padding-top:10px}
+
+/* news */
+.news{padding-block:40px 120px}
+.news .hd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:50px}
+.news .hd2 p{justify-self:end;text-align:right;font-size:12px;color:var(--mute);max-width:40ch;margin:0}
+.nc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.nw{position:relative;aspect-ratio:1.05;overflow:hidden;color:#fff;display:block}
+.nw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.4s var(--px-ease)}
+.nw:hover img{transform:scale(1.05)}
+.nw::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,22,14,.75),rgba(30,22,14,.1) 50%)}
+.nw .top{position:absolute;left:12px;right:12px;top:10px;display:flex;justify-content:space-between;font-size:10px;z-index:2}
+.nw h3{position:absolute;left:12px;right:30%;bottom:14px;font-size:18px;line-height:1.15;z-index:2}
+
+/* cta + footer */
+.cta{padding-block:40px 80px;display:grid;grid-template-columns:1fr auto;align-items:end}
+.cta h2{font-size:clamp(70px,8.6vw,140px);line-height:.92;text-transform:uppercase;letter-spacing:-.035em;font-stretch:96%}
+.cta h2 span{display:block}.cta h2 span:nth-child(2){padding-left:1.5em}
+.ft{position:relative;padding:40px var(--gut) 100px;overflow:hidden}
+.ft .bg{position:absolute;inset:0}.ft .bg img{width:100%;height:100%;object-fit:cover}
+.ft .card{position:relative;z-index:2;background:var(--sand);padding:20px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:20px;min-height:340px}
+.ft h3{font-size:28px;line-height:1.1;margin-top:26px}
+.ft .em{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:24px 0 6px;font-size:12px;color:var(--mute);max-width:320px;user-select:all}
+.ft small{font-size:10px;color:var(--mute);display:block;margin-bottom:10px}
+.ft .col a,.ft .col span{display:block;font-size:12px;line-height:1.9}
+.ft .base{grid-column:1/-1;display:flex;justify-content:space-between;align-self:end;font-size:11px}
+</style>
+</head>
+<body>
+<header class="hd wrap" id="hd"><b>Pillar Construction</b><nav aria-label="Main"><a href="#studio">Studio</a><a href="#projects">Projects</a><a href="#service">Service</a><a href="#news">News</a></nav><a class="r" href="#contact">Start A Project <span>○</span></a></header>
+
+<main id="top">
+  <section class="hero">
+    <div class="bg"><img id="hbg" data-g="assets/img/p/V13-007D.jpg" data-eager alt="Lobby with timber ceiling"></div>
+    <div class="t"><small data-r="fade">• Crafted with intention</small><h1 data-split="lines">Timeless<br><span class="l2">by design</span></h1></div>
+    <div class="side" data-r="up" style="--d:.6s"><p>We build contemporary interiors and envelopes where architecture, materials, and craftsmanship come together to create buildings that feel timeless, functional, and deeply considered.</p><a class="btn lt" href="#projects" data-mag="6">See Our Work</a></div>
+  </section>
+
+  <section class="studio wrap" id="studio">
+    <div><h2 class="ttl" data-split="lines">Our Studio<sup>[01]</sup></h2><div class="meta" data-r="up"><span>Since 1995</span><i></i><span>Specialty Contractor</span></div></div>
+    <p data-r="up">At Pillar, we believe the best buildings are shaped by intention, balance, and a deep understanding of how people live and work. Our approach brings together thoughtful planning, honest materials, and refined details to create walls and finishes that feel considered and quietly distinctive. From the overall assembly to the smallest material choice, every element is designed to work together.</p>
+  </section>
+
+  <section class="feat wrap" id="projects">
+    <h2 class="ttl" data-split="lines">Featured Projects<sup>[02]</sup></h2>
+    <div class="gal" id="gal" data-lb-group></div>
+  </section>
+
+  <section class="svc wrap" id="service">
+    <div class="hd2"><h2 class="ttl" data-split="lines">Our Service<sup>[03]</sup></h2><div class="r"><p>From framing to finish, we carefully shape each element to create buildings that feel cohesive, functional, and distinctly their own.</p><a class="btn" href="#contact">Explore What We Offer</a></div></div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="srows"></div>
+  </section>
+
+  <section class="inside" aria-label="Inside Pillar">
+    <div class="stage">
+      <div class="win" id="win"><img data-g="assets/img/p/VA_Hostpital_Fredericksburg_1.jpg" data-eager alt="Hospital atrium"></div>
+      <div class="cap" id="icap"><p>Step inside our world of buildings, where natural light, refined materials and careful details come together to shape the way a space feels.</p><a class="btn lt" href="#team">Get To Know Us</a></div>
+      <div class="lbl">[04] Inside Pillar</div>
+    </div>
+  </section>
+
+  <section class="proc wrap" id="team">
+    <div class="hd2"><h2 class="ttl" data-split="lines">Our Process<sup>[05]</sup></h2><p data-r="up">From the first conversation to the final detail, our process brings structure, creativity, and close collaboration to every stage of your project.</p></div>
+    <div class="pcs" id="pcs"></div>
+  </section>
+
+  <section class="tst wrap">
+    <div class="hd2"><h2 class="ttl" data-split="lines">Testimonial<sup>[06]</sup></h2><p data-r="up">Hear from the builders and owners who trusted us with their buildings, from the first estimate to the final punch list.</p></div>
+    <div class="tg"><div class="ph" id="tph"></div><div class="tq" id="tq1"></div><div class="tq" id="tq2"></div><div></div><div class="tctl" style="grid-column:2/4"><button type="button" id="tp">← Previous</button><span id="tn"></span><button type="button" id="tx">Next →</button></div></div>
+  </section>
+
+  <section class="news wrap" id="news">
+    <div class="hd2"><h2 class="ttl" data-split="lines">Studio News<sup>[07]</sup></h2><p data-r="up">Our perspective on building envelopes, materials and craft, as covered by the trade press.</p></div>
+    <div class="nc" id="nc"></div>
+  </section>
+
+  <section class="cta wrap" id="contact">
+    <h2 data-split="lines"><span>Let's build</span><span>something</span><span>timeless!</span></h2>
+    <a class="btn" href="#foot" data-mag="8">Book A Consultation</a>
+  </section>
+
+  <footer class="ft" id="foot">
+    <div class="bg"><img data-g="assets/img/p/V13-007D.jpg" alt=""></div>
+    <div class="card">
+      <div><b style="font-weight:500">Pillar Construction</b><h3>Ready to begin<br>your next building?</h3><div class="em"><span id="em"></span><span>→</span></div></div>
+      <div class="col"><small>Navigation</small><a href="#top">Home</a><a href="#studio">Studio</a><a href="#projects">Projects</a><a href="#service">Service</a><a href="#news">News</a></div>
+      <div class="col"><small>Offices</small><span id="offs"></span></div>
+      <div class="col"><small>Call</small><span id="ph"></span></div>
+      <div class="base"><span>© <span id="yr"></span> Pillar Construction. Crafted with intention, built to last.</span><span>Alexandria, Virginia</span></div>
+    </div>
+  </footer>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script>
+PX.init({id:'09',cursor:true,look:{ev:.01,contrast:.14,sat:.68,blue:.62,warm:.52,gamma:[1,.98,.93],lift:[.032,.022,.01],fade:.03,hi:[.05,.03,0],hiAmt:.7,sh:[.03,.01,-.02],shAmt:.5,grain:.025,vig:.1,css:'sepia(.35) saturate(.8) contrast(.96)'}});
+document.documentElement.style.setProperty('--px-cursor-bg','#171715');document.documentElement.style.setProperty('--px-cursor-fg','#f2ede4');
+const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
+const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.create({start:()=>innerHeight-60,onUpdate:s=>$('#hd').classList.toggle('solid',s.scroll()>innerHeight-60)});
+gsap.to('#hbg',{scale:1.1,yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* featured gallery: 4 columns, each drifting at its own speed */
+const G=pick(['V16-012','V12-035','V16-046D','V14-028','V15-012','V17-009R','V16-051D','V18-014R','V13-046','V16-038','V12-056','V17-022']);
+const cols=[[],[],[],[]];G.forEach((p,i)=>cols[i%4].push([p,i]));
+$('#gal').innerHTML=cols.map(c=>`<div class="gc">${c.map(([p,i])=>`<button class="gi ${i%5===2?'w':''}" data-lb="${p.id}" data-cursor="View" data-r="up">${'<div class="ph">'+I(img(p.img),700,p.n)+'</div>'}<span>${i+1}  ${esc(p.n)}</span></button>`).join('')}</div>`).join('');
+$$('.gc').forEach((c,i)=>gsap.to(c,{y:[-40,-160,-80,-220][i],ease:'none',scrollTrigger:{trigger:'#gal',start:'top bottom',end:'bottom top',scrub:true}}));
+
+/* services: tabs + rows that highlight as you scroll */
+$('#tabs').innerHTML=D.services.map((s,i)=>`<button role="tab" type="button" aria-selected="${!i}" data-i="${i}">${svcShort[s.id]}</button>`).join('');
+$('#srows').innerHTML=D.services.map((s,i)=>`<div class="srow" id="sr${i}" data-r="up"><div class="ph">${I(img(s.gallery[0]),500)}</div><div><small>${D.projects.filter(p=>p.s===s.id).length} projects</small><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p><a class="btn" href="#contact">View More</a></div><ul>${s.scopes.slice(0,8).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+const selT=i=>{$$('#tabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));$$('.srow').forEach((r,j)=>r.classList.toggle('hl',j===i))};
+$$('#tabs button').forEach(b=>b.onclick=()=>{selT(+b.dataset.i);PX.scrollTo('#sr'+b.dataset.i,{offset:-140})});
+$$('.srow').forEach((r,i)=>ScrollTrigger.create({trigger:r,start:'top 50%',end:'bottom 50%',onToggle:s=>s.isActive&&selT(i)}));
+
+/* inside: window opens to full bleed */
+gsap.timeline({scrollTrigger:{trigger:'.inside',start:'top top',end:'bottom bottom',scrub:true}})
+ .to('#win',{width:'100vw',height:'100vh',ease:'power2.inOut'},0).to('#win img',{scale:1.08,ease:'none'},0).to('#icap',{opacity:1,duration:.2},.75);
+
+/* process */
+const PS=[['01 Consultation & Estimate','We start with a conversation and the drawings, then shape a scope, options and an honest estimate.','V13-030D'],['02 Engineering & Sourcing','Every assembly is detailed, value engineered and sourced to fit the specification, budget and schedule.','V16-003'],['03 Install & Reveal','Our crews manage the full installation, so all that is left is a finished, weathertight building.','V17-012R']];
+$('#pcs').innerHTML=PS.map(s=>`<div class="pc" data-r="up"><div class="ph">${I(img(s[2]),800)}</div><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+
+/* testimonials, two at a time */
+const T=D.testimonials.filter(t=>t.q.length<330),TP=pick(['V16-012','V12-035','V16-046D','V15-012','V17-009R','V18-014R']);let ti=0;
+$('#tph').innerHTML=TP.map((p,i)=>I(img(p.img),700).replace('<img',`<img style="opacity:${i?0:1}"`)).join('');
+function st(i){ti=(i+Math.ceil(T.length/2))%Math.ceil(T.length/2);const a=T[ti*2],b=T[ti*2+1]||T[0];
+ [[$('#tq1'),a],[$('#tq2'),b]].forEach(([el,t],k)=>{el.classList.add('out');setTimeout(()=>{el.innerHTML=`<blockquote>“${esc(t.q)}”</blockquote><b>${esc(t.by)}</b><span>${esc(t.role)}</span>`;el.classList.remove('out')},250+k*120)});
+ $$('#tph img').forEach((m,j)=>m.style.opacity=j===ti%TP.length?1:0);$('#tn').textContent=`${PX.pad(ti+1)} / ${PX.pad(Math.ceil(T.length/2))}`}
+$('#tp').onclick=()=>st(ti-1);$('#tx').onclick=()=>st(ti+1);st(0);
+
+/* news cards from press */
+$('#nc').innerHTML=D.press.slice(0,3).map((p,i)=>`<a class="nw" href="${p.pdf}" target="_blank" rel="noopener" data-r="up"><img data-g="${img(['V13-007D','V16-022','V17-030R'][i])}" data-gw="900" alt=""><div class="top"><span>• In the press</span><span>PDF ↗</span></div><h3>${esc(p.t)}</h3></a>`).join('');
+
+$('#em').textContent=D.company.email;$('#ph').innerHTML=D.offices.map(o=>esc(o.p)).join('<br>');$('#offs').innerHTML=D.offices.map(o=>esc(o.c)).join('<br>');$('#yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

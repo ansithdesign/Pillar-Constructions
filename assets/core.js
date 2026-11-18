@@ -215,7 +215,7 @@
     walk(el);
     if (ti && words[0]) words[0].style.marginLeft = ti + 'px';
     const lines = []; let top = null, cur;
-    words.forEach((w) => { const t = w.offsetTop; if (top === null || Math.abs(t - top) > 4) { cur = []; lines.push(cur); top = t; } cur.push(w); });
+    words.forEach((w) => { if (cur && /^(SUP|SUB)$/.test(w.tagName)) { cur.push(w); return; } const t = w.offsetTop; if (top === null || Math.abs(t - top) > 4) { cur = []; lines.push(cur); top = t; } cur.push(w); });
     el.innerHTML = '';
     lines.forEach((ln, i) => { const o = document.createElement('span'); o.className = 'px-line'; const s = document.createElement('span'); s.style.setProperty('--i', i);
       ln.forEach((w, j) => { s.appendChild(w); if (j < ln.length - 1) s.appendChild(document.createTextNode(' ')); }); o.appendChild(s); el.appendChild(o); });
