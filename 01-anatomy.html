@@ -35,7 +35,7 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 .hero{position:relative;height:100vh;min-height:720px;overflow:hidden;color:#fff}
 .hero .bg{position:absolute;inset:0}
 .hero .bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 35%,transparent 60%,rgba(0,0,0,.45))}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.42),transparent 55%),linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.08) 42%,rgba(0,0,0,.08) 58%,rgba(0,0,0,.5))}
 .hero-t{position:absolute;left:var(--gut);top:92px;z-index:2}
 .hero h1{font:400 clamp(70px,8vw,128px)/.86 var(--disp);letter-spacing:-.01em}
 .hero .ctas{display:flex;gap:26px;margin-top:22px}
@@ -183,12 +183,12 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 
 <main id="top">
   <section class="hero" data-m="shrink" data-r="22">
-    <div class="bg"><img id="hbg" data-g="assets/img/p/V18-002R.jpg" data-eager alt="Pavilion at dusk"></div>
+    <div class="bg"><img id="hbg" data-g="assets/img/s/facade-dusk.jpg" data-eager alt="Modern facade at dusk"></div>
     <div class="hero-t">
       <h1 data-split="chars">Built,<br>Considered.</h1>
       <div class="ctas" data-r="fade" style="--d:.8s"><a href="#index">Explore projects →</a><a href="#anatomy">See the panel →</a></div>
     </div>
-    <div class="meta wrap" data-r="fade" style="--d:1s"><span>Featured residence</span><span>Specialty contractor</span><span>Since 1995</span><span>Explore</span></div>
+    <div class="meta wrap" data-r="fade" style="--d:1s"><span>Building envelopes</span><span>Specialty contractor</span><span>Since 1995</span><span>Explore</span></div>
     <p class="note" data-r="up" style="--d:1.1s">A building is more than its frame. It is how every layer meets the next.</p>
   </section>
 
@@ -224,7 +224,7 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 
   <section class="wm" aria-label="Pillar wordmark">
     <div class="stage">
-      <div class="row" id="wmrow"><span>PILLAR / BUILD</span><span>PILLAR / BUILD</span></div><div class="win" id="win"><img data-g="assets/img/p/V17-004D.jpg" data-eager alt=""></div><div id="flys"></div>
+      <div class="row" id="wmrow"><span>PILLAR / BUILD</span><span>PILLAR / BUILD</span></div><div class="win" id="win"><img data-g="assets/img/s/facade-fins.jpg" data-eager alt=""></div><div id="flys"></div>
       <div class="over" id="wmo"><h3>Every layer has a reason.</h3></div>
     </div>
   </section>
@@ -257,7 +257,7 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
   </section>
 
   <section class="end wrap" id="end" data-m="expand" data-end="top top" data-r="22">
-    <div class="bg"><img data-g="assets/img/p/Oakvile_Inova_1.jpg" alt=""></div>
+    <div class="bg"><img data-g="assets/img/s/stone-facade.jpg" alt=""></div>
     <div class="in">
       <h2>Build,<br>considered.</h2>
       <p><b>Write</b><span id="em" style="user-select:all"></span><br><span id="ph"></span></p>
@@ -274,7 +274,7 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
 <script src="assets/core.js"></script>
 <script>
-PX.init({id:'01',cursor:true,look:{ev:.04,contrast:.2,gain:[1.035,1,.93],lift:[.012,.004,.02],sat:.9,blue:.28,warm:.38,hi:[.05,.022,-.03],hiAmt:.85,sh:[-.025,0,.045],shAmt:.55,grain:.02,vig:.12,css:'sepia(.18) saturate(.95) contrast(1.05)'}});
+PX.init({id:'01',cursor:true,look:{ev:.04,contrast:.2,gain:[1.035,1,.93],lift:[.012,.004,.02],sat:.9,blue:.28,warm:.38,hi:[.05,.022,-.03],hiAmt:.85,sh:[-.025,0,.045],shAmt:.55,grain:.02,vig:.34,css:'sepia(.18) saturate(.95) contrast(1.05)'}});
 document.documentElement.style.setProperty('--px-cursor-bg','#1d2f7c');document.documentElement.style.setProperty('--px-cursor-fg','#fff');
 const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;

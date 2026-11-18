@@ -35,7 +35,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
 /* hero */
 .hero{position:relative;height:100vh;min-height:720px;overflow:hidden;color:#fff;background:#111}
 .hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(0,0,0,.25))}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,.15) 45%,rgba(0,0,0,.2) 80%,rgba(0,0,0,.55))}
 .hero .t{position:absolute;left:var(--gut);top:38%;z-index:2;max-width:34ch;font-size:16px;line-height:1.25;font-weight:500}
 .hero .t .chip{margin-top:16px}
 .wm{position:absolute;left:var(--gut);right:var(--gut);bottom:-2.2vw;z-index:2;display:flex;align-items:baseline;gap:.12em;white-space:nowrap;cursor:default;user-select:none}
@@ -148,7 +148,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
 
 <main id="top">
   <section class="hero">
-    <div class="bg"><img id="hbg" data-g="assets/img/p/V19-019R.jpg" data-eager alt="Mixed-use building with bronze fins"></div>
+    <div class="bg"><img id="hbg" data-g="assets/img/s/mono-facade.jpg" data-eager alt="Contemporary residential facade"></div>
     <div class="t" data-r="up">Finishing buildings that balance clarity, comfort, and durability, transforming everyday structures into considered places.<br><a class="chip" href="#contact" data-mag="6"><i>→</i>Get In Touch</a></div>
     <h1 class="wm" id="wm" aria-label="pillar finish"><span class="a" id="wa"></span><span class="b">finish</span></h1>
   </section>
@@ -188,7 +188,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
   <section class="cta wrap" id="contact">
     <div class="l"><div><h2 class="up" data-split="lines">Start a thoughtful build process</h2><p>Let's work together on a building that reflects your vision, guided by a process focused on detail, balance, and long-term performance.</p><a class="chip dk" href="#foot"><i>→</i>Get In Touch With Us</a></div>
       <div><p style="margin:0">Partnering with owners and builders since 1995</p><div class="avs" id="avs"></div></div></div>
-    <div class="big" data-m="unveil drift" data-dir="down"><img data-g="assets/img/p/8302Rt.jpg" alt="Glass tower"></div>
+    <div class="big" data-m="unveil drift" data-dir="down"><img data-g="assets/img/s/site-team.jpg" alt="Crew on a construction site"></div>
   </section>
 </main>
 
@@ -209,7 +209,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core.js"></script>
 <script>
-PX.init({id:'05',cursor:true,look:{ev:-.05,contrast:.34,sat:.9,blue:.32,warm:.26,gain:[1.02,1,.955],hi:[.03,.02,0],hiAmt:.5,sh:[0,0,.02],shAmt:.3,vig:.22,grain:.02,css:'contrast(1.12) saturate(.92) sepia(.1)'},looks:{av:{ev:.02,contrast:.2,sat:.7,warm:.15,grain:.01}}});
+PX.init({id:'05',cursor:true,look:{ev:-.05,contrast:.34,sat:.9,blue:.32,warm:.26,gain:[1.02,1,.955],hi:[.03,.02,0],hiAmt:.5,sh:[0,0,.02],shAmt:.3,vig:.34,grain:.02,css:'contrast(1.12) saturate(.92) sepia(.1)'},looks:{av:{ev:.02,contrast:.2,sat:.7,warm:.15,grain:.01}}});
 document.documentElement.style.setProperty('--px-cursor-bg','#fff');document.documentElement.style.setProperty('--px-cursor-fg','#0d0d0d');
 const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;

@@ -175,7 +175,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 <main id="top">
   <section class="hero wrap">
     <div class="hcard">
-      <div class="bg"><img id="hbg" data-g="assets/img/p/V17-004D.jpg" data-eager alt="Hilton Garden Inn, West End"></div>
+      <div class="bg"><img id="hbg" data-g="assets/img/s/teal-glass-cranes.jpg" data-eager alt="Glass towers under construction"></div>
       <div class="top"><span class="tag">PILLAR CONSTRUCTION</span><nav class="menu" aria-label="Main"><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#process">Process</a><a href="#contact">Contact</a></nav></div>
       <div class="mid"><p data-r="up">An independent specialty contractor shaping buildings through material, precision and an uncompromising attention to detail.</p><a class="pill" href="#work" data-mag="10">Explore our work <i>↗</i></a></div>
       <h1 class="word" aria-label="Pillar"><span>P</span><span>I</span><span>L</span><span>L</span><span>A</span><span>R</span></h1>
@@ -207,7 +207,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
   <section class="wrap" id="expertise">
     <div class="sec-h" style="padding-inline:clamp(12px,3vw,40px)"><div><div class="lab">Our expertise<sup>©</sup></div><h2 data-split="lines">Considered finishes.<br>Thoughtful details.</h2></div><p data-r="up" style="justify-self:end">From metal framing to the final coat, we self-perform every scope so the building feels intentional, durable, and unmistakably finished.</p></div>
     <div class="exp">
-      <div class="ecard img" data-m="unveil drift" data-cursor="View"><img data-g="assets/img/p/V13-007D.jpg" alt="Lobby interior"><span class="cap">Walls that move us.</span></div>
+      <div class="ecard img" data-m="unveil drift" data-cursor="View"><img data-g="assets/img/s/curved-facade.jpg" alt="Curving facade"><span class="cap">Walls that move us.</span></div>
       <div class="egrid" id="egrid"></div>
     </div>
   </section>
@@ -241,7 +241,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
   <section class="wrap" id="contact">
     <div class="cta">
       <div class="ccard"><div><div class="lab">Let's talk<sup>©</sup></div><h2 data-split="lines">Let's build something extraordinary.</h2></div><div><p>Every meaningful building begins with a conversation.</p><a class="pill" href="#foot" data-mag="10">Start the project <i>↗</i></a></div></div>
-      <div class="cimg" data-m="unveil zoomout" data-dir="left"><img data-g="assets/img/p/V13-007D.jpg" alt=""></div>
+      <div class="cimg" data-m="unveil zoomout" data-dir="left"><img data-g="assets/img/s/interior-corridor.jpg" alt=""></div>
     </div>
     <footer class="foot" id="foot">
       <div class="cols">
@@ -262,7 +262,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core.js"></script>
 <script>
-PX.init({id:'02',cursor:true,look:{ev:-.24,contrast:.3,gamma:[.98,1,.99],gain:[.96,1,.97],sat:.6,blue:.45,warm:.06,sh:[-.02,.035,.025],shAmt:.6,hi:[.03,.03,.012],hiAmt:.45,vig:.36,grain:.035,css:'saturate(.65) brightness(.8) contrast(1.12) hue-rotate(-8deg)'}});
+PX.init({id:'02',cursor:true,look:{ev:-.24,contrast:.3,gamma:[.98,1,.99],gain:[.96,1,.97],sat:.6,blue:.45,warm:.06,sh:[-.02,.035,.025],shAmt:.6,hi:[.03,.03,.012],hiAmt:.45,vig:.46,grain:.035,css:'saturate(.65) brightness(.8) contrast(1.12) hue-rotate(-8deg)'}});
 document.documentElement.style.setProperty('--px-cursor-bg','#e3e1d4');document.documentElement.style.setProperty('--px-cursor-fg','#040606');
 const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;
@@ -308,7 +308,6 @@ $('#gz').innerHTML=GZ.map((p,i)=>`<button class="t ${i===4?'c':''}" data-lb="${p
 /* expertise cards: services with scope checklists */
 $('#egrid').innerHTML=D.services.slice(0,4).map((s,i)=>`<article class="ecard" data-r="up" style="--d:${i*.08}s"><div><div class="ic">${I(PX.svcImg(s),200)}</div><h3>${esc(s.title.split(' / ')[0])}.</h3></div><ul>${s.scopes.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
 
-$('.ecard.img').dataset.lb=PX.byImg['V13-007D'].id;
 
 /* process: sticky image swaps with active step */
 const STEPS=[['Partnering early','We get involved in the early design stages, alongside architects, owners and general contractors.','8521Rt'],

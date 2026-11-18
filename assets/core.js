@@ -84,7 +84,10 @@
         if(warm){ r+=warm*.06*(1-l*.3); b-=warm*.06*(1-l*.3); }
         const ws=(1-l)*(1-l)*sa, wh=l*l*ha;
         r+=sh[0]*ws+hi[0]*wh; g+=sh[1]*ws+hi[1]*wh; b+=sh[2]*ws+hi[2]*wh;
-        if(vig){ const v=1-vig*(((x-cx)*(x-cx)+dy)/md); r*=v; g*=v; b*=v; }
+        if(vig){ /* feathered elliptical vignette: clean centre, smooth roll-off, faint warm edge */
+          const nx=(x-cx)/cx, ny=(y-cy)/cy, dd=Math.sqrt((nx*nx+ny*ny)*.5);
+          let t=Math.min(1,Math.max(0,(dd-.32)/.78)); t=t*t*(3-2*t);
+          const v=1-vig*t*(1.1-l*.35), tint=vig*t*.05; r=r*v+tint*.5*(1-l); g=g*v+tint*.25*(1-l); b=b*v; }
         if(gr){ seed=(seed*1103515245+12345)&0x7fffffff; const n=(seed/0x7fffffff-.5)*gr*(1-Math.abs(l-.5)); r+=n; g+=n; b+=n; }
         d[i]=r*255; d[i+1]=g*255; d[i+2]=b*255;
       }
