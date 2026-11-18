@@ -12,12 +12,11 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
   const OPTIONS = [
-    ['01', 'anatomy', 'Anatomy', 'Tunnel', 'Fly through a 3D corridor of projects'],
-    ['02', 'verdigris', 'Verdigris', 'Canvas', 'Drag an endless fisheye canvas of 224 projects'],
-    ['03', 'filmstrip', 'Filmstrip', 'Liquid reel', 'A WebGL reel that bends and splits with speed'],
-    ['04', 'monolith', 'Monolith', 'Louvres', 'Photographs open through rotating slats'],
-    ['05', 'studio', 'Studio', 'Trail', 'A cursor trail of work and a 3D card deck'],
-    ['06', 'nord', 'Nord', 'Orbit', 'A draggable cylinder of buildings'],
+    ['01', 'anatomy', 'Anatomy', 'Tunnel', 'A corridor, a rippling facade, a tower of trades'],
+    ['02', 'verdigris', 'Verdigris', 'Table', 'A 3D table of 224 projects, a helix, prints to throw'],
+    ['03', 'monolith', 'Monolith', 'Prisms', 'Turning prisms, a field of slabs, a portfolio book'],
+    ['04', 'studio', 'Studio', 'Trail', 'Photographs fly past the cursor, type filled with buildings'],
+    ['05', 'nord', 'Nord', 'Orbit', 'A ring, a globe, a rolodex and an infinite zoom'],
   ];
   const optHref = (o) => `${o[0]}-${o[1]}-v2.html`;
 

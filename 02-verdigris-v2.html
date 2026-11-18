@@ -8,13 +8,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Figtree:wght@300..700&display=swap">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/core2.css">
+<link rel="stylesheet" href="assets/fx2.css">
 <style>
-/* Layout: an endless table of photographs under green-black patina; you pull the work toward you instead of scrolling past it. */
+/* Layout: green-black patina. You fly low over a table of every project, follow a spiral of work, flip through trades and throw prints across a light table. */
 :root{
-  --bg:#07100d; --bg2:#0c1713; --bg3:#12201b; --cream:#e4e2d6; --mute:#8b9891; --line:rgba(228,226,214,.12); --line2:rgba(228,226,214,.3); --patina:#74c2a9;
+  --bg:#07100d; --bg2:#0c1713; --cream:#e4e2d6; --mute:#8b9891; --line:rgba(228,226,214,.12); --line2:rgba(228,226,214,.3); --patina:#74c2a9;
   --d:"Host Grotesk","Helvetica Neue",Arial,sans-serif; --t:"Figtree","Helvetica Neue",Arial,sans-serif;
   --k-bg:var(--bg); --k-fg:var(--cream); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--patina);
-  --k-disp:var(--d); --k-text:var(--t); --k-gut:44px; --k-c-bg:#040907;
+  --k-disp:var(--d); --k-text:var(--t); --k-gut:44px; --k-c-bg:#040907; --k-h-weight:300; --k-table:#1d2723;
   --px-lb-bg:#050b09; --px-lb-font:var(--t); --px-lb-display:var(--d); --px-lb-weight:300; --px-sw-bg:rgba(18,53,45,.9);
   color-scheme:dark;
 }
@@ -24,80 +25,31 @@ body{margin:0;color:var(--cream);font:400 16px/1.6 var(--t);-webkit-font-smoothi
 img{display:block;max-width:100%}
 .wrap{padding-inline:44px}
 .h2{font:300 clamp(48px,6.6vw,120px)/.92 var(--d);letter-spacing:-.05em;margin:0;text-wrap:balance}
-
-/* 1 · endless canvas */
-.canvas{position:relative;height:100vh;overflow:hidden;cursor:grab;background:radial-gradient(120% 90% at 50% 50%,#0f1d18,var(--bg) 70%)}
-.cv-layer{position:absolute;inset:0;z-index:0}
-.tile{position:absolute;left:0;top:0;width:280px;height:360px;will-change:transform;cursor:pointer}
-.tile .in{position:absolute;inset:0;overflow:hidden;border-radius:3px;background:var(--bg3);transition:opacity .6s,filter .6s,border-radius .5s}
-.tile.w .in{inset:60px 0}
-.tile.s .in{inset:40px 30px}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
-.tile:hover img{transform:scale(1.1)}
-.tile:hover .in{border-radius:14px}
-.tile figcaption{position:absolute;left:0;right:0;bottom:-34px;font:500 13px/1.3 var(--t);color:var(--cream);opacity:0;transform:translateY(-6px);transition:.5s cubic-bezier(.16,1,.3,1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tile.w figcaption{bottom:26px}.tile.s figcaption{bottom:6px;left:30px}
-.tile:hover figcaption{opacity:1;transform:none}
-.tile.off .in{opacity:.07;filter:grayscale(1)}
-.tile.off{pointer-events:none}
-.cv-title{position:absolute;left:44px;top:50%;translate:0 -50%;z-index:5;pointer-events:none;mix-blend-mode:difference;color:#fff}
-.cv-title h1{font:300 clamp(72px,10.5vw,200px)/.84 var(--d);letter-spacing:-.06em;margin:0}
-.cv-title p{margin:24px 0 0;font:400 17px/1.5 var(--t);max-width:34ch}
-.cv-bar{position:absolute;left:50%;top:84px;translate:-50% 0;z-index:6;display:flex;align-items:center;gap:6px;padding:6px;border-radius:99px;background:rgba(7,16,13,.72);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--line)}
-.cv-bar button{font:500 13px/1 var(--t);color:var(--mute);background:none;border:0;padding:11px 15px;border-radius:99px;cursor:pointer;transition:.3s}
-.cv-bar button[aria-pressed="true"]{background:var(--cream);color:var(--bg)}
-.cv-bar sup{font-size:9px;margin-left:4px}
-.cv-hud{position:absolute;right:44px;bottom:96px;z-index:6;font:500 11px/1.5 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:right;pointer-events:none}
-.cv-hud b{display:block;font:300 34px/1 var(--d);letter-spacing:-.03em;color:var(--cream);text-transform:none;font-variant-numeric:tabular-nums}
-.cv-vig{position:absolute;inset:0;pointer-events:none;z-index:4;background:radial-gradient(90% 80% at 50% 50%,transparent 45%,rgba(7,16,13,.9))}
-
-/* 2 · grid zoom */
-.zoom{position:relative;height:100vh;overflow:hidden}
-.zg{position:absolute;left:50%;top:50%;width:min(80vw,1200px);display:grid;grid-template-columns:repeat(3,1fr);gap:14px;translate:-50% -50%;will-change:transform}
-.zc{aspect-ratio:3/2;overflow:hidden;border-radius:4px;background:var(--bg3)}
-.zc img{width:100%;height:100%;object-fit:cover}
-.z-copy{position:absolute;left:44px;bottom:60px;z-index:3;max-width:640px;opacity:0}
-.z-copy p{font:400 18px/1.55 var(--t);color:rgba(228,226,214,.82);margin:22px 0 0}
-
-/* 3 · service rooms */
-.rooms{position:relative}
-.room{position:sticky;top:0;height:100vh;overflow:hidden;background:transparent}
-.room:first-child{background:var(--bg)}
-.room .bgi{position:absolute;inset:0}
-.room .bgi img{width:100%;height:100%;object-fit:cover}
-.room::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,13,.88),rgba(7,16,13,.25) 60%,rgba(7,16,13,.55));pointer-events:none}
-.r-in{position:absolute;left:44px;bottom:70px;z-index:2;display:grid;gap:22px;max-width:760px}
-.r-in .no{font:500 12px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--patina)}
-.r-in h3{font:300 clamp(64px,8.4vw,156px)/.86 var(--d);letter-spacing:-.06em;margin:0}
-.r-in p{margin:0;font-size:18px;color:rgba(228,226,214,.82);max-width:50ch}
-.r-in ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.r-in li{font-size:13px;padding:6px 12px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--line2)}
-.r-thumbs{position:absolute;right:44px;bottom:70px;z-index:2;display:flex;gap:12px}
-.r-thumbs a{width:180px;aspect-ratio:4/5;overflow:hidden;border-radius:4px;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.r-thumbs a:hover{transform:translateY(-12px) rotate(-2deg)}
-.r-thumbs img{width:100%;height:100%;object-fit:cover}
-.ix{padding-block:170px 150px}
+#top{background:radial-gradient(90% 70% at 50% 30%,#13241e,var(--bg) 70%)}
+#top::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(180deg,var(--bg) 0,rgba(7,16,13,0) 26%,rgba(7,16,13,0) 70%,var(--bg))}
+.pl-title{position:absolute;left:44px;bottom:110px;z-index:5;pointer-events:none}
+.pl-title h1{font:300 clamp(72px,10vw,196px)/.84 var(--d);letter-spacing:-.06em;margin:0}
+.pl-title p{margin:22px 0 0;font:400 17px/1.5 var(--t);max-width:38ch;color:rgba(228,226,214,.78)}
+.pl-bar{position:absolute;left:50%;top:84px;translate:-50% 0;z-index:6;display:flex;gap:6px;padding:6px;border-radius:99px;background:rgba(7,16,13,.72);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--line)}
+.pl-bar button{font:500 13px/1 var(--t);color:var(--mute);background:none;border:0;padding:11px 15px;border-radius:99px;cursor:pointer;transition:.3s}
+.pl-bar button[aria-pressed="true"]{background:var(--cream);color:var(--bg)}
+.pl-bar sup{font-size:9px;margin-left:4px}
+.pl-n{position:absolute;right:44px;bottom:110px;z-index:5;text-align:right;font:500 11px/1.5 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);pointer-events:none}
+.pl-n b{display:block;font:300 44px/1 var(--d);letter-spacing:-.03em;color:var(--cream);font-variant-numeric:tabular-nums}
+#spiral{background:radial-gradient(60% 60% at 50% 50%,#10201b,var(--bg) 75%)}
+#services{background:#050c0a}
+#prints{--k-fg:#e4e2d6}
+.ix{padding-block:150px 150px}
 </style>
 </head>
 <body>
 <div class="px-grain" aria-hidden="true" style="--grain:.07"></div>
 <div id="nav"></div>
 <main>
-<section class="canvas" id="top" aria-label="Every Pillar project on one canvas">
-  <div class="cv-layer" id="cv" data-lb-group></div>
-  <div class="cv-vig" aria-hidden="true"></div>
-  <div class="cv-title"><h1>Pull the<br>work closer.</h1><p>Every one of Pillar's 224 projects on one table. Drag in any direction, or let the canvas drift toward your cursor.</p></div>
-  <div class="cv-bar" id="cvbar" role="group" aria-label="Filter the canvas by scope"></div>
-  <div class="cv-hud"><b id="cvn">224</b>projects in view · drag</div>
-</section>
-
-<section class="zoom" id="work">
-  <div class="zg" id="zg"></div>
-  <div class="z-copy" id="zcopy"><p class="k-eyebrow">Specialty contractor since 1995</p><h2 class="h2">Walls that move us.</h2><p>Interior partitions, rainscreens, EIFS, restoration and factory-built exterior panels, self-performed by our own crews across twelve states.</p></div>
-</section>
-
-<section class="rooms" id="services" data-loupe></section>
-
+<section id="top" aria-label="Every Pillar project on one table"></section>
+<section id="spiral" aria-label="A spiral of selected work"></section>
+<section id="services" aria-label="The trades"></section>
+<section id="prints" aria-label="A light table of prints"></section>
 <section class="wrap ix" id="index">
   <p class="k-eyebrow">Project index</p>
   <h2 class="h2" style="margin-bottom:56px">The full record.</h2>
@@ -112,68 +64,28 @@ img{display:block;max-width:100%}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core2.js"></script>
 <script src="assets/kit2.js"></script>
+<script src="assets/fx2.js"></script>
 <script>
 const {$,$$,esc,pad,loc,D}=PX;
-$('#nav').innerHTML=K.nav([['#work','Work'],['#services','Services'],['#index','Index']]);
+$('#nav').innerHTML=K.nav([['#spiral','Spiral'],['#services','Trades'],['#prints','Prints'],['#index','Index']]);
 $('#contactHost').outerHTML=K.contact('Let’s talk about your walls.');
 PX.init({id:'02',cursor:true});
 PX.loupe();
-K.wireContact();
-K.index($('#ix'),{limit:12});
 
-/* ---------- endless canvas ---------- */
-const CW=340, CH=440, COLS=16, PR=D.projects.filter(p=>p.img), ROWS=Math.ceil(PR.length/COLS), TW=COLS*CW, TH=ROWS*CH;
-const shape=i=>['','w','s','','s','w'][i*7%6];
-$('#cv').innerHTML=PR.map((p,i)=>`<figure class="tile ${shape(i)}" data-lb="${p.id}" data-s="${p.s}" data-cursor="Open" style="margin:0"><div class="in"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy" decoding="async" draggable="false"></div><figcaption>${esc(p.n)} · ${esc(p.c)}</figcaption></figure>`).join('');
-const tiles=$$('.tile').map((el,i)=>({el,bx:(i%COLS)*CW+(Math.floor(i/COLS)%2?CW/2:0),by:Math.floor(i/COLS)*CH}));
-let ox=-TW/2+innerWidth/2, oy=-TH/2+innerHeight/2, vx=0, vy=0, mx=0, my=0, hov=false, inView=true;
-const cvEl=$('#top');
-cvEl.addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;hov=true});
-cvEl.addEventListener('pointerleave',()=>{hov=false});
-PX.drag(cvEl,(dx,dy)=>{ox+=dx;oy+=dy;vx=dx;vy=dy},{friction:.95});
-new IntersectionObserver(([e])=>inView=e.isIntersecting).observe(cvEl);
-const mod=(a,n)=>((a%n)+n)%n;
-(function loop(){
-  requestAnimationFrame(loop); if(!inView)return;
-  if(hov&&!cvEl.classList.contains('px-dragging')){const dz=v=>Math.abs(v)<.18?0:(v-Math.sign(v)*.18);ox-=dz(mx)*7;oy-=dz(my)*7}
-  vx*=.9;vy*=.9;
-  const W=innerWidth,H=innerHeight,cx=W/2,cy=H/2,R=Math.hypot(cx,cy),sk=Math.max(-10,Math.min(10,vx*.25));
-  for(const t of tiles){
-    const x=mod(t.bx+ox,TW)-CW, y=mod(t.by+oy,TH)-CH;
-    if(x>W+CW||y>H+CH){t.el.style.visibility='hidden';continue}
-    t.el.style.visibility='visible';
-    const d=Math.min(1,Math.hypot(x+140-cx,y+180-cy)/R), s=1.18-.62*Math.pow(d,1.25);
-    t.el.style.transform=`translate3d(${x}px,${y}px,0) scale(${s.toFixed(3)}) skewX(${-sk}deg)`;
-    t.el.style.zIndex=Math.round((1-d)*100);
-  }
-})();
+/* 3D table of every project */
+const PR=D.projects.filter(p=>p.img);
 const chips=[['all','All',PR.length],...D.services.map(s=>[s.id,K.SVC[s.id],PR.filter(p=>p.s===s.id).length])];
-$('#cvbar').innerHTML=chips.map(([k,l,n],i)=>`<button type="button" data-f="${k}" aria-pressed="${!i}">${l}<sup>${n}</sup></button>`).join('');
-$('#cvbar').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#cvbar button').forEach(x=>x.setAttribute('aria-pressed',x===b));const f=b.dataset.f;let n=0;tiles.forEach(t=>{const on=f==='all'||t.el.dataset.s===f;t.el.classList.toggle('off',!on);n+=on});gsap.to({v:+$('#cvn').textContent},{v:n,duration:.8,ease:'power3.out',onUpdate(){$('#cvn').textContent=Math.round(this.targets()[0].v)}})});
-$('#cvbar').addEventListener('pointerdown',e=>e.stopPropagation());
+const pl=FX.plane($('#top'),{overlay:`<div class="pl-bar" id="plbar" role="group" aria-label="Filter the table by trade">${chips.map(([k,l,n],i)=>`<button type="button" data-f="${k}" aria-pressed="${!i}">${l}<sup>${n}</sup></button>`).join('')}</div><div class="pl-title"><h1>Fly over<br>the work.</h1><p>Every one of Pillar's 224 projects laid out on one table. Drag to fly across it, hover a print to lift it, filter by trade.</p></div><div class="pl-n"><b id="pln">${PR.length}</b>projects on the table</div>`});
+$('#plbar').addEventListener('pointerdown',e=>e.stopPropagation());
+$('#plbar').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#plbar button').forEach(x=>x.setAttribute('aria-pressed',x===b));const n=pl.filter(b.dataset.f);gsap.to({v:+$('#pln').textContent},{v:n,duration:.8,ease:'power3.out',onUpdate(){$('#pln').textContent=Math.round(this.targets()[0].v)}})});
 
-/* ---------- grid zoom ---------- */
-const ZG=K.best(9,10); ZG[4]=PX.byImg['V17-004D'];
-$('#zg').innerHTML=ZG.map((p,i)=>`<div class="zc"${i===4?' id="zc"':''}><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"></div>`).join('');
-const zl=gsap.timeline({scrollTrigger:{trigger:'#work',start:'top top',end:'+=220%',pin:true,scrub:1}});
-const zc=()=>{const g=$('#zg').getBoundingClientRect(),c=$('#zc').getBoundingClientRect();return{s:Math.max(innerWidth/c.width,innerHeight/c.height)*1.02,x:(g.left+g.width/2)-(c.left+c.width/2),y:(g.top+g.height/2)-(c.top+c.height/2)}};
-const Z=zc();
-zl.fromTo('#zg',{scale:.86,rotate:-4},{scale:1,rotate:0,duration:.6,ease:'power2.out'})
-  .to('#zg',{scale:Z.s,x:Z.x*Z.s,y:Z.y*Z.s,duration:1.4,ease:'power2.inOut'})
-  .to($$('.zc').filter((_,i)=>i!==4),{opacity:0,duration:.8},'<.2')
-  .to('#zcopy',{opacity:1,y:0,duration:.6},'-=.3');
-gsap.set('#zcopy',{y:40});
-
-/* ---------- service rooms ---------- */
-const SIMG={drywall:'Institute_for_Digital_Innovation_1',rainscreen:'8621Rt','eifs-stucco':'V16-047',restoration:'V10-002','exterior-panels':'EP_003'};
-$('#services').innerHTML=D.services.map((s,i)=>{const ps=D.projects.filter(p=>p.s===s.id&&p.img&&p.img!==SIMG[s.id]).slice(0,3);return `<article class="room" data-i="${i}"><div class="bgi"><img src="${K.G(SIMG[s.id])}" alt="${esc(s.title)}" loading="lazy"></div>
-  <div class="r-in"><span class="no">${pad(i+1)} / 05 · ${D.projects.filter(p=>p.s===s.id).length} projects</span><h3>${esc(K.SVC[s.id])}</h3><p>${esc(s.short)}</p><ul>${s.scopes.slice(0,8).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-  <div class="r-thumbs" data-lb-group>${ps.map(p=>`<a href="#" data-lb="${p.id}" data-cursor="View"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"></a>`).join('')}</div></article>`}).join('');
-$$('.room').forEach((r,i)=>{
-  gsap.fromTo($('.bgi',r),{clipPath:'inset(18% 26% 18% 26% round 18px)',scale:1.25},{clipPath:'inset(0% 0% 0% 0% round 0px)',scale:1,ease:'none',scrollTrigger:{trigger:r,start:'top bottom',end:'top top',scrub:true}});
-  gsap.from($$('.r-in > *',r),{y:60,opacity:.2,stagger:.06,ease:'none',scrollTrigger:{trigger:r,start:'top 70%',end:'top 10%',scrub:true}});
-  const nx=$$('.room')[i+1]; if(nx) gsap.to(r,{scale:.92,filter:'brightness(.55)',ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:true}});
-});
+/* helix, coverflow, light table */
+FX.helix($('#spiral'),{items:K.best(28,0),eyebrow:'Selected work',title:'A spiral of twenty-eight buildings.',per:7,r:600,dy:120});
+const CF=[];D.services.forEach(s=>{D.projects.filter(p=>p.s===s.id&&p.img).slice(0,4).forEach(p=>CF.push({p,group:K.SVC[s.id],tag:`${D.projects.filter(q=>q.s===s.id).length} projects`,text:s.short}))});
+FX.coverflow($('#services'),{items:CF,eyebrow:'Trades',title:'Flip through the trades.'});
+FX.table($('#prints'),{items:K.best(18,28),eyebrow:'Light table',title:'Pick them up. Throw them.'});
+K.index($('#ix'),{limit:12});
+K.wireContact();
 </script>
 </body>
 </html>

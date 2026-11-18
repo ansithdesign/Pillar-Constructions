@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Monolith II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/core2.css">
+<link rel="stylesheet" href="assets/fx2.css">
+<style>
+/* Layout: white stone and black type. A facade of turning prisms, a field of standing slabs you walk among, and a portfolio whose pages you turn. */
+:root{
+  --white:#f4f3f0; --stone:#e7e5e0; --ink:#121212; --mute:#8b8882; --line:rgba(18,18,18,.1); --line2:rgba(18,18,18,.28); --bronze:#8a6a43;
+  --f:"Host Grotesk","Helvetica Neue",Arial,sans-serif;
+  --k-bg:var(--white); --k-fg:var(--ink); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--bronze);
+  --k-disp:var(--f); --k-text:var(--f); --k-gut:40px; --k-nav-fg:#fff; --k-nav-blend:difference; --k-h-weight:300; --k-paper:#faf9f6;
+  --k-c-bg:var(--ink); --k-c-fg:var(--white); --k-c-mute:#8f8c86; --k-c-line:rgba(244,243,240,.14); --k-c-weight:300;
+  --px-lb-bg:#121212; --px-lb-font:var(--f); --px-lb-display:var(--f); --px-lb-weight:300; --px-sw-bg:rgba(18,18,18,.88);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--white)}
+body{margin:0;color:var(--ink);font:400 16px/1.6 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{padding-inline:40px}
+.h2{font:300 clamp(48px,6.6vw,124px)/.9 var(--f);letter-spacing:-.055em;margin:0;text-wrap:balance}
+.pr-shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 25%,transparent 55%,rgba(0,0,0,.7))}
+.pr-copy{position:absolute;left:40px;bottom:100px;z-index:3;color:#fff;pointer-events:none}
+.pr-copy h1{font:300 clamp(80px,11vw,210px)/.84 var(--f);letter-spacing:-.065em;margin:0}
+.pr-copy p{margin:20px 0 0;max-width:42ch;font-size:17px;color:rgba(255,255,255,.8)}
+.pr-cap{position:absolute;right:40px;bottom:100px;z-index:3;color:#fff;text-align:right;display:grid;gap:12px;justify-items:end}
+.pr-cap b{font:400 28px/1.15 var(--f);letter-spacing:-.02em;min-height:32px}
+.pr-cap span{font:500 12px/1.4 var(--f);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.pr-btns{display:flex;gap:8px}
+.pr-btns button{width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);color:#fff;font:400 18px/1 var(--f);cursor:pointer;transition:background .3s}
+.pr-btns button:hover{background:#fff;color:var(--ink)}
+.pr-prog{position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:rgba(255,255,255,.12)}
+.pr-prog i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
+#field{background:linear-gradient(180deg,var(--white),var(--stone))}
+#book{background:var(--stone)}
+.ix{padding-block:150px 150px}
+</style>
+</head>
+<body>
+<div class="px-grain" aria-hidden="true" style="--grain:.05"></div>
+<div id="nav"></div>
+<main>
+<section id="top" aria-label="Featured projects on a facade of turning prisms"></section>
+<section id="field" aria-label="A field of standing slabs"></section>
+<section id="book" aria-label="A portfolio book"></section>
+<section class="wrap ix" id="index">
+  <p class="k-eyebrow">Project index</p>
+  <h2 class="h2" style="margin-bottom:56px">Every facade on file.</h2>
+  <div id="ix"></div>
+</section>
+<div id="contactHost"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core2.js"></script>
+<script src="assets/kit2.js"></script>
+<script src="assets/fx2.js"></script>
+<script>
+const {$,$$,esc,pad,loc,D}=PX;
+$('#nav').innerHTML=K.nav([['#field','Field'],['#book','Portfolio'],['#index','Index']]);
+$('#contactHost').outerHTML=K.contact('Open the next facade with us.');
+PX.init({id:'03',cursor:true});
+PX.loupe();
+
+/* prism facade */
+const PV=['V17-004D','6565Rt','V19-019R','College_Park_City_Hall_1','The_Westerly_Waterfront_1','V18-014R','V16-038','V17-030R','D06-014','V18-005R','7726Rt','V15-020R'].map(id=>PX.byImg[id]).filter(Boolean);
+let t0=performance.now();
+const pz=FX.prism($('#top'),{items:PV,n:14,overlay:`<div class="pr-shade"></div><div class="pr-prog"><i id="prp"></i></div><div class="pr-copy"><h1>Facades,<br>turning.</h1><p>Rainscreens, panels and finishes by Pillar Construction. Each fin has three faces: move across them to look behind, click to turn the facade.</p></div><div class="pr-cap"><span id="pri">01 / 12</span><b id="prn">—</b><span id="prl"></span><div class="pr-btns"><button type="button" id="prPrev" aria-label="Previous project">←</button><button type="button" id="prNext" aria-label="Next project">→</button></div></div>`,
+  onChange:(p,i)=>{$('#prn').textContent=p.n;$('#prl').textContent=`${loc(p)} · ${K.SVC[p.s]}`;$('#pri').textContent=`${pad(i+1)} / ${pad(PV.length)}`},onTurn:()=>{t0=performance.now()}});
+$('#top').dataset.cursor='Turn';
+$('#prNext').addEventListener('click',e=>{e.stopPropagation();pz.turn(1)});$('#prPrev').addEventListener('click',e=>{e.stopPropagation();pz.turn(-1,13)});
+(function auto(t){requestAnimationFrame(auto);const k=Math.min(1,(t-t0)/6500);$('#prp').style.transform=`scaleX(${k})`;if(k>=1&&!$('#top').matches(':hover')){t0=t;pz.turn(1)}})(t0);
+
+/* slab field, book */
+FX.slabs($('#field'),{items:K.best(12,10),eyebrow:'The field',title:'Twelve monoliths. Walk among them.'});
+FX.book($('#book'),{items:K.best(8,30),eyebrow:'Portfolio',title:'Turn the pages.',sub:'Scroll or drag across the book to turn it. Click a photograph to open the project.',cover:'Selected works, 1995 to today'});
+K.index($('#ix'),{limit:12});
+K.wireContact();
+</script>
+</body>
+</html>

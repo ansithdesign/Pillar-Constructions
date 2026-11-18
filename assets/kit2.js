@@ -28,15 +28,14 @@
     const rows = $('.k-rows', host), more = $('.k-more', host), cnt = $('.k-ix-n', host);
     const draw = () => {
       const list = D.projects.filter((p) => filt === 'all' || p.s === filt), shown = all ? list : list.slice(0, LIM);
-      rows.innerHTML = shown.map((p, i) => `<a class="k-row" href="#" data-lb="${p.id}" data-cursor="View" data-src="${G(p.img)}"><span class="k-no">${pad(i + 1, 3)}</span><span class="k-nm">${esc(p.n)}</span><span>${esc(loc(p))}</span><span>${SVC[p.s]}</span><span class="k-gc">${esc(p.g || '')}</span></a>`).join('');
+      rows.innerHTML = shown.map((p, i) => `<a class="k-row" href="#" data-lb="${p.id}" data-cursor="View"><i class="k-band" style="background-image:url('${G(p.img)}')"></i><span class="k-no">${pad(i + 1, 3)}</span><span class="k-nm">${esc(p.n)}</span><span>${esc(loc(p))}</span><span>${SVC[p.s]}</span><span class="k-gc">${esc(p.g || '')}</span></a>`).join('');
       cnt.textContent = `${shown.length} of ${list.length}`;
       more.hidden = list.length <= LIM; more.textContent = all ? 'Show fewer' : `Show all ${list.length}`;
-      $$('.px-float.k-float').forEach((n) => n.parentNode.removeChild(n));
-      PX.hoverPreview($$('.k-row', rows), (r) => r.dataset.src, { cls: 'k-float' });
       if (window.ScrollTrigger) ScrollTrigger.refresh();
     };
     $('.k-chips', host).addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; filt = b.dataset.f; $$('.k-chips button', host).forEach((x) => x.setAttribute('aria-pressed', x === b)); draw(); });
     more.addEventListener('click', () => { all = !all; draw(); });
+    rows.addEventListener('pointermove', (e) => { const r = e.target.closest('.k-row'); if (!r) return; const b = r.getBoundingClientRect(); r.firstChild.style.backgroundPosition = `${(e.clientX - b.left) / b.width * 100}% 50%`; });
     draw();
   }
 
@@ -64,7 +63,15 @@
     f.addEventListener('submit', (e) => { e.preventDefault(); const m = $('#k-fmsg'); m.hidden = false; const n = $('#k-name').value.trim(); m.textContent = `Thanks${n ? ', ' + n.split(' ')[0] : ''}. This concept page doesn't send enquiries. Email ${D.company.email} or call ${D.company.phone}.`; });
     const tick = () => $$('[data-tz]').forEach((el) => (el.textContent = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: el.dataset.tz }).format(new Date()) + ' local'));
     tick(); setInterval(tick, 20000);
-    if (window.gsap && window.ScrollTrigger) gsap.fromTo('.k-word span', { yPercent: 80 }, { yPercent: 0, stagger: .05, ease: 'none', scrollTrigger: { trigger: '.k-foot', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+    const ls = $$('.k-word span'), pics = ['6565Rt', '8621Rt', 'V17-004D', 'V19-019R', 'The_Westerly_Waterfront_1', 'College_Park_City_Hall_1'];
+    ls.forEach((l, i) => (l.style.backgroundImage = `url('${G(pics[i % pics.length])}')`));
+    let mx = innerWidth / 2, my = innerHeight / 2; addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    const st = ls.map(() => ({ rx: 0, ry: 0, z: 0, y: 80 }));
+    let rise = 0; if (window.gsap && window.ScrollTrigger) ScrollTrigger.create({ trigger: '.k-foot', start: 'top bottom', end: 'bottom bottom', scrub: true, onUpdate: (s) => (rise = s.progress) });
+    (function spin() { requestAnimationFrame(spin); ls.forEach((l, i) => { const r = l.getBoundingClientRect(); if (r.bottom < -200 || r.top > innerHeight + 200) return; const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2), d = Math.hypot(dx, dy), f = Math.max(0, 1 - d / 700), s = st[i];
+      s.ry += (dx * .05 - s.ry) * .08; s.rx += (-dy * .05 - s.rx) * .08; s.z += (f * 120 - s.z) * .1; s.y += ((1 - rise) * 80 * (1 + i * .15) - s.y) * .1;
+      l.style.transform = `translateY(${s.y}%) translateZ(${s.z}px) rotateX(${Math.max(-40, Math.min(40, s.rx))}deg) rotateY(${Math.max(-40, Math.min(40, s.ry))}deg)`; l.style.backgroundPosition = `${50 + dx * .03}% ${50 + dy * .03}%`; l.style.color = f > .55 ? 'transparent' : ''; }); })();
   }
-  window.K = { G, SVC, BEST, best, years, states, honours, nav, index, contact, wireContact, fx };
+  const svcs = (imgs) => D.services.map((s) => ({ id: s.id, name: SVC[s.id], short: s.short, scopes: s.scopes, count: D.projects.filter((p) => p.s === s.id).length, img: imgs[s.id] }));
+  window.K = { G, SVC, BEST, best, years, states, honours, nav, index, contact, wireContact, fx, svcs };
 })();

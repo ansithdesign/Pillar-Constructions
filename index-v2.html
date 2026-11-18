@@ -31,8 +31,8 @@ h1 span{color:var(--mute)}
 .how{display:flex;gap:18px;flex-wrap:wrap;padding-block:18px;border-bottom:1px solid var(--line)}
 .how span{display:flex;gap:8px;align-items:center}
 kbd{font:400 10px/1 var(--mono);border:1px solid var(--line);border-radius:4px;padding:3px 6px;color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px;padding-block:36px 90px}
-.card{display:grid;gap:14px;outline-offset:6px;animation:rise 1.1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0) * 90ms + 150ms)}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px 20px;padding-block:36px 90px}
+.card{grid-column:span 2;display:grid;gap:14px;outline-offset:6px;animation:rise 1.1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0) * 90ms + 150ms)}
 @keyframes rise{from{opacity:0;transform:translateY(40px)}}
 .card .frame{animation:open 1.3s cubic-bezier(.76,0,.24,1) both;animation-delay:calc(var(--i,0) * 90ms + 150ms)}
 @keyframes open{from{clip-path:inset(100% 0 0 0)}}
@@ -54,6 +54,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 60px;display:flex;jus
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}header{grid-template-columns:1fr}}
 @media (max-width:640px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.card:hover .frame .long,.card,.card .frame{animation:none}}
+.card:nth-child(4){grid-column:2/span 2}
 </style>
 </head>
 <body>
@@ -61,11 +62,11 @@ footer{border-top:1px solid var(--line);padding-block:24px 60px;display:flex;jus
   <header>
     <div>
       <div class="brand"><svg viewBox="0 0 64 56" aria-hidden="true" fill="currentColor"><path d="M32 0 64 56H0Z" opacity=".22"/><path d="M14.9 26h34.2l4.6 8H10.3Z"/><path d="M8 38h48l4.6 8H3.4Z"/><path d="M21.7 14h20.6l4.6 8H17.1Z" opacity=".6"/></svg><span class="mono">Pillar Construction · Redesign · Round two</span></div>
-      <h1>Six directions, <span>rebuilt around the photographs</span></h1>
+      <h1>Five directions, <span>built to be handled</span></h1>
     </div>
     <div>
-      <p class="lede">The same six options, rebuilt so the photography leads. Every image carries one darker, high-contrast night grade with a vignette, and every page has its own way to handle the work: fly through it, drag it, bend it, open it through fins, spill it with the cursor or turn it on a ring. Hover any photograph with the daylight loupe to see it ungraded and magnified.</p>
-      <div class="facts"><div><b>6</b><span class="mono">Options</span></div><div><b>224</b><span class="mono">Projects</span></div><div><b>255</b><span class="mono">Photos graded</span></div></div>
+      <p class="lede">Five options, rebuilt so every section is something you handle: fly through a corridor, skim a 3D table, turn prisms and pages, throw prints, spin a globe. Every photograph carries one darker, high-contrast night grade, and the daylight loupe shows any of them as shot.</p>
+      <div class="facts"><div><b>5</b><span class="mono">Options</span></div><div><b>224</b><span class="mono">Projects</span></div><div><b>255</b><span class="mono">Photos graded</span></div></div>
     </div>
   </header>
   <div class="how mono"><span><kbd>[</kbd><kbd>]</kbd> Previous / next option</span><span><kbd>▦</kbd> Back to this sheet</span><span>Click any project photo to open the viewer · <kbd>←</kbd><kbd>→</kbd> <kbd>Esc</kbd></span></div>
@@ -74,12 +75,11 @@ footer{border-top:1px solid var(--line);padding-block:24px 60px;display:flex;jus
 </div>
 <script>
 const O=[
- ['01','anatomy','Anatomy','Tunnel',['3D corridor fly-through','Mouse-steered camera','Orbitable exploded wall','Expanding photo panels']],
- ['02','verdigris','Verdigris','Canvas',['Endless drag canvas, 224 projects','Fisheye scaling','Filter by trade','Grid zoom into one photo']],
- ['03','filmstrip','Filmstrip','Liquid reel',['WebGL reel that bends with speed','RGB split and ripple on hover','Contact sheet flashes','Velocity chapters']],
- ['04','monolith','Monolith','Louvres',['Photos turn on 16 fins','Hover the fins to peek behind','Colour spotlight grid','Slit-widening reel']],
- ['05','studio','Studio','Trail',['Cursor spills the work','Weighted wordmark','3D deck deals toward you','Liquid service previews']],
- ['06','nord','Nord','Orbit',['Draggable ring of projects','Mark opens like a window','Stacking service cards','Velocity name marquee']],
+ ['01','anatomy','Anatomy','Tunnel',['3D corridor fly-through','Facade that ripples under the cursor','Exploded tower of trades','Photos shatter into the next']],
+ ['02','verdigris','Verdigris','Table',['Fly over a 3D table of 224 projects','Spiral helix of work','Coverflow of trades','Light table: throw the prints']],
+ ['03','monolith','Monolith','Prisms',['Facade of turning three-sided fins','Walk a field of standing slabs','Portfolio book with turning pages','Colour-graded throughout']],
+ ['04','studio','Studio','Trail',['Photos fly out behind the cursor','Wordmark that shies away','3D deck deals toward you','Trades written in their buildings']],
+ ['05','nord','Nord','Orbit',['Draggable ring of projects','Globe of 60 projects','Rolodex of trades','Infinite zoom, building into building']],
 ];
 document.getElementById('grid').innerHTML=O.map((o,i)=>`<a class="card" href="${o[0]}-${o[1]}-v2.html" style="--i:${i}">
  <div class="frame"><img src="assets/img/o2/${o[0]}.jpg" alt="Option ${o[0]} ${o[2]} preview" loading="lazy"><img class="long" src="assets/img/o2/${o[0]}-long.jpg" alt="" loading="lazy"><span class="open">Open option →</span></div>

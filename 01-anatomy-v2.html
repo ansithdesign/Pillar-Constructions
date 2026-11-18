@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/core2.css">
+<link rel="stylesheet" href="assets/fx2.css">
 <style>
-/* Layout: a dark corridor of photographs you walk through, opening onto pale paper pages where the wall comes apart layer by layer. */
+/* Layout: a dark corridor of photographs you walk through, then a facade that ripples under your hand, a tower of trades that comes apart and photographs that shatter into the next. */
 :root{
-  --paper:#f1ede6; --paper-2:#e7e2d9; --ink:#191816; --mute:#77706a; --line:rgba(25,24,22,.12); --line2:rgba(25,24,22,.28);
+  --paper:#f1ede6; --paper-2:#e6e1d8; --ink:#191816; --mute:#77706a; --line:rgba(25,24,22,.12); --line2:rgba(25,24,22,.28);
   --navy:#24398a; --void:#0a0b0d; --bone:#efebe4;
   --f:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
   --k-bg:var(--paper); --k-fg:var(--ink); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--navy);
-  --k-disp:var(--f); --k-text:var(--f); --k-gut:48px; --k-nav-fg:#fff; --k-nav-blend:difference;
+  --k-disp:var(--f); --k-text:var(--f); --k-gut:48px; --k-nav-fg:#fff; --k-nav-blend:difference; --k-h-weight:300;
   --k-c-bg:var(--void); --k-c-fg:var(--bone); --k-c-mute:#8f8b85; --k-c-line:rgba(239,235,228,.14); --k-c-weight:300;
   --px-lb-bg:#0d0f14; --px-lb-font:var(--f); --px-lb-display:var(--f); --px-lb-weight:300; --px-sw-bg:rgba(36,57,138,.88);
   color-scheme:light;
@@ -26,9 +27,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f
 img{display:block;max-width:100%}
 .wrap{padding-inline:48px}
 .h2{font:300 clamp(48px,6.4vw,116px)/.92 var(--f);letter-spacing:-.055em;margin:0;text-wrap:balance}
-.lede{font:400 18px/1.55 var(--f);color:var(--mute);max-width:46ch;margin:0}
 
-/* 1 · tunnel */
+/* tunnel */
 .tunnel{position:relative;height:100vh;background:var(--void);overflow:hidden;color:var(--bone)}
 .stage{position:absolute;inset:0;perspective:820px;perspective-origin:50% 50%}
 .cam{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
@@ -52,61 +52,11 @@ img{display:block;max-width:100%}
 .speed{position:absolute;left:0;right:0;top:0;height:2px;background:rgba(255,255,255,.08);z-index:3}
 .speed i{display:block;height:100%;background:#9fb0ff;transform-origin:left;transform:scaleX(0)}
 
-/* 2 · statement with a 3D photo stack that follows the mouse */
-.intro{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;padding-block:180px 140px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line)}
-.stats div{padding-top:20px}
-.stats b{display:block;font:200 clamp(56px,6vw,104px)/.9 var(--f);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
-.stats span{font-size:13px;color:var(--mute)}
-.stack{position:relative;height:640px;perspective:1300px}
-.stk{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.sc{position:absolute;width:62%;aspect-ratio:4/5;left:19%;top:6%;transform-style:preserve-3d;cursor:pointer;transition:transform 1s cubic-bezier(.16,1,.3,1),box-shadow .6s;box-shadow:0 40px 80px rgba(25,24,22,.28)}
-.sc img{width:100%;height:100%;object-fit:cover}
-.sc figcaption{position:absolute;left:0;bottom:-30px;font-size:13px;color:var(--mute);opacity:0;transition:opacity .4s}
-.stack:hover .sc figcaption{opacity:1}
-
-/* 3 · exploded wall you can orbit */
-.wall-sec{display:grid;grid-template-columns:1.15fr .85fr;min-height:100vh;align-items:center;background:var(--paper-2)}
-.orbit{height:100vh;perspective:1600px;display:grid;place-items:center;cursor:grab;position:relative}
-.orbit::after{content:"Drag to orbit · scroll to explode";position:absolute;left:48px;bottom:40px;font:500 11px/1 var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.wl{position:relative;width:340px;aspect-ratio:3/4;transform-style:preserve-3d}
-.ly{position:absolute;inset:0;transform-style:preserve-3d;transition:filter .5s,outline-color .5s;outline:1px solid rgba(25,24,22,.15);filter:saturate(.85) brightness(.9)}
-.ly.on{outline:2px solid var(--navy);filter:none}
-.ly1{background:linear-gradient(#8e959d,#8e959d) top/100% 9px no-repeat,linear-gradient(#8e959d,#8e959d) bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,#8e959d 0 8px,transparent 8px calc(25% - 1px),#8e959d calc(25% - 1px) 25%)}
-.ly2{background:radial-gradient(circle,rgba(30,22,8,.55) 1.6px,transparent 2.2px) 0 0/25% 12.5%,linear-gradient(transparent calc(50% - 1px),rgba(30,22,8,.5) calc(50% - 1px) 50%,transparent 50%),linear-gradient(160deg,#cdb478,#b2985b)}
-.ly3{background:linear-gradient(115deg,rgba(255,255,255,.25),transparent 35%,rgba(255,255,255,.1) 58%,transparent 72%),#2f4fa8;opacity:.95}
-.ly4{background:url("assets/img/g/EP_003.jpg") center/cover;box-shadow:0 50px 90px rgba(25,24,22,.35)}
-.ly4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 calc(33.33% - 2px),rgba(0,0,0,.6) calc(33.33% - 2px) 33.33%),repeating-linear-gradient(90deg,transparent 0 calc(50% - 2px),rgba(0,0,0,.6) calc(50% - 2px) 50%)}
-.wl-copy{padding:120px 64px 120px 0}
-.lys{list-style:none;padding:0;margin:40px 0 0;border-top:1px solid var(--line)}
-.lys li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:18px 0;border-bottom:1px solid var(--line);color:var(--mute);transition:color .4s}
-.lys li.on{color:var(--ink)}.lys li.on span{color:var(--navy)}
-.lys h3{margin:0;font:500 20px/1.25 var(--f);letter-spacing:-.02em}
-.lys p{margin:4px 0 0;font-size:14px}
-.eps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);margin-top:40px}
-.eps div{padding:18px 16px 0 0}
-.eps b{display:block;font:200 44px/1 var(--f);letter-spacing:-.04em}
-.eps b small{font-size:.4em;color:var(--navy);margin-left:3px;font-weight:500}
-.eps span{font-size:12px;color:var(--mute);line-height:1.35;display:block;margin-top:6px}
-
-/* 4 · services: expanding photo panels */
-.svc{padding-block:160px 140px}
-.panels{display:flex;gap:10px;height:76vh;margin-top:56px}
-.pn{position:relative;flex:1;min-width:0;overflow:hidden;border-radius:6px;cursor:pointer;transition:flex 1.1s cubic-bezier(.16,1,.3,1);background:var(--void);color:var(--bone)}
-.pn.on{flex:4.2}
-.pn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
-.pn.on img{transform:scale(1)}
-.pn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,13,.1) 40%,rgba(10,11,13,.85));pointer-events:none}
-.pn .vt{position:absolute;left:22px;bottom:26px;z-index:2;writing-mode:vertical-rl;transform:rotate(180deg);font:400 26px/1 var(--f);letter-spacing:-.02em;white-space:nowrap;transition:opacity .4s}
-.pn.on .vt{opacity:0}
-.pn .pd{position:absolute;left:34px;right:34px;bottom:30px;z-index:2;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .9s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.pn.on .pd{opacity:1;transform:none;transition-delay:.25s}
-.pd h3{margin:0 0 10px;font:300 54px/.95 var(--f);letter-spacing:-.04em}
-.pd p{margin:0 0 16px;max-width:52ch;color:rgba(239,235,228,.78);font-size:15px}
-.pd ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.pd li{font-size:12px;padding:5px 10px;border-radius:99px;box-shadow:inset 0 0 0 1px rgba(239,235,228,.35)}
-.pn .no{position:absolute;right:20px;top:18px;z-index:2;font:500 12px/1 var(--f);letter-spacing:.1em}
-.ix{padding-block:40px 160px}
+/* sections built by fx2 */
+#facade{background:var(--void);color:var(--bone);--k-fg:var(--bone);--k-mute:#8f8b85;--k-line:rgba(239,235,228,.12)}
+#services{background:var(--paper-2)}
+#work{background:#08090b;color:var(--bone);--k-fg:var(--bone);--k-mute:#8f8b85}
+.ix{padding-block:150px 160px}
 </style>
 </head>
 <body>
@@ -120,33 +70,9 @@ img{display:block;max-width:100%}
   <div class="t-head" id="thead"><h1>Walk through<br><em>224</em> buildings.</h1><p>Drywall, rainscreen, EIFS and exterior panels by Pillar Construction since 1995. Scroll to move forward and move the mouse to look around.</p></div>
   <div class="hud"><div class="now">Now passing<b id="now">—</b></div><div class="depth"><b id="dep">000</b>metres in</div><div class="hint">Click any frame to open it</div></div>
 </section>
-
-<section class="wrap intro" id="work">
-  <div>
-    <p class="k-eyebrow">Anatomy of a contractor</p>
-    <h2 class="h2">Every layer has a reason.</h2>
-    <p class="lede" style="margin-top:28px">Pillar self-performs drywall, rainscreen, EIFS, stucco, restoration, rough carpentry and air and vapor barriers, from offices in Washington DC, Houston, Orlando and New Jersey.</p>
-    <div class="stats" id="stats"></div>
-  </div>
-  <div class="stack" id="stack" data-loupe><div class="stk" id="stk" data-lb-group></div></div>
-</section>
-
-<section class="wall-sec" id="envelope">
-  <div class="orbit" id="orbit"><div class="wl" id="wl"><div class="ly ly1"></div><div class="ly ly2"></div><div class="ly ly3"></div><div class="ly ly4"></div></div></div>
-  <div class="wl-copy">
-    <p class="k-eyebrow">Pillar Exterior Panels</p>
-    <h2 class="h2" style="font-size:clamp(44px,4.6vw,84px)">The wall, taken apart.</h2>
-    <ol class="lys" id="lys"></ol>
-    <div class="eps" id="eps"></div>
-  </div>
-</section>
-
-<section class="wrap svc" id="services">
-  <p class="k-eyebrow">Services</p>
-  <h2 class="h2">Five trades, one crew.</h2>
-  <div class="panels" id="panels" data-loupe></div>
-</section>
-
+<section id="facade" aria-label="A facade of projects"></section>
+<section id="services" aria-label="The trades as a tower"></section>
+<section id="work" aria-label="Selected work"></section>
 <section class="wrap ix" id="index">
   <p class="k-eyebrow">Project index</p>
   <h2 class="h2" style="margin-bottom:56px">Every building on record.</h2>
@@ -161,35 +87,30 @@ img{display:block;max-width:100%}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core2.js"></script>
 <script src="assets/kit2.js"></script>
+<script src="assets/fx2.js"></script>
 <script>
 const {$,$$,esc,pad,loc,D}=PX;
-$('#nav').innerHTML=K.nav([['#work','Work'],['#envelope','Envelope'],['#services','Services'],['#index','Index']]);
+$('#nav').innerHTML=K.nav([['#facade','Facade'],['#services','Trades'],['#work','Work'],['#index','Index']]);
 $('#contactHost').outerHTML=K.contact('Walk the site with us.');
 PX.init({id:'01',cursor:true});
 PX.loupe();
-K.wireContact();
-K.index($('#ix'),{limit:12});
 
-/* ---------- tunnel ---------- */
+/* tunnel */
 const TP=[...K.best(64)].slice(0,60), GAP=300, START=600, DEPTH=TP.length*GAP+START;
 const slots=[['L'],['R'],['C',-1],['T'],['R'],['L'],['C',1],['B']];
 $('#cam').innerHTML=TP.map((p,i)=>{
-  const [s,side]=slots[i%slots.length], z=-(START+i*GAP), j=(i*37%9-4)*14;
-  let t;
+  const [s,side]=slots[i%slots.length], z=-(START+i*GAP), j=(i*37%9-4)*14; let t;
   if(s==='L')t=`translate3d(-700px,${j}px,${z}px) rotateY(62deg)`;
   else if(s==='R')t=`translate3d(700px,${-j}px,${z}px) rotateY(-62deg)`;
   else if(s==='T')t=`translate3d(${j*3}px,-400px,${z}px) rotateX(-64deg)`;
   else if(s==='B')t=`translate3d(${-j*3}px,400px,${z}px) rotateX(64deg)`;
   else t=`translate3d(${side*(300+Math.abs(j))}px,${j*1.5}px,${z}px)`;
-  const pt=(i%5===2);
-  return `<a class="tp${pt?' pt':''}" href="#" data-lb="${p.id}" data-cursor="Open" data-z="${z}" style="transform:${t}"><img src="${K.G(p.img)}" alt="${esc(p.n)}, ${esc(loc(p))}" ${i<8?'':'loading="lazy"'} decoding="async"><b>${esc(p.n)} · ${esc(p.c)}</b></a>`;
+  return `<a class="tp${i%5===2?' pt':''}" href="#" data-lb="${p.id}" data-cursor="Open" data-z="${z}" style="transform:${t}"><img src="${K.G(p.img)}" alt="${esc(p.n)}, ${esc(loc(p))}" ${i<8?'':'loading="lazy"'} decoding="async"><b>${esc(p.n)} · ${esc(p.c)}</b></a>`;
 }).join('');
-const tps=$$('.tp'), cam=$('#cam'), stage=$('#stage');
-let tz=0,cz=0,mx=0,my=0,rx=0,ry=0,vel=0,live=true;
+const tps=$$('.tp'), cam=$('#cam'), stage=$('#stage'), thead=$('#thead');
+let tz=0,cz=0,mx=0,my=0,rx=0,ry=0,vel=0,lastNow='';
 addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
-const thead=$('#thead');
 ScrollTrigger.create({trigger:'#top',start:'top top',end:'+=650%',pin:true,scrub:true,onUpdate:s=>{tz=s.progress*(DEPTH-200);const k=Math.min(1,s.progress*9);thead.style.opacity=1-k;thead.style.transform=`translateY(${-k*70}px)`}});
-let lastNow='';
 (function tick(){
   requestAnimationFrame(tick);
   const v=PX.lenis?Math.abs(PX.lenis.velocity||0):0; vel+=(v-vel)*.08;
@@ -199,39 +120,17 @@ let lastNow='';
   cam.style.transform=`rotateZ(${roll}deg) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${cz}px)`;
   $('#spd').style.transform=`scaleX(${Math.min(1,vel/40)})`;
   let best=null,bd=1e9;
-  for(const el of tps){
-    const vz=+el.dataset.z+cz, o=vz>120?Math.max(0,1-(vz-120)/260):Math.max(0,Math.min(1,1-(-vz-900)/4200));
-    el.style.opacity=o.toFixed(3); el.style.pointerEvents=o>.25?'auto':'none';
-    if(vz<0&&-vz<bd){bd=-vz;best=el}
-  }
+  for(const el of tps){const vz=+el.dataset.z+cz,o=vz>120?Math.max(0,1-(vz-120)/260):Math.max(0,Math.min(1,1-(-vz-900)/4200));el.style.opacity=o.toFixed(3);el.style.pointerEvents=o>.25?'auto':'none';if(vz<0&&-vz<bd){bd=-vz;best=el}}
   $('#dep').textContent=String(Math.round(cz/10)).padStart(3,'0');
-  const nm=best?best.querySelector('b').textContent:'';
-  if(nm!==lastNow){lastNow=nm;$('#now').textContent=nm}
+  const nm=best?best.querySelector('b').textContent:''; if(nm!==lastNow){lastNow=nm;$('#now').textContent=nm}
 })();
 
-/* ---------- stats + 3D stack ---------- */
-$('#stats').innerHTML=[[K.years,'Years building'],[D.projects.length,'Projects on record'],[K.states,'States']].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
-const SK=K.best(5,8);
-$('#stk').innerHTML=SK.map((p,i)=>`<figure class="sc" data-lb="${p.id}" data-cursor="Open" data-i="${i}"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"><figcaption>${esc(p.n)} · ${esc(p.c)}</figcaption></figure>`).join('');
-const scs=$$('.sc');
-const fan=(x,y)=>{scs.forEach((c,i)=>{const k=i-(scs.length-1)/2;c.style.transform=`translate3d(${k*(40+x*90)}px,${k*(-18+y*40)}px,${-Math.abs(k)*120+i*30}px) rotateZ(${k*(4+x*6)}deg) rotateY(${x*-14}deg) rotateX(${y*10}deg)`;c.style.zIndex=10-Math.abs(Math.round(k))})};
-fan(0,0);
-$('#stack').addEventListener('pointermove',e=>{const r=e.currentTarget.getBoundingClientRect();fan((e.clientX-r.left)/r.width-.5,(e.clientY-r.top)/r.height-.5)});
-$('#stack').addEventListener('pointerleave',()=>fan(0,0));
-
-/* ---------- exploded wall: drag to orbit, scroll to explode ---------- */
-$('#lys').innerHTML=D.ep.layers.map(([t,d],i)=>`<li data-i="${i}"><span>${pad(i+1)}</span><div><h3>${esc(t)}</h3><p>${esc(d)}.</p></div></li>`).join('');
-$('#eps').innerHTML=D.ep.stats.map(([v,u,d])=>`<div><b>${v}<small>${u}</small></b><span>${esc(d)}</span></div>`).join('');
-const lys=$$('.ly'), lis=$$('#lys li'); let ox=58,oz=-36,ex=0;
-const drawWall=()=>{$('#wl').style.transform=`rotateX(${ox}deg) rotateZ(${oz}deg)`;lys.forEach((l,i)=>l.style.transform=`translateZ(${i*ex}px)`)};
-drawWall();
-PX.drag($('#orbit'),(dx,dy)=>{oz+=dx*.35;ox=Math.max(10,Math.min(80,ox-dy*.25));drawWall()});
-ScrollTrigger.create({trigger:'#envelope',start:'top 70%',end:'bottom 40%',scrub:true,onUpdate:s=>{ex=Math.min(1,s.progress*1.6)*95;const k=Math.min(3,Math.floor(s.progress*4));lys.forEach((l,i)=>l.classList.toggle('on',i===k));lis.forEach((l,i)=>l.classList.toggle('on',i===k));drawWall()}});
-
-/* ---------- services panels ---------- */
-const SIMG={drywall:'VA_Hostpital_Fredericksburg_1',rainscreen:'V18-014R','eifs-stucco':'V16-047',restoration:'V10-002','exterior-panels':'EP_003'};
-$('#panels').innerHTML=D.services.map((s,i)=>`<article class="pn${i?'':' on'}" data-cursor="Explore"><img src="${K.G(SIMG[s.id])}" alt="${esc(s.title)}" loading="lazy"><span class="no">${pad(i+1)} · ${D.projects.filter(p=>p.s===s.id).length} projects</span><span class="vt">${esc(K.SVC[s.id])}</span><div class="pd"><h3>${esc(K.SVC[s.id])}</h3><p>${esc(s.short)}</p><ul>${s.scopes.slice(0,7).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></article>`).join('');
-$$('.pn').forEach(p=>p.addEventListener('pointerenter',()=>{$$('.pn').forEach(q=>q.classList.toggle('on',q===p))}));
+/* facade, tower, shatter */
+FX.wave($('#facade'),{items:K.best(48,4),eyebrow:'The facade',title:'Run your hand along it.',sub:'Every tile is a Pillar project. Move across the wall and it lifts toward you; click any tile to open it.'});
+FX.tower($('#services'),{services:K.svcs({drywall:'VA_Hostpital_Fredericksburg_1',rainscreen:'V18-014R','eifs-stucco':'V16-047',restoration:'V10-002','exterior-panels':'EP_003'}),eyebrow:'Five trades',title:'One building, five floors.',w:380});
+FX.shatter($('#work'),{items:['V17-004D','6565Rt','8621Rt','The_Westerly_Waterfront_1','V19-019R','College_Park_City_Hall_1'].map(id=>PX.byImg[id]),eyebrow:'Selected work',title:'Taken apart, put back together.'});
+K.index($('#ix'),{limit:12});
+K.wireContact();
 </script>
 </body>
 </html>
