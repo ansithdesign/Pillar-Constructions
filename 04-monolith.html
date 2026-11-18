@@ -54,7 +54,7 @@ h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
 .about h2{font-size:clamp(44px,4.2vw,70px);line-height:.98}
 .about h2 .w{color:#d8d5ce;transition:color .3s}
 .sticky{position:sticky;top:12px;height:calc(100vh - 24px);overflow:hidden}
-.sticky>img,.sticky .lead-img img{width:100%;height:100%;object-fit:cover}
+.sticky>img,.sticky .lead-img img{width:100%;height:100%;object-fit:cover;will-change:transform}
 .awards{position:absolute;inset:0;pointer-events:none}
 .aw{position:absolute;width:min(260px,42%);aspect-ratio:1;background:var(--ink);color:#fff;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
 .aw h3{font-size:clamp(26px,2.2vw,36px);line-height:1}
@@ -70,12 +70,11 @@ h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
 /* services */
 .svc{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:140px}
 .svc .thumbs{position:relative;align-self:start;position:sticky;top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.svc .thumbs .t{aspect-ratio:3/4;overflow:hidden;opacity:.35;transition:opacity .5s}
+.svc .thumbs .t{aspect-ratio:3/4;overflow:hidden;opacity:.35;transition:opacity .5s;position:relative}
 .svc .thumbs .t.on{opacity:1}
 .svc .thumbs .t img{width:100%;height:100%;object-fit:cover}
 .svc .thumbs .big{grid-column:1/-1;aspect-ratio:16/10;overflow:hidden;position:relative}
-.svc .thumbs .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s,transform 1.2s var(--px-ease);transform:scale(1.05)}
-.svc .thumbs .big img.on{opacity:1;transform:none}
+.svc .thumbs .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .svc h2{font-size:clamp(40px,3.8vw,62px);line-height:1;margin-bottom:22px}
 .svc .intro{margin:0 0 50px}
 .srow{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-top:1px solid var(--line);cursor:default;transition:padding .5s var(--px-ease)}
@@ -92,8 +91,7 @@ h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
 .reel .row{display:flex;gap:12px;padding-left:var(--gut);align-items:stretch;will-change:transform}
 .card{flex:0 0 clamp(300px,28vw,460px);display:grid;grid-template-rows:1fr auto;gap:12px;text-align:left;cursor:zoom-in}
 .card .ph{overflow:hidden;position:relative}
-.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--px-ease)}
-.card:hover .ph img{transform:scale(1.05)}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .card .m{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px}
 .card h3{font-size:26px;letter-spacing:-.03em}
 .card .n{font-size:10px;color:var(--mute)}
@@ -118,9 +116,8 @@ h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
 .tg{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .tm{position:relative}
 .tm .ph{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--off)}
-.tm .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s}
+.tm .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tm .ph img.c{opacity:0}
-.tm:hover .ph img.c{opacity:1}
 .tm b{display:block;font-weight:400;font-size:15px;letter-spacing:-.02em;margin-top:8px}
 .tm span{font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.02em}
 
@@ -233,6 +230,8 @@ $('#mb').onclick=()=>{const o=$('#nv').classList.toggle('open');$('#mb').setAttr
 $$('#nv a').forEach(a=>a.onclick=()=>{$('#nv').classList.remove('open');$('#mb').setAttribute('aria-expanded',false)});
 
 /* hero: image pushes in, title rises from the strip */
+/* the photograph opens from a vertical slit as the lights come up */
+if(!PX.reduced)gsap.fromTo('.hero .bg',{clipPath:'inset(0% 49.5% 0% 49.5%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:2.2,ease:'expo.inOut',delay:.25});
 gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:true}})
  .to('#hbg',{scale:1.18,ease:'none'},0).fromTo('#h1',{yPercent:60,opacity:0},{yPercent:0,opacity:1,ease:'power2.out',duration:.5},0).fromTo('#tag',{opacity:0},{opacity:1,duration:.3},.3).to('.hero .lab',{opacity:0,duration:.2},0);
 
@@ -246,26 +245,34 @@ const POS=[['56%','8%'],['4%','36%'],['50%','60%'],['14%','74%'],['58%','22%']];
 $('#awards').innerHTML=AW.map((a,i)=>`<div class="aw" style="left:${POS[i][0]};top:${POS[i][1]}"><div class="up"><span>${a[2]}</span><span>${a[3]}</span></div><h3>${a[0]}<br>${a[1]}</h3></div>`).join('');
 $$('.aw').forEach((el,i)=>gsap.fromTo(el,{yPercent:240,opacity:0},{yPercent:-60,opacity:1,ease:'none',scrollTrigger:{trigger:'.about',start:`top+=${i*14}% center`,end:`top+=${i*14+40}% top`,scrub:true}}));
 $('#hon').textContent=PX.stats.honours;
+/* the tower behind the honours eases back to rest across the whole section */
+gsap.fromTo('#stk>img',{scale:1.3},{scale:1,ease:'none',scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom bottom',scrub:true}});
 
 /* services: rows switch the thumbnail stack */
-$('#thumbs').innerHTML=`<div class="big">${D.services.map((s,i)=>I(img(s.hero,'h'),1400,s.title).replace('<img',`<img class="${i?'':'on'}"`)).join('')}</div>`+D.services.slice(0,3).map((s,i)=>`<div class="t ${i?'':'on'}">${I(img(s.gallery[1]),400)}</div>`).join('');
+$('#thumbs').innerHTML=`<div class="big">${D.services.map((s,i)=>I(PX.svcImg(s),1400,s.title)).join('')}</div>`+D.services.slice(0,3).map((s,i)=>`<div class="t ${i?'':'on'}">${I(PX.svcImg(s,1),400)}</div>`).join('');
 $('#srows').innerHTML=D.services.map((s,i)=>`<div class="srow ${i?'':'on'}" data-i="${i}" tabindex="0"><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p></div>`).join('');
-const pickS=i=>{$$('.srow').forEach((r,j)=>r.classList.toggle('on',j===i));$$('#thumbs .big img').forEach((m,j)=>m.classList.toggle('on',j===i));$$('#thumbs .t').forEach((t,j)=>t.classList.toggle('on',j===i%3))};
+const swB=PX.swapper($('#thumbs .big'));
+const pickS=i=>{$$('.srow').forEach((r,j)=>r.classList.toggle('on',j===i));swB(i);$$('#thumbs .t').forEach((t,j)=>t.classList.toggle('on',j===i%3))};
 $$('.srow').forEach(r=>{r.addEventListener('mouseenter',()=>pickS(+r.dataset.i));r.addEventListener('focus',()=>pickS(+r.dataset.i))});
 $$('.srow').forEach(r=>ScrollTrigger.create({trigger:r,start:'top 55%',end:'bottom 55%',onToggle:s=>s.isActive&&pickS(+r.dataset.i)}));
 
 /* reel: pinned horizontal travel */
-const RL=pick(['V17-004D','V16-018D','The_Wharf_1','V18-002R','EP_003','V12-055D','V17-030R','V13-007D','The_Westerly_Waterfront_1','V18-005R']);
+const RL=pick(['D06-014', 'V16-035D', 'Institute_for_Digital_Innovation_1', '8302Rt', 'V12-026', 'V16-047', 'College_Park_City_Hall_1', '8621Rt', 'EP_003', 'V19-019R']);
 $('#row').innerHTML=RL.map((p,i)=>`<button class="card" data-lb="${p.id}" data-cursor="Open"><div class="ph">${I(img(p.img),1000,p.n)}</div><div class="m"><h3>${esc(p.n)}</h3><span class="n">${PX.pad(i+1)} — ${esc(p.st)}</span></div></button>`).join('');
 $('#reel').style.height='420vh';
 const rt=gsap.to('#row',{x:()=>-($('#row').scrollWidth-innerWidth+24),ease:'none',scrollTrigger:{trigger:'#reel',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true,onUpdate:s=>{$('#rp').style.width=(s.progress*100)+'%';$('#rc').textContent=`${PX.pad(Math.min(RL.length,1+Math.floor(s.progress*RL.length)))} / ${PX.pad(RL.length)}`}}});
+/* inside the reel each photo drifts against the travel, and the cards lean with the speed */
+PX.hdrift($$('#row .card .ph img'),rt,12);
+$$('#row .card').forEach(c=>{c.dataset.skew=.5;c.dataset.skewAxis='x'});
 
 /* approach */
 $('#steps').innerHTML=[['Listen','We get involved in the early design stages with the architect, owner and builder.'],['Engineer','We bring value engineering options that achieve the best results at a competitive price.'],['Plan','We develop a clear plan to complete the work, sequence by sequence.'],['Execute','We execute the plan safely, on time and under budget.']].map((s,i)=>`<div class="st" data-r="up" style="--d:${i*.08}s"><b>0${i+1}</b><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
 
 /* team: mono portrait, colour on hover */
-$('#tg').innerHTML=D.team.map(t=>`<div class="tm" data-r="up"><div class="ph">${I('assets/img/t/'+t.img+'.jpg',400,t.n,'mono')}${I('assets/img/t/'+t.img+'.jpg',400,'','warm').replace('<img','<img class="c"')}</div><b>${esc(t.n)}</b><span>${esc(t.r)}</span></div>`).join('');
+$('#tg').innerHTML=D.team.map((t,i)=>`<div class="tm"><div class="ph" data-m="unveil" data-delay="${(i%6)*.07}">${I('assets/img/t/'+t.img+'.jpg',400,t.n,'mono')}${I('assets/img/t/'+t.img+'.jpg',400,'','warm').replace('<img','<img class="c"')}</div><b>${esc(t.n)}</b><span>${esc(t.r)}</span></div>`).join('');
 
+/* portraits take on colour as each one crosses the middle of the screen */
+$$('#tg .tm').forEach(t=>{const c=t.querySelector('img.c');c.style.transition='none';gsap.fromTo(c,{opacity:0},{opacity:1,ease:'none',scrollTrigger:{trigger:t,start:'top 70%',end:'top 35%',scrub:true}})});
 $('#em').textContent=D.company.email;$('#ph').textContent=D.company.phone;
 $('#offs').innerHTML=D.offices.map(o=>`<div><b>${esc(o.c)}</b>${o.a.map(esc).join('<br>')}<br>${esc(o.p)}</div>`).join('');
 </script>
