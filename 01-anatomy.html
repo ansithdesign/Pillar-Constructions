@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Pillar Anatomy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..600&family=Familjen+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..700;1,300..500&display=swap">
 <link rel="stylesheet" href="assets/core.css">
 <style>
 /* Layout: warm sand pages interrupted by a deep-navy pinned "anatomy" chamber; rounded image slabs. */
 :root{
   --sand:#efe8db; --sand-2:#e6dccb; --ink:#2a241f; --mute:#7b7064; --navy:#1d2f7c; --navy-2:#13205a; --paper:#fffdf8; --line:rgba(42,36,31,.14);
-  --disp:"Bricolage Grotesque","Familjen Grotesk",system-ui,sans-serif; --sans:"Familjen Grotesk",system-ui,sans-serif;
+  --disp:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif; --sans:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
   --gut:max(24px,env(safe-area-inset-left,0px)); --r:22px;
   --px-lb-bg:#14182a; --px-lb-font:var(--sans); --px-lb-display:var(--disp); --px-sw-bg:rgba(29,47,124,.85);
 }
@@ -19,8 +19,8 @@ body{background:var(--sand);color:var(--ink);font:400 16px/1.5 var(--sans)}
 .wrap{padding-left:var(--gut);padding-right:var(--gut)}
 h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 .lab{font:500 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
-/* one sans family throughout: Bricolage for display, Familjen for text */
-.menu a,.hero h1,.cloud h2,.cloud .cap b,.slab .cap h3,.wm .over h3,.ana .head h2,.cards-h h2,.pair .tx .n,.idx h2,.end h2{font-variation-settings:"opsz" 96;letter-spacing:-.05em;font-weight:400}
+/* one sans family throughout: Plus Jakarta Sans, light and tightly set for display */
+.menu a,.hero h1,.cloud h2,.cloud .cap b,.slab .cap h3,.wm .over h3,.ana .head h2,.cards-h h2,.pair .tx .n,.idx h2,.end h2{letter-spacing:-.03em;font-weight:400}
 .cloud h2 em{font-style:normal}
 
 .hd{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding-top:22px;padding-bottom:22px;color:#fff;mix-blend-mode:difference}
