@@ -12,13 +12,10 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
   const OPTIONS = [
-    ['01', 'escape', 'Escape', 'discoverybuildersllc.com', 'Serif calm, scroll-lit story, floating gallery'],
     ['02', 'anatomy', 'Anatomy', 'stillform.homes', 'Exploded wall-panel anatomy, photo cloud'],
     ['03', 'oxblood', 'Oxblood', 'casainterior.framer.website', 'Dark rooms, rounded cards, giant wordmark'],
     ['04', 'filmstrip', 'Filmstrip', 'korda.framer.media', 'Focus filmstrip, accordion services'],
-    ['05', 'grid', 'Grid', 'solum.framer.website', 'Swiss column grid, split service panels'],
     ['06', 'monolith', 'Monolith', 'architecttura.framer.website', 'Name bar, expanding hero, stacked honours'],
-    ['07', 'atelier', 'Atelier', 'formaatelier.framer.website', 'Images set inside type, warm counters'],
     ['08', 'index', 'Index', 'knoll.framer.website', 'Numbered index, list-first catalogue'],
     ['09', 'warmth', 'Warmth', 'luneo.framer.website', 'Staggered gallery, timeless warmth'],
     ['10', 'studio', 'Studio', 'mirellstudio.framer.website', 'Split wordmark, project slider with specs'],
@@ -330,7 +327,7 @@
     const sw = document.createElement('nav'); sw.className = 'px-sw'; sw.setAttribute('aria-label', 'Design options');
     sw.innerHTML = `<div class="px-sw-panel" id="px-sw-panel">${OPTIONS.map((x) => `<a href="${optHref(x)}" class="${x[0] === cur ? 'on' : ''}"><figure><img src="assets/img/o/${x[0]}.jpg" alt="" loading="lazy" onerror="this.remove()"></figure><strong><span>${x[0]} ${x[2]}</span></strong><small>${x[4]}<br>ref · ${x[3]}</small></a>`).join('')}</div>
       <div class="px-sw-bar"><a href="index.html" aria-label="All options" title="All options">▦</a><a href="${optHref(prev)}" aria-label="Previous option: ${prev[2]}">←</a>
-      <button class="px-sw-cur" aria-expanded="false" aria-controls="px-sw-panel"><b>${o[0]}</b>${o[2]}<span>/ 12</span></button>
+      <button class="px-sw-cur" aria-expanded="false" aria-controls="px-sw-panel"><b>${o[0]}</b>${o[2]}<span>/ ${OPTIONS.length}</span></button>
       <div class="px-sw-dots">${OPTIONS.map((x) => `<a href="${optHref(x)}" class="${x[0] === cur ? 'on' : ''}" aria-label="Option ${x[0]} ${x[2]}"></a>`).join('')}</div>
       <a href="${optHref(next)}" aria-label="Next option: ${next[2]}">→</a></div>`;
     document.body.appendChild(sw);
