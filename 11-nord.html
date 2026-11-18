@@ -218,7 +218,7 @@ gsap.registerPlugin(ScrollTrigger);
 $('#mb').onclick=()=>{const o=$('#menu').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o);$('#mb').textContent=o?'CLOSE':'MENU'};$$('#menu a').forEach(a=>a.onclick=()=>{$('#menu').classList.remove('open');$('#mb').textContent='MENU'});
 
 /* hero slideshow */
-const HS=pick(['V14-041','V17-004D','V16-018D']);let hi=0,ht;
+const HS=pick(['V16-051D','V17-004D','V16-022']);let hi=0,ht;
 $('#hero').insertAdjacentHTML('afterbegin',HS.map((p,i)=>`<div class="hs ${i?'':'on'}" data-lb="${p.id}">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}</div>`).join(''));
 function hs(i){hi=(i+HS.length)%HS.length;$$('.hs').forEach((s,j)=>s.classList.toggle('on',j===hi));$('#hc').textContent=PX.pad(hi+1);$('#ht').textContent=PX.pad(HS.length);$('#hnm').textContent=HS[hi].n;clearTimeout(ht);ht=setTimeout(()=>hs(hi+1),6000)}
 $('#hn').onclick=e=>{e.stopPropagation();hs(hi+1)};hs(0);

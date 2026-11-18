@@ -222,17 +222,17 @@
   }
   let revealIO;
   function reveal(root = document) {
-    if (!('IntersectionObserver' in window) || reduced) { $$('[data-r],[data-split]', root).forEach((e) => e.classList.add('in')); return; }
+    if (!('IntersectionObserver' in window) || reduced) { $$('[data-r],[data-split]', root).forEach((e) => e.classList.add('px-in')); return; }
     document.documentElement.classList.add('px-anim');
     $$('[data-split]', root).forEach(split);
     // clip-path reveals are measured on their parent: IO reports a fully clipped element as never intersecting
     if (!revealIO) revealIO = new IntersectionObserver((ents) => ents.forEach((e) => {
       if (!e.isIntersecting) return;
-      (e.target._pxEls || [e.target]).forEach((el) => el.classList.add('in'));
+      (e.target._pxEls || [e.target]).forEach((el) => el.classList.add('px-in'));
       revealIO.unobserve(e.target);
     }), { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
     $$('[data-r],[data-split]', root).forEach((e) => {
-      if (e.classList.contains('in') || e._pxObs) return; e._pxObs = 1;
+      if (e.classList.contains('px-in') || e._pxObs) return; e._pxObs = 1;
       const t = /clip/.test(e.dataset.r || '') && e.parentElement ? e.parentElement : e;
       if (t !== e) { (t._pxEls = t._pxEls || []).push(e); } revealIO.observe(t);
     });
