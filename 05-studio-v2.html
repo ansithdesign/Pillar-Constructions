@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Studio II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Figtree:wght@300..700&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/core2.css">
+<style>
+/* Layout: a white studio wall. The wordmark is the interface, the cursor spills work across it, and a deck of projects deals itself toward you. */
+:root{
+  --white:#f8f8f6; --soft:#efefeb; --ink:#0e0e0e; --mute:#7a7a77; --line:rgba(14,14,14,.1); --line2:rgba(14,14,14,.28); --cobalt:#2c43f2;
+  --d:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif; --t:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --k-bg:var(--white); --k-fg:var(--ink); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--cobalt);
+  --k-disp:var(--d); --k-text:var(--t); --k-gut:40px;
+  --k-c-bg:var(--ink); --k-c-fg:var(--white); --k-c-mute:#8d8d89; --k-c-line:rgba(248,248,246,.14); --k-c-weight:700;
+  --px-lb-bg:#0e0e0e; --px-lb-font:var(--t); --px-lb-display:var(--d); --px-lb-weight:700; --px-sw-bg:rgba(14,14,14,.88);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--white)}
+body{margin:0;color:var(--ink);font:400 16px/1.6 var(--t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{padding-inline:40px}
+.h2{font:700 clamp(48px,6.4vw,118px)/.9 var(--d);letter-spacing:-.06em;margin:0;text-wrap:balance}
+
+/* 1 · trail hero */
+.hero{position:relative;height:100vh;overflow:hidden;cursor:crosshair}
+.hero .px-trail{z-index:1}
+.wm{position:absolute;left:0;right:0;bottom:-.12em;z-index:2;text-align:center;font:800 31vw/.8 var(--d);letter-spacing:-.075em;color:#fff;mix-blend-mode:difference;pointer-events:none;white-space:nowrap}
+.h-top{position:absolute;left:40px;right:40px;top:110px;z-index:3;display:flex;justify-content:space-between;gap:40px;pointer-events:none}
+.h-top p{margin:0;max-width:32ch;font:500 20px/1.35 var(--d);letter-spacing:-.02em}
+.h-top .hint{font:500 12px/1.5 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:right}
+.h-count{position:absolute;right:40px;top:50%;z-index:3;font:200 120px/.8 var(--d);letter-spacing:-.06em;color:var(--ink);opacity:.08;pointer-events:none;font-variant-numeric:tabular-nums}
+
+/* 2 · deck */
+.deck{position:relative;height:100vh;overflow:hidden;background:var(--soft);display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center}
+.dk-l{padding-left:40px;display:grid;gap:18px;align-self:center}
+.dk-l .no{font:700 120px/.8 var(--d);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.dk-l .no span{font-size:.3em;color:var(--mute);letter-spacing:0;margin-left:6px;font-weight:500}
+.dk-l h3{margin:0;font:700 40px/1 var(--d);letter-spacing:-.04em;min-height:80px;max-width:13ch}
+.dk-l p{margin:0;color:var(--mute);font-size:15px}
+.stage{position:relative;height:72vh;perspective:1500px}
+.pile{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.cd{position:absolute;left:10%;right:10%;top:4%;bottom:4%;transform-style:preserve-3d;cursor:pointer;will-change:transform,opacity;border-radius:10px;overflow:hidden;box-shadow:0 50px 90px rgba(14,14,14,.28);background:#222}
+.cd img{width:100%;height:100%;object-fit:cover}
+.cd figcaption{position:absolute;left:18px;right:18px;bottom:16px;color:#fff;font:600 15px/1.25 var(--d);display:flex;justify-content:space-between;gap:12px}
+.cd figcaption span{font:500 11px/1.4 var(--t);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.dk-r{padding-right:40px;display:grid;gap:8px;justify-items:end}
+.dk-r button{display:flex;align-items:center;gap:12px;background:none;border:0;cursor:pointer;font:500 14px/1.2 var(--t);color:var(--mute);text-align:right;padding:4px 0;transition:color .3s}
+.dk-r button i{width:44px;height:30px;border-radius:3px;background-size:cover;background-position:center;opacity:.4;transition:opacity .3s,width .5s cubic-bezier(.16,1,.3,1)}
+.dk-r button.on{color:var(--ink)}.dk-r button.on i{opacity:1;width:64px}
+
+/* 3 · services with a liquid follower */
+.sv{padding-block:170px 140px}
+.sv-row{display:grid;grid-template-columns:80px 1fr auto;align-items:baseline;gap:20px;padding:22px 0;border-top:1px solid var(--line);cursor:pointer}
+.sv-row:last-child{border-bottom:1px solid var(--line)}
+.sv-row .no{font:600 13px/1 var(--t);color:var(--mute)}
+.sv-row h3{margin:0;font:700 clamp(54px,7vw,128px)/.92 var(--d);letter-spacing:-.065em;transition:color .3s,letter-spacing .6s cubic-bezier(.16,1,.3,1)}
+.sv-row:hover h3{color:var(--cobalt);letter-spacing:-.04em}
+.sv-row span.sc{font:500 13px/1.4 var(--t);color:var(--mute);max-width:36ch;text-align:right}
+.liq{position:fixed;left:0;top:0;width:380px;height:480px;z-index:50;pointer-events:none;border-radius:8px;overflow:hidden;opacity:0;transition:opacity .35s;box-shadow:0 50px 100px rgba(14,14,14,.3)}
+.liq.on{opacity:1}
+.liq img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s}
+.ix{padding-block:20px 150px}
+</style>
+</head>
+<body>
+<div class="px-grain" aria-hidden="true" style="--grain:.045"></div>
+<div id="nav"></div>
+<div class="liq" id="liq" aria-hidden="true"></div>
+<main>
+<section class="hero" id="top" aria-label="Pillar studio">
+  <div class="h-top"><p>Finishing buildings that balance clarity, comfort and durability, since 1995.</p><span class="hint">Move your cursor<br>across the wall</span></div>
+  <div class="h-count" id="hc">000</div>
+  <div class="wm" id="wm">pillar</div>
+</section>
+
+<section class="deck" id="work">
+  <div class="dk-l"><p class="k-eyebrow">Selected work</p><div class="no"><b id="dn">01</b><span>/ 10</span></div><h3 id="dt">—</h3><p id="dm"></p></div>
+  <div class="stage" id="stage" data-loupe><div class="pile" id="pile" data-lb-group></div></div>
+  <div class="dk-r" id="dkr"></div>
+</section>
+
+<section class="wrap sv" id="services">
+  <p class="k-eyebrow">Services</p>
+  <div id="svs"></div>
+</section>
+
+<section class="wrap ix" id="index">
+  <p class="k-eyebrow">Project index</p>
+  <h2 class="h2" style="margin-bottom:56px">All 224, sorted.</h2>
+  <div id="ix"></div>
+</section>
+<div id="contactHost"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core2.js"></script>
+<script src="assets/kit2.js"></script>
+<script>
+const {$,$$,esc,pad,loc,D}=PX;
+$('#nav').innerHTML=K.nav([['#work','Work'],['#services','Services'],['#index','Index']]);
+$('#contactHost').outerHTML=K.contact('Let’s make something solid.');
+PX.init({id:'05',cursor:true});
+PX.loupe();
+K.wireContact();
+K.index($('#ix'),{limit:12});
+
+/* ---------- trail hero + weighted wordmark ---------- */
+const TR=K.BEST.map(id=>`assets/img/p/${id}.jpg`);
+PX.trail($('#top'),TR,{w:250,gap:80,pool:16,life:1000});
+let spawned=0;$('#top').addEventListener('pointermove',()=>{spawned++;$('#hc').textContent=String(Math.min(224,Math.floor(spawned/6))).padStart(3,'0')});
+gsap.to('#wm',{fontWeight:200,letterSpacing:'-0.04em',yPercent:-18,ease:'none',scrollTrigger:{trigger:'#top',start:'top top',end:'bottom top',scrub:true}});
+
+/* ---------- 3D deck ---------- */
+const DK=K.best(10,0);
+$('#pile').innerHTML=DK.map((p,i)=>`<figure class="cd" data-lb="${p.id}" data-cursor="Open" style="margin:0;z-index:${20-i}"><img src="${K.G(p.img)}" alt="${esc(p.n)}" ${i<3?'':'loading="lazy"'}><figcaption>${esc(p.n)}<span>${esc(p.c)}</span></figcaption></figure>`).join('');
+$('#dkr').innerHTML=DK.map((p,i)=>`<button type="button" data-i="${i}">${esc(p.n)}<i style="background-image:url('${K.G(p.img)}')"></i></button>`).join('');
+const cds=$$('.cd'), btns=$$('#dkr button');
+let pos=0;
+function deal(f){pos=f;const k=Math.floor(f);cds.forEach((c,i)=>{const d=i-f;
+  if(d<-1){c.style.opacity=0;c.style.transform='translate3d(0,-120%,600px) rotateX(-50deg)';return}
+  if(d<0){const t=-d;c.style.opacity=1-t;c.style.transform=`translate3d(${t*30}%,${-t*110}%,${t*520}px) rotateX(${-t*48}deg) rotateZ(${t*-14}deg)`;return}
+  c.style.opacity=d>5?0:1;c.style.transform=`translate3d(${d*3}%,${d*-4.5}%,${-d*90}px) rotateZ(${(d%2?1:-1)*d*1.6}deg)`});
+  const p=DK[Math.min(DK.length-1,Math.round(f))];$('#dn').textContent=pad(Math.min(DK.length,Math.round(f)+1));$('#dt').textContent=p.n;$('#dm').textContent=`${loc(p)} · ${K.SVC[p.s]}`;
+  btns.forEach((b,i)=>b.classList.toggle('on',i===Math.round(f)))}
+deal(0);
+const dst=ScrollTrigger.create({trigger:'#work',start:'top top',end:'+=420%',pin:true,scrub:.6,onUpdate:s=>deal(s.progress*(DK.length-1))});
+btns.forEach(b=>b.addEventListener('click',()=>PX.scrollTo(dst.start+(dst.end-dst.start)*(+b.dataset.i)/(DK.length-1))));
+$('#stage').addEventListener('pointermove',e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$('#pile').style.transform=`rotateY(${x*18}deg) rotateX(${-y*14}deg)`});
+$('#stage').addEventListener('pointerleave',()=>$('#pile').style.transform='');
+
+/* ---------- services with a liquid follower ---------- */
+const SIMG={drywall:['VA_Hostpital_Fredericksburg_1','Institute_for_Digital_Innovation_1'],rainscreen:['8621Rt','V18-014R'],'eifs-stucco':['V16-047','V16-003'],restoration:['V10-002','V08-019'],'exterior-panels':['EP_003','EP_002']};
+$('#svs').innerHTML=D.services.map((s,i)=>`<div class="sv-row" data-s="${s.id}"><span class="no">${pad(i+1)}</span><h3>${esc(K.SVC[s.id])}</h3><span class="sc">${D.projects.filter(p=>p.s===s.id).length} projects · ${esc(s.scopes.slice(0,4).join(', '))}</span></div>`).join('');
+const liq=$('#liq');let lx=0,ly=0,tx=0,ty=0,lv=0,lr=0;
+$$('.sv-row').forEach(r=>{r.addEventListener('pointerenter',()=>{const ims=SIMG[r.dataset.s];liq.innerHTML=ims.map((id,k)=>`<img src="${K.G(id)}" alt="" style="opacity:${k?0:1}">`).join('');liq.classList.add('on');let k=0;clearInterval(liq._t);liq._t=setInterval(()=>{k=(k+1)%ims.length;$$('img',liq).forEach((im,j)=>im.style.opacity=j===k?1:0)},900)});
+  r.addEventListener('pointerleave',()=>{liq.classList.remove('on');clearInterval(liq._t)})});
+addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY},{passive:true});
+(function lq(){requestAnimationFrame(lq);const dx=tx-lx;lx+=dx*.12;ly+=(ty-ly)*.12;lv+=(dx*.12-lv)*.2;lr+=(Math.max(-14,Math.min(14,lv*.6))-lr)*.15;
+  liq.style.transform=`translate3d(${lx-190}px,${ly-240}px,0) rotate(${lr}deg) skewX(${-lr*.6}deg) scale(${1+Math.min(.12,Math.abs(lv)*.004)})`})();
+</script>
+</body>
+</html>

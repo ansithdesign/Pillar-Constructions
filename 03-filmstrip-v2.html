@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Filmstrip II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/core2.css">
+<style>
+/* Layout: a projection room. A liquid reel of buildings bends with your speed, then the contact sheet and the chapters on a light table. */
+:root{
+  --black:#09090a; --black2:#121214; --bone:#ecebe7; --mute:#8b8a86; --line:rgba(236,235,231,.12); --line2:rgba(236,235,231,.3); --amber:#e9b872;
+  --light:#efeeea; --lmute:#6d6b66; --lline:rgba(9,9,10,.12);
+  --f:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --k-bg:var(--light); --k-fg:var(--black); --k-mute:var(--lmute); --k-line:var(--lline); --k-line2:rgba(9,9,10,.3); --k-accent:#b9822f;
+  --k-disp:var(--f); --k-text:var(--f); --k-gut:44px; --k-nav-fg:#fff; --k-nav-blend:difference;
+  --k-c-bg:var(--black); --k-c-fg:var(--bone); --k-c-mute:var(--mute); --k-c-line:var(--line); --k-c-weight:300;
+  --px-lb-bg:#09090a; --px-lb-font:var(--f); --px-lb-display:var(--f); --px-lb-weight:300; --px-sw-bg:rgba(20,20,20,.88);
+}
+*{box-sizing:border-box}
+html,body{background:var(--black)}
+body{margin:0;color:var(--bone);font:400 16px/1.6 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{padding-inline:44px}
+.h2{font:300 clamp(48px,6.6vw,120px)/.9 var(--f);letter-spacing:-.05em;margin:0;text-wrap:balance}
+
+/* 1 · liquid reel */
+.reel{position:relative;height:100vh;overflow:hidden;background:radial-gradient(80% 70% at 50% 50%,#17171a,var(--black) 75%)}
+#gl{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+.r-head{position:absolute;left:44px;top:110px;z-index:3;pointer-events:none}
+.r-head h1{font:800 clamp(64px,8.8vw,170px)/.84 var(--f);letter-spacing:-.06em;margin:0;text-transform:uppercase}
+.r-head h1 span{display:block;font-weight:200;font-style:italic;text-transform:none;letter-spacing:-.05em;color:var(--amber)}
+.r-hud{position:absolute;left:44px;right:44px;bottom:30px;z-index:3;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px;font:500 12px/1.4 var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);pointer-events:none}
+.r-hud .t b{display:block;font:400 30px/1.1 var(--f);letter-spacing:-.02em;text-transform:none;color:var(--bone);margin-top:6px;min-height:34px}
+.tc{text-align:center;font-variant-numeric:tabular-nums}.tc b{display:block;font:300 44px/1 var(--f);letter-spacing:.02em;color:var(--amber)}
+.r-hud .h{text-align:right}
+.sprk{position:absolute;left:0;right:0;height:22px;z-index:2;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 18px,rgba(236,235,231,.08) 18px 30px,transparent 30px 44px);-webkit-mask:linear-gradient(transparent 6px,#000 6px,#000 16px,transparent 16px);mask:linear-gradient(transparent 6px,#000 6px,#000 16px,transparent 16px)}
+.sprk.a{top:90px}.sprk.b{bottom:110px}
+.hit{position:fixed;z-index:-1;opacity:0;pointer-events:none}
+.hit img{width:100%;height:100%;object-fit:cover}
+
+/* 2 · contact sheet on a light table */
+.sheet{background:var(--light);color:var(--black);padding-block:150px 140px}
+.sheet .h2{color:var(--black)}
+.cs{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:64px;background:#141416;padding:26px 18px;border-radius:4px;box-shadow:0 40px 90px rgba(9,9,10,.25)}
+.fr{position:relative;padding:22px 8px;cursor:pointer}
+.fr::before,.fr::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 6px,#e9e7e1 6px 14px,transparent 14px 22px);opacity:.8}
+.fr::before{top:4px}.fr::after{bottom:4px}
+.fr .im{aspect-ratio:3/2;overflow:hidden;position:relative;background:#000}
+.fr img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1),filter .6s;filter:grayscale(.35) brightness(.85)}
+.fr:hover img{transform:scale(1.12);filter:none}
+.fr .im::after{content:"";position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.fr:hover .im::after{animation:flash .55s ease-out}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+.fr .lb{position:absolute;left:10px;right:10px;bottom:-1px;display:flex;justify-content:space-between;font:600 9px/1 var(--f);letter-spacing:.12em;color:var(--amber);text-transform:uppercase;z-index:2}
+.fr .nm{position:absolute;left:10px;top:30px;z-index:2;font:500 12px/1.25 var(--f);color:#fff;opacity:0;transition:opacity .4s;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.fr:hover .nm{opacity:1}
+.fr:hover{z-index:3}
+
+/* 3 · chapters with velocity strips */
+.chap{background:var(--light);color:var(--black);padding-bottom:140px}
+.ch{border-top:1px solid var(--lline);overflow:hidden}
+.ch:last-child{border-bottom:1px solid var(--lline)}
+.ch-h{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:24px;padding:26px 44px;cursor:pointer}
+.ch-h .no{font:600 12px/1 var(--f);letter-spacing:.14em;color:var(--lmute)}
+.ch-h h3{margin:0;font:300 clamp(48px,6vw,108px)/.95 var(--f);letter-spacing:-.05em;transition:transform .8s cubic-bezier(.16,1,.3,1),color .3s}
+.ch:hover h3{transform:translateX(18px);color:#b9822f}
+.ch-h .n{font:500 13px/1 var(--f);color:var(--lmute)}
+.strip{height:0;transition:height .9s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.ch.on .strip{height:300px}
+.track{display:flex;gap:14px;width:max-content;padding:0 44px 30px;will-change:transform}
+.track a{width:340px;height:260px;flex:none;overflow:hidden;border-radius:4px;display:block}
+.track img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.track a:hover img{transform:scale(1.08)}
+.ix{background:var(--light);color:var(--black);padding-block:40px 150px}
+.ix .h2{color:var(--black)}
+</style>
+</head>
+<body>
+<div class="px-grain" aria-hidden="true" style="--grain:.07"></div>
+<div id="nav"></div>
+<main>
+<section class="reel" id="top" aria-label="A reel of Pillar projects">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="sprk a" aria-hidden="true"></div><div class="sprk b" aria-hidden="true"></div>
+  <div class="r-head" id="rhead"><h1>Pillar<span>in motion</span></h1></div>
+  <div class="r-hud"><div class="t">Now showing<b id="rt">—</b></div><div class="tc"><b id="tcode">00:00:00</b>frame <span id="rf">01</span> / <span id="rn">24</span></div><div class="h">Scroll, drag or hover a frame<br>Click to open it</div></div>
+  <div id="hits" data-lb-group></div>
+</section>
+
+<section class="sheet wrap" id="work">
+  <p class="k-eyebrow">Contact sheet</p>
+  <h2 class="h2">Twenty-four frames, all built.</h2>
+  <div class="cs" id="cs" data-lb-group data-loupe></div>
+</section>
+
+<section class="chap" id="services">
+  <div class="wrap" style="padding-bottom:56px"><p class="k-eyebrow">Chapters</p><h2 class="h2" style="color:var(--black)">Five trades.</h2></div>
+  <div id="chs"></div>
+</section>
+
+<section class="wrap ix" id="index">
+  <p class="k-eyebrow">Project index</p>
+  <h2 class="h2" style="margin-bottom:56px">The full catalogue.</h2>
+  <div id="ix"></div>
+</section>
+<div id="contactHost"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="assets/core2.js"></script>
+<script src="assets/kit2.js"></script>
+<script>
+const {$,$$,esc,pad,loc,D}=PX;
+$('#nav').innerHTML=K.nav([['#work','Work'],['#services','Chapters'],['#index','Index']]);
+$('#contactHost').outerHTML=K.contact('Roll camera on your next building.');
+PX.init({id:'03',cursor:true});
+PX.loupe();
+K.wireContact();
+K.index($('#ix'),{limit:12});
+
+/* ---------- liquid reel (WebGL) ---------- */
+const RL=K.best(24,0), N=RL.length, SP=3.7, PW=3.3, PH=2.2, LOOP=N*SP;
+$('#rn').textContent=N;
+$('#hits').innerHTML=RL.map((p,i)=>`<a class="hit" href="#" data-lb="${p.id}" data-i="${i}"><img src="${K.G(p.img)}" alt=""></a>`).join('');
+const canvas=$('#gl');
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true})}catch(e){renderer=null}
+if(renderer){
+  renderer.setPixelRatio(Math.min(2,devicePixelRatio));
+  const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(34,1,.1,100); camera.position.z=11;
+  const VS=`uniform float uBend,uVel,uTime;varying vec2 vUv;varying float vFade;varying float vX;
+  void main(){vUv=uv;vec4 w=modelMatrix*vec4(position,1.);vX=w.x;w.z-=w.x*w.x*uBend;w.y+=sin(w.x*.55+uTime*1.3)*uVel*.22;w.z+=cos(w.y*1.2+w.x*.3)*abs(uVel)*.12;vFade=smoothstep(13.,6.,abs(w.x));gl_Position=projectionMatrix*viewMatrix*w;}`;
+  const FS=`uniform sampler2D uTex;uniform float uVel,uHover,uTime,uImgA,uPlaneA;uniform vec2 uMouse;varying vec2 vUv;varying float vFade;
+  void main(){vec2 uv=vUv;vec2 s=vec2(1.);if(uImgA>uPlaneA)s.x=uPlaneA/uImgA;else s.y=uImgA/uPlaneA;uv=(uv-.5)*s+.5;
+  float d=distance(vUv,uMouse);uv+=normalize(vUv-uMouse+1e-4)*sin(d*38.-uTime*7.)*.012*uHover*smoothstep(.45,0.,d);
+  uv=(uv-.5)*(1.-uHover*.06)+.5;
+  float o=clamp(uVel,-1.,1.)*.018;vec3 c=vec3(texture2D(uTex,uv+vec2(o,0.)).r,texture2D(uTex,uv).g,texture2D(uTex,uv-vec2(o,0.)).b);
+  c*=1.+uHover*.28;float e=smoothstep(0.,.02,vUv.x)*smoothstep(1.,.98,vUv.x)*smoothstep(0.,.02,vUv.y)*smoothstep(1.,.98,vUv.y);
+  gl_FragColor=vec4(c,vFade*e);}`;
+  const geo=new THREE.PlaneGeometry(PW,PH,48,24), loader=new THREE.TextureLoader();
+  const meshes=RL.map((p,i)=>{const u={uTex:{value:null},uBend:{value:.016},uVel:{value:0},uTime:{value:0},uHover:{value:0},uMouse:{value:new THREE.Vector2(.5,.5)},uImgA:{value:1.5},uPlaneA:{value:PW/PH}};
+    const m=new THREE.Mesh(geo,new THREE.ShaderMaterial({uniforms:u,vertexShader:VS,fragmentShader:FS,transparent:true}));
+    loader.load(K.G(p.img),t=>{t.minFilter=THREE.LinearFilter;u.uTex.value=t;u.uImgA.value=t.image.width/t.image.height});
+    m.userData={i,p,h:0};scene.add(m);return m});
+  const size=()=>{const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()};size();addEventListener('resize',size);
+  let off=0,toff=0,drag=0,vel=0,last=0,hover=null;const ray=new THREE.Raycaster(),ptr=new THREE.Vector2(9,9);
+  ScrollTrigger.create({trigger:'#top',start:'top top',end:'+=500%',pin:true,scrub:true,onUpdate:s=>{toff=-s.progress*LOOP*1.4}});
+  gsap.to('#rhead',{opacity:0,y:-50,ease:'none',scrollTrigger:{trigger:'#top',start:'top top',end:'+=50%',scrub:true}});
+  PX.drag(canvas,(dx)=>{drag+=dx*.012});
+  canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();ptr.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1)});
+  canvas.addEventListener('pointerleave',()=>ptr.set(9,9));
+  canvas.addEventListener('click',()=>{if(!hover)return;const m=hover,a=$(`.hit[data-i="${m.userData.i}"]`);
+    const b=new THREE.Box3().setFromObject(m),pts=[b.min,b.max].map(v=>v.clone().project(camera)),r=canvas.getBoundingClientRect();
+    const x1=(Math.min(pts[0].x,pts[1].x)+1)/2*r.width,x2=(Math.max(pts[0].x,pts[1].x)+1)/2*r.width,y1=(1-Math.max(pts[0].y,pts[1].y))/2*r.height,y2=(1-Math.min(pts[0].y,pts[1].y))/2*r.height;
+    Object.assign(a.style,{left:x1+'px',top:y1+'px',width:(x2-x1)+'px',height:(y2-y1)+'px'});a.click()});
+  const mod=(a,n)=>((a%n)+n)%n;let lastT='';
+  renderer.setAnimationLoop(t=>{
+    const time=t/1000,prev=off;off+=((toff+drag)-off)*.08;const dv=(off-prev)*6;vel+=(dv-vel)*.12;
+    meshes.forEach(m=>{m.position.x=mod(m.userData.i*SP+off+LOOP/2,LOOP)-LOOP/2;const u=m.material.uniforms;u.uVel.value=vel;u.uTime.value=time;u.uBend.value=.016+Math.min(.03,Math.abs(vel)*.01)});
+    ray.setFromCamera(ptr,camera);const hit=ray.intersectObjects(meshes)[0];hover=hit?hit.object:null;
+    meshes.forEach(m=>{const u=m.material.uniforms;m.userData.h+=((m===hover?1:0)-m.userData.h)*.08;u.uHover.value=m.userData.h;if(m===hover&&hit.uv)u.uMouse.value.lerp(hit.uv,.3);m.position.z=m.userData.h*.5});
+    canvas.style.cursor=hover?'pointer':'grab';
+    let c=meshes[0];meshes.forEach(m=>{if(Math.abs(m.position.x)<Math.abs(c.position.x))c=m});
+    const nm=`${c.userData.p.n} · ${c.userData.p.c}`;if(nm!==lastT){lastT=nm;$('#rt').textContent=nm;$('#rf').textContent=pad(c.userData.i+1)}
+    const fr=Math.abs(Math.round(off*24/SP));$('#tcode').textContent=`${pad(Math.floor(fr/1440)%60)}:${pad(Math.floor(fr/24)%60)}:${pad(fr%24)}`;
+    renderer.render(scene,camera);
+  });
+}
+
+/* ---------- contact sheet ---------- */
+const CS=K.best(24,20);
+$('#cs').innerHTML=CS.map((p,i)=>`<a class="fr" href="#" data-lb="${p.id}" data-cursor="View"><div class="im"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"></div><span class="nm">${esc(p.n)}</span><span class="lb"><span>${i+1}A</span><span>Pillar 400</span><span>${pad(i+1)}</span></span></a>`).join('');
+
+/* ---------- chapters with velocity strips ---------- */
+$('#chs').innerHTML=D.services.map((s,i)=>{const ps=D.projects.filter(p=>p.s===s.id&&p.img);const row=[...ps,...ps].slice(0,Math.max(10,ps.length*2));return `<article class="ch${i?'':' on'}"><div class="ch-h"><span class="no">CH. ${pad(i+1)}</span><h3>${esc(K.SVC[s.id])}</h3><span class="n">${ps.length} projects · ${esc(s.scopes.slice(0,3).join(', '))}</span></div>
+  <div class="strip"><div class="track" data-lb-group>${row.map(p=>`<a href="#" data-lb="${p.id}" data-cursor="View"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"></a>`).join('')}</div></div></article>`}).join('');
+$$('.ch').forEach(c=>c.addEventListener('pointerenter',()=>$$('.ch').forEach(x=>x.classList.toggle('on',x===c))));
+const tracks=$$('.track').map(el=>({el,x:0}));
+(function run(){requestAnimationFrame(run);const v=PX.lenis?PX.lenis.velocity||0:0;tracks.forEach((t,i)=>{if(!t.el.closest('.ch.on'))return;const w=t.el.scrollWidth/2;t.x-=(.6+Math.abs(v)*.5)*(i%2?-1:1);if(t.x<-w)t.x+=w;if(t.x>0)t.x-=w;t.el.style.transform=`translateX(${t.x}px) skewX(${Math.max(-12,Math.min(12,-v*.4))}deg)`})})();
+</script>
+</body>
+</html>

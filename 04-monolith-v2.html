@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Monolith II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/core2.css">
+<style>
+/* Layout: white stone and black type. Every photograph arrives through fins: louvres that turn, slits that widen, a spotlight that brings colour back. */
+:root{
+  --white:#f4f3f0; --stone:#e8e6e1; --ink:#121212; --mute:#8b8882; --line:rgba(18,18,18,.1); --line2:rgba(18,18,18,.28); --bronze:#8a6a43;
+  --f:"Host Grotesk","Helvetica Neue",Arial,sans-serif;
+  --k-bg:var(--white); --k-fg:var(--ink); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--bronze);
+  --k-disp:var(--f); --k-text:var(--f); --k-gut:40px; --k-nav-fg:#fff; --k-nav-blend:difference;
+  --k-c-bg:var(--ink); --k-c-fg:var(--white); --k-c-mute:#8f8c86; --k-c-line:rgba(244,243,240,.14); --k-c-weight:300;
+  --px-lb-bg:#121212; --px-lb-font:var(--f); --px-lb-display:var(--f); --px-lb-weight:300; --px-sw-bg:rgba(18,18,18,.88);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--white)}
+body{margin:0;color:var(--ink);font:400 16px/1.6 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{padding-inline:40px}
+.h2{font:300 clamp(48px,6.6vw,124px)/.9 var(--f);letter-spacing:-.055em;margin:0;text-wrap:balance}
+
+/* 1 · louvres */
+.lv{position:relative;height:100vh;background:var(--ink);overflow:hidden}
+.slats{position:absolute;inset:0;display:flex;gap:3px}
+.sl{flex:1;height:100%;perspective:1400px}
+.flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.fa,.fb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background-repeat:no-repeat;background-color:#1b1b1b}
+.fb{transform:rotateY(180deg)}
+.flip::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 30%,transparent 70%,rgba(255,255,255,.06));pointer-events:none;transform:translateZ(1px)}
+.lv-copy{position:absolute;left:40px;bottom:44px;z-index:3;color:#fff;pointer-events:none}
+.lv-copy h1{font:300 clamp(80px,11vw,210px)/.84 var(--f);letter-spacing:-.065em;margin:0}
+.lv-copy p{margin:20px 0 0;max-width:40ch;font-size:17px;color:rgba(255,255,255,.78)}
+.lv-cap{position:absolute;right:40px;bottom:44px;z-index:3;color:#fff;text-align:right;display:grid;gap:14px;justify-items:end}
+.lv-cap b{font:400 28px/1.15 var(--f);letter-spacing:-.02em;display:block;min-height:32px}
+.lv-cap span{font:500 12px/1.4 var(--f);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.lv-btns{display:flex;gap:8px}
+.lv-btns button{width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);color:#fff;font:400 18px/1 var(--f);cursor:pointer;transition:background .3s}
+.lv-btns button:hover{background:#fff;color:var(--ink)}
+.lv-shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 25%,transparent 55%,rgba(0,0,0,.65))}
+.lv-prog{position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:rgba(255,255,255,.12)}
+.lv-prog i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
+
+/* 2 · spotlight grid */
+.spot{padding-block:170px 150px}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px;margin-top:64px}
+.sp{position:relative;overflow:hidden;cursor:crosshair;--mx:-500px;--my:-500px;--r:0px}
+.sp:nth-child(1){grid-column:span 2;grid-row:span 2}.sp:nth-child(4){grid-row:span 2}.sp:nth-child(6){grid-column:span 2}
+.sp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sp .bw{filter:grayscale(1) contrast(1.15) brightness(1.05);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.sp .co{-webkit-mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my),#000 60%,transparent 100%);mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my),#000 60%,transparent 100%);transform:scale(1.04)}
+.sp:hover .bw{transform:scale(1.04)}
+.sp figcaption{position:absolute;left:16px;bottom:14px;z-index:2;color:#fff;font:500 14px/1.25 var(--f);text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.sp figcaption span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+
+/* 3 · slit reel */
+.slit{position:relative;height:100vh;overflow:hidden;background:var(--stone);display:flex;flex-direction:column;justify-content:center}
+.slit-head{position:absolute;left:40px;top:110px;z-index:2}
+.st{display:flex;gap:28px;padding-left:50vw;width:max-content;align-items:center;will-change:transform}
+.sc{width:30vw;height:64vh;position:relative;flex:none}
+.sc .im{position:absolute;inset:0;overflow:hidden;will-change:clip-path}
+.sc img{width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
+.sc p{position:absolute;left:0;top:calc(100% + 14px);margin:0;font:500 14px/1.3 var(--f);white-space:nowrap}
+.sc p span{color:var(--mute);margin-left:8px}
+
+/* 4 · honours */
+.hon{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;padding-block:160px}
+.aw{display:grid;grid-template-columns:90px 1fr auto;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline;transition:padding .5s cubic-bezier(.16,1,.3,1)}
+.aw:hover{padding-left:12px}
+.aw .y{font:500 13px/1 var(--f);color:var(--bronze);font-variant-numeric:tabular-nums}
+.aw b{font-weight:400;font-size:18px;letter-spacing:-.01em}
+.aw span{color:var(--mute);font-size:14px;text-align:right}
+.hon .big{font:200 clamp(120px,15vw,260px)/.8 var(--f);letter-spacing:-.07em;margin:20px 0 0}
+.ix{padding-block:20px 150px}
+</style>
+</head>
+<body>
+<div class="px-grain" aria-hidden="true" style="--grain:.05"></div>
+<div id="nav"></div>
+<main>
+<section class="lv" id="top" aria-label="Featured projects seen through louvres">
+  <div class="slats" id="slats" data-cursor="Next"></div>
+  <div class="lv-shade" aria-hidden="true"></div>
+  <div class="lv-prog" aria-hidden="true"><i id="lvp"></i></div>
+  <div class="lv-copy"><h1>Facades,<br>opened.</h1><p>Rainscreens, panels and finishes by Pillar Construction. Move across the fins to look behind them, click to turn them.</p></div>
+  <div class="lv-cap"><span id="lvi">01 / 12</span><b id="lvn">—</b><span id="lvl"></span><div class="lv-btns"><button type="button" id="lvPrev" aria-label="Previous project">←</button><button type="button" id="lvNext" aria-label="Next project">→</button></div></div>
+</section>
+
+<section class="wrap spot" id="work">
+  <p class="k-eyebrow">Selected work</p>
+  <h2 class="h2">Colour comes back where you look.</h2>
+  <div class="sg" id="sg" data-lb-group></div>
+</section>
+
+<section class="slit" id="reel">
+  <div class="slit-head"><p class="k-eyebrow">Reel</p><h2 class="h2" style="font-size:clamp(40px,4.4vw,80px)">Through the slit.</h2></div>
+  <div class="st" id="st" data-lb-group></div>
+</section>
+
+<section class="wrap hon" id="services">
+  <div><p class="k-eyebrow">Recognition</p><h2 class="h2">Honours since 1999.</h2><p class="big" id="hn">47</p></div>
+  <div id="aws"></div>
+</section>
+
+<section class="wrap ix" id="index">
+  <p class="k-eyebrow">Project index</p>
+  <h2 class="h2" style="margin-bottom:56px">Every facade on file.</h2>
+  <div id="ix"></div>
+</section>
+<div id="contactHost"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core2.js"></script>
+<script src="assets/kit2.js"></script>
+<script>
+const {$,$$,esc,pad,loc,D}=PX;
+$('#nav').innerHTML=K.nav([['#work','Work'],['#reel','Reel'],['#services','Honours'],['#index','Index']]);
+$('#contactHost').outerHTML=K.contact('Open the next facade with us.');
+PX.init({id:'04',cursor:true});
+PX.loupe();
+K.wireContact();
+K.index($('#ix'),{limit:12});
+
+/* ---------- louvres ---------- */
+const LV=['V17-004D','6565Rt','V19-019R','College_Park_City_Hall_1','The_Westerly_Waterfront_1','V18-014R','V16-038','V17-030R','D06-014','V18-005R','7726Rt','V15-020R'].map(id=>PX.byImg[id]).filter(Boolean);
+const NS=16; let cur=0, busy=false, asp={};
+$('#slats').innerHTML=Array.from({length:NS},()=>'<div class="sl"><div class="flip"><div class="fa"></div><div class="fb"></div></div></div>').join('');
+const flips=$$('.flip'), fas=$$('.fa'), fbs=$$('.fb');
+LV.forEach(p=>{const im=new Image();im.onload=()=>{asp[p.img]=im.naturalWidth/im.naturalHeight;if(p===LV[cur]||p===LV[(cur+1)%LV.length])paint()};im.src=K.G(p.img)});
+function face(el,p,i){const box=$('#slats').getBoundingClientRect(),W=box.width,H=box.height,a=asp[p.img]||1.5,sw=(W-3*(NS-1))/NS;let bw,bh;if(W/H>a){bw=W;bh=W/a}else{bh=H;bw=H*a}
+  el.style.backgroundImage=`url("${K.G(p.img)}")`;el.style.backgroundSize=`${bw}px ${bh}px`;el.style.backgroundPosition=`${-i*(sw+3)-(bw-W)/2}px ${-(bh-H)/2}px`}
+function paint(){const a=LV[cur],b=LV[(cur+1)%LV.length];fas.forEach((f,i)=>face(f,a,i));fbs.forEach((f,i)=>face(f,b,i));
+  $('#lvn').textContent=a.n;$('#lvl').textContent=`${loc(a)} · ${K.SVC[a.s]}`;$('#lvi').textContent=`${pad(cur+1)} / ${pad(LV.length)}`}
+paint();addEventListener('resize',paint);
+let peek=null;
+function turn(dir=1,from=null){if(busy)return;busy=true;
+  if(dir<0){cur=(cur-2+LV.length)%LV.length;paint()}
+  const o=from==null?0:from;
+  gsap.to(flips,{rotateY:180,duration:1.15,ease:'expo.inOut',stagger:{each:.045,from:o},onComplete(){cur=(cur+1)%LV.length;gsap.set(flips,{rotateY:0});paint();busy=false;t0=performance.now()}});
+}
+$('#slats').addEventListener('pointermove',e=>{if(busy)return;const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;
+  flips.forEach((f,i)=>{const c=(i+.5)/NS,d=Math.abs(c-x);gsap.to(f,{rotateY:Math.max(0,1-d*5)*58,duration:.7,ease:'power3.out',overwrite:'auto'})})});
+$('#slats').addEventListener('pointerleave',()=>{if(!busy)gsap.to(flips,{rotateY:0,duration:.9,ease:'power3.out',overwrite:'auto'})});
+$('#slats').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();turn(1,Math.floor((e.clientX-r.left)/r.width*NS))});
+$('#lvNext').addEventListener('click',()=>turn(1));$('#lvPrev').addEventListener('click',()=>turn(-1,NS-1));
+let t0=performance.now();(function auto(t){requestAnimationFrame(auto);const k=Math.min(1,(t-t0)/6000);$('#lvp').style.transform=`scaleX(${k})`;if(k>=1&&!busy&&!$('#slats').matches(':hover'))turn(1)})(t0);
+
+/* ---------- spotlight grid ---------- */
+const SG=K.best(8,22);
+$('#sg').innerHTML=SG.map(p=>`<figure class="sp" data-lb="${p.id}" style="margin:0"><img class="bw" src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"><img class="co" src="${K.G(p.img)}" alt="" aria-hidden="true" loading="lazy"><figcaption>${esc(p.n)}<span>${esc(loc(p))}</span></figcaption></figure>`).join('');
+$$('.sp').forEach(s=>{
+  s.addEventListener('pointermove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')});
+  s.addEventListener('pointerenter',()=>gsap.to(s,{'--r':'170px',duration:.7,ease:'expo.out'}));
+  s.addEventListener('pointerleave',()=>gsap.to(s,{'--r':'0px',duration:.6,ease:'power2.in'}));
+});
+
+/* ---------- slit reel ---------- */
+const SR=K.best(12,34);
+$('#st').innerHTML=SR.map(p=>`<a class="sc" href="#" data-lb="${p.id}" data-cursor="Open"><div class="im"><img src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"></div><p>${esc(p.n)}<span>${esc(p.c)}</span></p></a>`).join('');
+const st=$('#st'), scs=$$('.sc');
+gsap.to(st,{x:()=>-(st.scrollWidth-innerWidth*.5),ease:'none',scrollTrigger:{trigger:'#reel',start:'top top',end:()=>'+='+st.scrollWidth,pin:true,scrub:1,invalidateOnRefresh:true}});
+(function slitLoop(){requestAnimationFrame(slitLoop);const cx=innerWidth/2;scs.forEach(c=>{const r=c.getBoundingClientRect();if(r.right<-200||r.left>innerWidth+200)return;const d=Math.min(1,Math.abs(r.left+r.width/2-cx)/(innerWidth*.5));const k=Math.pow(d,1.2)*44;c.firstChild.style.clipPath=`inset(0% ${k}% 0% ${k}%)`;c.firstChild.firstChild.style.transform=`scale(${1.2-.2*(1-d)}) translateX(${(r.left+r.width/2-cx)*-.06}px)`})})();
+
+/* ---------- honours ---------- */
+$('#hn').textContent=K.honours;
+$('#aws').innerHTML=D.awards.flatMap(a=>a.items.map(([who,what])=>`<div class="aw"><span class="y">${a.y}</span><b>${esc(K.fx(what))}</b><span>${esc(who)}</span></div>`)).slice(0,18).join('');
+</script>
+</body>
+</html>
