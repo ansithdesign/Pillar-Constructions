@@ -202,7 +202,10 @@
           n.replaceWith(f); } else if (n.nodeType === 1 && n.tagName !== 'IMG') walk(n); }); };
       walk(el); return;
     }
-    // words → measured lines
+    // words → measured lines (a first-line indent is carried by the first line only)
+    const tiRaw = getComputedStyle(el).textIndent;
+    const ti = (parseFloat(tiRaw) || 0) * (tiRaw.endsWith('%') ? el.clientWidth / 100 : 1);
+    if (ti) el.style.textIndent = '0px';
     const words = [];
     const walk = (node) => { Array.from(node.childNodes).forEach((n) => {
       if (n.nodeType === 3) { const f = document.createDocumentFragment();
@@ -210,6 +213,7 @@
         n.replaceWith(f);
       } else if (n.nodeType === 1) { if (n.tagName === 'BR') return; n.classList.add('px-w'); words.push(n); } }); };
     walk(el);
+    if (ti && words[0]) words[0].style.marginLeft = ti + 'px';
     const lines = []; let top = null, cur;
     words.forEach((w) => { const t = w.offsetTop; if (top === null || Math.abs(t - top) > 4) { cur = []; lines.push(cur); top = t; } cur.push(w); });
     el.innerHTML = '';
