@@ -1,0 +1,98 @@
+/* Pillar redesign — shared foundation used by every option page.
+   Each option defines its own tokens; these rules only use the --px-* hooks below. */
+:root{
+  --px-sw-bg: rgba(18,18,17,.82);
+  --px-sw-fg: #f3f1ec;
+  --px-sw-dim: rgba(243,241,236,.55);
+  --px-sw-line: rgba(243,241,236,.16);
+  --px-lb-bg: #0c0c0b;
+  --px-lb-fg: #f3f1ec;
+  --px-lb-dim: rgba(243,241,236,.55);
+  --px-ease: cubic-bezier(.2,.7,.1,1);
+  --px-ease-io: cubic-bezier(.76,0,.24,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.px-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- reveal primitives (only hidden once JS confirms it can reveal) ---------- */
+html.px-anim [data-r]{transition:opacity 1s var(--px-ease),transform 1.1s var(--px-ease),clip-path 1.3s var(--px-ease),filter 1s var(--px-ease);transition-delay:var(--d,0s)}
+html.px-anim [data-r="up"]:not(.in){opacity:0;transform:translate3d(0,40px,0)}
+html.px-anim [data-r="fade"]:not(.in){opacity:0}
+html.px-anim [data-r="clip"]:not(.in){clip-path:inset(100% 0 0 0)}
+html.px-anim [data-r="clip-x"]:not(.in){clip-path:inset(0 100% 0 0)}
+html.px-anim [data-r="scale"]:not(.in){opacity:0;transform:scale(.94)}
+html.px-anim [data-r="blur"]:not(.in){opacity:0;filter:blur(12px)}
+.px-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.px-line>span{display:block;transition:transform 1.2s var(--px-ease);transition-delay:calc(var(--i,0)*.08s + var(--d,0s))}
+html.px-anim [data-split]:not(.in) .px-line>span{transform:translate3d(0,108%,0)}
+.px-w{display:inline-block}
+.px-c{display:inline-block;transition:transform .9s var(--px-ease),opacity .9s var(--px-ease);transition-delay:calc(var(--i,0)*.025s + var(--d,0s))}
+html.px-anim [data-split="chars"]:not(.in) .px-c{transform:translate3d(0,100%,0);opacity:0}
+.px-mask{overflow:hidden;display:block}
+
+/* ---------- media ---------- */
+.px-img{position:relative;overflow:hidden;background:#8883}
+.px-img img{width:100%;height:100%;object-fit:cover}
+.px-par{will-change:transform}
+
+/* ---------- hover preview that follows the cursor ---------- */
+.px-float{position:fixed;left:0;top:0;width:min(28vw,340px);aspect-ratio:4/3;pointer-events:none;z-index:60;opacity:0;transform:translate3d(-50%,-50%,0) scale(.8);transition:opacity .35s var(--px-ease),transform .5s var(--px-ease);overflow:hidden;border-radius:var(--px-float-r,0)}
+.px-float.on{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}
+.px-float img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+@media (hover:none){.px-float{display:none}}
+
+/* ---------- custom cursor label ---------- */
+.px-cursor{position:fixed;left:0;top:0;z-index:70;pointer-events:none;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;display:grid;place-items:center;font:500 11px/1 var(--px-cursor-font,system-ui);letter-spacing:.08em;text-transform:uppercase;background:var(--px-cursor-bg,#fff);color:var(--px-cursor-fg,#000);transform:scale(0);transition:transform .4s var(--px-ease)}
+.px-cursor.on{transform:scale(1)}
+@media (hover:none){.px-cursor{display:none}}
+
+/* ---------- lightbox ---------- */
+.px-lb{position:fixed;inset:0;z-index:900;background:var(--px-lb-bg);color:var(--px-lb-fg);display:grid;grid-template-rows:auto 1fr auto;opacity:0;visibility:hidden;transition:opacity .45s var(--px-ease),visibility 0s .45s;font-family:var(--px-lb-font,system-ui)}
+.px-lb.open{opacity:1;visibility:visible;transition:opacity .45s var(--px-ease)}
+.px-lb-top,.px-lb-bot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(16px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 16px max(20px,env(safe-area-inset-left,0px));font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--px-lb-dim)}
+.px-lb-bot{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));align-items:flex-end;text-transform:none;letter-spacing:0;font-size:14px;color:var(--px-lb-fg)}
+.px-lb-stage{position:relative;min-height:0;display:grid;place-items:center;padding:0 max(20px,env(safe-area-inset-left,0px))}
+.px-lb-stage img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;transition:opacity .4s,transform .6s var(--px-ease)}
+.px-lb-stage img.swap{opacity:0;transform:scale(.97)}
+.px-lb h3{margin:0 0 6px;font:inherit;font-size:clamp(22px,3vw,40px);line-height:1.05;letter-spacing:-.02em;font-family:var(--px-lb-display,inherit);font-weight:var(--px-lb-weight,400)}
+.px-lb dl{display:grid;grid-template-columns:repeat(3,minmax(0,auto));gap:4px 28px;margin:0;font-size:12px}
+.px-lb dt{color:var(--px-lb-dim);text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+.px-lb dd{margin:0}
+.px-lb-nav{display:flex;gap:8px}
+.px-lb-nav button,.px-lb-x{width:44px;height:44px;border:1px solid var(--px-lb-dim);border-radius:50%;display:grid;place-items:center;transition:background .3s,color .3s}
+.px-lb-nav button:hover,.px-lb-x:hover{background:var(--px-lb-fg);color:var(--px-lb-bg)}
+@media (max-width:700px){.px-lb dl{grid-template-columns:1fr}.px-lb-bot{flex-direction:column;align-items:flex-start}}
+
+/* ---------- option switcher (bottom) ---------- */
+.px-sw{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:1000;font:500 12px/1 "Inter",system-ui,sans-serif;color:var(--px-sw-fg);letter-spacing:.01em}
+.px-sw-bar{display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;background:var(--px-sw-bg);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 10px 40px rgba(0,0,0,.28),inset 0 0 0 1px var(--px-sw-line)}
+.px-sw-bar>a,.px-sw-bar>button{height:34px;min-width:34px;border-radius:999px;display:grid;place-items:center;padding:0 10px;transition:background .25s}
+.px-sw-bar>a:hover,.px-sw-bar>button:hover{background:rgba(255,255,255,.1)}
+.px-sw-cur{display:flex!important;gap:10px;align-items:center;padding:0 14px!important;white-space:nowrap}
+.px-sw-cur b{font-weight:600;font-variant-numeric:tabular-nums}
+.px-sw-cur span{color:var(--px-sw-dim)}
+.px-sw-dots{display:flex;gap:4px;padding:0 6px}
+.px-sw-dots a{width:6px;height:6px;border-radius:50%;background:var(--px-sw-dim);opacity:.5;transition:all .3s}
+.px-sw-dots a.on{width:18px;border-radius:4px;opacity:1;background:var(--px-sw-fg)}
+.px-sw-panel{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,10px);width:min(720px,calc(100vw - 24px));max-height:min(70vh,560px);overflow:auto;padding:10px;border-radius:20px;background:var(--px-sw-bg);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 0 0 1px var(--px-sw-line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;opacity:0;visibility:hidden;transition:opacity .3s,transform .4s var(--px-ease),visibility 0s .3s}
+.px-sw.open .px-sw-panel{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .3s,transform .4s var(--px-ease)}
+.px-sw-panel a{display:grid;gap:8px;padding:6px;border-radius:12px;transition:background .25s}
+.px-sw-panel a:hover,.px-sw-panel a.on{background:rgba(255,255,255,.09)}
+.px-sw-panel figure{margin:0;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#333}
+.px-sw-panel figure img{width:100%;height:100%;object-fit:cover;object-position:top}
+.px-sw-panel strong{display:flex;justify-content:space-between;gap:6px;font-weight:600;font-size:12px}
+.px-sw-panel small{color:var(--px-sw-dim);font-size:11px;line-height:1.3}
+@media (max-width:640px){.px-sw-cur span,.px-sw-dots{display:none}.px-sw-panel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
