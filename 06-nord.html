@@ -159,12 +159,12 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
       <p class="txt" data-r="up">Founded in 1995, Pillar is driven by a deep respect for craft and the rhythm of urban building. We focus on interiors and envelopes that enhance city landscapes, combining simplicity, functionality and a durable finish.</p>
       <p class="txt" data-r="up">Guided by <b>Raja Khoury</b> and <b>Mike Chalabi</b>, the team works closely with owners, developers and general contractors to shape the buildings people live and work in.</p>
       <div class="nums" id="nums"></div></div>
-    <div class="col2"><div class="ph a" data-m="unveil drift" data-dir="left"><img data-g="assets/img/p/V13-001D.jpg" data-gw="1000" alt=""></div><div class="ph b" data-m="unveil drift" data-dir="right" data-delay=".15"><img data-g="assets/img/p/V14-014.jpg" data-gw="800" alt=""></div></div>
+    <div class="col2"><div class="ph a" data-m="unveil drift" data-dir="left"><img data-g="assets/img/p/College_Park_City_Hall_1.jpg" data-gw="1000" alt=""></div><div class="ph b" data-m="unveil drift" data-dir="right" data-delay=".15"><img data-g="assets/img/p/8621Rt.jpg" data-gw="800" alt=""></div></div>
   </section>
 
   <section class="facade" aria-label="Statement">
     <div class="stage">
-      <div class="bg" id="fmask"><img id="fbg" data-g="assets/img/p/V16-022.jpg" data-eager alt=""></div><div class="full" id="ffull"><img id="ffimg" data-g="assets/img/p/V16-022.jpg" data-eager alt=""></div><div class="wsh" id="fwsh"></div>
+      <div class="bg" id="fmask"><img id="fbg" data-g="assets/img/p/Oakvile_Inova_1.jpg" data-eager alt=""></div><div class="full" id="ffull"><img id="ffimg" data-g="assets/img/p/Oakvile_Inova_1.jpg" data-eager alt=""></div><div class="wsh" id="fwsh"></div>
       <span class="lbl" id="flbl">Keep scrolling</span>
       <h2 id="fh">Crafting buildings where natural light meets timeless, functional design.</h2>
     </div>
@@ -223,7 +223,7 @@ gsap.registerPlugin(ScrollTrigger);
 $('#mb').onclick=()=>{const o=$('#menu').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o);$('#mb').textContent=o?'CLOSE':'MENU'};$$('#menu a').forEach(a=>a.onclick=()=>{$('#menu').classList.remove('open');$('#mb').textContent='MENU'});
 
 /* hero slideshow */
-const HS=pick(['V16-051D','V17-004D','V16-022']);let hi=0,ht;
+const HS=pick(['College_Park_City_Hall_1', '8621Rt', 'EP_003']);let hi=0,ht;
 $('#hero').insertAdjacentHTML('afterbegin',HS.map((p,i)=>`<div class="hs ${i?'':'on'}" data-lb="${p.id}">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}</div>`).join(''));
 function hs(i){hi=(i+HS.length)%HS.length;$$('.hs').forEach((s,j)=>s.classList.toggle('on',j===hi));$('#hc').textContent=PX.pad(hi+1);$('#ht').textContent=PX.pad(HS.length);$('#hnm').textContent=HS[hi].n;clearTimeout(ht);ht=setTimeout(()=>hs(hi+1),6000)}
 $('#hn').onclick=e=>{e.stopPropagation();hs(hi+1)};hs(0);
@@ -233,7 +233,7 @@ gsap.to('#hero .hs img',{yPercent:12,ease:'none',scrollTrigger:hT});
 gsap.to('#hero h1',{yPercent:-35,letterSpacing:'.01em',ease:'none',scrollTrigger:hT});
 
 /* intro: photos stack into a pile, then lift away */
-(()=>{const S=pick(['V16-022','V18-002R','V13-007D','V17-030R','V12-055D','V14-041']);const box=$('#intro');
+(()=>{const S=pick(['8191Rt', 'Oakvile_Inova_1', 'V17-004D', 'Avocet_1', 'V13-007D', '8521Rt']);const box=$('#intro');
  if(PX.reduced){box.remove();return}
  PX.lenis?.stop();
  box.innerHTML=S.map(p=>`<div class="card"><img src="${img(p.img)}" alt=""></div>`).join('');
@@ -258,13 +258,13 @@ gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.facade',start:'to
  .to({},{duration:.13});
 
 /* awards with hover image */
-const AW=D.awards.flatMap(a=>a.items.map(it=>({y:a.y,t:it[0],d:it[1]}))),AIM=pick(['V16-022','V17-004D','V18-002R','V16-018D','EP_003','The_Wharf_1','V17-030R','V13-007D']);
+const AW=D.awards.flatMap(a=>a.items.map(it=>({y:a.y,t:it[0],d:it[1]}))),AIM=pick(['V13-007D', '8521Rt', 'V18-002R', '7655Rt', 'The_Westerly_Waterfront_1', 'V17-007R', 'D06-014', 'V16-035D']);
 $('#arows').innerHTML=AW.map((a,i)=>`<div class="ar ${i>9?'x':''}" data-img="${img(AIM[i%AIM.length].img)}" data-r="up" style="--d:${(i%10)*.04}s"><span>${esc(a.t)}</span><span>${esc(a.d)}</span><span>/ ${a.y}</span></div>`).join('');
 PX.hoverPreview($$('.ar'),r=>r.dataset.img,{dx:120});
 $('#awm').onclick=()=>{const o=$('#awards').classList.toggle('all');$('#awm').textContent=o?'Show fewer':'Show all honours';ScrollTrigger.refresh()};
 
 /* services */
-$('#sph').innerHTML=D.services.map(s=>I(img(s.hero,'h'),1200)).join('');const swP=PX.swapper($('#sph'));
+$('#sph').innerHTML=D.services.map(s=>I(PX.svcImg(s),1200)).join('');const swP=PX.swapper($('#sph'));
 $('#slist').innerHTML=D.services.map((s,i)=>`<div class="sr ${i?'':'on'}" data-i="${i}"><span class="n">/ 0${i+1}</span><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p></div>`).join('');
 let sv=0;const pickR=i=>{if(i===sv)return;sv=i;$$('.sr').forEach((x,j)=>x.classList.toggle('on',j===i));swP(i)};
 $$('.sr').forEach(r=>r.addEventListener('mouseenter',()=>pickR(+r.dataset.i)));

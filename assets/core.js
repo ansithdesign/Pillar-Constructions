@@ -37,6 +37,10 @@
     people: D.team.length,
     partners: D.testimonials.length,
   };
+  /* one shared photo set for every option, chosen for quality and minimal composition */
+  const SET = ["Oakvile_Inova_1", "V17-004D", "Avocet_1", "V13-007D", "8521Rt", "V18-002R", "7655Rt", "The_Westerly_Waterfront_1", "V17-007R", "D06-014", "V16-035D", "Institute_for_Digital_Innovation_1", "8302Rt", "V12-026", "V16-047", "College_Park_City_Hall_1", "8621Rt", "EP_003", "V19-019R", "8191Rt"];
+  const svcImg = (s, k = 0) => `assets/img/p/${SET[(D.services.indexOf(s) * 4 + k * 2 + 1) % SET.length]}.jpg`;
+  const svcP = (s) => byImg[SET[(D.services.indexOf(s) * 4 + 1) % SET.length]];
   const loc = (p) => [p.c, p.st].filter(Boolean).join(', ');
   const img = (id, k = 'p') => `assets/img/${k}/${id}.jpg`;
   const pick = (ids) => ids.map((i) => byImg[i]).filter(Boolean);
@@ -668,5 +672,5 @@
     });
   }
 
-  window.PX = { D, SV, stats, loc, img, pick, byImg, esc, svcShort, pad, OPTIONS, optHref, init, Grade, gradeImages, reveal, motion, splitChars, leave, frameOf, swapper, hdrift, split, counters, parallax, hoverPreview, cursor, magnetic, tilt, LB, clock, form, copy, filterable, logo, scrollTo, get lenis() { return lenis; }, reduced, $, $$ };
+  window.PX = { D, SV, SET, svcImg, svcP, stats, loc, img, pick, byImg, esc, svcShort, pad, OPTIONS, optHref, init, Grade, gradeImages, reveal, motion, splitChars, leave, frameOf, swapper, hdrift, split, counters, parallax, hoverPreview, cursor, magnetic, tilt, LB, clock, form, copy, filterable, logo, scrollTo, get lenis() { return lenis; }, reduced, $, $$ };
 })();

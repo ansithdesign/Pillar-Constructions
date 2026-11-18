@@ -175,7 +175,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 <main id="top">
   <section class="hero wrap">
     <div class="hcard">
-      <div class="bg"><img id="hbg" data-g="assets/img/p/V12-055D.jpg" data-eager alt="Hilton Garden Inn, West End"></div>
+      <div class="bg"><img id="hbg" data-g="assets/img/p/V17-004D.jpg" data-eager alt="Hilton Garden Inn, West End"></div>
       <div class="top"><span class="tag">PILLAR CONSTRUCTION</span><nav class="menu" aria-label="Main"><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#process">Process</a><a href="#contact">Contact</a></nav></div>
       <div class="mid"><p data-r="up">An independent specialty contractor shaping buildings through material, precision and an uncompromising attention to detail.</p><a class="pill" href="#work" data-mag="10">Explore our work <i>↗</i></a></div>
       <h1 class="word" aria-label="Pillar"><span>P</span><span>I</span><span>L</span><span>L</span><span>A</span><span>R</span></h1>
@@ -241,7 +241,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
   <section class="wrap" id="contact">
     <div class="cta">
       <div class="ccard"><div><div class="lab">Let's talk<sup>©</sup></div><h2 data-split="lines">Let's build something extraordinary.</h2></div><div><p>Every meaningful building begins with a conversation.</p><a class="pill" href="#foot" data-mag="10">Start the project <i>↗</i></a></div></div>
-      <div class="cimg" data-m="unveil zoomout" data-dir="left"><img data-g="assets/img/p/V16-046D.jpg" alt=""></div>
+      <div class="cimg" data-m="unveil zoomout" data-dir="left"><img data-g="assets/img/p/V13-007D.jpg" alt=""></div>
     </div>
     <footer class="foot" id="foot">
       <div class="cols">
@@ -281,14 +281,14 @@ $('#lit').innerHTML=$('#lit').textContent.split(' ').map(w=>`<span class="w">${w
 gsap.to('#lit .w',{opacity:1,stagger:.06,ease:'none',scrollTrigger:{trigger:'#lit',start:'top 80%',end:'bottom 40%',scrub:true}});
 
 /* works */
-const WK=pick(['V17-004D','V16-018D','The_Westerly_Waterfront_1','V18-012','V14-041','The_Wharf_1']);
+const WK=pick(['V13-007D', '8521Rt', 'V18-002R', '7655Rt', 'The_Westerly_Waterfront_1', 'V17-007R']);
 $('#works').innerHTML=WK.map((p,i)=>`<button class="wk w${i+1}" data-lb="${p.id}" data-cursor="View"><div class="ph" data-m="unveil drift" data-dir="${['up','left','up','right','up','left'][i]}" data-delay="${(i%2)*.12}">${I(img(p.img),1200,p.n)}</div><div class="row"><div><h3>${esc(p.n)}</h3><small>${svcShort[p.s]}  |  ${esc(p.c)}  |  ${esc(p.st)}</small></div><span class="circ">↗</span></div></button>`).join('');
 
 /* each work drifts at its own pace and leans with the scroll speed */
 $$('#works .wk').forEach((w,i)=>{w.dataset.skew=.6;gsap.fromTo(w,{y:[40,120,60,140,30,90][i]},{y:-[40,120,60,140,30,90][i],ease:'none',scrollTrigger:{trigger:w,start:'top bottom',end:'bottom top',scrub:true}})});
 
 /* grid zoom: nine projects; the centre frame (the Exterior Panel) grows until it fills the screen, then the story lands on it */
-const GZ=pick(['V13-007D','V16-022','The_Wharf_1','V18-005R','EP_003','V17-030R','V14-025D','V16-035D','V12-026']);
+const GZ=pick(['The_Westerly_Waterfront_1', 'V17-007R', 'D06-014', 'V16-035D', 'Institute_for_Digital_Innovation_1', '8302Rt', 'V12-026', 'V16-047', 'College_Park_City_Hall_1']);
 $('#gz').innerHTML=GZ.map((p,i)=>`<button class="t ${i===4?'c':''}" data-lb="${p.id}" data-cursor="View">${I(img(p.img),i===4?0:700,p.n)}<span>${esc(p.n)}</span></button>`).join('');
 (()=>{const g=$('#gz'),c=g.children[4],others=[...g.children].filter((x,i)=>i!==4);gsap.set(g,{clearProps:'transform'});gsap.set(g,{xPercent:-50,yPercent:-50});
  const S=()=>Math.max(innerWidth/c.offsetWidth,innerHeight/c.offsetHeight)*1.02;
@@ -306,15 +306,15 @@ $('#gz').innerHTML=GZ.map((p,i)=>`<button class="t ${i===4?'c':''}" data-lb="${p
   .to({},{duration:.15});})();
 
 /* expertise cards: services with scope checklists */
-$('#egrid').innerHTML=D.services.slice(0,4).map((s,i)=>`<article class="ecard" data-r="up" style="--d:${i*.08}s"><div><div class="ic">${I(img(s.hero,'h'),200)}</div><h3>${esc(s.title.split(' / ')[0])}.</h3></div><ul>${s.scopes.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
+$('#egrid').innerHTML=D.services.slice(0,4).map((s,i)=>`<article class="ecard" data-r="up" style="--d:${i*.08}s"><div><div class="ic">${I(PX.svcImg(s),200)}</div><h3>${esc(s.title.split(' / ')[0])}.</h3></div><ul>${s.scopes.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
 
 $('.ecard.img').dataset.lb=PX.byImg['V13-007D'].id;
 
 /* process: sticky image swaps with active step */
-const STEPS=[['Partnering early','We get involved in the early design stages, alongside architects, owners and general contractors.','V13-030D'],
- ['Value engineering','We offer value engineering options to achieve the best results at a competitive price.','V16-022'],
- ['Planning the work','Estimators and project managers develop a plan, a sequence and a schedule the field can trust.','V17-012R'],
- ['Executing safely','Our crews deliver quality work safely, on time and under budget, from the slab edge to the punch list.','V18-043R']];
+const STEPS=[['Partnering early','We get involved in the early design stages, alongside architects, owners and general contractors.','8521Rt'],
+ ['Value engineering','We offer value engineering options to achieve the best results at a competitive price.','V18-002R'],
+ ['Planning the work','Estimators and project managers develop a plan, a sequence and a schedule the field can trust.','7655Rt'],
+ ['Executing safely','Our crews deliver quality work safely, on time and under budget, from the slab edge to the punch list.','The_Westerly_Waterfront_1']];
 $('#stick').innerHTML=STEPS.map((s,i)=>`<img data-g="${img(s[2])}" data-eager alt="">`).join('')+'<span class="sn" id="snum">01 / 04</span>';
 const swS=PX.swapper($('#stick'));
 $('#slist').innerHTML=STEPS.map((s,i)=>`<div class="st ${i?'':'on'}"><span class="n">0${i+1}</span><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
@@ -323,7 +323,7 @@ ScrollTrigger.create({trigger:'#steps',start:'top 50%',end:'bottom 70%',onUpdate
 gsap.set('#rail',{height:'var(--p)'});
 
 /* voices: tabs with auto-advance progress */
-const V=[1,4,26,30].map(i=>D.testimonials[i]);const VP=pick(['V14-025D','V16-035D','V18-020','VA_Hostpital_Fredericksburg_1']);let vi=0,vt;
+const V=[1,4,26,30].map(i=>D.testimonials[i]);const VP=pick(['Institute_for_Digital_Innovation_1', '8302Rt', 'V12-026', 'V16-047']);let vi=0,vt;
 $('#vph').insertAdjacentHTML('afterbegin',VP.map((p,i)=>I(img(p.img),900)).join(''));const swV=PX.swapper($('#vph'));
 $('#tabs').innerHTML=V.map((v,i)=>`<button type="button"><span class="av">${I(img(VP[i].img),120)}</span><span><b>${esc(v.by)}</b><small>${esc(v.role)}</small></span></button>`).join('');
 function showV(i){vi=(i+V.length)%V.length;const q=$('#vq');q.classList.add('out');setTimeout(()=>{q.textContent='“'+V[vi].q+'”';q.classList.remove('out')},350);

@@ -188,7 +188,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
   <section class="cta wrap" id="contact">
     <div class="l"><div><h2 class="up" data-split="lines">Start a thoughtful build process</h2><p>Let's work together on a building that reflects your vision, guided by a process focused on detail, balance, and long-term performance.</p><a class="chip dk" href="#foot"><i>→</i>Get In Touch With Us</a></div>
       <div><p style="margin:0">Partnering with owners and builders since 1995</p><div class="avs" id="avs"></div></div></div>
-    <div class="big" data-m="unveil drift" data-dir="down"><img data-g="assets/img/p/V16-018D.jpg" alt="Glass tower"></div>
+    <div class="big" data-m="unveil drift" data-dir="down"><img data-g="assets/img/p/8302Rt.jpg" alt="Glass tower"></div>
   </section>
 </main>
 
@@ -235,7 +235,7 @@ gsap.to('.wm .b',{xPercent:-14,skewX:-8,ease:'none',scrollTrigger:hT});
 $('#stats').innerHTML=[[stats.years,'+','Years of experience delivering finish work with clarity and care.'],[stats.offices,'','Regional offices supporting precise execution across four markets.'],[stats.projects,'+','Projects shaped by careful planning and refined execution.'],[stats.honours,'','Industry honours earned through craft, safety and consistent quality.']].map((s,i)=>`<div data-r="up" style="--d:${i*.08}s"><b><span data-count="${s[0]}">0</span> ${s[1]}</b><span class="cap">${s[2]}</span></div>`).join('');
 
 /* slider: pinned. Each project wipes in from the right over the last, which is pushed aside; the specs ride in with it */
-const SL=pick(['V17-004D','The_Wharf_1','V18-002R','V16-022','V17-030R','EP_003']),NS=SL.length;
+const SL=pick(['8302Rt', 'V12-026', 'V16-047', 'College_Park_City_Hall_1', '8621Rt', 'EP_003']),NS=SL.length;
 $('#projects').insertAdjacentHTML('afterbegin',SL.map((p,i)=>`<div class="sl" data-lb="${p.id}" data-cursor="Open">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}<div class="tx"><h3>${esc(p.n)}</h3><dl><div><dd>${esc(loc(p))}</dd><dt>Location</dt></div><div><dd>${svcShort[p.s]}</dd><dt>Scope</dt></div><div><dd>${esc((p.g||'—').replace(/,? (Inc|LLC|L\.L\.C)\.?/,''))}</dd><dt>Builder</dt></div></dl><span class="chip"><i>→</i>See Project</span></div></div>`).join(''));
 const sls=$$('#projects .sl');let si=-1;
 const meta=i=>{if(i===si)return;si=i;$('#smeta').innerHTML=`${esc(SV[SL[i].s].title)}<br>${PX.pad(i+1)} / ${PX.pad(NS)}`};meta(0);
@@ -256,14 +256,14 @@ $('#sp').onclick=e=>{e.stopPropagation();goS(-1)};$('#sn').onclick=e=>{e.stopPro
 /* services: the scroll walks through the four cards; each one wipes its photograph over the last (hover works too) */
 const SVS=D.services.slice(0,4);
 $('#cards').innerHTML=SVS.map((s,i)=>`<div class="cd" data-i="${i}" data-r="up" style="--d:${i*.06}s"><span class="n">0${i+1}</span><div><h3>${esc(s.title.split(' / ')[0])}</h3><p>${esc(s.scopes.slice(0,3).join(', '))}.</p></div></div>`).join('');
-$('#sbig').innerHTML=SVS.map(s=>I(img(s.hero,'h'),1400,s.title)).join('')+'<span class="lbl" id="slbl"></span>';
+$('#sbig').innerHTML=SVS.map(s=>I(PX.svcImg(s),1400,s.title)).join('')+'<span class="lbl" id="slbl"></span>';
 const swB=PX.swapper($('#sbig'));let ci=-1;
 const pickC=i=>{if(i===ci)return;ci=i;$$('.cd').forEach((c,j)=>c.classList.toggle('on',j===i));swB(i);$('#slbl').textContent=`${PX.pad(i+1)} — ${SVS[i].title}`};pickC(0);
 $$('.cd').forEach(c=>c.addEventListener('mouseenter',()=>pickC(+c.dataset.i)));
 ScrollTrigger.create({trigger:'#services',start:'top 55%',end:'bottom 70%',onUpdate:s=>pickC(Math.min(3,Math.floor(s.progress*4)))});
 
 /* stories */
-const ST=pick(['V16-046D','V12-055D','V13-007D']);
+const ST=pick(['8621Rt', 'EP_003', 'V19-019R']);
 $('#sc').innerHTML=ST.map((p,i)=>`<button class="sv" data-lb="${p.id}" data-cursor="View" data-m="unveil drift" data-delay="${i*.12}">${I(img(p.img),900,p.n)}<span class="c">${svcShort[p.s]}</span><div class="bt"><div><small>${esc(loc(p))}</small><h3>${esc(p.n)}</h3></div><span class="go">↗</span></div></button>`).join('');
 
 /* faq */

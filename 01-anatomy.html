@@ -257,7 +257,7 @@ h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
   </section>
 
   <section class="end wrap" id="end" data-m="expand" data-end="top top" data-r="22">
-    <div class="bg"><img data-g="assets/img/p/V17-030R.jpg" alt=""></div>
+    <div class="bg"><img data-g="assets/img/p/Oakvile_Inova_1.jpg" alt=""></div>
     <div class="in">
       <h2>Build,<br>considered.</h2>
       <p><b>Write</b><span id="em" style="user-select:all"></span><br><span id="ph"></span></p>
@@ -284,7 +284,7 @@ $('#mb').onclick=()=>{const o=$('#menu').classList.toggle('open');$('#mb').setAt
 $$('#menu a').forEach(a=>a.addEventListener('click',()=>$('#menu').classList.remove('open')));
 
 /* cloud: a walk through the portfolio. Each photograph hangs at its own depth; scroll moves the camera forward */
-const CL=pick(['V13-007D','V16-022','The_Westerly_Waterfront_1','V18-012','V16-046D','V12-055D','V17-014D','8191Rt','V16-038','Reunion_Sq_1','V19-019R','V16-051D','V14-041','V18-020']);
+const CL=pick(['Oakvile_Inova_1', 'V17-004D', 'Avocet_1', 'V13-007D', '8521Rt', 'V18-002R', '7655Rt', 'The_Westerly_Waterfront_1', 'V17-007R', 'D06-014', 'V16-035D', 'Institute_for_Digital_Innovation_1', '8302Rt', 'V12-026']);
 const SPOT=[[-34,-20,300],[40,24,260],[-42,26,240],[36,-30,280],[-46,-2,230],[30,34,300],[-20,-38,240],[46,6,230],[-36,34,260],[12,-40,280],[-40,-30,250],[38,-14,300],[-26,30,270],[0,0,440]];
 $('#space').insertAdjacentHTML('beforeend',CL.map((p,i)=>`<button class="c" data-lb="${p.id}" data-cursor="View" style="width:${SPOT[i][2]}px;aspect-ratio:${i%3?'4/3':'3/4'}" aria-label="${esc(p.n)}">${I(img(p.img),i===CL.length-1?1600:700,p.n)}</button>`).join(''));
 $('#ccn').textContent='OF '+CL.length;
@@ -310,7 +310,7 @@ $('#ccn').textContent='OF '+CL.length;
  addEventListener('resize',render);render();})();
 
 /* slab: pinned; each project wipes up over the last as you scroll, the one beneath sinks away */
-const SL=pick(['V17-004D','EP_003','V16-018D','V18-005R','Institute_for_Digital_Innovation_1']);
+const SL=pick(['8521Rt', 'V18-002R', '7655Rt', 'The_Westerly_Waterfront_1', 'V17-007R']);
 $('#slab').insertAdjacentHTML('afterbegin',SL.map((p,i)=>`<div class="sl" data-lb="${p.id}" data-cursor="Open">${I(img(p.img),0,p.n)}<div class="cap"><h3>${esc(p.n)}</h3><p>${esc(loc(p))} · ${svcShort[p.s]}</p></div></div>`).join(''));
 $('#st').textContent=PX.pad(SL.length);
 const slT=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.model',start:'top top',end:()=>'+='+innerHeight*(SL.length-1)*.9,pin:true,scrub:.5,
@@ -327,7 +327,7 @@ $$('#slab .ctr button').forEach(b=>b.onclick=e=>{e.stopPropagation();const st=sl
  ScrollTrigger.create({trigger:c,start:'top 85%',end:'bottom 15%',onUpdate:s=>{if(!man)at(92-84*s.progress)}});at(92);})();
 
 /* wordmark window grows to fill the screen; the photographs it holds spill out past the edges */
-const FL=pick(['V16-022','V18-002R','The_Wharf_1','V12-055D','V16-046D','V13-007D']);
+const FL=pick(['V17-007R', 'D06-014', 'V16-035D', 'Institute_for_Digital_Innovation_1', '8302Rt', 'V12-026']);
 const FD=[[-38,-30,-8],[36,-34,6],[-44,26,5],[42,28,-6],[-6,-44,3],[8,44,-4]];
 $('#flys').innerHTML=FL.map(p=>`<div class="fly">${I(img(p.img),500)}</div>`).join('');
 const wmT=gsap.timeline({scrollTrigger:{trigger:'.wm',start:'top top',end:'bottom bottom',scrub:true}})
@@ -341,7 +341,7 @@ $$('#flys .fly').forEach((f,i)=>{const [x,y,r]=FD[i];
 gsap.fromTo('#wmrow',{xPercent:8},{xPercent:-8,ease:'none',scrollTrigger:{trigger:'.wm',start:'top bottom',end:'top top',scrub:true}});
 
 /* service pairs: pinned; scrolling slides through the five services, each photo drifting inside its frame */
-$('#track').innerHTML=D.services.map((s,i)=>{const ps=D.projects.filter(p=>p.s===s.id);const p=PX.byImg[s.gallery[0]]||ps[0];return `<div class="pair">
+$('#track').innerHTML=D.services.map((s,i)=>{const ps=D.projects.filter(p=>p.s===s.id);const p=PX.svcP(s)||ps[0];return `<div class="pair">
  <div class="tx"><div><div class="lab" style="opacity:.6;margin-bottom:18px">${svcShort[s.id]} · ${ps.length} projects</div><h3>${esc(s.title)}</h3><ul>${s.scopes.slice(0,8).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
  <div class="row"><p>${esc(s.body[0]||s.short)}</p><span class="n">0${i+1}</span></div></div>
  <button class="ph" data-lb="${p.id}" data-cursor="View">${I(img(p.img),1200,p.n)}<span>${esc(p.n)}</span></button></div>`}).join('');
