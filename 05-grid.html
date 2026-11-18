@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<style>
+/* Layout: a visible six-column construction grid runs behind everything; content snaps to it. */
+:root{
+  --white:#fff; --ink:#0b0b0b; --g1:#f4f4f2; --dark:#121212; --mute:#6f6f6b; --line:rgba(0,0,0,.08); --dline:rgba(255,255,255,.1); --sky:#b9d3e6;
+  --sans:"Geologica","Helvetica Neue",Arial,sans-serif;
+  --gut:max(20px,env(safe-area-inset-left,0px)); --col:calc((100vw - 2*var(--gut))/6);
+  --px-lb-bg:#0b0b0b; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-lb-weight:600; --px-sw-bg:rgba(11,11,11,.85);
+}
+body{background:var(--white);color:var(--ink);font:400 14px/1.5 var(--sans)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.lines{position:fixed;inset:0;z-index:40;pointer-events:none;display:grid;grid-template-columns:repeat(6,1fr);padding:0 var(--gut);mix-blend-mode:difference}
+.lines i{border-left:1px solid rgba(255,255,255,.09)}.lines i:last-child{border-right:1px solid rgba(255,255,255,.09)}
+.g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.tick{font-size:10px;color:var(--mute);display:flex;gap:6px;align-items:center}
+.tick::before{content:"+";font-size:11px}
+.btn{display:inline-flex;align-items:stretch;height:38px;background:#fff;color:var(--ink);font-size:11px;border:1px solid var(--line)}
+.btn span{display:flex;align-items:center;padding:0 14px;min-width:180px}
+.btn i{width:38px;display:grid;place-items:center;border-left:1px solid var(--line);font-style:normal;transition:background .3s,color .3s}
+.btn:hover i{background:var(--ink);color:#fff}
+.btn.dk{background:transparent;color:#fff;border-color:var(--dline)}.btn.dk i{border-color:var(--dline)}.btn.dk:hover i{background:#fff;color:var(--ink)}
+
+/* preloader */
+.pre{position:fixed;inset:0;z-index:80;background:#fff;display:grid;place-items:center;transition:clip-path 1.2s var(--px-ease-io)}
+.pre.done{clip-path:inset(0 0 100% 0)}
+.pre b{font:600 clamp(80px,10vw,170px)/1 var(--sans);letter-spacing:-.06em;color:#2a2a2a;overflow:hidden;display:block}
+.pre b span{display:inline-block;animation:up 1s var(--px-ease) both}
+.pre small{position:absolute;bottom:40px;font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+@keyframes up{from{transform:translateY(105%)}}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto;z-index:50;padding-top:10px;padding-bottom:10px;color:#fff;mix-blend-mode:difference;font-size:10px;align-items:center}
+.bar b{font-size:16px;letter-spacing:-.04em}
+.bar .c{text-align:center}.bar .r{text-align:right}
+.bar button{font-size:10px;display:inline-flex;gap:6px;align-items:center}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:720px;background:var(--sky);color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .in{position:relative;z-index:2;height:100%;padding-top:70px;padding-bottom:28px;grid-template-rows:auto 1fr auto}
+.hero h1{font-size:clamp(100px,11vw,190px);line-height:.86;letter-spacing:-.07em;grid-column:1/4}
+.hero h1 sup{font-size:.36em;vertical-align:top;position:relative;top:.18em;margin-left:.04em}
+.hero .sub{grid-column:1/3;font-size:12px;max-width:30ch;margin-top:12px}
+.hero .hr{grid-column:5/7;display:grid;justify-items:start;align-content:start}
+.hero ol{list-style:none;margin:0;padding:0;font-size:10px;display:grid;gap:3px;align-self:start;margin-top:12px}
+.hero ol li span{opacity:.6;margin-right:6px}
+.hero .cta{margin-top:84px}
+.hero .low{grid-column:1/-1;align-self:end;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.trust{display:flex;align-items:center;gap:16px;font-size:10px;max-width:30ch;line-height:1.3}
+.trust .avs{display:flex}
+.trust .avs span{width:34px;height:34px;border-radius:50%;overflow:hidden;border:2px solid #fff;margin-left:-8px;background:#fff}
+.trust .avs span:first-child{margin-left:0}
+.trust .avs img{width:100%;height:100%;object-fit:cover}
+.logos{display:flex;gap:28px;align-items:center}
+.logos img{height:26px;width:auto;filter:brightness(0) invert(1);opacity:.85}
+.thumbs{display:flex;gap:6px}
+.thumbs button{width:60px;height:44px;overflow:hidden;opacity:.6;transition:opacity .3s;outline-offset:2px}
+.thumbs button.on{opacity:1;outline:1px solid #fff}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+
+/* about */
+.about{padding-block:110px 0}
+.about .t{grid-column:3/7}
+.about h2{font-size:clamp(34px,3.2vw,52px);line-height:1.04}
+.about p{font-size:12px;color:var(--mute);max-width:44ch;margin:18px 0 0}
+.stats{grid-column:1/-1;margin-top:60px;background:var(--g1)}
+.stats>div{padding:16px 14px 50px;border-right:1px solid var(--line)}
+.stats b{font:500 30px/1 var(--sans);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats b sup{font-size:.5em;opacity:.6}
+.stats .cap{display:block;font-size:10px;color:var(--mute);margin-top:60px}
+.about .row2{grid-column:1/-1;display:flex;justify-content:space-between;padding:16px 0;font-size:11px}
+
+/* marquee */
+.mq{position:relative;height:110vh;overflow:hidden;display:grid;align-items:center}
+.mq .bg{position:absolute;inset:0}.mq .bg img{width:100%;height:120%;object-fit:cover}
+.mq .track{position:relative;z-index:2;display:flex;white-space:nowrap;font:600 clamp(60px,7vw,120px)/1 var(--sans);letter-spacing:-.05em;color:#111;will-change:transform}
+.mq .track span{padding-right:.4em;display:flex;align-items:center;gap:.4em}
+.mq .track span::after{content:"◆";font-size:.3em}
+
+/* projects */
+.proj{padding-block:120px}
+.proj h2{grid-column:3/6;font-size:clamp(44px,4.4vw,72px);margin-bottom:70px}
+.pj{display:grid;gap:6px;text-align:left;cursor:zoom-in}
+.pj .ph{overflow:hidden;position:relative;background:var(--g1)}
+.pj .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--px-ease)}
+.pj:hover .ph img{transform:scale(1.06)}
+.pj .ph::after{content:"View project";position:absolute;left:0;right:0;bottom:0;background:#fff;color:var(--ink);font-size:11px;padding:10px 12px;transform:translateY(100%);transition:transform .5s var(--px-ease)}
+.pj:hover .ph::after{transform:none}
+.pj .m{display:flex;justify-content:space-between;font-size:11px}
+.pj .m span{color:var(--mute)}
+.pgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:80px 0}
+.pgrid .pj{padding-right:12px}
+.pgrid .pj:nth-child(1){grid-column:1/3}.pgrid .pj:nth-child(1) .ph{aspect-ratio:4/3}
+.pgrid .pj:nth-child(2){grid-column:4/7;margin-top:80px}.pgrid .pj:nth-child(2) .ph{aspect-ratio:16/9}
+.pgrid .pj:nth-child(3){grid-column:2/4}.pgrid .pj:nth-child(3) .ph{aspect-ratio:3/4}
+.pgrid .pj:nth-child(4){grid-column:5/7;margin-top:160px}.pgrid .pj:nth-child(4) .ph{aspect-ratio:4/5}
+.pgrid .pj:nth-child(5){grid-column:1/4}.pgrid .pj:nth-child(5) .ph{aspect-ratio:16/10}
+.pgrid .pj:nth-child(6){grid-column:5/6;margin-top:40px}.pgrid .pj:nth-child(6) .ph{aspect-ratio:3/4}
+.allp{margin-top:90px;display:flex;justify-content:center}
+
+/* services */
+.svc{background:var(--dark);color:#fff}
+.svc .head{padding-block:110px 60px}
+.svc .head h2{grid-column:1/3;font-size:clamp(40px,3.6vw,58px)}
+.svc .head p{grid-column:1/3;font-size:12px;color:rgba(255,255,255,.55);margin:14px 0 0;max-width:36ch}
+.svc .head .btn{grid-column:3/4;align-self:end}
+.panel{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--dark);border-top:1px solid var(--dline)}
+.panel .tx{grid-column:1/3;padding:60px 24px 0 0}
+.panel .tx .n{font-size:11px;color:rgba(255,255,255,.5)}
+.panel .tx h3{font-size:clamp(26px,2.2vw,34px);font-weight:500;margin:6px 0 16px}
+.panel .tx p{font-size:12px;color:rgba(255,255,255,.6);max-width:40ch;margin:0 0 18px}
+.panel .tx ul{list-style:none;padding:0;margin:0;font-size:11px;display:grid;gap:3px}
+.panel .tx ul li::before{content:"• ";opacity:.6}
+.panel .im{grid-column:3/7;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:2fr 1fr}
+.panel .im div{overflow:hidden;position:relative}
+.panel .im div:first-child{grid-column:1/-1}
+.panel .im img{position:absolute;inset:0;width:100%;height:115%;object-fit:cover}
+
+/* process */
+.how{background:var(--dark);color:#fff;padding-block:120px}
+.how h2{grid-column:3/6;font-size:clamp(40px,3.6vw,58px)}
+.how .lead{grid-column:3/5;font-size:12px;color:rgba(255,255,255,.55);margin:12px 0 50px}
+.how .steps{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.how .s{grid-column:span 1;padding:14px 12px 0;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;background:#1a1a1a;margin-right:1px;transition:background .4s}
+.how .s:hover{background:#242424}
+.how .s:first-child{grid-column:3/4}
+.how .s b{display:flex;justify-content:space-between;font-weight:500;font-size:13px}
+.how .s b span{opacity:.5;font-size:10px}
+.how .s p{font-size:11px;color:rgba(255,255,255,.55);margin:0 0 16px}
+
+/* testimonials */
+.tm{padding-block:120px}
+.tm h2{grid-column:2/6;font-size:clamp(36px,3.2vw,52px);line-height:1.04}
+.tm .lead{grid-column:2/4;font-size:12px;color:var(--mute);margin:16px 0 40px}
+.tm .nav{grid-column:6/7;justify-self:end;align-self:end;display:flex;gap:2px;margin-bottom:10px}
+.tm .nav button{width:22px;height:22px;background:var(--ink);color:#fff;font-size:10px}
+.tcards{grid-column:1/-1;display:flex;overflow-x:auto;scrollbar-width:none;cursor:grab;scroll-snap-type:x mandatory}
+.tcards::-webkit-scrollbar{display:none}
+.tc{flex:0 0 calc(100% / 4);scroll-snap-align:start;background:var(--g1);border-right:1px solid #fff;padding:16px 14px;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;user-select:none}
+.tc .top{display:flex;justify-content:space-between;font-size:10px}
+.tc p{font-size:12px;line-height:1.45;margin:18px 0}
+.tc .who{display:flex;gap:10px;align-items:center;font-size:10px}
+.tc .who span{width:28px;height:28px;overflow:hidden;flex:none}
+.tc .who img{width:100%;height:100%;object-fit:cover}
+.tc .who b{display:block;font-weight:500;font-size:11px}
+
+/* faq */
+.faq{padding-block:40px 120px}
+.faq .l{grid-column:1/3;padding-right:20px}
+.faq h2{font-size:clamp(40px,3.6vw,58px);line-height:1}
+.faq .l p{font-size:12px;color:var(--mute);margin:14px 0}
+.faq .list{grid-column:4/7}
+.q{border-bottom:1px solid var(--line)}
+.q:first-child{background:var(--g1)}
+.q button{width:100%;display:grid;grid-template-columns:32px 1fr 20px;align-items:center;padding:14px 10px;text-align:left;font-size:12px}
+.q button span:first-child{font-size:10px;color:var(--mute)}
+.q button i{font-style:normal;transition:transform .4s var(--px-ease)}
+.q.open button i{transform:rotate(45deg)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--px-ease)}
+.q.open .a{grid-template-rows:1fr}
+.q .a>div{overflow:hidden}
+.q .a p{margin:0;padding:0 40px 16px 42px;font-size:11px;color:var(--mute)}
+
+/* footer */
+.ft{background:var(--dark);color:#fff;padding-top:110px;overflow:hidden}
+.ft h2{grid-column:1/3;font-size:clamp(40px,3.8vw,62px);line-height:1}
+.ft p{grid-column:1/3;font-size:12px;color:rgba(255,255,255,.55);margin:14px 0 26px}
+.ft .btn{grid-column:1/2}
+.ft .cols{grid-column:3/7;display:grid;grid-template-columns:repeat(4,1fr);font-size:11px;align-self:start}
+.ft .cols b{display:block;font-weight:400;color:rgba(255,255,255,.45);margin-bottom:6px}
+.ft .cols a,.ft .cols span{display:block;line-height:1.7}
+.ft .cols a:hover{color:var(--sky)}
+.ft .big{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;margin-top:90px}
+.ft .big b{font:600 clamp(120px,15vw,260px)/.78 var(--sans);letter-spacing:-.075em;color:#4a4a4a;transform:translateY(12%)}
+.ft .big b sup{font-size:.36em;vertical-align:top;position:relative;top:.2em}
+.ft .big .im{width:clamp(160px,15vw,240px);aspect-ratio:4/3;overflow:hidden;margin-bottom:30px}
+.ft .big .im img{width:100%;height:100%;object-fit:cover}
+.ft .base{grid-column:1/-1;display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.45);padding:18px 0 90px;border-top:1px solid var(--dline);position:relative;z-index:2;background:var(--dark)}
+</style>
+</head>
+<body>
+<div class="pre" id="pre" aria-hidden="true"><b><span>Pillar®</span></b><small id="pct">000</small></div>
+<div class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<header class="bar wrap g6"><b>Pillar®</b><span>Based in Alexandria, VA</span><span class="c" id="clk"></span><span></span><span></span><span class="r"><a href="#contact">Menu ⊞</a></span></header>
+
+<main id="top">
+  <section class="hero">
+    <div class="bg"><img id="hbg" data-g="assets/img/p/V14-041.jpg" data-eager alt="High-rise glass tower"></div>
+    <div class="in g6 wrap">
+      <div style="grid-column:1/4"><h1 data-split="chars">Pillar<sup>®</sup></h1><p class="sub" data-r="up" style="--d:.9s">Specialty contractor building interiors and envelopes that feel like they belong.</p></div>
+      <div class="hr"><ol id="hsv" data-r="fade" style="--d:1s"></ol>
+      <a class="btn cta" href="#contact" data-r="fade" style="--d:1.1s" data-mag="6"><span>Start a Project</span><i>→</i></a></div>
+      <div class="low">
+        <div class="trust" data-r="up" style="--d:1.2s"><div class="avs" id="avs"></div><span>Trusted by more than <b id="gcN"></b> general contractors and owners</span></div>
+        <div class="logos" id="logos"></div>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about wrap g6" id="about">
+    <div class="tick" style="grid-column:1/3">About</div>
+    <div class="t"><h2 data-split="lines">Pillar is a specialty contractor working across residential, commercial, civic and hospitality projects.</h2><p data-r="up">We self-perform drywall, rainscreen, restoration, EIFS, stucco, rough carpentry and air/vapor barriers, shaped by each site, its light, and the people who will use it.</p></div>
+    <div class="stats g6" id="stats"></div>
+    <div class="row2"><a href="#proj">More about us →</a><span>©1995–<span id="yr"></span></span></div>
+  </section>
+
+  <section class="mq" aria-label="Pillar Construction">
+    <div class="bg"><img data-g="assets/img/p/V16-022.jpg" data-par="10" alt=""></div>
+    <div class="track" id="mq"></div>
+  </section>
+
+  <section class="proj wrap" id="proj">
+    <div class="g6"><div class="tick" style="grid-column:1/3">Recent Projects</div><h2 data-split="lines">Recent Projects</h2></div>
+    <div class="pgrid" id="pgrid" data-lb-group></div>
+    <div class="allp"><a class="btn" href="#faq" data-mag="6"><span>See all 224 in the archive</span><i>→</i></a></div>
+  </section>
+
+  <section class="svc" id="services">
+    <div class="head wrap g6"><div class="tick" style="grid-column:1/-1;color:rgba(255,255,255,.5);margin-bottom:16px">Services</div><h2 data-split="lines">What We Do</h2><p data-r="up">From metal framing to final finish, Pillar delivers a full range of interior and exterior scopes.</p><a class="btn dk" href="#contact"><span>Start a project</span><i>→</i></a></div>
+    <div id="panels" class="wrap"></div>
+  </section>
+
+  <section class="how wrap g6">
+    <div class="tick" style="grid-column:1/3;color:rgba(255,255,255,.5)">Process</div>
+    <h2 data-split="lines">How We Work</h2>
+    <p class="lead" data-r="up">A clear, considered path from the first drawing to the final walkthrough, so you always know what's happening and why.</p>
+    <div class="steps" id="steps"></div>
+  </section>
+
+  <section class="tm wrap g6" aria-label="Client stories">
+    <div class="tick" style="grid-column:1/2">Client Stories</div>
+    <h2 data-split="lines">From First Estimate to Final Punch List, Here's How Our Partners Describe Working With Pillar</h2>
+    <p class="lead" data-r="up">The buildings are only part of the story. Here is what general contractors, owners and architects say about the process.</p>
+    <div class="nav"><button type="button" id="tp" aria-label="Previous">◀</button><button type="button" id="tn" aria-label="Next">▶</button></div>
+    <div class="tcards" id="tcards"></div>
+  </section>
+
+  <section class="faq wrap g6" id="faq">
+    <div class="l"><div class="tick" style="margin-bottom:30px">FAQ</div><h2 data-split="lines">Common Questions</h2><p>Answers to the questions we hear most before a project starts.</p><a href="#contact" style="font-size:11px">Ask a question →</a></div>
+    <div class="list" id="qs"></div>
+  </section>
+
+  <footer class="ft wrap g6" id="contact">
+    <h2 data-split="lines">Your Next Building Starts Here.</h2>
+    <p>Every great building starts with a conversation. Reach out and let's begin yours.</p>
+    <a class="btn dk" href="#top"><span id="fem" style="user-select:all"></span><i>↗</i></a>
+    <div class="cols" id="fcols"></div>
+    <div class="big"><b>Pillar<sup>®</sup></b><div class="im"><img data-g="assets/img/p/V14-041.jpg" data-gw="500" alt=""></div></div>
+    <div class="base"><span>Specialty contractor since 1995</span><span id="fph"></span><span>© <span id="yr2"></span> All rights reserved</span></div>
+  </footer>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script>
+PX.init({id:'05',look:{ev:.06,contrast:.24,sat:1.02,vib:.12,blue:-.06,gain:[.975,1,1.035],lift:[0,.005,.012],hi:[0,.008,.02],hiAmt:.3,sh:[-.01,.008,.03],shAmt:.45,grain:.012,css:'contrast(1.06) saturate(1.04) hue-rotate(-4deg)'}});
+const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
+const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+
+/* preloader count then wipe */
+(()=>{let n=0;const el=$('#pct');PX.lenis?.stop();const t=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*9));el.textContent=PX.pad(n,3);if(n>=100){clearInterval(t);setTimeout(()=>{$('#pre').classList.add('done');PX.lenis?.start()},250)}},45)})();
+PX.clock($('#clk'),'America/New_York',{month:'short',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+
+/* hero */
+$('#hsv').innerHTML=D.services.map((s,i)=>`<li><span>0${i+1}</span>${svcShort[s.id]}</li>`).join('');
+const gcs=new Set(D.projects.map(p=>p.g).filter(Boolean));$('#gcN').textContent=Math.floor(gcs.size/10)*10;
+$('#avs').innerHTML=pick(['V16-022','V17-004D','V13-007D','V18-002R']).map(p=>`<span>${I(img(p.img),120)}</span>`).join('');
+$('#logos').innerHTML=D.affiliations.slice(0,4).map(a=>`<img src="assets/img/a/${a.img}.png" alt="${esc(a.n)}">`).join('');
+const HS=pick(['V14-041','V16-018D','V12-026']);
+$('#thumbs').innerHTML=HS.map((p,i)=>`<button type="button" class="${i?'':'on'}" aria-label="Show ${esc(p.n)}">${I(img(p.img),200)}</button>`).join('');
+$$('#thumbs button').forEach((b,i)=>b.onclick=async()=>{$$('#thumbs button').forEach(x=>x.classList.toggle('on',x===b));const u=await PX.Grade.url(img(HS[i].img));const h=$('#hbg');h.animate([{opacity:1},{opacity:.2}],{duration:300}).onfinish=()=>{h.src=u;h.animate([{opacity:.2},{opacity:1}],{duration:600})}});
+gsap.to('#hbg',{yPercent:12,scale:1.06,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* stats */
+$('#stats').innerHTML=[[stats.years,'+','Years of Practice'],[stats.projects,'+','Projects Completed'],[stats.honours,'','Industry Honours'],[stats.offices,'','Regional Offices'],[stats.states,'','States Worked In'],[stats.people,'','Leadership Team']].map(s=>`<div><b><span data-count="${s[0]}">0</span><sup>${s[1]}</sup></b><span class="cap">${s[2]}</span></div>`).join('');
+$('#yr').textContent=$('#yr2').textContent=new Date().getFullYear();
+
+/* marquee driven by scroll velocity */
+$('#mq').innerHTML=Array(6).fill('<span>Pillar Construction</span>').join('');
+(()=>{let x=0,v=0,dir=1;const t=$('#mq');PX.lenis?.on('scroll',e=>{v=e.velocity;dir=e.direction||dir});
+ const loop=()=>{const w=t.scrollWidth/2;x-=(1+Math.min(14,Math.abs(v)*.5))*dir;if(x<-w)x+=w;if(x>0)x-=w;t.style.transform=`translateX(${x}px)`;v*=.9;requestAnimationFrame(loop)};if(!PX.reduced)loop()})();
+
+/* projects */
+const PJ=pick(['V18-012','V16-022','V16-018D','V12-026','The_Wharf_1','V14-025D']);
+$('#pgrid').innerHTML=PJ.map(p=>`<button class="pj" data-lb="${p.id}" data-r="up"><div class="ph">${I(img(p.img),1100,p.n)}</div><div class="m"><b style="font-weight:500">${esc(p.n)}</b><span>${esc(p.st)}</span></div></button>`).join('');
+
+/* service panels (sticky stack) */
+$('#panels').innerHTML=D.services.map((s,i)=>{const ims=s.gallery.slice(0,3);return `<div class="panel"><div class="tx"><div class="n">0${i+1}</div><h3>${esc(s.title)}</h3><p>${esc(s.body[0]||s.short)}</p><ul>${s.scopes.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+ <div class="im">${ims.map((g,j)=>`<div>${I(j?img(g):img(s.hero,'h'),j?700:1400)}</div>`).join('')}</div></div>`}).join('');
+$$('.panel').forEach(p=>{gsap.fromTo(p.querySelectorAll('.im img'),{yPercent:-8},{yPercent:0,ease:'none',scrollTrigger:{trigger:p,start:'top bottom',end:'top top',scrub:true}});
+ gsap.to(p.querySelector('.tx'),{opacity:.15,ease:'none',scrollTrigger:{trigger:p,start:'bottom 60%',end:'bottom top',scrub:true}})});
+
+/* process */
+$('#steps').innerHTML=[['Partnering','We get involved in the early design stages with owners, architects and general contractors.'],['Engineering','We provide value engineering options to achieve the best results at a competitive price.'],['Planning','We develop a plan to complete the work: estimate, sequence, manpower and schedule.'],['Executing','We execute the plan safely, on time and under budget, through to the final walkthrough.']].map((s,i)=>`<div class="s" data-r="up" style="--d:${i*.08}s"><b>${s[0]}<span>0${i+1}</span></b><p>${s[1]}</p></div>`).join('');
+
+/* testimonials: drag + arrows */
+const TS=D.testimonials.slice(0,10),TP=pick(['V16-012','V17-004D','V13-007D','V18-002R','V16-046D','V12-055D','V16-022','V14-041','V17-030R','EP_003']);
+$('#tcards').innerHTML=TS.map((t,i)=>`<article class="tc"><div class="top"><span>${svcShort[D.projects.find(p=>p.g&&t.by.split(' ')[0]&&p.g.startsWith(t.by.split(' ')[0]))?.s]||'Partner'}</span><span>★★★★★</span></div><p>${esc(t.q.length>300?t.q.slice(0,t.q.lastIndexOf(' ',290))+'…':t.q)}</p><div class="who"><span>${I(img(TP[i%TP.length].img),100)}</span><div><b>${esc(t.by)}</b>${esc(t.role)}</div></div></article>`).join('');
+(()=>{const c=$('#tcards');let d=false,sx=0,sl=0;c.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;d=true;sx=e.clientX;sl=c.scrollLeft;c.style.scrollSnapType='none'});addEventListener('pointermove',e=>{if(d)c.scrollLeft=sl-(e.clientX-sx)});addEventListener('pointerup',()=>{d=false;c.style.scrollSnapType=''});
+ const step=()=>c.clientWidth/4;$('#tp').onclick=()=>c.scrollBy({left:-step(),behavior:'smooth'});$('#tn').onclick=()=>c.scrollBy({left:step(),behavior:'smooth'})})();
+
+/* faq built from real content */
+const Q=[['What areas do you serve?','From offices in Washington DC, Houston, Orlando and Morganville NJ we perform work across most of the Mid-Atlantic, the Northeast, and the Southern states.'],
+ ['Which scopes do you self-perform?','Drywall, rainscreen systems, EIFS and stucco, restoration and general contracting, rough carpentry, and vapor and air barriers.'],
+ ['What is the Pillar Exterior Panel?','A factory-fabricated exterior wall assembly of cold-formed metal framing, exterior sheathing, and air-vapor barrier. It requires no changes to the project specifications.'],
+ ['How fast can a floor be weathertight?','With the Pillar EP, in most cases within two weeks of the removal of concrete formwork, saving one to two months on the critical path.'],
+ ['Can you act as the general contractor?','Yes. We provide full-service general contracting for new construction, renovations, tenant fit-outs, facade renovations and phased, occupied work.'],
+ ['Which systems do you install?','We are experienced with Dryvit, STO, BASF, Senergy and Parex systems, plus metal composite, fiber cement, terracotta, porcelain and more.'],
+ ['Which organizations are you part of?','ABC, ASA, AGC, the Washington Building Congress, ABAA, AWCI and EIMA.']];
+$('#qs').innerHTML=Q.map((q,i)=>`<div class="q ${i?'':'open'}"><button type="button" aria-expanded="${!i}"><span>0${i+1}</span><span>${q[0]}</span><i>+</i></button><div class="a"><div><p>${q[1]}</p></div></div></div>`).join('');
+$$('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,o=!q.classList.contains('open');$$('.q').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded',false)});if(o){q.classList.add('open');b.setAttribute('aria-expanded',true)}});
+
+/* footer */
+$('#fem').textContent=D.company.email;$('#fph').textContent=D.company.phone;
+$('#fcols').innerHTML=`<div><b>Pages</b><a href="#top">Home</a><a href="#about">About</a><a href="#proj">Projects</a><a href="#services">Services</a><a href="#faq">FAQ</a></div><div><b>Offices</b>${D.offices.map(o=>`<span>${esc(o.c)}</span>`).join('')}</div><div><b>HQ</b><span>5649-S General Washington Dr</span><span>Alexandria, VA 22312</span></div><div><b>Phone</b>${D.offices.map(o=>`<span>${esc(o.p)}</span>`).join('')}</div>`;
+PX.parallax();
+</script>
+</body>
+</html>

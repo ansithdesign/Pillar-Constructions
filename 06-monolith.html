@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Monolith</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;600&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<style>
+/* Layout: a concrete-dark opener, then gallery-white pages split 1:1; black slabs carry the honours. */
+:root{
+  --ink:#121212; --white:#fff; --off:#f5f4f1; --mute:#9a978f; --line:rgba(18,18,18,.1); --stone:#2a2724;
+  --sans:"Epilogue","Helvetica Neue",Arial,sans-serif;
+  --gut:max(12px,env(safe-area-inset-left,0px));
+  --px-lb-bg:#121212; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-lb-weight:300; --px-sw-bg:rgba(18,18,18,.88);
+}
+body{background:var(--white);color:var(--ink);font:300 15px/1.5 var(--sans)}
+h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.up{font:400 10px/1.3 var(--sans);letter-spacing:.02em;text-transform:uppercase}
+.up b{font-weight:600}
+.grey{color:#bdbab3}
+
+/* name bar */
+.nb{position:fixed;z-index:60;right:var(--gut);top:calc(50vh - 22px);display:flex;height:44px;width:min(50vw,740px);transition:top 1s var(--px-ease-io)}
+.nb.dock{top:12px}
+.nb a{flex:1;background:#fff;color:var(--ink);display:flex;align-items:center;padding:0 14px;font:300 clamp(20px,1.9vw,30px)/1 var(--sans);letter-spacing:-.03em}
+.nb button{width:44px;background:var(--ink);color:#fff;display:grid;place-items:center}
+.nb button span{display:grid;gap:4px}.nb button span i{display:block;width:16px;height:1px;background:#fff;transition:transform .4s}
+.nb button[aria-expanded="true"] span i:first-child{transform:translateY(2.5px) rotate(45deg)}
+.nb button[aria-expanded="true"] span i:last-child{transform:translateY(-2.5px) rotate(-45deg)}
+.nb nav{position:absolute;top:100%;left:0;right:0;background:#fff;display:grid;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--px-ease-io)}
+.nb nav.open{clip-path:inset(0 0 0 0)}
+.nb nav a{flex:none;height:auto;padding:12px 14px;font-size:18px;border-top:1px solid var(--line)}
+.nb nav a:hover{background:var(--off)}
+
+/* hero */
+.hero{position:relative;height:200vh;background:#0c0b0a}
+.hero .stage{position:sticky;top:0;height:100vh;overflow:hidden;color:#fff}
+.hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:#000;opacity:.8;animation:lights 3.2s .4s var(--px-ease) forwards}
+@keyframes lights{to{opacity:.12}}
+.hero .lab{position:absolute;left:var(--gut);top:calc(50vh - 22px);font-size:14px;line-height:1.1;letter-spacing:-.01em}
+.hero h1{position:absolute;left:var(--gut);bottom:56px;font-size:clamp(90px,10vw,170px);line-height:.86;letter-spacing:-.065em}
+.hero .tag{position:absolute;left:calc(50% + 6px);bottom:68px;max-width:30ch}
+.hero .strip{position:absolute;left:0;right:0;bottom:0;height:44px;background:#fff;color:var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut)}
+.hero .strip a{display:flex;gap:10px;align-items:center}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:120px 0}
+.about .l{display:grid;align-content:start;gap:80px}
+.about .r{padding-top:30px}
+.about h2{font-size:clamp(44px,4.2vw,70px);line-height:.98}
+.about h2 .w{color:#d8d5ce;transition:color .3s}
+.sticky{position:sticky;top:12px;height:calc(100vh - 24px);overflow:hidden}
+.sticky>img,.sticky .lead-img img{width:100%;height:100%;object-fit:cover}
+.awards{position:absolute;inset:0;pointer-events:none}
+.aw{position:absolute;width:min(260px,42%);aspect-ratio:1;background:var(--ink);color:#fff;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.aw h3{font-size:clamp(26px,2.2vw,36px);line-height:1}
+.aw .up{display:flex;justify-content:space-between;color:rgba(255,255,255,.7);gap:10px}
+.aw .up span:last-child{text-align:right;max-width:14ch}
+.lead{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.lead .pt{aspect-ratio:3/4;overflow:hidden}.lead .pt img{width:100%;height:100%;object-fit:cover}
+.lead h3{font-size:clamp(34px,3vw,50px);margin-top:180px}
+.lead p{margin:14px 0 0;max-width:30ch}
+.about .bio{max-width:44ch;color:#555;font-size:14px;margin:0}
+.about .cta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+
+/* services */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:140px}
+.svc .thumbs{position:relative;align-self:start;position:sticky;top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.svc .thumbs .t{aspect-ratio:3/4;overflow:hidden;opacity:.35;transition:opacity .5s}
+.svc .thumbs .t.on{opacity:1}
+.svc .thumbs .t img{width:100%;height:100%;object-fit:cover}
+.svc .thumbs .big{grid-column:1/-1;aspect-ratio:16/10;overflow:hidden;position:relative}
+.svc .thumbs .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s,transform 1.2s var(--px-ease);transform:scale(1.05)}
+.svc .thumbs .big img.on{opacity:1;transform:none}
+.svc h2{font-size:clamp(40px,3.8vw,62px);line-height:1;margin-bottom:22px}
+.svc .intro{margin:0 0 50px}
+.srow{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-top:1px solid var(--line);cursor:default;transition:padding .5s var(--px-ease)}
+.srow h3{font-size:clamp(22px,1.8vw,28px);letter-spacing:-.03em;transition:transform .5s var(--px-ease)}
+.srow p{margin:0;color:#777;font-size:13px;max-width:52ch}
+.srow:hover,.srow.on{padding-left:16px}
+.srow.on h3{font-weight:400}
+
+/* reel */
+.reel{position:relative;background:var(--off)}
+.reel .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;padding-top:80px}
+.reel .hd2{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:0 var(--gut) 30px}
+.reel h2{font-size:clamp(40px,3.8vw,62px);line-height:1;max-width:14ch}
+.reel .row{display:flex;gap:12px;padding-left:var(--gut);align-items:stretch;will-change:transform}
+.card{flex:0 0 clamp(300px,28vw,460px);display:grid;grid-template-rows:1fr auto;gap:12px;text-align:left;cursor:zoom-in}
+.card .ph{overflow:hidden;position:relative}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--px-ease)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .m{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px}
+.card h3{font-size:26px;letter-spacing:-.03em}
+.card .n{font-size:10px;color:var(--mute)}
+.card:nth-child(even) .ph{margin-top:8vh}
+.reel .prog{position:absolute;left:var(--gut);right:var(--gut);bottom:90px;height:1px;background:var(--line)}
+.reel .prog i{display:block;height:100%;background:var(--ink);width:0}
+
+/* approach */
+.appr{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:140px 60px}
+.appr h2{font-size:clamp(40px,3.8vw,62px);line-height:1}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.st{background:var(--off);padding:16px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;transition:background .5s,color .5s}
+.st:hover{background:var(--ink);color:#fff}
+.st b{font-weight:300;font-size:56px;letter-spacing:-.05em;line-height:1}
+.st h3{font-size:22px;letter-spacing:-.02em}
+.st p{margin:6px 0 0;font-size:12px;opacity:.65}
+
+/* team */
+.team{padding-block:80px 140px}
+.team .hd2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px}
+.team h2{font-size:clamp(40px,3.8vw,62px);line-height:1}
+.tg{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.tm{position:relative}
+.tm .ph{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--off)}
+.tm .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s}
+.tm .ph img.c{opacity:0}
+.tm:hover .ph img.c{opacity:1}
+.tm b{display:block;font-weight:400;font-size:15px;letter-spacing:-.02em;margin-top:8px}
+.tm span{font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.02em}
+
+/* contact */
+.ct{background:var(--ink);color:#fff;padding-block:120px 0;overflow:hidden}
+.ct .g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct h2{font-size:clamp(70px,9vw,150px);line-height:.86;letter-spacing:-.065em}
+.ct .grey{color:#5d5a55}
+.ct dl{display:grid;grid-template-columns:auto 1fr;gap:10px 30px;margin:0;align-self:end;font-size:14px}
+.ct dt{color:#8a877f;font-size:10px;text-transform:uppercase;padding-top:4px}
+.ct dd{margin:0}
+.ct .offs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:100px;border-top:1px solid rgba(255,255,255,.14);padding:16px 0 110px;font-size:12px;color:#aaa}
+.ct .offs b{display:block;color:#fff;font-weight:400;font-size:16px;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="nb" id="nb">
+  <a href="#top">PILLAR CONSTRUCTION</a><button type="button" id="mb" aria-label="Menu" aria-expanded="false"><span><i></i><i></i></span></button>
+  <nav id="nv" aria-label="Main"><a href="#about">About</a><a href="#services">Services</a><a href="#reel">Projects</a><a href="#team">Team</a><a href="#contact">Contact</a></nav>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="stage">
+      <div class="bg"><img id="hbg" data-g="assets/img/h/news5.jpg" data-eager alt="Sculptural stair in a glass atrium"></div>
+      <div class="shade"></div>
+      <div class="lab">Specialty<br>Contractor</div>
+      <h1 id="h1">Specialty<br>Contractor</h1>
+      <p class="tag up" id="tag">Shaping thoughtful buildings through interior and exterior finishes, material, light and form.</p>
+      <div class="strip up"><span>Interiors and envelopes since 1995.</span><a href="#contact">Let's<br>connect ↗</a></div>
+    </div>
+  </section>
+
+  <section class="about wrap" id="about">
+    <div class="l">
+      <div class="up">About Pillar</div>
+      <div class="sticky" id="stk">
+        <img data-g="assets/img/p/V12-026.jpg" alt="Glass tower">
+        <div class="awards" id="awards"></div>
+      </div>
+    </div>
+    <div class="r">
+      <p class="up" style="max-width:40ch;margin:0 0 60px"><b>We create</b> <span class="grey">thoughtful interiors and envelopes grounded in proportion, texture, and light.</span></p>
+      <h2 id="ah">Designing walls with purpose and lasting permanence</h2>
+      <div class="lead" style="margin-top:140px">
+        <div class="pt"><img data-g="assets/img/t/Raja_Khoury.jpg" data-gl="mono" alt="Raja Khoury"></div>
+        <div><h3>Raja Khoury</h3><p class="up"><b>President</b> <span class="grey">leading a specialty contractor at the intersection of craft and building science.</span></p></div>
+      </div>
+      <div style="margin-top:200px;display:grid;gap:40px">
+        <p class="bio" data-r="up">Founded in 1995, Pillar has grown by delivering on its promises. Our architects, engineers, construction professionals and applicators partner with clients from the early design stages, offering value engineering, a clear plan, and safe execution.</p>
+        <div class="cta up"><span><span id="hon"></span> honours since 1995</span><a href="#team">Meet the team ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc wrap" id="services">
+    <div class="thumbs" id="thumbs"></div>
+    <div>
+      <div class="up" style="margin-bottom:30px">Services</div>
+      <h2 data-split="lines">Craft that makes every surface feel intentional</h2>
+      <p class="intro up"><b>Thoughtful assemblies,</b> <span class="grey">honest materials, and refined details for buildings that last.</span></p>
+      <div id="srows"></div>
+    </div>
+  </section>
+
+  <section class="reel" id="reel">
+    <div class="stage">
+      <div class="hd2"><h2 data-split="lines">Buildings defined by clarity, purpose, and intention</h2><span class="up" id="rc"></span></div>
+      <div class="row" id="row" data-lb-group></div>
+      <div class="prog"><i id="rp"></i></div>
+    </div>
+  </section>
+
+  <section class="appr wrap">
+    <div><div class="up" style="margin-bottom:30px">Approach</div><h2 data-split="lines">Our thoughtful approach to the building envelope.</h2></div>
+    <div class="steps" id="steps"></div>
+  </section>
+
+  <section class="team wrap" id="team">
+    <div class="hd2"><h2 data-split="lines">Our people are our foundation.</h2><p class="up" style="align-self:end;margin:0"><b>Over a century</b> <span class="grey">of combined experience solving complex construction challenges with intelligent, cost-effective solutions.</span></p></div>
+    <div class="tg" id="tg"></div>
+  </section>
+
+  <section class="ct wrap" id="contact">
+    <div class="g">
+      <h2 data-split="lines">Let's<br><span class="grey">connect.</span></h2>
+      <dl><dt>Email</dt><dd id="em" style="user-select:all"></dd><dt>Phone</dt><dd id="ph"></dd><dt>HQ</dt><dd>5649-S General Washington Drive, Alexandria, VA 22312</dd></dl>
+    </div>
+    <div class="offs" id="offs"></div>
+  </section>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script>
+PX.init({id:'06',cursor:true,
+ look:{ev:-.04,contrast:.2,sat:.36,blue:.62,warm:.2,fade:.03,lift:[.012,.01,.006],hi:[.03,.024,.012],hiAmt:.5,sh:[.004,-.004,-.01],shAmt:.3,grain:.03,vig:.14,css:'saturate(.38) sepia(.15) contrast(1.04)'},
+ looks:{mono:{ev:.02,contrast:.28,mono:1,hi:[.03,.02,.005],hiAmt:.6,sh:[0,-.004,-.012],shAmt:.4,grain:.03},warm:{ev:.03,contrast:.18,sat:.8,warm:.15,hi:[.02,.012,0],hiAmt:.4,grain:.02}}});
+document.documentElement.style.setProperty('--px-cursor-bg','#121212');document.documentElement.style.setProperty('--px-cursor-fg','#fff');
+const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX;
+const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+
+/* name bar docks to the top once the hero scrolls */
+ScrollTrigger.create({start:120,onUpdate:s=>$('#nb').classList.toggle('dock',s.scroll()>120)});
+$('#mb').onclick=()=>{const o=$('#nv').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o)};
+$$('#nv a').forEach(a=>a.onclick=()=>{$('#nv').classList.remove('open');$('#mb').setAttribute('aria-expanded',false)});
+
+/* hero: image pushes in, title rises from the strip */
+gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:true}})
+ .to('#hbg',{scale:1.18,ease:'none'},0).fromTo('#h1',{yPercent:60,opacity:0},{yPercent:0,opacity:1,ease:'power2.out',duration:.5},0).fromTo('#tag',{opacity:0},{opacity:1,duration:.3},.3).to('.hero .lab',{opacity:0,duration:.2},0);
+
+/* heading words darken with scroll */
+$('#ah').innerHTML=$('#ah').textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+gsap.to('#ah .w',{color:'#121212',stagger:.1,ease:'none',scrollTrigger:{trigger:'#ah',start:'top 85%',end:'bottom 50%',scrub:true}});
+
+/* honours slide over the sticky image */
+const AW=[['WBC','Craftsmanship Award','2024','Washington Building Congress'],['ENR','Top 600','2022','Engineering News-Record'],['STEP','Gold Level','2022','Associated Builders & Contractors'],['Subby','Award','2018','American Subcontractors Assoc.'],['CISCA','Gold Award','2015','Acoustical Solutions, East']];
+const POS=[['56%','8%'],['4%','36%'],['50%','60%'],['14%','74%'],['58%','22%']];
+$('#awards').innerHTML=AW.map((a,i)=>`<div class="aw" style="left:${POS[i][0]};top:${POS[i][1]}"><div class="up"><span>${a[2]}</span><span>${a[3]}</span></div><h3>${a[0]}<br>${a[1]}</h3></div>`).join('');
+$$('.aw').forEach((el,i)=>gsap.fromTo(el,{yPercent:240,opacity:0},{yPercent:-60,opacity:1,ease:'none',scrollTrigger:{trigger:'.about',start:`top+=${i*14}% center`,end:`top+=${i*14+40}% top`,scrub:true}}));
+$('#hon').textContent=PX.stats.honours;
+
+/* services: rows switch the thumbnail stack */
+$('#thumbs').innerHTML=`<div class="big">${D.services.map((s,i)=>I(img(s.hero,'h'),1400,s.title).replace('<img',`<img class="${i?'':'on'}"`)).join('')}</div>`+D.services.slice(0,3).map((s,i)=>`<div class="t ${i?'':'on'}">${I(img(s.gallery[1]),400)}</div>`).join('');
+$('#srows').innerHTML=D.services.map((s,i)=>`<div class="srow ${i?'':'on'}" data-i="${i}" tabindex="0"><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p></div>`).join('');
+const pickS=i=>{$$('.srow').forEach((r,j)=>r.classList.toggle('on',j===i));$$('#thumbs .big img').forEach((m,j)=>m.classList.toggle('on',j===i));$$('#thumbs .t').forEach((t,j)=>t.classList.toggle('on',j===i%3))};
+$$('.srow').forEach(r=>{r.addEventListener('mouseenter',()=>pickS(+r.dataset.i));r.addEventListener('focus',()=>pickS(+r.dataset.i))});
+$$('.srow').forEach(r=>ScrollTrigger.create({trigger:r,start:'top 55%',end:'bottom 55%',onToggle:s=>s.isActive&&pickS(+r.dataset.i)}));
+
+/* reel: pinned horizontal travel */
+const RL=pick(['V17-004D','V16-018D','The_Wharf_1','V18-002R','EP_003','V12-055D','V17-030R','V13-007D','The_Westerly_Waterfront_1','V18-005R']);
+$('#row').innerHTML=RL.map((p,i)=>`<button class="card" data-lb="${p.id}" data-cursor="Open"><div class="ph">${I(img(p.img),1000,p.n)}</div><div class="m"><h3>${esc(p.n)}</h3><span class="n">${PX.pad(i+1)} — ${esc(p.st)}</span></div></button>`).join('');
+$('#reel').style.height='420vh';
+const rt=gsap.to('#row',{x:()=>-($('#row').scrollWidth-innerWidth+24),ease:'none',scrollTrigger:{trigger:'#reel',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true,onUpdate:s=>{$('#rp').style.width=(s.progress*100)+'%';$('#rc').textContent=`${PX.pad(Math.min(RL.length,1+Math.floor(s.progress*RL.length)))} / ${PX.pad(RL.length)}`}}});
+
+/* approach */
+$('#steps').innerHTML=[['Listen','We get involved in the early design stages with the architect, owner and builder.'],['Engineer','We bring value engineering options that achieve the best results at a competitive price.'],['Plan','We develop a clear plan to complete the work, sequence by sequence.'],['Execute','We execute the plan safely, on time and under budget.']].map((s,i)=>`<div class="st" data-r="up" style="--d:${i*.08}s"><b>0${i+1}</b><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
+
+/* team: mono portrait, colour on hover */
+$('#tg').innerHTML=D.team.map(t=>`<div class="tm" data-r="up"><div class="ph">${I('assets/img/t/'+t.img+'.jpg',400,t.n,'mono')}${I('assets/img/t/'+t.img+'.jpg',400,'','warm').replace('<img','<img class="c"')}</div><b>${esc(t.n)}</b><span>${esc(t.r)}</span></div>`).join('');
+
+$('#em').textContent=D.company.email;$('#ph').textContent=D.company.phone;
+$('#offs').innerHTML=D.offices.map(o=>`<div><b>${esc(o.c)}</b>${o.a.map(esc).join('<br>')}<br>${esc(o.p)}</div>`).join('');
+</script>
+</body>
+</html>

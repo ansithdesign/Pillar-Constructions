@@ -121,14 +121,16 @@
       } catch (e) { this.ok = false; }
       if (!this.ok && look.css) document.documentElement.style.setProperty('--px-grade-css', look.css);
     },
-    url(src, w = 0) {
-      if (!this.look || !this.ok) return Promise.resolve(src);
-      const key = src + '|' + w;
+    looks: {},
+    url(src, w = 0, name = '') {
+      const look = (name && this.looks[name]) || this.look;
+      if (!look || !this.ok) return Promise.resolve(src);
+      const key = src + '|' + w + '|' + name;
       if (this.cache.has(key)) return this.cache.get(key);
       const p = new Promise((res, rej) => {
         const id = ++this.n; this.q.set(id, { res, rej });
         const abs = new URL(src, location.href).href;
-        this.workers[this.rr++ % this.workers.length].postMessage({ id, url: abs, look: this.look, w });
+        this.workers[this.rr++ % this.workers.length].postMessage({ id, url: abs, look, w });
       }).catch(() => src);
       this.cache.set(key, p);
       return p;
@@ -149,7 +151,7 @@
   function loadGraded(im) {
     const src = im.dataset.g, w = +im.dataset.gw || 0;
     im.classList.add('px-g');
-    Grade.url(src, w).then((u) => {
+    Grade.url(src, w, im.dataset.gl || '').then((u) => {
       im.onload = () => im.classList.add('px-ready');
       im.src = u;
       if (im.complete && im.naturalWidth) im.classList.add('px-ready');
@@ -378,7 +380,7 @@
   const logo = (cls = '') => `<svg class="${cls}" viewBox="0 0 64 56" aria-hidden="true" fill="currentColor"><path d="M32 0 64 56H0Z" opacity=".22"/><path d="M14.9 26h34.2l4.6 8H10.3Z"/><path d="M8 38h48l4.6 8H3.4Z"/><path d="M21.7 14h20.6l4.6 8H17.1Z" opacity=".6"/></svg>`;
 
   function init(cfg = {}) {
-    Grade.setup(cfg.look);
+    Grade.setup(cfg.look); Grade.looks = cfg.looks || {};
     if (cfg.lenis !== false) smooth(cfg.lenisOpts);
     gradeImages();
     let fontsOk = false, t;
