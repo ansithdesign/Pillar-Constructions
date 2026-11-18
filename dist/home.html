@@ -1,0 +1,565 @@
+<title>Pillar Homepage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Figtree:wght@300..700&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/core2.css">
+<link rel="stylesheet" href="assets/fx2.css">
+<style>
+/* Layout: Anatomy's paper and night, lit with the teal of Pillar's own mark. The homepage moves from a facade of turning fins, through a corridor of work, to a hand of trades, a wall taken apart, buildings that open into each other, and a window shaped like the Pillar pyramid. */
+:root{
+  --paper:#f1ede6; --paper-2:#e7e2d9; --ink:#17181a; --mute:#716b64; --line:rgba(23,24,26,.12); --line2:rgba(23,24,26,.28);
+  --void:#0a0c0e; --void-2:#11161a; --bone:#eeeae3; --bmute:#8d8a85; --bline:rgba(238,234,227,.13);
+  --teal:#0a89a4; --sky:#83d2e1;
+  --d:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif; --t:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --k-bg:var(--paper); --k-fg:var(--ink); --k-mute:var(--mute); --k-line:var(--line); --k-line2:var(--line2); --k-accent:var(--teal);
+  --k-disp:var(--d); --k-text:var(--t); --k-gut:56px; --k-h-weight:300;
+  --px-lb-bg:#0b0e11; --px-lb-font:var(--t); --px-lb-display:var(--d); --px-lb-weight:300;
+  --gut:56px; --e:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+[hidden]{display:none!important}
+.eb{font:600 11px/1.4 var(--t);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:0 0 20px;display:flex;align-items:center;gap:12px}
+.eb::before{content:"";width:28px;height:1px;background:var(--teal)}
+.dark .eb{color:var(--bmute)}.dark .eb::before{background:var(--sky)}
+.h2{font:300 clamp(46px,5.8vw,106px)/.92 var(--d);letter-spacing:-.055em;margin:0;text-wrap:balance}
+.lede{font:400 18px/1.6 var(--t);color:var(--mute);max-width:48ch;margin:24px 0 0}
+.dark{background:var(--void);color:var(--bone);--k-fg:var(--bone);--k-mute:var(--bmute);--k-line:var(--bline);--k-line2:rgba(238,234,227,.3);--k-accent:var(--sky)}
+.dark .lede{color:var(--bmute)}
+.btn{display:inline-flex;align-items:center;gap:14px;height:56px;padding:0 26px;border-radius:99px;font:600 15px/1 var(--t);text-decoration:none;background:var(--bone);color:var(--ink);transition:background .4s,color .4s}
+.btn:hover{background:var(--sky)}
+.btn.ink{background:var(--ink);color:var(--paper)}.btn.ink:hover{background:var(--teal);color:#fff}
+.btn.line{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+.btn.line:hover{background:var(--bone);color:var(--ink);box-shadow:none}
+.btn svg{width:18px;height:18px;transition:transform .5s var(--e)}
+.btn:hover svg{transform:translateX(4px)}
+
+/* nav */
+.nav{position:fixed;left:16px;right:16px;top:14px;z-index:800;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:10px 12px 10px 22px;border-radius:99px;color:#fff;transition:background .5s,backdrop-filter .5s,box-shadow .5s}
+.nav.solid{background:rgba(10,12,14,.74);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+.nav .lg img{height:32px;width:auto;display:block}
+.nav nav{display:flex;gap:4px}
+.nav nav a{text-decoration:none;font:500 14px/1 var(--t);padding:11px 14px;border-radius:99px;opacity:.78;transition:opacity .3s,background .3s}
+.nav nav a:hover,.nav nav a.on{opacity:1;background:rgba(255,255,255,.1)}
+.nav .r{justify-self:end;display:flex;gap:8px;align-items:center}
+.nav .btn{height:44px;padding:0 20px;font-size:14px}
+
+/* 01 hero */
+#top{color:#fff}
+.h-shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,10,.5),transparent 28%,transparent 48%,rgba(6,8,10,.82)),linear-gradient(90deg,rgba(6,8,10,.55),transparent 55%)}
+.h-copy{position:absolute;left:var(--gut);bottom:120px;z-index:3;max-width:820px;pointer-events:none}
+.h-copy .eb{color:rgba(255,255,255,.75)}.h-copy .eb::before{background:var(--sky)}
+.h-copy h1{font:200 clamp(78px,10.6vw,200px)/.84 var(--d);letter-spacing:-.065em;margin:0}
+.h-copy h1 .ln{display:block;overflow:hidden;padding-bottom:.05em}.h-copy h1 .ln>span{display:block}
+.h-copy h1 em{font-style:normal;font-weight:600;color:var(--sky)}
+.h-copy p{font:400 18px/1.55 var(--t);color:rgba(255,255,255,.82);max-width:46ch;margin:26px 0 30px}
+.h-copy .acts{display:flex;gap:12px;pointer-events:auto}
+.h-cap{position:absolute;right:var(--gut);bottom:120px;z-index:3;display:grid;gap:12px;justify-items:end;text-align:right}
+.h-cap span{font:600 11px/1.4 var(--t);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.h-cap b{font:400 26px/1.15 var(--d);letter-spacing:-.02em;min-height:30px}
+.h-cap .nb{display:flex;gap:8px}
+.h-cap .nb button{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);color:#fff;font-size:18px;transition:background .3s,color .3s}
+.h-cap .nb button:hover{background:#fff;color:var(--ink)}
+.h-foot{position:absolute;left:var(--gut);right:var(--gut);bottom:40px;z-index:3;display:flex;justify-content:space-between;font:600 11px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62);pointer-events:none;border-top:1px solid rgba(255,255,255,.18);padding-top:16px}
+.h-prog{position:absolute;left:0;right:0;top:0;height:3px;z-index:3;background:rgba(255,255,255,.1)}
+.h-prog i{display:block;height:100%;background:var(--sky);transform-origin:left;transform:scaleX(0)}
+
+/* 02 about: corridor */
+#about{position:relative;height:100vh;overflow:hidden}
+.stage{position:absolute;inset:0;perspective:820px}
+.cam{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.tp{position:absolute;left:-250px;top:-170px;width:500px;height:340px;backface-visibility:hidden;cursor:pointer}
+.tp.pt{left:-170px;top:-230px;width:340px;height:460px}
+.tp img{width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:filter .5s}
+.tp:hover img{filter:brightness(1.15)}
+.tp::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);transition:box-shadow .4s}
+.tp:hover::after{box-shadow:inset 0 0 0 2px var(--sky)}
+.fog{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 60% at 62% 50%,transparent 25%,rgba(10,12,14,.9) 100%),linear-gradient(90deg,rgba(10,12,14,.92),rgba(10,12,14,.35) 45%,transparent 70%)}
+.ab-copy{position:absolute;left:var(--gut);top:50%;translate:0 -50%;z-index:3;width:min(560px,40vw);display:grid;pointer-events:none}
+.ab-copy article{grid-area:1/1;opacity:0;transform:translateY(30px);transition:opacity .8s var(--e),transform 1s var(--e)}
+.ab-copy article.on{opacity:1;transform:none}
+.ab-copy h2{font:300 clamp(44px,4.6vw,84px)/.94 var(--d);letter-spacing:-.05em;margin:0}
+.ab-steps{display:flex;gap:8px;margin-top:34px}
+.ab-steps i{width:34px;height:3px;border-radius:2px;background:rgba(238,234,227,.2);transition:background .4s,width .6s var(--e)}
+.ab-steps i.on{background:var(--sky);width:64px}
+.ab-hud{position:absolute;left:var(--gut);right:var(--gut);bottom:44px;z-index:3;display:grid;grid-template-columns:repeat(4,1fr) 1.4fr;gap:20px;border-top:1px solid var(--bline);padding-top:18px;pointer-events:none}
+.ab-hud div{display:grid;gap:6px}
+.ab-hud b{font:200 52px/.9 var(--d);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ab-hud span{font:600 11px/1.3 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--bmute)}
+.ab-hud .now{text-align:right}.ab-hud .now b{font:400 20px/1.2 var(--d);letter-spacing:-.01em;min-height:24px}
+
+/* 03 specialties: a hand of cards */
+#specialties{position:relative;height:100vh;overflow:hidden;background:var(--paper)}
+.sp-head{position:absolute;left:var(--gut);top:120px;z-index:3;max-width:520px}
+.sp-head .h2{font-size:clamp(44px,4.8vw,88px)}
+.sp-stage{position:absolute;inset:0;perspective:1600px}
+.fan{position:absolute;left:58%;top:58%;width:0;height:0;transform-style:preserve-3d;transition:transform 1s var(--e)}
+.cd{position:absolute;left:-155px;top:-230px;width:310px;height:460px;transform-origin:50% 210%;transform-style:preserve-3d;will-change:transform}
+.cd-in{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 70px rgba(23,24,26,.22);display:grid;grid-template-rows:58% 1fr;transition:transform .8s var(--e),box-shadow .6s,filter .5s}
+.fan.live .cd.on .cd-in{transform:translateY(-70px) translateZ(140px) scale(1.06);box-shadow:0 60px 110px rgba(23,24,26,.35)}
+.fan.live.hov .cd:not(.on) .cd-in{filter:brightness(.82) saturate(.8)}
+.cd .ph{overflow:hidden;position:relative}
+.cd .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e)}
+.cd.on .ph img{transform:scale(1.08)}
+.cd .ph span{position:absolute;left:16px;top:14px;font:600 11px/1 var(--t);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,.45);backdrop-filter:blur(6px);padding:7px 10px;border-radius:99px}
+.cd .tx{padding:20px 22px 22px;display:grid;align-content:space-between;gap:10px}
+.cd h3{margin:0;font:500 27px/1.02 var(--d);letter-spacing:-.035em}
+.cd p{margin:0;font-size:13.5px;line-height:1.5;color:var(--mute)}
+.cd .go{justify-self:start;font:600 13px/1 var(--t);color:var(--teal);display:inline-flex;gap:8px;align-items:center}
+.cd .go:hover{text-decoration:underline}
+.sp-hint{position:absolute;right:var(--gut);bottom:44px;z-index:3;font:600 11px/1.5 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);text-align:right}
+
+/* 04 exterior panels */
+#panels{position:relative;background:var(--void-2)}
+.ep-pin{height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center}
+.orbit{height:100vh;perspective:1700px;display:grid;place-items:center;cursor:grab;position:relative}
+.orbit::after{content:"Drag to turn the panel · scroll to take it apart";position:absolute;left:var(--gut);bottom:44px;font:600 11px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--bmute)}
+.orbit::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 45% at 50% 55%,rgba(131,210,225,.12),transparent 70%)}
+.wl{position:relative;width:340px;aspect-ratio:3/4;transform-style:preserve-3d}
+.ly{position:absolute;inset:0;transform-style:preserve-3d;outline:1px solid rgba(255,255,255,.12);filter:brightness(.6) saturate(.8);transition:filter .5s,outline-color .5s}
+.ly.on{outline:2px solid var(--sky);filter:none}
+.ly1{background:linear-gradient(#8e959d,#8e959d) top/100% 9px no-repeat,linear-gradient(#8e959d,#8e959d) bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,#8e959d 0 8px,transparent 8px calc(25% - 1px),#8e959d calc(25% - 1px) 25%)}
+.ly2{background:radial-gradient(circle,rgba(30,22,8,.55) 1.6px,transparent 2.2px) 0 0/25% 12.5%,linear-gradient(transparent calc(50% - 1px),rgba(30,22,8,.5) calc(50% - 1px) 50%,transparent 50%),linear-gradient(160deg,#cdb478,#b2985b)}
+.ly3{background:linear-gradient(115deg,rgba(255,255,255,.25),transparent 35%,rgba(255,255,255,.1) 58%,transparent 72%),#0b7f99;opacity:.95}
+.ly4{background:url("assets/img/g/EP_003.jpg") center/cover;box-shadow:0 50px 90px rgba(0,0,0,.45)}
+.ly4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 calc(33.33% - 2px),rgba(0,0,0,.6) calc(33.33% - 2px) 33.33%),repeating-linear-gradient(90deg,transparent 0 calc(50% - 2px),rgba(0,0,0,.6) calc(50% - 2px) 50%)}
+.ep-copy{padding:110px var(--gut) 80px 0}
+.lys{list-style:none;padding:0;margin:34px 0 0;border-top:1px solid var(--bline)}
+.lys li{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:14px 0;border-bottom:1px solid var(--bline);color:var(--bmute);transition:color .4s}
+.lys li.on{color:var(--bone)}.lys li.on span{color:var(--sky)}
+.lys span{font:600 12px/1.9 var(--t);letter-spacing:.1em}
+.lys h3{margin:0;font:500 19px/1.3 var(--d);letter-spacing:-.02em}
+.lys p{margin:2px 0 0;font-size:14px}
+.ep-acts{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.ep-more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 var(--gut) 40px}
+.ep-more article{padding:28px;border-radius:14px;background:rgba(238,234,227,.05);box-shadow:inset 0 0 0 1px var(--bline);transition:background .5s,transform .7s var(--e)}
+.ep-more article:hover{background:rgba(131,210,225,.1);transform:translateY(-6px)}
+.ep-more h3{margin:0 0 10px;font:500 24px/1.1 var(--d);letter-spacing:-.03em}
+.ep-more p{margin:0;color:var(--bmute);font-size:15px}
+.ep-stats{display:grid;grid-template-columns:repeat(5,1fr);padding:30px var(--gut) 130px}
+.ep-stats div{padding:22px 18px 0 0;border-top:1px solid var(--bline)}
+.ep-stats b{display:block;font:200 clamp(48px,5vw,84px)/.9 var(--d);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.ep-stats b small{font-size:.32em;color:var(--sky);margin-left:4px;font-weight:600;letter-spacing:0}
+.ep-stats span{display:block;margin-top:10px;font-size:13.5px;color:var(--bmute);max-width:24ch}
+
+/* 05 featured projects */
+#projects{position:relative;height:100vh;overflow:hidden;background:#000;color:#fff}
+.zm{position:absolute;inset:0;overflow:hidden}
+.zl{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform;box-shadow:0 0 0 calc(var(--b,0) * 3px) rgba(255,255,255,calc(var(--b,0) * .9)),0 40px 120px rgba(0,0,0,calc(var(--b,0) * .6))}
+.zl img{width:100%;height:100%;object-fit:cover}
+.pj-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 30%,transparent 55%,rgba(0,0,0,.75))}
+.pj-head{position:absolute;left:var(--gut);top:120px;z-index:3;pointer-events:none}
+.pj-head .eb{color:rgba(255,255,255,.75)}.pj-head .eb::before{background:var(--sky)}
+.pj-card{position:absolute;left:var(--gut);bottom:56px;z-index:3;width:min(520px,40vw);display:grid;gap:14px}
+.pj-card .no{font:600 12px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+.pj-card h3{margin:0;font:300 clamp(40px,3.8vw,68px)/.95 var(--d);letter-spacing:-.05em}
+.pj-card dl{margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;border-top:1px solid rgba(255,255,255,.2);padding-top:14px}
+.pj-card dt{font:600 10.5px/1.4 var(--t);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.pj-card dd{margin:2px 0 0;font-size:14px}
+.pj-r{position:absolute;right:var(--gut);bottom:56px;z-index:3;display:grid;gap:18px;justify-items:end}
+.pj-dots{display:flex;gap:8px}.pj-dots i{width:30px;height:3px;border-radius:2px;background:rgba(255,255,255,.25);transition:background .4s,width .6s var(--e)}
+.pj-dots i.on{background:#fff;width:60px}
+
+/* all-projects overlay */
+.all{position:fixed;inset:0;z-index:880;background:var(--void);color:var(--bone);--k-fg:var(--bone);--k-mute:var(--bmute)}
+.all-top{position:absolute;left:var(--gut);right:var(--gut);top:26px;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:20px;pointer-events:none}
+.all-top>*{pointer-events:auto}
+.all-top h2{margin:0;font:300 34px/1 var(--d);letter-spacing:-.03em}
+.all-top h2 b{font-weight:300;color:var(--sky)}
+.all-chips{display:flex;gap:6px;padding:6px;border-radius:99px;background:rgba(10,12,14,.72);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--bline)}
+.all-chips button{font:500 13px/1 var(--t);color:var(--bmute);padding:11px 15px;border-radius:99px;transition:.3s}
+.all-chips button[aria-pressed="true"]{background:var(--bone);color:var(--ink)}
+.all-x{height:46px;padding:0 20px;border-radius:99px;background:var(--bone);color:var(--ink);font:600 14px/1 var(--t)}
+.all-host{position:absolute;inset:0}
+.all-host::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(180deg,var(--void) 0,rgba(10,12,14,0) 24%,rgba(10,12,14,0) 74%,var(--void))}
+.all-hint{position:absolute;left:var(--gut);bottom:30px;z-index:6;font:600 11px/1.4 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--bmute)}
+
+/* 06 why pillar */
+#why{position:relative;overflow:hidden;padding:150px var(--gut) 140px;cursor:crosshair}
+#why .t3-layer{z-index:1}
+.why-in{position:relative;z-index:2;pointer-events:none}
+.why-top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:70px}
+.why-top .hint{font:600 11px/1.5 var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--bmute);text-align:right}
+.why-g{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--bline)}
+.why-g article{padding:28px 26px 0 0;display:grid;gap:14px;align-content:start}
+.why-g article+article{padding-left:26px;border-left:1px solid var(--bline)}
+.why-g b{font:200 64px/.9 var(--d);letter-spacing:-.05em;color:var(--sky);font-variant-numeric:tabular-nums}
+.why-g h3{margin:0;font:500 24px/1.12 var(--d);letter-spacing:-.03em}
+.why-g p{margin:0;color:var(--bmute);font-size:15px}
+
+/* 07 testimonials */
+#voices{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:140px var(--gut);background:var(--paper)}
+#vphoto.fx-prism{height:76vh;border-radius:12px;overflow:hidden}
+.vq{display:grid}
+.vq blockquote{grid-area:1/1;margin:0;display:grid;gap:30px;opacity:0;visibility:hidden;transition:opacity .9s,visibility .9s}
+.vq blockquote.on{opacity:1;visibility:visible}
+.vq p{margin:0;font:300 clamp(30px,3vw,52px)/1.12 var(--d);letter-spacing:-.035em;text-wrap:pretty}
+.vq p .w{display:inline-block}
+.vq p::before{content:"\201C";color:var(--teal)}.vq p::after{content:"\201D";color:var(--teal)}
+.vq footer{display:grid;gap:4px}
+.vq footer b{font:600 16px/1.3 var(--t)}
+.vq footer span{font-size:14px;color:var(--mute)}
+.vq-ctl{display:flex;align-items:center;gap:14px;margin-top:44px}
+.vq-ctl button{width:52px;height:52px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line2);font-size:18px;transition:background .3s,color .3s}
+.vq-ctl button:hover{background:var(--ink);color:var(--paper)}
+.vq-ctl .bar{flex:1;height:2px;background:var(--line)}.vq-ctl .bar i{display:block;height:100%;background:var(--teal);transform-origin:left;transform:scaleX(0)}
+.vq-ctl span{font:600 12px/1 var(--t);letter-spacing:.12em;font-variant-numeric:tabular-nums}
+
+/* 08 closing cta: the Pillar mark as a window */
+#cta{position:relative;height:100vh;overflow:hidden;background:var(--paper)}
+.win{position:absolute;inset:0;-webkit-mask-image:url("assets/img/pillar-mark.svg");mask-image:url("assets/img/pillar-mark.svg");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-size:var(--ms,24vmin);mask-size:var(--ms,24vmin)}
+.win img{width:100%;height:100%;object-fit:cover;transform:scale(1.3)}
+.win::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,8,10,.75),rgba(6,8,10,.25) 60%,rgba(6,8,10,.4));opacity:var(--sh,0)}
+.cta-pre{position:absolute;left:0;right:0;top:calc(50% + 15vmin);text-align:center;font:600 11px/1 var(--t);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.cta-copy{position:absolute;left:var(--gut);bottom:110px;z-index:3;color:#fff;max-width:760px;opacity:0}
+.cta-copy .eb{color:rgba(255,255,255,.75)}.cta-copy .eb::before{background:var(--sky)}
+.cta-copy h2{font:200 clamp(64px,8.6vw,160px)/.86 var(--d);letter-spacing:-.065em;margin:0}
+.cta-copy p{font-size:18px;color:rgba(255,255,255,.82);max-width:46ch;margin:24px 0 30px}
+.cta-copy .acts{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cta-copy .tel{font:400 22px/1 var(--d);letter-spacing:-.01em;user-select:all;-webkit-user-select:all;margin-left:10px}
+
+/* 09 footer */
+.foot{padding:120px var(--gut) 0}
+.f-grid{display:grid;grid-template-columns:1.2fr .72fr .72fr 1.2fr 1.3fr;gap:40px;padding-bottom:70px;border-bottom:1px solid var(--bline)}
+.f-col h4{margin:0 0 18px;font:600 11px/1.4 var(--t);letter-spacing:.18em;text-transform:uppercase;color:var(--bmute)}
+.f-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.f-col a{text-decoration:none;color:var(--bone);opacity:.82;font-size:15px;transition:opacity .3s,color .3s}
+.f-col a:hover{opacity:1;color:var(--sky)}
+.f-brand img{height:40px;width:auto;margin-bottom:22px}
+.f-brand p{margin:0 0 18px;color:var(--bmute);font-size:15px;max-width:34ch}
+.f-co{display:grid;gap:4px;font-size:14px;color:var(--bmute)}
+.f-co b{color:var(--bone);font-weight:600}
+.f-aff{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center;margin-top:26px}
+.f-aff a{opacity:.55;transition:opacity .3s}.f-aff a:hover{opacity:1}
+.f-aff img{height:26px;width:auto;max-width:90px;object-fit:contain}
+.f-off{display:grid;gap:18px}
+.f-off div{display:grid;gap:3px;font-size:14px;color:var(--bmute)}
+.f-off b{font:500 17px/1.2 var(--d);color:var(--bone);letter-spacing:-.01em}
+.f-off i{font-style:normal;font:600 11px/1.4 var(--t);letter-spacing:.12em;color:var(--sky)}
+.f-ct{display:grid;gap:18px}
+.f-ct .v{font:300 21px/1.15 var(--d);white-space:nowrap;letter-spacing:-.02em;color:var(--bone);display:flex;gap:10px;align-items:center;flex-wrap:wrap;user-select:all;-webkit-user-select:all;}
+.f-ct .v button{user-select:none;-webkit-user-select:none;font:600 10px/1 var(--t);letter-spacing:.12em;text-transform:uppercase;color:var(--bmute);padding:7px 10px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--bline)}
+.f-ct .v button:hover{color:var(--ink);background:var(--bone)}
+.soc{display:flex;gap:8px}
+.soc a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--bline);opacity:1!important;transition:background .3s,color .3s}
+.soc a:hover{background:var(--bone);color:var(--ink)!important}
+.soc svg{width:18px;height:18px}
+.k-word{margin-top:40px}
+.k-word span{-webkit-text-stroke:1px var(--bone)}
+.f-legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:22px 0 30px;border-top:1px solid var(--bline);font:600 11px/1.4 var(--t);letter-spacing:.12em;text-transform:uppercase;color:var(--bmute)}
+.f-legal a{color:inherit}
+
+/* contact drawer */
+.dw{position:fixed;inset:0;z-index:950;display:grid;grid-template-columns:1fr min(560px,92vw);pointer-events:none}
+.dw.open{pointer-events:auto}
+.dw-bg{background:rgba(6,8,10,.55);backdrop-filter:blur(6px);opacity:0;transition:opacity .6s}
+.dw.open .dw-bg{opacity:1}
+.dw-p{background:var(--paper);color:var(--ink);padding:40px 44px;overflow:auto;transform:translateX(102%);transition:transform .9s var(--e);display:grid;gap:26px;align-content:start}
+.dw.open .dw-p{transform:none}
+.dw-p header{display:flex;justify-content:space-between;align-items:start;gap:20px}
+.dw-p h2{margin:0;font:300 46px/.95 var(--d);letter-spacing:-.05em}
+.dw-x{height:42px;padding:0 16px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--line2);font:600 13px/1 var(--t)}
+.dw form{display:grid;grid-template-columns:1fr 1fr;gap:22px 18px}
+.dw label{display:grid;gap:8px;font:600 11px/1.4 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.dw label.w{grid-column:1/-1}
+.dw input,.dw select,.dw textarea{font:400 17px/1.4 var(--t);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line2);padding:8px 0 12px;border-radius:0;text-transform:none;letter-spacing:0}
+.dw input:focus,.dw select:focus,.dw textarea:focus{outline:none;border-bottom-color:var(--teal)}
+.dw [aria-invalid="true"]{border-bottom-color:#b03e2c}
+.dw .msg{grid-column:1/-1;margin:0;font-size:15px}
+.dw-d{display:grid;gap:10px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--mute)}
+.dw-d b{color:var(--ink);font:400 22px/1.2 var(--d);letter-spacing:-.02em;user-select:all;-webkit-user-select:all}
+</style>
+<div class="px-grain" aria-hidden="true" style="--grain:.045"></div>
+
+<header class="nav" id="nav">
+  <a class="lg" href="#top" aria-label="Pillar Construction, back to top"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction" width="131" height="32"></a>
+  <nav aria-label="Sections"><a href="#about">About</a><a href="#specialties">Specialties</a><a href="#panels">Exterior Panels</a><a href="#projects">Projects</a><a href="#why">Why Pillar</a></nav>
+  <div class="r"><button class="btn" type="button" data-contact data-mag="8">Contact us</button></div>
+</header>
+
+<main>
+<!-- 01 hero -->
+<section id="top" aria-label="Pillar Construction"></section>
+
+<!-- 02 about -->
+<section id="about" class="dark" aria-label="About Pillar">
+  <div class="stage" id="stage"><div class="cam" id="cam" data-lb-group></div></div>
+  <div class="fog" aria-hidden="true"></div>
+  <div class="ab-copy" id="abCopy"></div>
+  <div class="ab-hud" id="abHud"></div>
+</section>
+
+<!-- 03 specialties -->
+<section id="specialties" aria-label="Our specialties">
+  <div class="sp-head"><p class="eb">Our specialties</p><h2 class="h2">Five trades. One crew.</h2><p class="lede">Interior and exterior finishes, self-performed from the first stud to the last panel. Hover a card to bring it forward.</p></div>
+  <div class="sp-stage" id="spStage" data-loupe><div class="fan" id="fan"></div></div>
+  <p class="sp-hint">Scroll to deal the hand<br>Hover a trade to lift it</p>
+</section>
+
+<!-- 04 exterior panels -->
+<section id="panels" class="dark" aria-label="Pillar Exterior Panels">
+  <div class="ep-pin" id="epPin">
+    <div class="orbit" id="orbit"><div class="wl" id="wl"><div class="ly ly1"></div><div class="ly ly2"></div><div class="ly ly3"></div><div class="ly ly4"></div></div></div>
+    <div class="ep-copy">
+      <p class="eb">Pillar Exterior Panels</p>
+      <h2 class="h2" style="font-size:clamp(46px,4.8vw,90px)">The wall arrives finished.</h2>
+      <p class="lede">A factory-fabricated exterior wall assembly of cold-formed metal framing, exterior sheathing and air-vapor barrier. It needs no change to the project specifications and can be built with any of the industry's well-known brands.</p>
+      <ol class="lys" id="lys"></ol>
+      <div class="ep-acts"><a class="btn" id="epPdf" target="_blank" rel="noopener" data-mag="8">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a><button class="btn line" type="button" id="epProj">See panel projects</button></div>
+    </div>
+  </div>
+  <div class="ep-more" id="epMore"></div>
+  <div class="ep-stats" id="epStats"></div>
+</section>
+
+<!-- 05 featured projects -->
+<section id="projects" aria-label="Featured projects">
+  <div class="zm" id="zm" data-lb-group></div>
+  <div class="pj-shade" aria-hidden="true"></div>
+  <div class="pj-head"><p class="eb">Featured projects</p><h2 class="h2" style="font-size:clamp(46px,5vw,92px)">Each one opens<br>onto the next.</h2></div>
+  <div class="pj-card" id="pjCard"></div>
+  <div class="pj-r"><div class="pj-dots" id="pjDots"></div><button class="btn" type="button" id="viewAll" data-mag="8">View all projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
+</section>
+
+<!-- 06 why pillar -->
+<section id="why" class="dark" aria-label="Why Pillar">
+  <div class="why-in">
+    <div class="why-top"><div><p class="eb">Why Pillar</p><h2 class="h2">Why builders bring us in early.</h2></div><p class="hint">Move across the section<br>to see the work behind it</p></div>
+    <div class="why-g" id="whyG"></div>
+  </div>
+</section>
+
+<!-- 07 testimonials -->
+<section id="voices" aria-label="Testimonials">
+  <div id="vphoto" data-loupe></div>
+  <div>
+    <p class="eb">From the general contractors</p>
+    <div class="vq" id="vq" aria-live="polite"></div>
+    <div class="vq-ctl"><button type="button" id="vPrev" aria-label="Previous testimonial">←</button><span id="vn">01 / 02</span><button type="button" id="vNext" aria-label="Next testimonial">→</button><span class="bar"><i id="vbar"></i></span></div>
+  </div>
+</section>
+
+<!-- 08 closing cta -->
+<section id="cta" aria-label="Start a project">
+  <p class="cta-pre" id="ctaPre">Scroll to open the mark</p>
+  <div class="win" id="win"><img src="assets/img/g/V16-038.jpg" alt="1345 K Street, Washington DC"></div>
+  <div class="cta-copy" id="ctaCopy"><p class="eb">We are just a click away</p><h2>Let's build<br>what's next.</h2><p>An experienced team and a trusted partner. Tell us about your next building and we'll bring the right trades to the table while the design is still taking shape.</p><div class="acts"><button class="btn" type="button" data-contact data-mag="8">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button><span class="tel">703.941.5891</span></div></div>
+</section>
+</main>
+
+<!-- 09 footer -->
+<footer class="foot dark" id="footer">
+  <div class="f-grid">
+    <div class="f-col f-brand"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction" width="164" height="40"><p>Interior and exterior finish experts since 1995. Drywall, rainscreen, EIFS, stucco, restoration and Pillar Exterior Panels.</p>
+      <div class="f-co"><b>Pillar Construction, Inc.</b><span>5649-S General Washington Drive</span><span>Alexandria, Virginia 22312</span></div>
+      <div class="f-aff" id="fAff"></div></div>
+    <div class="f-col"><h4>Specialties</h4><ul id="fSvc"></ul></div>
+    <div class="f-col"><h4>Company</h4><ul id="fCo"></ul></div>
+    <div class="f-col"><h4>Offices</h4><div class="f-off" id="fOff"></div></div>
+    <div class="f-col f-ct"><h4>Contact</h4>
+      <span class="v"><span id="fEm">info@PillarConstruction.com</span><button type="button" data-copy="fEm">Copy</button></span>
+      <span class="v"><span id="fPh">703.941.5891</span><button type="button" data-copy="fPh">Copy</button></span>
+      <div><button class="btn" type="button" data-contact>Start a project</button></div>
+      <div><h4 style="margin-top:12px">Follow</h4><div class="soc" id="fSoc"></div></div>
+    </div>
+  </div>
+  <div class="k-word" aria-hidden="true"><span>P</span><span>I</span><span>L</span><span>L</span><span>A</span><span>R</span></div>
+  <div class="f-legal"><span>© 1999–<span id="yr">2026</span> Pillar Construction, Inc.</span><span>Concept homepage · project photography graded for this concept</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<!-- all projects -->
+<div class="all" id="all" hidden role="dialog" aria-modal="true" aria-label="All projects" data-lenis-prevent>
+  <div class="all-host" id="allHost"></div>
+  <div class="all-top"><h2>All <b id="allN">224</b> projects</h2><div class="all-chips" id="allChips" role="group" aria-label="Filter by trade"></div><button class="all-x" type="button" id="allX">Close</button></div>
+  <p class="all-hint">Drag to fly over the table · hover a print to lift it · click to open</p>
+</div>
+
+<!-- contact drawer -->
+<div class="dw" id="dw" aria-hidden="true">
+  <div class="dw-bg" id="dwBg"></div>
+  <aside class="dw-p" role="dialog" aria-modal="true" aria-labelledby="dwT" data-lenis-prevent>
+    <header><div><p class="eb">How can we help?</p><h2 id="dwT">Start a project</h2></div><button class="dw-x" type="button" id="dwX">Close</button></header>
+    <form id="dwF" novalidate>
+      <label for="cf-name">Name<input id="cf-name" autocomplete="name" placeholder="Jane Smith"></label>
+      <label for="cf-mail">Email<input id="cf-mail" type="email" autocomplete="email" placeholder="jane@company.com"></label>
+      <label for="cf-co">Company<input id="cf-co" autocomplete="organization" placeholder="General contractor or owner"></label>
+      <label for="cf-scope">Trade<select id="cf-scope"></select></label>
+      <label for="cf-msg" class="w">About the project<textarea id="cf-msg" rows="4" placeholder="Building type, location, schedule and where design stands today"></textarea></label>
+      <div class="w" style="grid-column:1/-1"><button class="btn ink" type="submit">Send enquiry</button></div>
+      <p class="msg" id="dwMsg" role="status" hidden></p>
+    </form>
+    <div class="dw-d"><span>Or reach the estimating team directly</span><b>info@PillarConstruction.com</b><b>703.941.5891</b><span>5649-S General Washington Drive, Alexandria, Virginia 22312</span></div>
+  </aside>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core2.js"></script>
+<script src="assets/kit2.js"></script>
+<script src="assets/fx2.js"></script>
+<script>
+const {$,$$,esc,pad,loc,D}=PX; const G=K.G, P=id=>PX.byImg[id];
+const arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+PX.init({cursor:true});
+PX.loupe();
+const ptr={x:innerWidth/2,y:innerHeight/2}; addEventListener('pointermove',e=>{ptr.x=e.clientX;ptr.y=e.clientY},{passive:true});
+const years=K.years, states=K.states, live=t=>{let vis=true;return vis};
+
+/* ---------- nav ---------- */
+const nav=$('#nav');
+ScrollTrigger.create({start:0,end:'max',onUpdate:s=>nav.classList.toggle('solid',s.scroll()>60)});
+['about','specialties','panels','projects','why'].forEach(id=>ScrollTrigger.create({trigger:'#'+id,start:'top 50%',end:'bottom 50%',onToggle:s=>$(`.nav nav a[href="#${id}"]`).classList.toggle('on',s.isActive)}));
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href');if(h.length<2)return;const t=$(h);if(!t)return;e.preventDefault();PX.scrollTo(t)});
+
+/* ---------- 01 hero: a facade of turning fins ---------- */
+const HERO=['V17-004D','6565Rt','V19-019R','College_Park_City_Hall_1','V18-014R','D06-014'].map(P);
+let ht0=performance.now();
+const hz=FX.prism($('#top'),{items:HERO,n:14,overlay:`<div class="h-shade"></div><div class="h-prog"><i id="hp"></i></div>
+  <div class="h-copy"><p class="eb">Interior &amp; exterior finish experts since 1995</p><h1 aria-label="Materialize your idea."><span class="ln"><span>Materialize</span></span><span class="ln"><span>your <em>idea.</em></span></span></h1>
+  <p>Imagination, vision and technical expertise, combined with a can-do attitude. Pillar delivers drywall, rainscreen, EIFS, restoration and its own factory-built exterior panels for builders across the Mid-Atlantic, the Northeast and the South.</p>
+  <div class="acts"><a class="btn" href="#specialties" data-mag="8">Explore our services ${arrow}</a><button class="btn line" type="button" data-contact>Start a project</button></div></div>
+  <div class="h-cap"><span id="hi">01 / 06</span><b id="hn">—</b><span id="hl"></span><div class="nb"><button type="button" id="hPrev" aria-label="Previous building">←</button><button type="button" id="hNext" aria-label="Next building">→</button></div></div>
+  <div class="h-foot"><span>Washington DC · Houston · Orlando · New Jersey</span><span>Move across the fins · click to turn</span><span>Scroll</span></div>`,
+  onChange:(p,i)=>{$('#hn').textContent=p.n;$('#hl').textContent=`${loc(p)} · ${K.SVC[p.s]}`;$('#hi').textContent=`${pad(i+1)} / ${pad(HERO.length)}`},onTurn:()=>{ht0=performance.now()}});
+$('.pr-row',$('#top')).dataset.cursor='Turn';
+$('#hNext').addEventListener('click',e=>{e.stopPropagation();hz.turn(1)});$('#hPrev').addEventListener('click',e=>{e.stopPropagation();hz.turn(-1,13)});
+(function auto(t){requestAnimationFrame(auto);const k=Math.min(1,(t-ht0)/6500);$('#hp').style.transform=`scaleX(${k})`;if(k>=1&&!$('#top').matches(':hover')&&scrollY<innerHeight*.6){ht0=t;hz.turn(1)}})(ht0);
+gsap.from('.h-copy h1 .ln>span',{yPercent:110,duration:1.5,stagger:.1,ease:'expo.out',delay:.5});
+gsap.from(['.h-copy .eb','.h-copy p','.h-copy .acts','.h-cap'],{y:30,opacity:0,duration:1.2,stagger:.08,ease:'expo.out',delay:.8});
+gsap.to('.h-copy',{yPercent:-12,opacity:.15,ease:'none',scrollTrigger:{trigger:'#top',start:'40% top',end:'bottom top',scrub:true}});
+
+/* ---------- 02 about: walk the corridor of work ---------- */
+const AB=[
+ ['About Pillar','Three decades of finished buildings.','Founded in 1995, Pillar Construction has grown by delivering on its promises. A full-service specialty contractor with offices in Washington DC, Houston, Orlando and New Jersey, working across the Mid-Atlantic, the Northeast and the South.'],
+ ['Expertise','Every trade, self-performed.','Drywall, rainscreen, restoration, EIFS, stucco, rough carpentry and vapor and air barriers, all built by our own crews. Our architects, engineers, construction professionals and applicators bring over a century of combined experience.'],
+ ['What makes us different','In at design. Out on schedule.','We partner with clients from the early design stages, offer value engineering options for the best result at a competitive price, develop a plan to complete the work, and then execute that plan safely.']];
+$('#abCopy').innerHTML=AB.map(([e,h,p],i)=>`<article${i?'':' class="on"'}><p class="eb">${e}</p><h2>${h}</h2><p class="lede">${p}</p></article>`).join('')+`<div class="ab-steps">${AB.map((_,i)=>`<i${i?'':' class="on"'}></i>`).join('')}</div>`;
+$('#abHud').innerHTML=[[years,'Years building'],[D.projects.length,'Projects on record'],[states,'States'],[D.offices.length,'Offices']].map(([v,l])=>`<div><b data-count="${v}">${v}</b><span>${l}</span></div>`).join('')+`<div class="now"><span>Now passing</span><b id="abNow">—</b></div>`;
+const TP=K.best(44,0), GAP=320, START=700, DEPTH=TP.length*GAP+START, slots=[['L'],['R'],['C',1],['T'],['R'],['L'],['C',-1],['B']];
+$('#cam').innerHTML=TP.map((p,i)=>{const [s,side]=slots[i%slots.length],z=-(START+i*GAP),j=(i*37%9-4)*14;let t;
+  if(s==='L')t=`translate3d(-640px,${j}px,${z}px) rotateY(62deg)`;else if(s==='R')t=`translate3d(760px,${-j}px,${z}px) rotateY(-62deg)`;else if(s==='T')t=`translate3d(${120+j*3}px,-400px,${z}px) rotateX(-64deg)`;else if(s==='B')t=`translate3d(${120-j*3}px,400px,${z}px) rotateX(64deg)`;else t=`translate3d(${200+side*(260+Math.abs(j))}px,${j*1.5}px,${z}px)`;
+  return `<a class="tp${i%5===2?' pt':''}" href="#" data-lb="${p.id}" data-cursor="Open" data-z="${z}" data-n="${esc(p.n)} · ${esc(p.c)}" style="transform:${t}"><img src="${G(p.img)}" alt="${esc(p.n)}" loading="lazy" decoding="async"></a>`}).join('');
+const tps=$$('.tp'),cam=$('#cam'),stage=$('#stage');let tz=0,cz=0,rx=0,ry=0,vel=0,lastNow='',abI=0,abVis=false;
+new IntersectionObserver(([e])=>abVis=e.isIntersecting).observe($('#about'));
+ScrollTrigger.create({trigger:'#about',start:'top top',end:'+=420%',pin:true,scrub:true,onUpdate:s=>{tz=s.progress*(DEPTH-200);const k=Math.min(AB.length-1,Math.floor(s.progress*AB.length*.999));if(k!==abI){abI=k;$$('#abCopy article').forEach((a,i)=>a.classList.toggle('on',i===k));$$('.ab-steps i').forEach((a,i)=>a.classList.toggle('on',i===k))}}});
+(function tick(){requestAnimationFrame(tick);if(!abVis)return;const v=PX.lenis?Math.abs(PX.lenis.velocity||0):0;vel+=(v-vel)*.08;cz+=(tz-cz)*.09;rx+=((.5-ptr.y/innerHeight)*9-rx)*.06;ry+=((ptr.x/innerWidth-.5)*14-ry)*.06;
+  stage.style.perspective=(820-Math.min(340,vel*9))+'px';cam.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${cz}px)`;
+  let best=null,bd=1e9;for(const el of tps){const vz=+el.dataset.z+cz,o=vz>120?Math.max(0,1-(vz-120)/260):Math.max(0,Math.min(1,1-(-vz-900)/4200));el.style.opacity=o.toFixed(3);el.style.pointerEvents=o>.25?'auto':'none';if(vz<0&&-vz<bd){bd=-vz;best=el}}
+  const nm=best?best.dataset.n:'';if(nm!==lastNow){lastNow=nm;$('#abNow').textContent=nm}})();
+
+/* ---------- 03 specialties: a hand of five cards ---------- */
+const SIMG={drywall:'Institute_for_Digital_Innovation_1',rainscreen:'V15-020R','eifs-stucco':'V16-047',restoration:'V10-002','exterior-panels':'EP_003'};
+const SV=K.svcs(SIMG); SV.forEach(s=>s.name=s.id==='exterior-panels'?'Pillar Exterior Panels':s.id==='rainscreen'?'Rainscreen Systems':s.name);
+const firstSentence=t=>{const m=t.match(/^.*?\.(\s|$)/);return (m?m[0]:t).trim()};
+$('#fan').innerHTML=SV.map((s,i)=>`<article class="cd" data-i="${i}"><div class="cd-in"><div class="ph"><img src="${G(s.img)}" alt="${esc(s.name)}" loading="lazy"><span>${s.count} project${s.count===1?'':'s'}</span></div><div class="tx"><h3>${esc(s.name)}</h3><p>${esc(firstSentence(s.short))}</p><button class="go" type="button" data-svc="${s.id}">View projects ${arrow.replace('<svg','<svg width="15" height="15"')}</button></div></div></article>`).join('');
+const cds=$$('.cd'),fan=$('#fan');let fp=0,fcp=0,hov=-1;
+const dealt=(i,f)=>{const k=i-2,e=f*f*(3-2*f);return `translate3d(${(1-e)*i*5}px,${(1-e)*-i*5}px,${-Math.abs(k)*40*e}px) rotateZ(${(1-e)*(k*2.2)+e*k*12}deg) rotateY(${-k*e*6}deg)`};
+cds.forEach((c,i)=>{c.addEventListener('pointerenter',()=>{hov=i;cds.forEach((x,j)=>x.classList.toggle('on',j===i));fan.classList.add('hov')});c.addEventListener('pointerleave',()=>{hov=-1;c.classList.remove('on');fan.classList.remove('hov')})});
+ScrollTrigger.create({trigger:'#specialties',start:'top top',end:'+=200%',pin:true,scrub:true,onUpdate:s=>fp=s.progress});
+(function fanLoop(){requestAnimationFrame(fanLoop);fcp+=(Math.min(1,fp*1.6)-fcp)*.08;cds.forEach((c,i)=>{c.style.transform=dealt(i,fcp);c.style.zIndex=hov===i?20:10-Math.abs(i-2)});fan.classList.toggle('live',fcp>.85);
+  fan.style.transform=`rotateX(${(ptr.y/innerHeight-.5)*-8}deg) rotateY(${(ptr.x/innerWidth-.5)*10}deg)`})();
+fan.addEventListener('click',e=>{const b=e.target.closest('[data-svc]');if(!b)return;const list=D.projects.filter(p=>p.s===b.dataset.svc&&p.img);PX.LB.open(list,0,b.closest('.cd').querySelector('img'))});
+
+/* ---------- 04 Pillar Exterior Panels: the wall, taken apart ---------- */
+$('#lys').innerHTML=D.ep.layers.map(([t,d],i)=>`<li><span>${pad(i+1)}</span><div><h3>${esc(t)}</h3><p>${esc(d)}.</p></div></li>`).join('');
+$('#epMore').innerHTML=D.ep.why.slice(3).map(([h,p])=>`<article><h3>${esc(h)}</h3><p>${esc(p)}</p></article>`).join('');
+$('#epStats').innerHTML=D.ep.stats.map(([v,u,d])=>`<div><b data-count="${v}">${v}<small>${u}</small></b><span>${esc(d.charAt(0).toUpperCase()+d.slice(1))}</span></div>`).join('');
+$('#epPdf').href=D.ep.brochure;
+$('#epProj').addEventListener('click',()=>PX.LB.open(D.projects.filter(p=>p.s==='exterior-panels'&&p.img),0,null));
+const lys=$$('.ly'),lis=$$('#lys li');let ox=58,oz=-36,ex=0;
+const drawWall=()=>{$('#wl').style.transform=`rotateX(${ox}deg) rotateZ(${oz}deg)`;lys.forEach((l,i)=>l.style.transform=`translateZ(${i*ex}px)`)};drawWall();
+PX.drag($('#orbit'),(dx,dy)=>{oz+=dx*.35;ox=Math.max(10,Math.min(80,ox-dy*.25));drawWall()});
+ScrollTrigger.create({trigger:'#epPin',start:'top top',end:'+=170%',pin:true,scrub:true,onUpdate:s=>{ex=Math.min(1,s.progress*1.8)*96;oz=-36+s.progress*40;const k=Math.min(3,Math.floor(s.progress*4*.999));lys.forEach((l,i)=>l.classList.toggle('on',i===k));lis.forEach((l,i)=>l.classList.toggle('on',i===k));drawWall()}});
+
+/* counters */
+$$('[data-count]').forEach(el=>{const to=+el.dataset.count,tail=el.innerHTML.replace(/^[\d.]+/,'');ScrollTrigger.create({trigger:el,start:'top bottom',once:true,onEnter:()=>{const o={v:0};gsap.to(o,{v:to,duration:1.8,ease:'power3.out',onUpdate:()=>el.innerHTML=Math.round(o.v)+tail})}})});
+
+/* ---------- 05 featured projects: each building opens onto the next ---------- */
+const FP=['The_Westerly_Waterfront_1','8621Rt','V12-026','V18-002R'].map(P);
+$('#zm').innerHTML=FP.map((p,i)=>`<a class="zl" href="#" data-lb="${p.id}" data-cursor="Open" style="z-index:${i+1}"><img src="${G(p.img)}" alt="${esc(p.n)}" loading="lazy"></a>`).join('');
+$('#pjDots').innerHTML=FP.map((_,i)=>`<i${i?'':' class="on"'}></i>`).join('');
+const zls=$$('.zl'),Z=3.4;let zp=0,zcp=0,zl=-1;
+const card=p=>`<span class="no">Project ${pad(FP.indexOf(p)+1)} of ${pad(FP.length)} · ${K.SVC[p.s]}</span><h3>${esc(p.n)}</h3><dl><div><dt>Location</dt><dd>${esc(loc(p))}</dd></div>${p.g?`<div><dt>General contractor</dt><dd>${esc(p.g)}</dd></div>`:''}${p.ar?`<div><dt>Architect</dt><dd>${esc(p.ar)}</dd></div>`:''}${p.o?`<div><dt>Owner</dt><dd>${esc(p.o)}</dd></div>`:''}</dl>`;
+ScrollTrigger.create({trigger:'#projects',start:'top top',end:'+=340%',pin:true,scrub:true,onUpdate:s=>zp=s.progress});
+let pjVis=false;new IntersectionObserver(([e])=>pjVis=e.isIntersecting).observe($('#projects'));
+(function zLoop(){requestAnimationFrame(zLoop);if(!pjVis&&zl>=0)return;zcp+=(zp-zcp)*.09;const q=zcp*(FP.length-1);
+  zls.forEach((l,i)=>{const s=Math.pow(Z,q-i);l.style.transform=`scale(${s})`;l.style.opacity=s>Z*1.1?0:1;l.style.visibility=s<.02?'hidden':'visible';l.style.setProperty('--b',Math.max(0,Math.min(1,(1-s)*3)));l.style.pointerEvents=Math.abs(q-i)<.5?'auto':'none'});
+  const k=Math.max(0,Math.min(FP.length-1,Math.round(q)));if(k!==zl){zl=k;$('#pjCard').innerHTML=card(FP[k]);gsap.fromTo($('#pjCard').children,{y:24,opacity:0},{y:0,opacity:1,stagger:.05,duration:.8,ease:'expo.out'});$$('#pjDots i').forEach((d,i)=>d.classList.toggle('on',i===k))}})();
+
+/* all projects: the 3D table */
+let allBuilt=null;
+const PR=D.projects.filter(p=>p.img);
+$('#allChips').innerHTML=[['all','All',PR.length],...D.services.map(s=>[s.id,K.SVC[s.id],PR.filter(p=>p.s===s.id).length])].map(([k,l,n],i)=>`<button type="button" data-f="${k}" aria-pressed="${!i}">${l} <sup>${n}</sup></button>`).join('');
+function openAll(){$('#all').hidden=false;document.documentElement.style.overflow='hidden';PX.lenis&&PX.lenis.stop();if(!allBuilt)allBuilt=FX.plane($('#allHost'),{});gsap.fromTo('#all',{clipPath:'inset(50% 0 50% 0)'},{clipPath:'inset(0% 0 0% 0)',duration:1,ease:'expo.inOut'});$('#allX').focus()}
+function closeAll(){gsap.to('#all',{clipPath:'inset(50% 0 50% 0)',duration:.7,ease:'expo.inOut',onComplete:()=>{$('#all').hidden=true;document.documentElement.style.overflow='';PX.lenis&&PX.lenis.start()}})}
+$('#viewAll').addEventListener('click',openAll);$('#allX').addEventListener('click',closeAll);
+$('#allChips').addEventListener('pointerdown',e=>e.stopPropagation());
+$('#allChips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!allBuilt)return;$$('#allChips button').forEach(x=>x.setAttribute('aria-pressed',x===b));const n=allBuilt.filter(b.dataset.f);$('#allN').textContent=n});
+
+/* ---------- 06 why pillar ---------- */
+const WHY=[[years,'Experience','Founded in 1995, with over a century of combined experience solving complex construction challenges with intelligent, cost-effective solutions.'],
+ [D.services.length,'Technical expertise','Architects, engineers, construction professionals and applicators under one roof, across five specialties from interiors to the building skin.'],
+ [D.projects.length,'Quality','We self-perform the work we sell, so the crew that plans the wall is the crew that builds it. Craftsmanship recognised by the Washington Building Congress.'],
+ [K.honours,'Value engineering','Brought in at design, we offer value engineering options that reach the best result at a competitive price, then plan the work and execute it safely.']];
+const WL=['Years of finished buildings','Trades, self-performed','Projects on record','Industry honours'];
+$('#whyG').innerHTML=WHY.map(([n,h,p],i)=>`<article><b data-count="${n}">${n}</b><span class="eb" style="margin:0">${WL[i]}</span><h3>${h}</h3><p>${p}</p></article>`).join('');
+$$('#whyG [data-count]').forEach(el=>{const to=+el.dataset.count;ScrollTrigger.create({trigger:el,start:'top bottom',once:true,onEnter:()=>{const o={v:0};gsap.to(o,{v:to,duration:1.8,ease:'power3.out',onUpdate:()=>el.textContent=Math.round(o.v)})}})});
+FX.trail3d($('#why'),{items:K.best(30,12),demo:false});
+
+/* ---------- 07 testimonials ---------- */
+const VQ=[[D.testimonials[5],P('2001-20')],[D.testimonials[18],P('V19-019R')]];
+$('#vq').innerHTML=VQ.map(([t,p],i)=>`<blockquote${i?'':' class="on"'}><p>${esc(t.q.trim().replace('craftmanship','craftsmanship')).split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')}</p><footer><b>${esc(t.by)}</b><span>${esc(t.role||'')}${p?` · ${esc(p.n)}, ${esc(loc(p))}`:''}</span></footer></blockquote>`).join('');
+let vi=0,vt0=performance.now();
+const showV=i=>{vi=(i+VQ.length)%VQ.length;$$('#vq blockquote').forEach((b,k)=>b.classList.toggle('on',k===vi));$('#vn').textContent=`${pad(vi+1)} / ${pad(VQ.length)}`;gsap.fromTo($$('#vq blockquote')[vi].querySelectorAll('.w'),{opacity:.12,y:10},{opacity:1,y:0,stagger:.025,duration:.6,ease:'power3.out'})};
+const vz=FX.prism($('#vphoto'),{items:VQ.map(v=>v[1]),n:9,onChange:(p,i)=>{if(i!==vi)showV(i)},onTurn:()=>{vt0=performance.now()}});
+$('#vNext').addEventListener('click',()=>vz.turn(1));$('#vPrev').addEventListener('click',()=>vz.turn(-1,8));
+(function vLoop(t){requestAnimationFrame(vLoop);const k=Math.min(1,(t-vt0)/9000);$('#vbar').style.transform=`scaleX(${k})`;if(k>=1&&!$('#voices').matches(':hover')){vt0=t;vz.turn(1)}})(vt0);
+ScrollTrigger.create({trigger:'#voices',start:'top 70%',once:true,onEnter:()=>showV(0)});
+
+/* ---------- 08 closing cta: the Pillar mark opens like a window ---------- */
+const ct=gsap.timeline({scrollTrigger:{trigger:'#cta',start:'top top',end:'+=200%',pin:true,scrub:1}});
+gsap.set('#win',{'--ms':'24vmin','--sh':0});
+ct.to('#win',{'--ms':'1500vmin',duration:1,ease:'power3.in'}).to('#win img',{scale:1,duration:1,ease:'power2.out'},0).to('#ctaPre',{opacity:0,duration:.15},0).to('#win',{'--sh':1,duration:.25},.78).to('#ctaCopy',{opacity:1,y:0,duration:.3},.82);
+gsap.set('#ctaCopy',{y:40});
+
+/* ---------- 09 footer ---------- */
+const LIVE='https://www.pillarconstruction.com/';
+$('#fSvc').innerHTML=[['Drywall','Pillar-Construction-Services.asp?service=Drywall'],['Rainscreen Systems','Pillar-Construction-Services.asp?service=Rainscreen'],['EIFS & Stucco','Pillar-Construction-Services.asp?service=EIFS'],['Restoration','Pillar-Construction-Services.asp?service=Restoration'],['Pillar Exterior Panels','Pillar-Construction-Services.asp?service=PillarEP']].map(([l,h])=>`<li><a href="${LIVE+h}" target="_blank" rel="noopener">${l}</a></li>`).join('');
+$('#fCo').innerHTML=[['About','About-Pillar-Construction.asp'],['Team','Pillar-Construction-team.asp'],['Awards','Pillar-Construction-Awards.asp'],['Affiliations','Pillar-Construction-Affiliations.asp'],['Testimonials','Pillar-Construction-Testimonials.asp'],['In the Press','Pillar-Construction-Press.asp'],['Careers','Pillar-Construction-Careers.asp'],['Contact','Contact-Pillar-Construction.asp']].map(([l,h])=>`<li><a href="${LIVE+h}" target="_blank" rel="noopener">${l}</a></li>`).join('');
+const TZ={'Houston, TX':'America/Chicago'};
+$('#fOff').innerHTML=D.offices.map(o=>`<div><b>${esc(o.c)}</b><span>${o.a.map(esc).join(', ')}</span><span>${esc(o.p)}</span><i data-tz="${TZ[o.c]||'America/New_York'}"></i></div>`).join('');
+const tick=()=>$$('[data-tz]').forEach(el=>el.textContent=new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:el.dataset.tz}).format(new Date())+' local time');tick();setInterval(tick,20000);
+$('#fAff').innerHTML=D.affiliations.map(a=>`<a href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(a.n)}"><img src="nocturne/img/a/${a.img}.png" alt="${esc(a.n)}" loading="lazy"></a>`).join('');
+const SOC={LinkedIn:'<path d="M5 9h3v10H5zM6.5 4.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zM10.5 9h2.9v1.4c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7V19h-3v-4.9c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6v5h-3z" fill="currentColor" stroke="none"/>',Instagram:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor"/>',Facebook:'<path d="M14 8.5V6.8c0-.8.5-1.3 1.3-1.3H17V2.5h-2.6C11.8 2.5 11 4.3 11 6.4v2.1H8.5v3H11v10h3v-10h2.6l.4-3z" fill="currentColor" stroke="none"/>'};
+$('#fSoc').innerHTML=Object.entries(SOC).map(([n,s])=>`<a href="#footer" aria-label="${n} (add Pillar's ${n} address)" title="${n}: add Pillar's profile address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${s}</svg></a>`).join('');
+$('#yr').textContent=new Date().getFullYear();
+$$('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const el=$('#'+b.dataset.copy),done=t=>{b.textContent=t;setTimeout(()=>b.textContent='Copy',1600)};try{navigator.clipboard.writeText(el.textContent).then(()=>done('Copied'),()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);done('Selected')})}catch(_){done('Select it')}}));
+/* photo-filled footer letters that turn toward the cursor */
+const fls=$$('.k-word span'),pics=['6565Rt','8621Rt','V17-004D','V19-019R','The_Westerly_Waterfront_1','College_Park_City_Hall_1'];
+fls.forEach((l,i)=>l.style.backgroundImage=`url('${G(pics[i])}')`);
+const fst=fls.map(()=>({rx:0,ry:0,z:0,y:80}));let rise=0;
+ScrollTrigger.create({trigger:'.k-word',start:'top bottom',end:'bottom bottom',scrub:true,onUpdate:s=>rise=s.progress});
+(function spin(){requestAnimationFrame(spin);fls.forEach((l,i)=>{const r=l.getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;const dx=ptr.x-(r.left+r.width/2),dy=ptr.y-(r.top+r.height/2),f=Math.max(0,1-Math.hypot(dx,dy)/700),s=fst[i];
+  s.ry+=(dx*.05-s.ry)*.08;s.rx+=(-dy*.05-s.rx)*.08;s.z+=(f*120-s.z)*.1;s.y+=((1-rise)*80*(1+i*.15)-s.y)*.1;
+  l.style.transform=`translateY(${s.y}%) translateZ(${s.z}px) rotateX(${Math.max(-40,Math.min(40,s.rx))}deg) rotateY(${Math.max(-40,Math.min(40,s.ry))}deg)`;l.style.backgroundPosition=`${50+dx*.03}% ${50+dy*.03}%`})})();
+
+/* ---------- contact drawer ---------- */
+$('#cf-scope').innerHTML=['Not sure yet',...SV.map(s=>s.name)].map(x=>`<option>${esc(x)}</option>`).join('');
+const dw=$('#dw');let dwFrom=null;
+const openDw=()=>{dwFrom=document.activeElement;dw.classList.add('open');dw.setAttribute('aria-hidden','false');PX.lenis&&PX.lenis.stop();setTimeout(()=>$('#cf-name').focus(),400)};
+const closeDw=()=>{dw.classList.remove('open');dw.setAttribute('aria-hidden','true');PX.lenis&&PX.lenis.start();dwFrom&&dwFrom.focus&&dwFrom.focus()};
+document.addEventListener('click',e=>{if(e.target.closest('[data-contact]'))openDw()});
+$('#dwX').addEventListener('click',closeDw);$('#dwBg').addEventListener('click',closeDw);
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(dw.classList.contains('open'))closeDw();else if(!$('#all').hidden)closeAll()});
+$('#dwF').addEventListener('submit',e=>{e.preventDefault();const n=$('#cf-name'),m=$('#cf-mail'),okN=n.value.trim().length>1,okM=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m.value.trim());n.setAttribute('aria-invalid',!okN);m.setAttribute('aria-invalid',!okM);const msg=$('#dwMsg');msg.hidden=false;
+  if(!okN||!okM){msg.textContent=!okN?'Add your name so the team knows who to reply to.':'Check the email address: it needs a name, an @ and a domain.';(okN?m:n).focus();return}
+  msg.textContent=`Thanks, ${n.value.trim().split(' ')[0]}. This concept page doesn't send enquiries yet. Email info@PillarConstruction.com or call 703.941.5891 to reach the estimating team.`});
+</script>
