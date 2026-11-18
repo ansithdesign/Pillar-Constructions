@@ -29,14 +29,14 @@ img{display:block;max-width:100%}
 /* 1 · orbit */
 .orbit{position:relative;height:100vh;overflow:hidden;background:radial-gradient(70% 60% at 50% 60%,#f6f7f7,var(--snow) 70%);cursor:grab}
 .o-stage{position:absolute;inset:0;perspective:1900px;perspective-origin:50% 42%}
-.ring{position:absolute;left:50%;top:54%;width:0;height:0;transform-style:preserve-3d}
+.ring{position:absolute;left:50%;top:58%;width:0;height:0;transform-style:preserve-3d}
 .oc{position:absolute;left:-150px;top:-200px;width:300px;height:400px;backface-visibility:hidden;-webkit-backface-visibility:hidden;cursor:pointer;border-radius:6px;overflow:hidden;box-shadow:0 40px 70px rgba(15,18,20,.22)}
 .oc img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .oc b{position:absolute;left:14px;right:14px;bottom:12px;color:#fff;font:600 14px/1.25 var(--f);text-shadow:0 2px 10px rgba(0,0,0,.5)}
 .o-head{position:absolute;left:40px;top:108px;z-index:3;pointer-events:none}
-.o-head h1{font:300 clamp(72px,9.6vw,184px)/.86 var(--f);letter-spacing:-.065em;margin:0}
+.o-head h1{font:300 clamp(56px,6.4vw,124px)/.88 var(--f);letter-spacing:-.065em;margin:0}
 .o-head h1 i{font-weight:200;color:var(--fjord)}
-.o-hud{position:absolute;left:40px;right:40px;bottom:36px;z-index:3;display:flex;justify-content:space-between;align-items:end;gap:20px;pointer-events:none}
+.o-hud{position:absolute;left:40px;right:40px;bottom:96px;z-index:3;display:flex;justify-content:space-between;align-items:end;gap:20px;pointer-events:none}
 .o-hud .now{font:500 12px/1.4 var(--f);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .o-hud .now b{display:block;font:400 30px/1.15 var(--f);letter-spacing:-.02em;text-transform:none;color:var(--ink);margin-top:6px;min-height:34px}
 .o-hud .dial{width:120px;height:120px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line2);position:relative}
@@ -142,7 +142,7 @@ const SIMG={drywall:'V16-018D',rainscreen:'V19-019R','eifs-stucco':'V16-047',res
 $('#services').innerHTML=`<p class="k-eyebrow">Services</p><h2 class="h2" style="margin-bottom:64px">Five trades, stacked.</h2>`+D.services.map((s,i)=>`<article class="scard" style="top:${96+i*26}px" data-loupe><div class="tx"><div><span class="no">${pad(i+1)} · ${D.projects.filter(p=>p.s===s.id).length} projects</span><h3>${esc(K.SVC[s.id])}</h3></div><p>${esc(s.short)}</p><ul>${s.scopes.slice(0,8).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="ph"><img src="${K.G(SIMG[s.id])}" alt="${esc(s.title)}" loading="lazy"></div></article>`).join('');
 const scards=$$('.scard');
 scards.forEach((c,i)=>{gsap.fromTo($('.ph img',c),{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:c,start:'top bottom',end:'bottom top',scrub:true}});
-  const nx=scards[i+1];if(nx)gsap.to(c,{scale:.92,filter:'brightness(.85)',ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top 20%',scrub:true}})});
+  const nx=scards[i+1];if(nx)gsap.to(c,{scale:.94,filter:'brightness(.92)',ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top 20%',scrub:true}})});
 
 /* ---------- velocity marquee with previews ---------- */
 const MQ=D.projects.filter(p=>p.img);

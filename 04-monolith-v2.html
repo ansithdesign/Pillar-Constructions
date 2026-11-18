@@ -34,10 +34,10 @@ img{display:block;max-width:100%}
 .fa,.fb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background-repeat:no-repeat;background-color:#1b1b1b}
 .fb{transform:rotateY(180deg)}
 .flip::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 30%,transparent 70%,rgba(255,255,255,.06));pointer-events:none;transform:translateZ(1px)}
-.lv-copy{position:absolute;left:40px;bottom:44px;z-index:3;color:#fff;pointer-events:none}
+.lv-copy{position:absolute;left:40px;bottom:96px;z-index:3;color:#fff;pointer-events:none}
 .lv-copy h1{font:300 clamp(80px,11vw,210px)/.84 var(--f);letter-spacing:-.065em;margin:0}
 .lv-copy p{margin:20px 0 0;max-width:40ch;font-size:17px;color:rgba(255,255,255,.78)}
-.lv-cap{position:absolute;right:40px;bottom:44px;z-index:3;color:#fff;text-align:right;display:grid;gap:14px;justify-items:end}
+.lv-cap{position:absolute;right:40px;bottom:96px;z-index:3;color:#fff;text-align:right;display:grid;gap:14px;justify-items:end}
 .lv-cap b{font:400 28px/1.15 var(--f);letter-spacing:-.02em;display:block;min-height:32px}
 .lv-cap span{font:500 12px/1.4 var(--f);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .lv-btns{display:flex;gap:8px}
@@ -156,7 +156,7 @@ $('#lvNext').addEventListener('click',()=>turn(1));$('#lvPrev').addEventListener
 let t0=performance.now();(function auto(t){requestAnimationFrame(auto);const k=Math.min(1,(t-t0)/6000);$('#lvp').style.transform=`scaleX(${k})`;if(k>=1&&!busy&&!$('#slats').matches(':hover'))turn(1)})(t0);
 
 /* ---------- spotlight grid ---------- */
-const SG=K.best(8,22);
+const SG=K.best(11,22);
 $('#sg').innerHTML=SG.map(p=>`<figure class="sp" data-lb="${p.id}" style="margin:0"><img class="bw" src="${K.G(p.img)}" alt="${esc(p.n)}" loading="lazy"><img class="co" src="${K.G(p.img)}" alt="" aria-hidden="true" loading="lazy"><figcaption>${esc(p.n)}<span>${esc(loc(p))}</span></figcaption></figure>`).join('');
 $$('.sp').forEach(s=>{
   s.addEventListener('pointermove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')});

@@ -115,6 +115,7 @@ K.index($('#ix'),{limit:12});
 /* ---------- trail hero + weighted wordmark ---------- */
 const TR=K.BEST.map(id=>`assets/img/p/${id}.jpg`);
 PX.trail($('#top'),TR,{w:250,gap:80,pool:16,life:1000});
+if(matchMedia('(hover: hover)').matches){const host=$('#top');let t0=null;const demo=t=>{if(t0===null)t0=t;const k=(t-t0)/2600;if(k>1)return;const r=host.getBoundingClientRect(),x=r.left+r.width*(.12+.76*k),y=r.top+r.height*(.42+.18*Math.sin(k*Math.PI*3));host.dispatchEvent(new PointerEvent('pointermove',{clientX:x,clientY:y,bubbles:true}));requestAnimationFrame(demo)};setTimeout(()=>requestAnimationFrame(demo),900)}
 let spawned=0;$('#top').addEventListener('pointermove',()=>{spawned++;$('#hc').textContent=String(Math.min(224,Math.floor(spawned/6))).padStart(3,'0')});
 gsap.to('#wm',{fontWeight:200,letterSpacing:'-0.04em',yPercent:-18,ease:'none',scrollTrigger:{trigger:'#top',start:'top top',end:'bottom top',scrub:true}});
 

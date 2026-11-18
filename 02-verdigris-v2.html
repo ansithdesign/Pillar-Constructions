@@ -43,11 +43,11 @@ img{display:block;max-width:100%}
 .cv-title{position:absolute;left:44px;top:50%;translate:0 -50%;z-index:5;pointer-events:none;mix-blend-mode:difference;color:#fff}
 .cv-title h1{font:300 clamp(72px,10.5vw,200px)/.84 var(--d);letter-spacing:-.06em;margin:0}
 .cv-title p{margin:24px 0 0;font:400 17px/1.5 var(--t);max-width:34ch}
-.cv-bar{position:absolute;left:50%;bottom:32px;translate:-50% 0;z-index:6;display:flex;align-items:center;gap:6px;padding:6px;border-radius:99px;background:rgba(7,16,13,.72);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--line)}
+.cv-bar{position:absolute;left:50%;top:84px;translate:-50% 0;z-index:6;display:flex;align-items:center;gap:6px;padding:6px;border-radius:99px;background:rgba(7,16,13,.72);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--line)}
 .cv-bar button{font:500 13px/1 var(--t);color:var(--mute);background:none;border:0;padding:11px 15px;border-radius:99px;cursor:pointer;transition:.3s}
 .cv-bar button[aria-pressed="true"]{background:var(--cream);color:var(--bg)}
 .cv-bar sup{font-size:9px;margin-left:4px}
-.cv-hud{position:absolute;right:44px;bottom:42px;z-index:6;font:500 11px/1.5 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:right;pointer-events:none}
+.cv-hud{position:absolute;right:44px;bottom:96px;z-index:6;font:500 11px/1.5 var(--t);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-align:right;pointer-events:none}
 .cv-hud b{display:block;font:300 34px/1 var(--d);letter-spacing:-.03em;color:var(--cream);text-transform:none;font-variant-numeric:tabular-nums}
 .cv-vig{position:absolute;inset:0;pointer-events:none;z-index:4;background:radial-gradient(90% 80% at 50% 50%,transparent 45%,rgba(7,16,13,.9))}
 
@@ -61,7 +61,8 @@ img{display:block;max-width:100%}
 
 /* 3 · service rooms */
 .rooms{position:relative}
-.room{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
+.room{position:sticky;top:0;height:100vh;overflow:hidden;background:transparent}
+.room:first-child{background:var(--bg)}
 .room .bgi{position:absolute;inset:0}
 .room .bgi img{width:100%;height:100%;object-fit:cover}
 .room::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,13,.88),rgba(7,16,13,.25) 60%,rgba(7,16,13,.55));pointer-events:none}
@@ -171,7 +172,7 @@ $('#services').innerHTML=D.services.map((s,i)=>{const ps=D.projects.filter(p=>p.
 $$('.room').forEach((r,i)=>{
   gsap.fromTo($('.bgi',r),{clipPath:'inset(18% 26% 18% 26% round 18px)',scale:1.25},{clipPath:'inset(0% 0% 0% 0% round 0px)',scale:1,ease:'none',scrollTrigger:{trigger:r,start:'top bottom',end:'top top',scrub:true}});
   gsap.from($$('.r-in > *',r),{y:60,opacity:.2,stagger:.06,ease:'none',scrollTrigger:{trigger:r,start:'top 70%',end:'top 10%',scrub:true}});
-  const nx=$$('.room')[i+1]; if(nx) gsap.to(r,{scale:.9,filter:'brightness(.4)',ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:true}});
+  const nx=$$('.room')[i+1]; if(nx) gsap.to(r,{scale:.92,filter:'brightness(.55)',ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:true}});
 });
 </script>
 </body>
