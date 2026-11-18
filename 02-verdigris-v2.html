@@ -27,7 +27,7 @@ img{display:block;max-width:100%}
 
 /* 1 · endless canvas */
 .canvas{position:relative;height:100vh;overflow:hidden;cursor:grab;background:radial-gradient(120% 90% at 50% 50%,#0f1d18,var(--bg) 70%)}
-.cv-layer{position:absolute;inset:0}
+.cv-layer{position:absolute;inset:0;z-index:0}
 .tile{position:absolute;left:0;top:0;width:280px;height:360px;will-change:transform;cursor:pointer}
 .tile .in{position:absolute;inset:0;overflow:hidden;border-radius:3px;background:var(--bg3);transition:opacity .6s,filter .6s,border-radius .5s}
 .tile.w .in{inset:60px 0}
