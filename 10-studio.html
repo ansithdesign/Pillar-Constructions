@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,400&family=Libre+Bodoni:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<style>
+/* Layout: white catalogue pages framed by two black ends; the wordmark is the interface. */
+:root{
+  --ink:#0d0d0d; --white:#fff; --soft:#f3f4f5; --mute:#7c7c7c; --line:rgba(13,13,13,.1);
+  --sans:"Mona Sans","Helvetica Neue",Arial,sans-serif; --serif:"Libre Bodoni",Didot,Georgia,serif;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --px-lb-bg:#0d0d0d; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-lb-weight:600; --px-sw-bg:rgba(13,13,13,.88);
+}
+body{background:var(--white);color:var(--ink);font:400 14px/1.5 var(--sans)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.up{text-transform:uppercase;font-weight:600;letter-spacing:-.02em;line-height:1}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);border-radius:99px;padding:4px 12px 4px 4px;font-size:11px;font-weight:500}
+.chip i{width:18px;height:18px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font-style:normal;color:#fff;font-size:9px}
+.chip.dk{background:var(--ink);color:#fff}.chip.dk i{background:#fff;color:var(--ink)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500}
+.tag::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--ink)}
+
+/* nav */
+.nv{position:fixed;inset:0 0 auto;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-top:12px;padding-bottom:12px;color:#fff;mix-blend-mode:difference;font-size:11px;font-weight:500}
+.nv b{font-weight:800;font-size:16px;letter-spacing:-.04em}
+.nv nav{display:flex;gap:4px}
+.nv nav a{padding:2px 6px}
+.nv .r{justify-self:end}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:720px;overflow:hidden;color:#fff;background:#111}
+.hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(0,0,0,.25))}
+.hero .t{position:absolute;left:var(--gut);top:38%;z-index:2;max-width:34ch;font-size:16px;line-height:1.25;font-weight:500}
+.hero .t .chip{margin-top:16px}
+.wm{position:absolute;left:var(--gut);right:var(--gut);bottom:-2.2vw;z-index:2;display:flex;align-items:baseline;gap:.12em;white-space:nowrap;cursor:default;user-select:none}
+.wm .a{font:800 17.6vw/1 var(--sans);letter-spacing:-.06em;display:flex}
+.wm .a span{display:inline-block;font-variation-settings:"wght" 800,"wdth" 100;transition:font-variation-settings .35s}
+.wm .b{font:italic 400 16.8vw/1 var(--serif);letter-spacing:-.05em;display:inline-block;transition:transform .8s var(--px-ease)}
+.wm:hover .b{transform:skewX(-6deg) translateX(-.04em)}
+
+/* about */
+.about{padding-block:100px 0}
+.about .t{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:24px}
+.about h2{font-size:clamp(36px,3.4vw,56px);line-height:.95}
+.about p{font-size:13px;color:#444;max-width:50ch;margin:0;justify-self:end}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:90px}
+.stats div{border-left:1px solid var(--line);padding:0 16px 30px}
+.stats b{display:block;font-size:clamp(36px,3vw,48px);font-weight:500;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stats .cap{display:block;margin-top:36px;font-size:12px;color:#555;max-width:26ch}
+
+/* slider */
+.slider{position:relative;height:100vh;min-height:680px;margin-top:100px;overflow:hidden;color:#fff;background:#111}
+.sl{position:absolute;inset:0;clip-path:inset(0 0 0 100%);transition:clip-path 1.3s var(--px-ease-io)}
+.sl.on{clip-path:inset(0 0 0 0);z-index:2}.sl.out{clip-path:inset(0 100% 0 0);z-index:1}
+.sl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 2.6s var(--px-ease)}
+.sl.on img{transform:scale(1)}
+.sl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,.05) 60%)}
+.sl .tx{position:absolute;left:var(--gut);top:24%;z-index:2;max-width:560px}
+.sl h3{font-size:clamp(40px,4vw,64px);line-height:1;font-weight:500;letter-spacing:-.035em}
+.sl dl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:40px 0 30px;border-top:1px solid rgba(255,255,255,.4);padding-top:10px}
+.sl dt{font-size:10px;opacity:.75;order:2}.sl dd{margin:0;font-size:14px;font-weight:500}
+.sl dl div{display:flex;flex-direction:column;gap:2px}
+.slider .meta{position:absolute;right:var(--gut);top:24%;z-index:3;font-size:11px;text-align:right}
+.slider .arr{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);z-index:3;display:flex;gap:24px}
+.slider .arr button{font-size:26px;color:#fff;transition:transform .4s var(--px-ease)}
+.slider .arr button:hover{transform:scale(1.2)}
+.slider .bar{position:absolute;left:var(--gut);right:var(--gut);bottom:60px;z-index:3;height:1px;background:rgba(255,255,255,.3)}
+.slider .bar i{display:block;height:100%;background:#fff;width:0}
+
+/* services */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-block:120px}
+.svc h2{font-size:clamp(36px,3.4vw,56px);line-height:.95;margin:24px 0 28px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:50px}
+.cd{background:var(--soft);border-radius:8px;padding:12px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;cursor:default;transition:background .45s,color .45s}
+.cd:hover{background:var(--ink);color:#fff}
+.cd .n{width:24px;height:24px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-size:9px;opacity:.6}
+.cd h3{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.cd p{font-size:11px;opacity:.6;margin:4px 0 0;max-width:30ch}
+.svc .big{border-radius:8px;overflow:hidden;position:relative;min-height:560px}
+.svc .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s}
+
+/* stories */
+.st{padding-block:40px 120px}
+.st .hd2{display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:40px;gap:20px}
+.st h2{font-size:clamp(36px,3.4vw,56px);line-height:.95;margin-top:16px}
+.st .hd2 p{font-size:12px;color:#444;max-width:50ch;margin:16px 0 0}
+.sc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sv{position:relative;aspect-ratio:1/1.08;border-radius:8px;overflow:hidden;color:#fff;text-align:left;cursor:zoom-in}
+.sv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--px-ease)}
+.sv:hover img{transform:scale(1.06)}
+.sv::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent 50%)}
+.sv .c{position:absolute;left:10px;top:10px;z-index:2;font-size:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);border-radius:99px;padding:4px 10px}
+.sv .bt{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.sv small{font-size:10px;opacity:.8}.sv h3{font-size:19px;font-weight:500;line-height:1.1;margin-top:4px;max-width:16ch}
+.sv .go{width:38px;height:38px;border-radius:50%;background:#111;display:grid;place-items:center;flex:none;transition:transform .5s var(--px-ease)}
+.sv:hover .go{transform:rotate(45deg)}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding-block:40px 120px}
+.faq h2{font-size:clamp(36px,3.4vw,56px);line-height:.95;margin:16px 0 20px}
+.faq .l p{font-size:12px;color:#444;max-width:38ch}
+.q{background:var(--soft);border-radius:6px;margin-bottom:6px}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px;font-size:12px;font-weight:500;text-align:left}
+.q button i{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;transition:transform .4s var(--px-ease)}
+.q.open button i{transform:rotate(45deg)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--px-ease)}
+.q.open .a{grid-template-rows:1fr}
+.q .a>div{overflow:hidden}.q .a p{margin:0 12px 12px;padding:12px;background:#fff;border-radius:4px;font-size:11px;color:#444}
+
+/* cta */
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-block:40px 120px}
+.cta h2{font-size:clamp(36px,3.4vw,56px);line-height:.95;margin-bottom:20px}
+.cta p{font-size:12px;color:#444;max-width:46ch;margin:0 0 20px}
+.cta .l{display:flex;flex-direction:column;justify-content:space-between}
+.avs{display:flex;margin-top:12px}
+.avs span{width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid #fff;margin-left:-12px;transition:transform .4s var(--px-ease),margin .4s var(--px-ease)}
+.avs span:first-child{margin-left:0}
+.avs:hover span{margin-left:-4px}
+.avs span:hover{transform:translateY(-6px)}
+.avs img{width:100%;height:100%;object-fit:cover}
+.cta .big{border-radius:8px;overflow:hidden;aspect-ratio:1;position:relative}
+.cta .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* footer */
+.ft{background:#000;color:#fff;padding-top:90px;overflow:hidden}
+.ft .g{display:grid;grid-template-columns:1.3fr 1fr 1fr .6fr;gap:30px}
+.ft h2{font-size:clamp(34px,3vw,48px);font-weight:500;line-height:1}
+.ft h2 em{font-family:var(--serif);font-weight:400}
+.ft p{font-size:11px;opacity:.7;margin:14px 0 22px}
+.ft form{display:flex;gap:8px;align-items:center}
+.ft input{flex:1;max-width:240px;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:9px 14px;color:#fff;font:inherit;font-size:12px;outline:none}
+.ft input:focus{border-color:#fff}
+.ft small{display:block;font-size:10px;opacity:.5;margin-bottom:10px}
+.ft .col a,.ft .col span{display:block;font-size:12px;line-height:1.7}
+.ft .msg{font-size:11px;opacity:.75}
+.ft .wm2{display:flex;align-items:baseline;gap:.12em;white-space:nowrap;margin-top:60px;margin-bottom:-2.4vw}
+.ft .wm2 .a{font:800 17.6vw/1 var(--sans);letter-spacing:-.06em}
+.ft .wm2 .b{font:italic 400 16.8vw/1 var(--serif);letter-spacing:-.05em}
+</style>
+</head>
+<body>
+<header class="nv wrap"><b>pillar</b><nav aria-label="Main"><a href="#top">Home,</a><a href="#about">About Us,</a><a href="#projects">Projects,</a><a href="#stories">Stories,</a></nav><a class="r" href="#contact">Contact Us</a></header>
+
+<main id="top">
+  <section class="hero">
+    <div class="bg"><img id="hbg" data-g="assets/img/p/V13-007D.jpg" data-eager alt="Timber-ceilinged lobby"></div>
+    <div class="t" data-r="up">Finishing buildings that balance clarity, comfort, and durability, transforming everyday structures into considered places.<br><a class="chip" href="#contact" data-mag="6"><i>→</i>Get In Touch</a></div>
+    <h1 class="wm" id="wm" aria-label="pillar finish"><span class="a" id="wa"></span><span class="b">finish</span></h1>
+  </section>
+
+  <section class="about wrap" id="about">
+    <span class="tag">About Us</span>
+    <div class="t"><h2 class="up" data-split="lines">Shaping refined buildings through considered craft</h2><p data-r="up">Through a thoughtful and collaborative process, we translate design intent into walls and envelopes that respond to both the building and the people who use it, delivering work that is calm, enduring, and carefully composed.</p></div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="slider" id="projects" aria-label="Featured projects" data-lb-group>
+    <div class="meta" id="smeta"></div>
+    <div class="arr"><button type="button" id="sp" aria-label="Previous project">←</button><button type="button" id="sn" aria-label="Next project">→</button></div>
+    <div class="bar"><i id="sbar"></i></div>
+  </section>
+
+  <section class="svc wrap" id="services">
+    <div>
+      <span class="tag">Our Services</span>
+      <h2 class="up" data-split="lines">Specialty services for refined buildings</h2>
+      <a class="chip dk" href="#contact"><i>→</i>More About Us</a>
+      <div class="cards" id="cards"></div>
+    </div>
+    <div class="big" id="sbig"></div>
+  </section>
+
+  <section class="st wrap" id="stories">
+    <div class="hd2"><div><span class="tag">Selected Stories</span><h2 class="up" data-split="lines">Building stories &amp;<br>field journal</h2><p>Projects and reflections on construction, materials, and the relationship between a building and everyday life.</p></div><a class="chip dk" href="#projects"><i>→</i>See All Projects</a></div>
+    <div class="sc" id="sc" data-lb-group></div>
+  </section>
+
+  <section class="faq wrap">
+    <div class="l"><span class="tag">FAQ's</span><h2 class="up" data-split="lines">Your questions, answered</h2><p>Helpful information to guide you through our services and approach.</p><a class="chip dk" href="#contact"><i>→</i>Learn About Our Process</a></div>
+    <div id="qs"></div>
+  </section>
+
+  <section class="cta wrap" id="contact">
+    <div class="l"><div><h2 class="up" data-split="lines">Start a thoughtful build process</h2><p>Let's work together on a building that reflects your vision, guided by a process focused on detail, balance, and long-term performance.</p><a class="chip dk" href="#foot"><i>→</i>Get In Touch With Us</a></div>
+      <div><p style="margin:0">Partnering with owners and builders since 1995</p><div class="avs" id="avs"></div></div></div>
+    <div class="big"><img data-g="assets/img/p/V16-018D.jpg" data-par="8" alt="Glass tower"></div>
+  </section>
+</main>
+
+<footer class="ft wrap" id="foot">
+  <div class="g">
+    <div><h2>Begin Your<br><em>Build</em> Journey</h2><p>Get in touch to discuss your project and how our approach can bring it to life.</p>
+      <form id="ff" novalidate><label class="px-sr" for="fe">Email</label><input id="fe" type="email" placeholder="you@company.com" autocomplete="email"><button class="chip" type="submit"><i>→</i>Submit</button></form><p class="msg" id="fmsg" hidden></p></div>
+    <div class="col"><small>Pages</small><a href="#top">Home</a><a href="#about">About Us</a><a href="#projects">Projects</a><a href="#stories">Stories</a><a href="#contact">Contact</a></div>
+    <div class="col"><small>Offices</small><span id="foff"></span></div>
+    <div class="col"><small>Direct</small><span id="fem"></span><span id="fph"></span></div>
+  </div>
+  <div class="wm2" aria-hidden="true"><span class="a">pillar</span><span class="b">finish</span></div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script>
+PX.init({id:'10',cursor:true,look:{ev:-.05,contrast:.34,sat:.9,blue:.32,warm:.26,gain:[1.02,1,.955],hi:[.03,.02,0],hiAmt:.5,sh:[0,0,.02],shAmt:.3,vig:.22,grain:.02,css:'contrast(1.12) saturate(.92) sepia(.1)'},looks:{av:{ev:.02,contrast:.2,sat:.7,warm:.15,grain:.01}}});
+document.documentElement.style.setProperty('--px-cursor-bg','#fff');document.documentElement.style.setProperty('--px-cursor-fg','#0d0d0d');
+const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
+const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+
+/* variable wordmark: letters swell in weight and width near the cursor */
+$('#wa').innerHTML=[...'pillar'].map(c=>`<span>${c}</span>`).join('');
+(()=>{const wm=$('#wm'),ls=$$('#wa span');let mx=-1e4,raf=0;
+ const upd=()=>{raf=0;ls.forEach(s=>{const r=s.getBoundingClientRect(),d=Math.hypot(mx-(r.left+r.width/2),(my-(r.top+r.height/2))*.5),k=Math.max(0,1-d/380);s.style.fontVariationSettings=`"wght" ${Math.round(800-560*k)},"wdth" ${Math.round(100+25*k)}`})};
+ let my=0;document.querySelector('.hero').addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(upd)});
+ document.querySelector('.hero').addEventListener('mouseleave',()=>{mx=-1e4;upd()});})();
+gsap.from('#wa span',{yPercent:100,opacity:0,stagger:.05,duration:1.2,ease:'expo.out',delay:.2});
+gsap.from('.wm .b',{xPercent:20,opacity:0,duration:1.4,ease:'expo.out',delay:.5});
+gsap.to('#hbg',{yPercent:14,scale:1.06,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* stats */
+$('#stats').innerHTML=[[stats.years,'+','Years of experience delivering finish work with clarity and care.'],[stats.offices,'','Regional offices supporting precise execution across four markets.'],[stats.projects,'+','Projects shaped by careful planning and refined execution.'],[stats.honours,'','Industry honours earned through craft, safety and consistent quality.']].map(s=>`<div data-r="up"><b><span data-count="${s[0]}">0</span> ${s[1]}</b><span class="cap">${s[2]}</span></div>`).join('');
+
+/* slider */
+const SL=pick(['V17-004D','The_Wharf_1','V18-002R','V16-022','V17-030R','EP_003']);let si=0,st;
+$('#projects').insertAdjacentHTML('afterbegin',SL.map((p,i)=>`<div class="sl ${i?'':'on'}" data-lb="${p.id}" data-cursor="Open">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}<div class="tx"><h3>${esc(p.n)}</h3><dl><div><dd>${esc(loc(p))}</dd><dt>Location</dt></div><div><dd>${svcShort[p.s]}</dd><dt>Scope</dt></div><div><dd>${esc((p.g||'—').replace(/,? (Inc|LLC|L\.L\.C)\.?/,''))}</dd><dt>Builder</dt></div></dl><span class="chip"><i>→</i>See Project</span></div></div>`).join(''));
+function go(d){const s=$$('.sl');s.forEach(x=>x.classList.remove('out'));if(d){s[si].classList.remove('on');s[si].classList.add('out');si=(si+d+s.length)%s.length;s[si].classList.add('on')}
+ $('#smeta').innerHTML=`${esc(SV[SL[si].s].title)}<br>${PX.pad(si+1)} / ${PX.pad(SL.length)}`;
+ const b=$('#sbar');b.getAnimations().forEach(a=>a.cancel());b.animate([{width:'0%'},{width:'100%'}],{duration:6500,easing:'linear',fill:'forwards'});clearTimeout(st);st=setTimeout(()=>go(1),6500)}
+$('#sp').onclick=e=>{e.stopPropagation();go(-1)};$('#sn').onclick=e=>{e.stopPropagation();go(1)};go(0);
+
+/* services: hovering a card swaps the big image */
+const SVS=D.services.slice(0,4);
+$('#cards').innerHTML=SVS.map((s,i)=>`<div class="cd" data-i="${i}" data-r="up"><span class="n">0${i+1}</span><div><h3>${esc(s.title.split(' / ')[0])}</h3><p>${esc(s.scopes.slice(0,3).join(', '))}.</p></div></div>`).join('');
+$('#sbig').innerHTML=SVS.map((s,i)=>I(img(s.hero,'h'),1400,s.title).replace('<img',`<img style="opacity:${i?0:1}"`)).join('');
+$$('.cd').forEach(c=>c.addEventListener('mouseenter',()=>$$('#sbig img').forEach((m,j)=>m.style.opacity=j===+c.dataset.i?1:0)));
+
+/* stories */
+const ST=pick(['V16-046D','V12-055D','V13-007D']);
+$('#sc').innerHTML=ST.map(p=>`<button class="sv" data-lb="${p.id}" data-r="up">${I(img(p.img),900,p.n)}<span class="c">${svcShort[p.s]}</span><div class="bt"><div><small>${esc(loc(p))}</small><h3>${esc(p.n)}</h3></div><span class="go">↗</span></div></button>`).join('');
+
+/* faq */
+const Q=[['What services do you offer?','Drywall, rainscreen systems, exterior finishes (EIFS and stucco), restoration and general contracting, and the factory-built Pillar Exterior Panel.'],['How do I get started?','Send us drawings or a description of the project. Our estimating team will review the scope and come back with options and a proposal.'],['Do you work outside Virginia?','Yes. From offices in DC, Texas, Florida and New Jersey we work across most of the Mid-Atlantic, Northeast and Southern states.'],['What kinds of buildings do you work on?','Office buildings, high-rise residential, government buildings, hospitals, hotels, schools, data centers and more.'],['How long does an exterior take with the Pillar EP?','In most cases a floor is weathertight within two weeks of removing the concrete formwork.']];
+$('#qs').innerHTML=Q.map((q,i)=>`<div class="q ${i?'':'open'}"><button type="button" aria-expanded="${!i}">${q[0]}<i>+</i></button><div class="a"><div><p>${q[1]}</p></div></div></div>`).join('');
+$$('.q button').forEach(b=>b.onclick=()=>{const o=b.parentElement.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+
+/* avatars from the leadership team */
+$('#avs').innerHTML=D.team.slice(0,7).map(t=>`<span title="${esc(t.n)}">${I('assets/img/t/'+t.img+'.jpg',120,t.n,'av')}</span>`).join('');
+
+PX.form($('#ff'),$('#fmsg'));
+$('#foff').innerHTML=D.offices.map(o=>esc(o.c)).join('<br>');$('#fem').textContent=D.company.email;$('#fph').textContent=D.company.phone;
+PX.parallax();
+</script>
+</body>
+</html>
