@@ -177,7 +177,9 @@
     host.addEventListener('pointerover', (e) => { const s = e.target.closest('.sb'); if (s) $('.sl-t', host).textContent = s.dataset.n; });
     let p = 0, cp = 0, ry = 0;
     ScrollTrigger.create({ trigger: host, start: 'top top', end: '+=220%', pin: true, scrub: true, onUpdate: (s) => (p = s.progress) });
-    loop(() => { cp += (p - cp) * .07; ry += ((ptr.x / innerWidth - .5) * 40 - ry) * .05; $('.sl-cam', host).style.transform = `translateZ(${-400 + cp * 1900}px) rotateX(-6deg) rotateY(${ry}deg)`; }, host);
+    const sbs = $$('.sb', host);
+    loop(() => { cp += (p - cp) * .07; ry += ((ptr.x / innerWidth - .5) * 40 - ry) * .05; const cz = -500 + cp * 1500; $('.sl-cam', host).style.transform = `translateZ(${cz}px) rotateX(-6deg) rotateY(${ry}deg)`;
+      sbs.forEach((el, i) => { const vz = pos[i].z + cz, o = vz > 250 ? Math.max(0, 1 - (vz - 250) / 260) : 1; el.style.opacity = o.toFixed(3); el.style.visibility = o < .02 ? 'hidden' : 'visible'; el.style.pointerEvents = o > .5 ? 'auto' : 'none'; }); }, host);
   }
 
   /* ---------- book: a portfolio whose pages turn with scroll or drag ---------- */
