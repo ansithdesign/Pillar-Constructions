@@ -58,16 +58,21 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 .nums div{border-top:1px solid var(--ink);padding-top:12px}
 .nums b{display:block;font-size:clamp(46px,4vw,64px);font-weight:400;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
 .col2{display:grid;gap:12px;align-content:start}
-.col2 .ph{overflow:hidden}.col2 .ph img{width:100%;height:100%;object-fit:cover}
+.col2 .ph{overflow:hidden;position:relative}.col2 .ph img{width:100%;height:100%;object-fit:cover}
 .col2 .a{aspect-ratio:16/10}.col2 .b{aspect-ratio:16/9;width:80%;justify-self:end}
 
 /* statement over facade */
-.facade{position:relative;height:220vh}
+.facade{position:relative;height:320vh}
 .facade .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
-.facade .bg{position:absolute;inset:0}.facade .bg img{width:100%;height:100%;object-fit:cover}
+.facade .bg,.facade .full{position:absolute;inset:0}.facade .bg img,.facade .full img{width:100%;height:100%;object-fit:cover;will-change:transform}
+/* the Pillar wave is the window: a mask that grows with the scroll until the facade is the whole screen */
+.facade .bg{--ms:26vw;-webkit-mask:var(--wave) center/var(--ms) auto no-repeat;mask:var(--wave) center/var(--ms) auto no-repeat}
+.facade .full{opacity:0}
+.facade{--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 22'%3E%3Cg fill='none' stroke='%23000' stroke-width='3.4' stroke-linejoin='round'%3E%3Cpath d='M2 6l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 6'/%3E%3Cpath d='M2 13l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 13'/%3E%3Cpath d='M2 20l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 20'/%3E%3C/g%3E%3C/svg%3E")}
+.facade .lbl{position:absolute;left:50%;top:calc(50% + 12vw);transform:translateX(-50%);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);z-index:2}
 .facade .mark{position:relative;z-index:2;width:clamp(120px,14vw,220px);color:#fff}
 .facade h2{position:absolute;left:var(--gut);bottom:6vh;z-index:3;color:#fff;font-size:clamp(46px,5.4vw,90px);line-height:1;max-width:16ch}
-.facade .wsh{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,20,30,.55),transparent 60%);z-index:1}
+.facade .wsh{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,20,30,.6),transparent 60%);z-index:1;opacity:0}
 
 /* awards */
 .awards{position:relative;padding:120px var(--gut) 100px var(--l)}
@@ -84,7 +89,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 .services h2{font-size:clamp(46px,4.4vw,72px)}
 .services .lead{font-size:11px;color:#555;max-width:44ch;margin:20px 0 40px}
 .services .ph{aspect-ratio:16/9;overflow:hidden;position:relative}
-.services .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s}
+.services .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .services .list{align-self:end;border-top:1px solid var(--line)}
 .sr{border-bottom:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:80px 1fr;cursor:default}
 .sr .n{font-size:10px;color:var(--mute)}
@@ -105,7 +110,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 
 /* article */
 .article{position:relative;padding:40px var(--gut) 120px var(--l)}
-.article .ph{aspect-ratio:21/8;overflow:hidden;margin-right:12vw}.article .ph img{width:100%;height:120%;object-fit:cover}
+.article .ph{aspect-ratio:21/8;overflow:hidden;margin-right:12vw;position:relative}.article .ph img{width:100%;height:100%;object-fit:cover}
 .article .t{margin-left:30%;max-width:460px;margin-top:40px}
 .article h3{font-size:clamp(26px,2.2vw,34px);line-height:1.08}
 .article p{font-size:11px;color:#555;margin:14px 0 22px}
@@ -116,7 +121,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 .mq .row{display:flex;white-space:nowrap;font-size:clamp(70px,7.4vw,124px);letter-spacing:-.05em;font-weight:500;will-change:transform}
 .mq .row span{padding-right:.4em}
 .mq .pt{position:absolute;left:50%;top:0;bottom:0;width:clamp(150px,13vw,210px);transform:translateX(-50%);overflow:hidden;z-index:2}
-.mq .pt img{width:100%;height:100%;object-fit:cover;transition:opacity .6s}
+.mq .pt img{width:100%;height:100%;object-fit:cover}
 .qrow{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding:30px var(--gut) 120px var(--l)}
 .qrow blockquote{margin:0;font-size:clamp(20px,1.7vw,26px);line-height:1.25;letter-spacing:-.02em;max-width:44ch;transition:opacity .4s}
 .qrow cite{display:block;font-style:normal;font-size:10px;color:var(--mute);margin-top:14px}
@@ -154,13 +159,13 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
       <p class="txt" data-r="up">Founded in 1995, Pillar is driven by a deep respect for craft and the rhythm of urban building. We focus on interiors and envelopes that enhance city landscapes, combining simplicity, functionality and a durable finish.</p>
       <p class="txt" data-r="up">Guided by <b>Raja Khoury</b> and <b>Mike Chalabi</b>, the team works closely with owners, developers and general contractors to shape the buildings people live and work in.</p>
       <div class="nums" id="nums"></div></div>
-    <div class="col2"><div class="ph a" data-r="clip"><img data-g="assets/img/p/V13-001D.jpg" data-gw="1000" alt=""></div><div class="ph b" data-r="clip"><img data-g="assets/img/p/V14-014.jpg" data-gw="800" alt=""></div></div>
+    <div class="col2"><div class="ph a" data-m="unveil drift" data-dir="left"><img data-g="assets/img/p/V13-001D.jpg" data-gw="1000" alt=""></div><div class="ph b" data-m="unveil drift" data-dir="right" data-delay=".15"><img data-g="assets/img/p/V14-014.jpg" data-gw="800" alt=""></div></div>
   </section>
 
   <section class="facade" aria-label="Statement">
     <div class="stage">
-      <div class="bg"><img id="fbg" data-g="assets/img/p/V16-022.jpg" alt=""></div><div class="wsh"></div>
-      <div class="mark" id="mark"></div>
+      <div class="bg" id="fmask"><img id="fbg" data-g="assets/img/p/V16-022.jpg" data-eager alt=""></div><div class="full" id="ffull"><img id="ffimg" data-g="assets/img/p/V16-022.jpg" data-eager alt=""></div><div class="wsh" id="fwsh"></div>
+      <span class="lbl" id="flbl">Keep scrolling</span>
       <h2 id="fh">Crafting buildings where natural light meets timeless, functional design.</h2>
     </div>
   </section>
@@ -186,7 +191,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
   </section>
 
   <section class="article" id="article">
-    <div class="ph" data-r="clip"><img data-g="assets/img/p/EP_003.jpg" data-par="10" alt="Waterfront Station clad with Pillar Exterior Panels"></div>
+    <div class="ph" data-m="unveil drift" data-dir="right" data-amt="10"><img data-g="assets/img/p/EP_003.jpg" alt="Waterfront Station clad with Pillar Exterior Panels"></div>
     <div class="t" data-r="up"><span class="plus" style="position:static">+</span><h3>Exploring the future of the building envelope</h3><p>Factory-built framing, sheathing and air-vapor barrier. Over 99% of waste handled off-site, floors weathertight in as little as two weeks, and 90% of slab-edge hours moved into the plant.</p><a id="br" target="_blank" rel="noopener">Read the brochure</a></div>
   </section>
 
@@ -197,7 +202,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 </main>
 
 <footer class="ft" id="foot">
-  <div class="ghost" aria-hidden="true">Pillar</div>
+  <div class="ghost" aria-hidden="true" data-m="chars" data-start="top bottom" data-end="bottom bottom">Pillar</div>
   <div class="g">
     <div><p>Sign up for project news and updates from the field.</p><form id="nf" novalidate><label class="px-sr" for="ne">Email</label><input id="ne" type="email" placeholder="Your email here" autocomplete="email"><small>By signing up you agree to receive occasional emails from Pillar. You can unsubscribe at any time.</small><p class="msg" id="nmsg" hidden></p></form></div>
     <div class="site"><span class="cap">/ Sitemap</span><a href="#top">Home Page</a><a href="#article">The Panel</a><a href="#about">About</a><a href="#awards">Awards</a><a href="#services">Services</a><a href="#partners">Partners</a><span id="fem" style="grid-column:1/-1;margin-top:18px;font-size:14px;color:#aaa"></span></div>
@@ -211,7 +216,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core.js"></script>
 <script>
-PX.init({id:'08',cursor:true,look:{ev:.02,contrast:.26,sat:.82,blue:-.04,gain:[.96,1,1.04],lift:[0,.012,.02],hi:[.02,.02,0],hiAmt:.35,sh:[-.03,.01,.04],shAmt:.6,grain:.02,vig:.12,css:'contrast(1.08) saturate(.9) hue-rotate(6deg)'},looks:{mono:{contrast:.3,mono:1,grain:.02}}});
+PX.init({id:'06',cursor:true,curtain:false,look:{ev:.02,contrast:.26,sat:.82,blue:-.04,gain:[.96,1,1.04],lift:[0,.012,.02],hi:[.02,.02,0],hiAmt:.35,sh:[-.03,.01,.04],shAmt:.6,grain:.02,vig:.12,css:'contrast(1.08) saturate(.9) hue-rotate(6deg)'},looks:{mono:{contrast:.3,mono:1,grain:.02}}});
 const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;
 gsap.registerPlugin(ScrollTrigger);
@@ -222,6 +227,10 @@ const HS=pick(['V16-051D','V17-004D','V16-022']);let hi=0,ht;
 $('#hero').insertAdjacentHTML('afterbegin',HS.map((p,i)=>`<div class="hs ${i?'':'on'}" data-lb="${p.id}">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}</div>`).join(''));
 function hs(i){hi=(i+HS.length)%HS.length;$$('.hs').forEach((s,j)=>s.classList.toggle('on',j===hi));$('#hc').textContent=PX.pad(hi+1);$('#ht').textContent=PX.pad(HS.length);$('#hnm').textContent=HS[hi].n;clearTimeout(ht);ht=setTimeout(()=>hs(hi+1),6000)}
 $('#hn').onclick=e=>{e.stopPropagation();hs(hi+1)};hs(0);
+/* on the way out the slideshow pushes in and the name spreads and lifts */
+const hT={trigger:'#hero',start:'top top',end:'bottom top',scrub:true};
+gsap.to('#hero .hs img',{yPercent:12,ease:'none',scrollTrigger:hT});
+gsap.to('#hero h1',{yPercent:-35,letterSpacing:'.01em',ease:'none',scrollTrigger:hT});
 
 /* intro: photos stack into a pile, then lift away */
 (()=>{const S=pick(['V16-022','V18-002R','V13-007D','V17-030R','V12-055D','V14-041']);const box=$('#intro');
@@ -239,32 +248,42 @@ $('#hn').onclick=e=>{e.stopPropagation();hs(hi+1)};hs(0);
 $('#nums').innerHTML=[[stats.years,'Years'],[stats.projects,'Projects'],[stats.honours,'Awards'],[new Set(D.projects.map(p=>p.g).filter(Boolean)).size,'Builders']].map(s=>`<div data-r="up"><b data-count="${s[0]}">0</b><span class="cap">${s[1]}</span></div>`).join('');
 
 /* facade: mark fades, statement rises */
-$('#mark').innerHTML=`<svg viewBox="0 0 36 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 6l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 6"/><path d="M2 13l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 13"/><path d="M2 20l5.3-4 5.3 4 5.4-4 5.3 4 5.3-4L34 20"/></svg>`;
-gsap.timeline({scrollTrigger:{trigger:'.facade',start:'top top',end:'bottom bottom',scrub:true}})
- .fromTo('#fbg',{scale:1.15},{scale:1,ease:'none'},0).to('#mark',{opacity:0,scale:.7,duration:.3},.15).fromTo('#fh',{yPercent:120,opacity:0},{yPercent:0,opacity:1,duration:.5},.3);
+gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.facade',start:'top top',end:'bottom bottom',scrub:.4}})
+ .fromTo('#fmask',{'--ms':'26vw'},{'--ms':'720vw',duration:.6,ease:'power3.in'},0)
+ .fromTo('#fbg,#ffimg',{scale:1.35},{scale:1,duration:.75},0)
+ .to('#flbl',{opacity:0,duration:.1},.05)
+ .to('#ffull',{opacity:1,duration:.2},.42)
+ .to('#fwsh',{opacity:1,duration:.2},.6)
+ .fromTo('#fh',{yPercent:120,opacity:0},{yPercent:0,opacity:1,duration:.25},.62)
+ .to({},{duration:.13});
 
 /* awards with hover image */
 const AW=D.awards.flatMap(a=>a.items.map(it=>({y:a.y,t:it[0],d:it[1]}))),AIM=pick(['V16-022','V17-004D','V18-002R','V16-018D','EP_003','The_Wharf_1','V17-030R','V13-007D']);
-$('#arows').innerHTML=AW.map((a,i)=>`<div class="ar ${i>9?'x':''}" data-img="${img(AIM[i%AIM.length].img)}"><span>${esc(a.t)}</span><span>${esc(a.d)}</span><span>/ ${a.y}</span></div>`).join('');
+$('#arows').innerHTML=AW.map((a,i)=>`<div class="ar ${i>9?'x':''}" data-img="${img(AIM[i%AIM.length].img)}" data-r="up" style="--d:${(i%10)*.04}s"><span>${esc(a.t)}</span><span>${esc(a.d)}</span><span>/ ${a.y}</span></div>`).join('');
 PX.hoverPreview($$('.ar'),r=>r.dataset.img,{dx:120});
 $('#awm').onclick=()=>{const o=$('#awards').classList.toggle('all');$('#awm').textContent=o?'Show fewer':'Show all honours';ScrollTrigger.refresh()};
 
 /* services */
-$('#sph').innerHTML=D.services.map((s,i)=>I(img(s.hero,'h'),1200).replace('<img',`<img style="opacity:${i?0:1}"`)).join('');
+$('#sph').innerHTML=D.services.map(s=>I(img(s.hero,'h'),1200)).join('');const swP=PX.swapper($('#sph'));
 $('#slist').innerHTML=D.services.map((s,i)=>`<div class="sr ${i?'':'on'}" data-i="${i}"><span class="n">/ 0${i+1}</span><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p></div>`).join('');
-$$('.sr').forEach(r=>r.addEventListener('mouseenter',()=>{$$('.sr').forEach(x=>x.classList.toggle('on',x===r));$$('#sph img').forEach((m,j)=>m.style.opacity=j===+r.dataset.i?1:0)}));
+let sv=0;const pickR=i=>{if(i===sv)return;sv=i;$$('.sr').forEach((x,j)=>x.classList.toggle('on',j===i));swP(i)};
+$$('.sr').forEach(r=>r.addEventListener('mouseenter',()=>pickR(+r.dataset.i)));
+/* the scroll walks down the list; each service wipes its photograph over the last */
+ScrollTrigger.create({trigger:'#services',start:'top 45%',end:'bottom 75%',onUpdate:st=>pickR(Math.min(D.services.length-1,Math.floor(st.progress*D.services.length)))});
 
 /* partners */
-$('#logos').innerHTML=D.affiliations.map(a=>`<a class="lg" href="${a.url}" target="_blank" rel="noopener" data-tilt="8" title="${esc(a.n)}"><img src="assets/img/a/${a.img}.png" alt="${esc(a.n)}"></a>`).join('')+`<a class="lg you" href="#foot" data-tilt="8">Build with us →</a>`;
+$('#logos').innerHTML=D.affiliations.map((a,i)=>`<a class="lg" href="${a.url}" target="_blank" rel="noopener" data-tilt="8" title="${esc(a.n)}" data-r="scale" style="--d:${i*.06}s"><img src="assets/img/a/${a.img}.png" alt="${esc(a.n)}"></a>`).join('')+`<a class="lg you" href="#foot" data-tilt="8">Build with us →</a>`;
 
 $('#br').href=D.ep.brochure;
 
 /* marquee with leadership portraits and rotating quotes */
 $('#mrow').innerHTML=Array(6).fill('<span>Pillar Construction ~</span>').join('');
-(()=>{let x=0;const r=$('#mrow');const loop=()=>{x-=.6;const w=r.scrollWidth/2;if(-x>w)x+=w;r.style.transform=`translateX(${x}px)`;requestAnimationFrame(loop)};if(!PX.reduced)loop()})();
+/* the marquee runs with the scroll: faster when you move quickly, and backwards when you scroll up */
+(()=>{let x=0,dir=1,v=0;const r=$('#mrow');const loop=()=>{const lv=PX.lenis?PX.lenis.velocity||0:0;if(Math.abs(lv)>.5)dir=Math.sign(lv);v+=(Math.abs(lv)-v)*.1;
+ x-=(.6+v*.9)*dir;const w=r.scrollWidth/2;if(-x>w)x+=w;if(x>0)x-=w;r.style.transform=`translateX(${x}px)`;requestAnimationFrame(loop)};if(!PX.reduced)loop()})();
 const Q=[30,26,23,4].map(i=>D.testimonials[i]),QP=['Raja_Khoury','Mike_Chalabi','Bryan_Sandler','Marcelo_Supriano'];let qi=0;
-$('#mpt').innerHTML=QP.map((t,i)=>I('assets/img/t/'+t+'.jpg',400,'','mono').replace('<img',`<img style="position:absolute;inset:0;opacity:${i?0:1}"`)).join('');
-function sq(i){qi=(i+Q.length)%Q.length;const b=$('#qq');b.style.opacity=0;setTimeout(()=>{const t=Q[qi].q;b.textContent='“'+(t.length>240?t.slice(0,t.lastIndexOf(' ',230))+'…':t)+'”';$('#qc').textContent='— '+Q[qi].by+', '+Q[qi].role;b.style.opacity=1},300);$$('#mpt img').forEach((m,j)=>m.style.opacity=j===qi?1:0)}
+$('#mpt').innerHTML=QP.map(t=>I('assets/img/t/'+t+'.jpg',400,'','mono').replace('<img','<img style="position:absolute;inset:0"')).join('');const swQ=PX.swapper($('#mpt'));
+function sq(i){qi=(i+Q.length)%Q.length;const b=$('#qq');b.style.opacity=0;setTimeout(()=>{const t=Q[qi].q;b.textContent='“'+(t.length>240?t.slice(0,t.lastIndexOf(' ',230))+'…':t)+'”';$('#qc').textContent='— '+Q[qi].by+', '+Q[qi].role;b.style.opacity=1},300);swQ(qi)}
 $('#qp').onclick=()=>sq(qi-1);$('#qn').onclick=()=>sq(qi+1);sq(0);
 
 PX.form($('#nf'),$('#nmsg'));$('#fem').textContent=D.company.email+' · '+D.company.phone;$('#yr').textContent=new Date().getFullYear();

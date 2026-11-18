@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Pillar Oxblood</title>
+<title>Pillar Verdigris</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Funnel+Sans:wght@300..600&display=swap">
 <link rel="stylesheet" href="assets/core.css">
 <style>
-/* Layout: black room, everything lives in rounded slabs; oxblood marks the moments that matter. */
+/* Layout: black room, everything lives in rounded slabs; verdigris, the green of weathered copper, marks the moments that matter. */
 :root{
-  --ink:#050404; --slab:#141211; --slab-2:#1c1917; --ox:#4b0907; --ox-2:#5e0f0b; --cream:#e1e0cc; --mute:rgba(225,224,204,.5); --line:rgba(225,224,204,.12);
+  --ink:#040606; --slab:#0f1514; --slab-2:#151d1b; --ox:#0d2a24; --ox-2:#12352d; --cream:#e3e1d4; --mute:rgba(227,225,212,.52); --line:rgba(227,225,212,.12);
   --disp:"Almarai","Helvetica Neue",Arial,sans-serif; --text:"Funnel Sans",system-ui,sans-serif;
   --gut:max(12px,env(safe-area-inset-left,0px)); --r:18px;
-  --px-lb-bg:#0a0606; --px-lb-font:var(--text); --px-lb-display:var(--disp); --px-sw-bg:rgba(75,9,7,.88);
+  --px-lb-bg:#050b0a; --px-lb-font:var(--text); --px-lb-display:var(--disp); --px-sw-bg:rgba(13,42,36,.9);
 }
 body{background:var(--ink);color:var(--cream);font:400 15px/1.55 var(--text)}
 h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;letter-spacing:-.02em}
@@ -27,9 +27,9 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 
 /* hero */
 .hero{padding-top:12px}
-.hcard{position:relative;height:calc(100vh - 24px);min-height:680px;border-radius:var(--r);overflow:hidden;background:var(--ox)}
+.hcard{position:relative;height:calc(100vh - 24px);min-height:680px;border-radius:var(--r);overflow:hidden;background:var(--ox);transform-origin:50% 0;will-change:transform}
 .hcard .bg{position:absolute;inset:0}.hcard .bg img{width:100%;height:100%;object-fit:cover}
-.hcard::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(40,4,3,.85) 0%,rgba(40,4,3,.15) 50%,rgba(0,0,0,.25) 100%)}
+.hcard::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,22,18,.86) 0%,rgba(4,22,18,.15) 50%,rgba(0,0,0,.25) 100%)}
 .hcard .top{position:absolute;left:18px;right:18px;top:18px;display:flex;justify-content:space-between;z-index:3}
 .tag{background:var(--ink);color:var(--cream);border-radius:99px;padding:9px 14px;font:700 10px/1 var(--disp);letter-spacing:.08em}
 .menu{display:flex;gap:2px;background:var(--ink);border-radius:99px;padding:4px}
@@ -54,8 +54,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .works{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:60px 20px;padding-inline:clamp(12px,3vw,40px)}
 .wk{display:grid;gap:14px;text-align:left;cursor:pointer}
 .wk .ph{border-radius:10px;overflow:hidden;background:var(--slab)}
-.wk .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--px-ease)}
-.wk:hover .ph img{transform:scale(1.06)}
+.wk .ph img{width:100%;height:100%;object-fit:cover}
 .wk .row{display:flex;justify-content:space-between;align-items:start;gap:16px}
 .wk h3{font-size:20px}
 .wk small{display:block;margin-top:6px;font-size:10px;color:var(--mute);letter-spacing:.04em}
@@ -67,14 +66,20 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .w5{grid-column:1/5}.w5 .ph{aspect-ratio:1}
 .w6{grid-column:6/13;margin-top:80px}.w6 .ph{aspect-ratio:16/10}
 
-/* feature */
-.feat{padding-block:120px 12px}
-.fcard{position:relative;height:92vh;min-height:640px;border-radius:var(--r);overflow:hidden;display:grid;place-items:center;text-align:center}
-.fcard .bg{position:absolute;inset:-8% 0}.fcard .bg img{width:100%;height:100%;object-fit:cover}
-.fcard::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(0,0,0,.35),rgba(0,0,0,.65))}
-.fcard .in{position:relative;z-index:2}
-.fcard h2{font-size:clamp(56px,6.4vw,110px);line-height:.92;margin:18px 0 22px}
-.fcard p{margin:0 auto 28px;max-width:32ch;font-size:13px;color:rgba(225,224,204,.75)}
+/* feature: a 3x3 contact sheet of the portfolio; scrolling zooms into the centre frame until it is the room */
+.gz{position:relative;height:340vh;margin-top:120px}
+.gz .stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.gz .grid{position:absolute;left:50%;top:50%;display:grid;grid-template-columns:repeat(3,26vw);grid-template-rows:repeat(3,30vh);gap:1.4vw;transform:translate(-50%,-50%)}
+.gz .t{position:relative;overflow:hidden;border-radius:10px;background:var(--slab);cursor:zoom-in}
+.gz .t img{width:100%;height:100%;object-fit:cover}
+.gz .t span{position:absolute;left:12px;bottom:10px;font-size:10px;letter-spacing:.06em;color:rgba(225,224,204,.85);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.gz .t.c{border-radius:10px}
+.gz .shade{position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(2,12,10,.55),rgba(2,12,10,.8));opacity:0;pointer-events:none}
+.gz .in{position:absolute;inset:0;display:grid;place-content:center;text-align:center;justify-items:center;pointer-events:none}
+.gz .in>*{pointer-events:auto}
+.gz h2{font-size:clamp(56px,6.4vw,110px);line-height:.92;margin:18px 0 22px}
+.gz .in p{margin:0 auto 28px;max-width:32ch;font-size:13px;color:rgba(225,224,204,.8)}
+.gz .hint{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);font:500 9px/1 var(--text);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
 
 /* expertise */
 .exp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -87,7 +92,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .ecard li{display:flex;gap:10px;align-items:center}
 .ecard li::before{content:"";width:12px;height:12px;border-radius:3px;background:rgba(225,224,204,.16);flex:none;transition:background .4s}
 .ecard:hover li::before{background:var(--cream)}
-.ecard.img{padding:0;overflow:hidden;position:relative;grid-row:span 2;min-height:700px}
+.ecard.img{padding:0;overflow:hidden;position:relative;grid-row:span 2;min-height:700px;cursor:zoom-in}
 .ecard.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ecard.img .cap{position:absolute;left:24px;bottom:22px;z-index:2;font-size:15px}
 .egrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -100,8 +105,8 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .pcard .hd2 p{font-size:12px;color:var(--mute);max-width:42ch;justify-self:end;margin:0}
 .steps{display:grid;grid-template-columns:1.15fr 60px 1fr;gap:20px}
 .steps .stick{position:sticky;top:12vh;height:76vh;border-radius:12px;overflow:hidden}
-.steps .stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1s var(--px-ease),transform 1.6s var(--px-ease)}
-.steps .stick img.on{opacity:1;transform:scale(1)}
+.steps .stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.steps .stick .sn{position:absolute;left:16px;top:14px;z-index:99;font:500 10px/1 var(--text);letter-spacing:.2em;color:var(--cream);mix-blend-mode:difference}
 .steps .rail{position:relative;display:grid;justify-items:center}
 .steps .rail::before{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
 .steps .rail i{position:absolute;top:0;width:1px;background:var(--cream);height:var(--p,0%)}
@@ -116,7 +121,8 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .voices{padding-block:120px 0}
 .vgrid{display:grid;grid-template-columns:.75fr 1.5fr;gap:12px}
 .vph{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:3/4}
-.vph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s}
+.vph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vph .who{z-index:99}
 .vph .who{position:absolute;left:12px;right:12px;bottom:12px;border-radius:12px;background:rgba(20,18,17,.7);backdrop-filter:blur(14px);padding:16px}
 .vph .who b{display:block;font:400 18px/1.2 var(--disp)}
 .vph .who span{font-size:11px;color:var(--mute)}
@@ -153,7 +159,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 .ccard{border-radius:var(--r);background:var(--ox);padding:36px;min-height:460px;display:flex;flex-direction:column;justify-content:space-between}
 .ccard h2{font-size:clamp(40px,4vw,64px);line-height:1.02;margin-top:16px}
 .ccard p{font-size:12px;color:var(--mute);margin:0 0 18px;max-width:30ch}
-.cimg{border-radius:var(--r);overflow:hidden;position:relative}
+.cimg{border-radius:var(--r);overflow:hidden;position:relative;min-height:460px}
 .cimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .foot{margin-top:12px;border-radius:var(--r) var(--r) 0 0;background:var(--ox);padding:56px 36px 0;overflow:hidden}
 .foot .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:30px}
@@ -189,17 +195,19 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
     <div class="works" id="works" data-lb-group></div>
   </section>
 
-  <section class="feat wrap" aria-label="Featured project">
-    <div class="fcard">
-      <div class="bg"><img data-g="assets/img/p/EP_003.jpg" data-par="8" alt="Waterfront Station Residential"></div>
-      <div class="in"><div class="lab">Featured system<sup>©</sup></div><h2 data-split="lines">Envelopes<br>for the senses.</h2><p data-r="up">The Pillar Exterior Panel. Framing, sheathing and air-vapor barrier, assembled in the factory and weathertight within two weeks.</p><a class="pill" href="#ep" data-mag="10">Discover the panel <i>↗</i></a></div>
+  <section class="gz" aria-label="Featured system">
+    <div class="stage">
+      <div class="grid" id="gz" data-lb-group></div>
+      <div class="shade" id="gzs"></div>
+      <div class="in" id="gzi"><div class="lab">Featured system<sup>©</sup></div><h2>Envelopes<br>for the senses.</h2><p>The Pillar Exterior Panel. Framing, sheathing and air-vapor barrier, assembled in the factory and weathertight within two weeks.</p><a class="pill" href="#ep" data-mag="10">Discover the panel <i>↗</i></a></div>
+      <div class="hint" id="gzh">Scroll to step inside</div>
     </div>
   </section>
 
   <section class="wrap" id="expertise">
     <div class="sec-h" style="padding-inline:clamp(12px,3vw,40px)"><div><div class="lab">Our expertise<sup>©</sup></div><h2 data-split="lines">Considered finishes.<br>Thoughtful details.</h2></div><p data-r="up" style="justify-self:end">From metal framing to the final coat, we self-perform every scope so the building feels intentional, durable, and unmistakably finished.</p></div>
     <div class="exp">
-      <div class="ecard img" data-r="clip"><img data-g="assets/img/p/V13-007D.jpg" alt="Lobby interior"><span class="cap">Walls that move us.</span></div>
+      <div class="ecard img" data-m="unveil drift" data-cursor="View"><img data-g="assets/img/p/V13-007D.jpg" alt="Lobby interior"><span class="cap">Walls that move us.</span></div>
       <div class="egrid" id="egrid"></div>
     </div>
   </section>
@@ -233,7 +241,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
   <section class="wrap" id="contact">
     <div class="cta">
       <div class="ccard"><div><div class="lab">Let's talk<sup>©</sup></div><h2 data-split="lines">Let's build something extraordinary.</h2></div><div><p>Every meaningful building begins with a conversation.</p><a class="pill" href="#foot" data-mag="10">Start the project <i>↗</i></a></div></div>
-      <div class="cimg" data-r="clip"><img data-g="assets/img/p/V16-046D.jpg" alt=""></div>
+      <div class="cimg" data-m="unveil zoomout" data-dir="left"><img data-g="assets/img/p/V16-046D.jpg" alt=""></div>
     </div>
     <footer class="foot" id="foot">
       <div class="cols">
@@ -243,7 +251,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
         <div><div class="lab">Headquarters</div><ul><li>5649-S General Washington Drive<br>Alexandria, VA 22312</li><li id="hq"></li></ul></div>
       </div>
       <div class="bar"><span>© <span id="yr"></span> Pillar Construction, Inc.</span><span>Specialty contractor · Est. 1995</span><span>Interior &amp; exterior finishes</span></div>
-      <div class="big" aria-hidden="true">PILLAR</div>
+      <div class="big" aria-hidden="true" data-m="chars" data-start="top bottom" data-end="bottom bottom">PILLAR</div>
     </footer>
   </section>
 </main>
@@ -254,16 +262,19 @@ h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;text-wrap:balance;lett
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="assets/core.js"></script>
 <script>
-PX.init({id:'02',cursor:true,look:{ev:-.28,contrast:.32,gamma:[1,.95,.9],gain:[1.02,.9,.82],sat:.66,blue:.62,warm:.42,sh:[.07,-.01,-.02],shAmt:.65,hi:[.05,.02,-.025],hiAmt:.5,vig:.38,grain:.035,css:'sepia(.45) saturate(.8) brightness(.72) contrast(1.15) hue-rotate(-12deg)'}});
-document.documentElement.style.setProperty('--px-cursor-bg','#e1e0cc');document.documentElement.style.setProperty('--px-cursor-fg','#050404');
+PX.init({id:'02',cursor:true,look:{ev:-.24,contrast:.3,gamma:[.98,1,.99],gain:[.96,1,.97],sat:.6,blue:.45,warm:.06,sh:[-.02,.035,.025],shAmt:.6,hi:[.03,.03,.012],hiAmt:.45,vig:.36,grain:.035,css:'saturate(.65) brightness(.8) contrast(1.12) hue-rotate(-8deg)'}});
+document.documentElement.style.setProperty('--px-cursor-bg','#e3e1d4');document.documentElement.style.setProperty('--px-cursor-fg','#040606');
 const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;
 gsap.registerPlugin(ScrollTrigger);
 
-/* hero letters rise, then image drifts */
+/* hero letters rise; on scroll the card recedes into the room and the letters lift away at their own speeds */
 gsap.from('.hcard .word span',{yPercent:110,duration:1.4,ease:'expo.out',stagger:.06,delay:.2});
-gsap.to('#hbg',{yPercent:14,scale:1.08,ease:'none',scrollTrigger:{trigger:'.hcard',start:'top top',end:'bottom top',scrub:true}});
-gsap.to('.hcard .word',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hcard',start:'top top',end:'bottom top',scrub:true}});
+const hT={trigger:'.hero',start:'top top',end:'bottom top',scrub:true};
+gsap.to('#hbg',{yPercent:14,scale:1.12,ease:'none',scrollTrigger:hT});
+gsap.to('.hcard',{scale:.9,borderRadius:48,ease:'none',scrollTrigger:hT});
+$$('.hcard .word span').forEach((l,i)=>gsap.to(l,{yPercent:-[60,140,90,180,70,120][i],rotate:[-4,3,-2,5,-3,2][i],ease:'none',scrollTrigger:hT}));
+gsap.to('.hcard .mid',{yPercent:-60,opacity:0,ease:'none',scrollTrigger:{...hT,end:'50% top'}});
 
 /* statement lights up word by word */
 $('#lit').innerHTML=$('#lit').textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
@@ -271,29 +282,53 @@ gsap.to('#lit .w',{opacity:1,stagger:.06,ease:'none',scrollTrigger:{trigger:'#li
 
 /* works */
 const WK=pick(['V17-004D','V16-018D','The_Westerly_Waterfront_1','V18-012','V14-041','The_Wharf_1']);
-$('#works').innerHTML=WK.map((p,i)=>`<button class="wk w${i+1}" data-lb="${p.id}" data-cursor="View" data-r="up"><div class="ph" data-tilt="4">${I(img(p.img),1200,p.n)}</div><div class="row"><div><h3>${esc(p.n)}</h3><small>${svcShort[p.s]}  |  ${esc(p.c)}  |  ${esc(p.st)}</small></div><span class="circ">↗</span></div></button>`).join('');
+$('#works').innerHTML=WK.map((p,i)=>`<button class="wk w${i+1}" data-lb="${p.id}" data-cursor="View"><div class="ph" data-m="unveil drift" data-dir="${['up','left','up','right','up','left'][i]}" data-delay="${(i%2)*.12}">${I(img(p.img),1200,p.n)}</div><div class="row"><div><h3>${esc(p.n)}</h3><small>${svcShort[p.s]}  |  ${esc(p.c)}  |  ${esc(p.st)}</small></div><span class="circ">↗</span></div></button>`).join('');
+
+/* each work drifts at its own pace and leans with the scroll speed */
+$$('#works .wk').forEach((w,i)=>{w.dataset.skew=.6;gsap.fromTo(w,{y:[40,120,60,140,30,90][i]},{y:-[40,120,60,140,30,90][i],ease:'none',scrollTrigger:{trigger:w,start:'top bottom',end:'bottom top',scrub:true}})});
+
+/* grid zoom: nine projects; the centre frame (the Exterior Panel) grows until it fills the screen, then the story lands on it */
+const GZ=pick(['V13-007D','V16-022','The_Wharf_1','V18-005R','EP_003','V17-030R','V14-025D','V16-035D','V12-026']);
+$('#gz').innerHTML=GZ.map((p,i)=>`<button class="t ${i===4?'c':''}" data-lb="${p.id}" data-cursor="View">${I(img(p.img),i===4?0:700,p.n)}<span>${esc(p.n)}</span></button>`).join('');
+(()=>{const g=$('#gz'),c=g.children[4],others=[...g.children].filter((x,i)=>i!==4);gsap.set(g,{clearProps:'transform'});gsap.set(g,{xPercent:-50,yPercent:-50});
+ const S=()=>Math.max(innerWidth/c.offsetWidth,innerHeight/c.offsetHeight)*1.02;
+ gsap.set('#gzi',{opacity:0,y:40});
+ gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.gz',start:'top top',end:'bottom bottom',scrub:.4,invalidateOnRefresh:true}})
+  .fromTo(g,{scale:.82},{scale:1,duration:.15},0)
+  .to('#gzh',{opacity:0,duration:.1},.05)
+  .to(g,{scale:S,duration:.55,ease:'power2.in'},.15)
+  .to(others,{opacity:.25,duration:.4},.2)
+  .to(c,{borderRadius:0,duration:.3},.4)
+  .fromTo(c.querySelector('img'),{scale:1.25},{scale:1,duration:.6},.1)
+  .to(c.querySelector('span'),{opacity:0,duration:.1},.2)
+  .to('#gzs',{opacity:1,duration:.2},.62)
+  .to('#gzi',{opacity:1,y:0,duration:.2},.68)
+  .to({},{duration:.15});})();
 
 /* expertise cards: services with scope checklists */
-$('#egrid').innerHTML=D.services.slice(0,4).map(s=>`<article class="ecard" data-r="up"><div><div class="ic">${I(img(s.hero,'h'),200)}</div><h3>${esc(s.title.split(' / ')[0])}.</h3></div><ul>${s.scopes.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
+$('#egrid').innerHTML=D.services.slice(0,4).map((s,i)=>`<article class="ecard" data-r="up" style="--d:${i*.08}s"><div><div class="ic">${I(img(s.hero,'h'),200)}</div><h3>${esc(s.title.split(' / ')[0])}.</h3></div><ul>${s.scopes.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('');
+
+$('.ecard.img').dataset.lb=PX.byImg['V13-007D'].id;
 
 /* process: sticky image swaps with active step */
 const STEPS=[['Partnering early','We get involved in the early design stages, alongside architects, owners and general contractors.','V13-030D'],
  ['Value engineering','We offer value engineering options to achieve the best results at a competitive price.','V16-022'],
  ['Planning the work','Estimators and project managers develop a plan, a sequence and a schedule the field can trust.','V17-012R'],
  ['Executing safely','Our crews deliver quality work safely, on time and under budget, from the slab edge to the punch list.','V18-043R']];
-$('#stick').innerHTML=STEPS.map((s,i)=>`<img data-g="${img(s[2])}" data-eager class="${i?'':'on'}" alt="">`).join('');
+$('#stick').innerHTML=STEPS.map((s,i)=>`<img data-g="${img(s[2])}" data-eager alt="">`).join('')+'<span class="sn" id="snum">01 / 04</span>';
+const swS=PX.swapper($('#stick'));
 $('#slist').innerHTML=STEPS.map((s,i)=>`<div class="st ${i?'':'on'}"><span class="n">0${i+1}</span><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
-$$('.st').forEach((el,i)=>ScrollTrigger.create({trigger:el,start:'top 55%',end:'bottom 55%',onToggle:s=>{if(!s.isActive)return;$$('.st').forEach((x,j)=>x.classList.toggle('on',j===i));$$('#stick img').forEach((x,j)=>x.classList.toggle('on',j===i))}}));
+$$('.st').forEach((el,i)=>ScrollTrigger.create({trigger:el,start:'top 55%',end:'bottom 55%',onToggle:s=>{if(!s.isActive)return;$$('.st').forEach((x,j)=>x.classList.toggle('on',j===i));swS(i);$('#snum').textContent=`0${i+1} / 0${STEPS.length}`}}));
 ScrollTrigger.create({trigger:'#steps',start:'top 50%',end:'bottom 70%',onUpdate:s=>$('#rail').style.setProperty('--p',(s.progress*100)+'%')});
 gsap.set('#rail',{height:'var(--p)'});
 
 /* voices: tabs with auto-advance progress */
 const V=[1,4,26,30].map(i=>D.testimonials[i]);const VP=pick(['V14-025D','V16-035D','V18-020','VA_Hostpital_Fredericksburg_1']);let vi=0,vt;
-$('#vph').insertAdjacentHTML('afterbegin',VP.map((p,i)=>I(img(p.img),900).replace('<img',`<img style="opacity:${i?0:1}"`)).join(''));
+$('#vph').insertAdjacentHTML('afterbegin',VP.map((p,i)=>I(img(p.img),900)).join(''));const swV=PX.swapper($('#vph'));
 $('#tabs').innerHTML=V.map((v,i)=>`<button type="button"><span class="av">${I(img(VP[i].img),120)}</span><span><b>${esc(v.by)}</b><small>${esc(v.role)}</small></span></button>`).join('');
 function showV(i){vi=(i+V.length)%V.length;const q=$('#vq');q.classList.add('out');setTimeout(()=>{q.textContent='“'+V[vi].q+'”';q.classList.remove('out')},350);
  $('#vwho').textContent=V[vi].by;$('#vrole').textContent=V[vi].role;$('#vn').textContent=`0${vi+1} / 0${V.length}`;
- $$('#vph img').forEach((x,j)=>x.style.opacity=j===vi?1:0);$$('#tabs button').forEach((b,j)=>{b.classList.remove('on');if(j===vi){void b.offsetWidth;b.classList.add('on')}});
+ swV(vi);$$('#tabs button').forEach((b,j)=>{b.classList.remove('on');if(j===vi){void b.offsetWidth;b.classList.add('on')}});
  clearTimeout(vt);vt=setTimeout(()=>showV(vi+1),7000);}
 $$('#tabs button').forEach((b,i)=>b.onclick=()=>showV(i));$('#vp').onclick=()=>showV(vi-1);$('#vnx').onclick=()=>showV(vi+1);showV(0);
 
@@ -302,7 +337,6 @@ $('#prows').innerHTML=D.ep.why.map(w=>`<div class="prow" data-r="up"><h3>${w[0]}
 
 $('#mail').textContent=D.company.email;$('#hq').textContent=D.company.phone;$('#yr').textContent=new Date().getFullYear();
 $('#offs').innerHTML=D.offices.map(o=>`<li>${esc(o.c)}</li>`).join('');
-gsap.from('.foot .big',{yPercent:60,ease:'none',scrollTrigger:{trigger:'.foot',start:'top bottom',end:'bottom bottom',scrub:true}});
 PX.parallax();
 </script>
 </body>

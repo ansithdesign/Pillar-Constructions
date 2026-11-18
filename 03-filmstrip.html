@@ -47,18 +47,21 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.045em;text-wrap:balance}
 /* filmstrip */
 .film{position:relative;background:var(--black);color:#fff}
 .film .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;align-items:center}
-.strip{display:flex;align-items:center;gap:8px;will-change:transform;transition:transform .9s var(--px-ease)}
-.fr{flex:none;width:130px;height:170px;position:relative;overflow:hidden;cursor:pointer;transition:width .9s var(--px-ease),height .9s var(--px-ease),filter .6s,opacity .6s;filter:grayscale(.35) brightness(.7)}
-.fr img{width:100%;height:100%;object-fit:cover}
-.fr.on{width:min(30vw,420px);height:min(56vh,520px);filter:none;cursor:zoom-in}
-.fr:hover:not(.on){filter:none}
+.strip{display:flex;align-items:center;gap:8px;will-change:transform}
+.fr{flex:none;width:130px;height:170px;position:relative;overflow:hidden;cursor:pointer}
+.fr img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.fr.on{cursor:zoom-in}
 .br{position:absolute;width:14px;height:14px;border-color:#fff;border-style:solid;opacity:0;transition:opacity .6s .3s}
 .fr.on .br{opacity:1}
 .br.a{left:-1px;top:-1px;border-width:1px 0 0 1px}.br.b{right:-1px;top:-1px;border-width:1px 1px 0 0}.br.c{left:-1px;bottom:-1px;border-width:0 0 1px 1px}.br.d{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
 .film .cap{position:absolute;left:50%;transform:translateX(calc(-1 * min(15vw,210px)));top:calc(50% + min(28vh,260px) + 18px);max-width:300px}
 .film .cap b{display:block;font:500 11px/1.2 var(--sans);letter-spacing:.04em;text-transform:uppercase}
 .film .cap span{display:block;margin-top:6px;font-size:11px;color:rgba(255,255,255,.6);line-height:1.4}
-.film .cap>*{transition:opacity .5s}
+.film .cap b,.film .cap span{overflow:hidden}.film .cap i{display:block;font-style:normal}
+.film .play{position:absolute;left:50%;top:calc(50% - min(28vh,260px) - 26px);transform:translateX(-50%);font:400 9px/1 var(--mono);color:rgba(255,255,255,.5);display:flex;gap:10px;align-items:center}
+.film .play::before,.film .play::after{content:"";width:28px;height:1px;background:rgba(255,255,255,.3)}
+.film .bar{position:absolute;left:var(--gut);right:var(--gut);bottom:72px;height:1px;background:rgba(255,255,255,.14)}
+.film .bar i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(0)}
 .film .count{position:absolute;right:var(--gut);bottom:90px;font:400 10px/1 var(--mono);color:rgba(255,255,255,.6)}
 .film .hint{position:absolute;left:var(--gut);bottom:90px;font:400 10px/1 var(--mono);color:rgba(255,255,255,.5)}
 .film .ttl{position:absolute;left:var(--gut);top:90px;font:500 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
@@ -80,7 +83,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.045em;text-wrap:balance}
 .ai p{margin:0;font-size:12px;color:#555;max-width:52ch}
 .ai .from{margin-top:14px;font-size:10px;color:var(--mute)}
 .ai .from b{font:500 20px/1 var(--sans);color:var(--ink);margin-left:6px;letter-spacing:-.02em}
-.ai .ph{aspect-ratio:4/3;overflow:hidden}
+.ai .ph{aspect-ratio:4/3;overflow:hidden;cursor:zoom-in}
 .ai .ph img{width:100%;height:100%;object-fit:cover}
 .ai ul{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11px;color:#555}
 .ai ul li::before{content:"— ";color:var(--mute)}
@@ -107,8 +110,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.045em;text-wrap:balance}
 .pc{background:var(--soft);padding:10px;display:flex;flex-direction:column;gap:22px;transition:background .4s}
 .pc:hover{background:#ebebe8}
 .pc .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:#ddd}
-.pc .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .6s,transform 1.2s var(--px-ease)}
-.pc:hover .ph img{filter:none;transform:scale(1.05)}
+.pc .ph img{width:100%;height:100%;object-fit:cover}
 .pc .ph::before,.pc .ph::after{content:"";position:absolute;width:10px;height:10px;border:1px solid #fff;z-index:2}
 .pc .ph::before{left:6px;bottom:6px;border-width:0 0 1px 1px}.pc .ph::after{right:6px;top:6px;border-width:1px 1px 0 0}
 .pc h3{font-size:15px;letter-spacing:-.01em;line-height:1.25;font-weight:500;min-height:3.8em}
@@ -121,7 +123,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.045em;text-wrap:balance}
 .ct .box{background:#1b1b1b;padding:16px 18px}
 .ct .box .mono{color:rgba(255,255,255,.5)}
 .ct .box b{display:block;font:500 22px/1.2 var(--sans);letter-spacing:-.02em;margin-top:12px;user-select:all}
-.ct .im{aspect-ratio:2.4/1;overflow:hidden}.ct .im img{width:100%;height:100%;object-fit:cover}
+.ct .im{aspect-ratio:2.4/1;overflow:hidden;position:relative}.ct .im img{width:100%;height:100%;object-fit:cover}
 .ct h2{font-size:clamp(56px,5.6vw,92px);line-height:.95;margin-bottom:30px}
 form{display:grid;gap:22px}
 label{display:grid;gap:4px;font:600 9px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase}
@@ -160,9 +162,9 @@ textarea{min-height:90px;resize:vertical}
   <section class="film" id="film" aria-label="Project filmstrip">
     <div class="stage">
       <div class="ttl">Selected projects</div>
-      <div class="strip" id="strip"></div>
-      <div class="cap" id="cap"><b></b><span></span></div>
-      <div class="hint">Scroll, click or use ← → to browse</div>
+      <div class="strip" id="strip" data-lb-group></div>
+      <div class="cap" id="cap"><b><i></i></b><span><i></i></span></div>
+      <div class="play">PLAYHEAD</div><div class="hint">Scroll, click or use ← → to browse</div><div class="bar"><i id="fbar"></i></div>
       <div class="count" id="cnt"></div>
     </div>
   </section>
@@ -191,9 +193,9 @@ textarea{min-height:90px;resize:vertical}
   <section class="ct wrap" id="contact">
     <div class="left">
       <div class="box"><div class="mono">Email</div><b id="em"></b></div>
-      <div class="im"><img data-g="assets/img/p/V17-022.jpg" data-gw="700" alt=""></div>
+      <div class="im" data-m="unveil drift" data-dir="right"><img data-g="assets/img/p/V17-022.jpg" data-gw="900" alt=""></div>
       <div class="box"><div class="mono">Phone</div><b id="ph"></b></div>
-      <div class="im"><img data-g="assets/img/p/V16-003.jpg" data-gw="700" alt=""></div>
+      <div class="im" data-m="unveil drift" data-dir="left" data-delay=".1"><img data-g="assets/img/p/V16-003.jpg" data-gw="900" alt=""></div>
     </div>
     <div>
       <h2 data-split="lines">Let's work together.</h2>
@@ -229,32 +231,51 @@ gsap.registerPlugin(ScrollTrigger);
 $('#mb').onclick=()=>{const o=$('#ov').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o);o?PX.lenis?.stop():PX.lenis?.start()};
 $$('#ov a').forEach(a=>a.addEventListener('click',()=>{$('#ov').classList.remove('open');$('#mb').setAttribute('aria-expanded',false);PX.lenis?.start()}));
 $('#ovp').textContent=D.company.phone;
-gsap.to('#hbg',{yPercent:15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+/* hero: the picture pushes in like a slow dolly while the title lifts and spaces out */
+const hT={trigger:'.hero',start:'top top',end:'bottom top',scrub:true};
+gsap.to('#hbg',{yPercent:15,scale:1.12,ease:'none',scrollTrigger:hT});
+gsap.to('.hero .t',{yPercent:-70,letterSpacing:'.02em',opacity:.15,ease:'none',scrollTrigger:hT});
 
-/* filmstrip: scroll drives the active frame */
+/* filmstrip: scroll is the playhead. Frames swell continuously as they pass it; each photo pans inside its frame */
 const FS=pick(['V16-022','The_Wharf_1','V17-004D','V13-007D','V16-046D','V18-002R','V17-030R','EP_003','V16-018D','V14-041','V18-012','The_Westerly_Waterfront_1','V12-026','Institute_for_Digital_Innovation_1','V17-014D','V16-047','8302Rt','V19-019R','V18-005R','V17-009R']);
 $('#strip').innerHTML=FS.map((p,i)=>`<div class="fr" data-i="${i}" data-lb="${p.id}">${I(img(p.img),900,p.n)}<i class="br a"></i><i class="br b"></i><i class="br c"></i><i class="br d"></i></div>`).join('');
-const film=$('#film');film.style.height=(FS.length*28+100)+'vh';
-let cur=-1;
-function setActive(i){i=Math.max(0,Math.min(FS.length-1,i));if(i===cur)return;cur=i;
-  $$('.fr').forEach((f,j)=>f.classList.toggle('on',j===i));
-  // centre the active frame: small frames are 130 wide, active is min(30vw,420)
-  const aw=Math.min(innerWidth*.3,420),off=i*(130+8)+aw/2;$('#strip').style.transform=`translateX(${innerWidth/2-off}px)`;
-  const p=FS[i];$('#cap b').textContent=p.n;$('#cap span').textContent=`${loc(p)} · ${SV[p.s].title}${p.ar?'. Architect: '+p.ar:''}`;
-  $('#cnt').textContent=`${PX.pad(i+1)} / ${PX.pad(FS.length)}`;}
-const st=ScrollTrigger.create({trigger:film,start:'top top',end:'bottom bottom',onUpdate:s=>setActive(Math.round(s.progress*(FS.length-1)))});
-setActive(0);
-$('#strip').addEventListener('click',e=>{const f=e.target.closest('.fr');if(!f||f.classList.contains('on'))return;e.preventDefault();e.stopPropagation();
-  const i=+f.dataset.i;PX.scrollTo(st.start+(st.end-st.start)*i/(FS.length-1)+1)},true);
+const film=$('#film'),N=FS.length;film.style.height=(N*28+100)+'vh';
+const frs=$$('.fr'),fims=frs.map(f=>f.querySelector('img'));
+let tgt=0,pos=0,raf=0,near=-1;
+const roll=(el,t,d)=>{el.textContent=t;if(!PX.reduced)el.animate([{transform:`translateY(${d*100}%)`},{transform:'none'}],{duration:650,easing:'cubic-bezier(.16,1,.3,1)'})};
+function layout(c){
+  const W=innerWidth,H=innerHeight,sw=130,sh=170,bw=Math.min(W*.3,420),bh=Math.min(H*.56,520),gap=8;
+  let x=0;const cx=[];
+  frs.forEach((f,j)=>{const d=j-c,k=Math.exp(-d*d*1.5),w=sw+(bw-sw)*k,h=sh+(bh-sh)*k;
+    f.style.width=w+'px';f.style.height=h+'px';cx.push(x+w/2);x+=w+gap;
+    f.style.filter=`grayscale(${((1-k)*.4).toFixed(3)}) brightness(${(.62+.38*k).toFixed(3)})`;
+    fims[j].style.transform=`translate3d(${(-d*7).toFixed(2)}%,0,0) scale(1.18)`;});
+  const i0=Math.max(0,Math.min(N-2,Math.floor(c))),t=c-i0,mid=cx[i0]*(1-t)+cx[i0+1]*t;
+  $('#strip').style.transform=`translate3d(${W/2-mid}px,0,0)`;
+  $('#fbar').style.transform=`scaleX(${c/(N-1)})`;
+  const n=Math.round(c);
+  if(n!==near){const d=n>near?1:-1;near=n;frs.forEach((f,j)=>f.classList.toggle('on',j===n));const p=FS[n];
+    roll($('#cap b i'),p.n,d);roll($('#cap span i'),`${loc(p)} · ${SV[p.s].title}${p.ar?'. Architect: '+p.ar:''}`,d);
+    $('#cnt').textContent=`${PX.pad(n+1)} / ${PX.pad(N)}`;}
+}
+function tick(){pos+=(tgt-pos)*(PX.reduced?1:.12);if(Math.abs(tgt-pos)<.0008)pos=tgt;layout(pos);raf=pos!==tgt?requestAnimationFrame(tick):0}
+const st=ScrollTrigger.create({trigger:film,start:'top top',end:'bottom bottom',onUpdate:s=>{tgt=s.progress*(N-1);if(!raf)raf=requestAnimationFrame(tick)}});
+layout(0);
+const toFrame=i=>PX.scrollTo(st.start+(st.end-st.start)*Math.max(0,Math.min(N-1,i))/(N-1)+1);
+$('#strip').addEventListener('click',e=>{const f=e.target.closest('.fr');if(!f||f.classList.contains('on'))return;e.preventDefault();e.stopPropagation();toFrame(+f.dataset.i)},true);
 addEventListener('keydown',e=>{const r=film.getBoundingClientRect();if(r.top>10||r.bottom<innerHeight-10||$('.px-lb.open'))return;
-  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const i=cur+(e.key==='ArrowRight'?1:-1);PX.scrollTo(st.start+(st.end-st.start)*Math.max(0,Math.min(FS.length-1,i))/(FS.length-1)+1)}});
-addEventListener('resize',()=>{const c=cur;cur=-1;setActive(c)});
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft')toFrame(near+(e.key==='ArrowRight'?1:-1))});
+addEventListener('resize',()=>layout(pos));
 
 /* accordion */
 $('#acc').innerHTML=D.services.map((s,i)=>{const n=D.projects.filter(p=>p.s===s.id).length;return `<div class="ai ${i?'':'open'}">
  <button type="button" aria-expanded="${!i}"><h3>${esc(s.title.replace(' / General Contracting','').replace('Exterior Finishes / ',''))}</h3><span class="pm">+</span></button>
  <div class="body"><div><div class="in"><div><p>${esc(s.body[0]||s.short)}</p><ul>${s.scopes.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="from">PORTFOLIO<b>${n} projects</b></div></div><div class="ph">${I(img(s.hero,'h'),500)}</div></div></div></div></div>`}).join('');
-$$('.ai>button').forEach(b=>b.onclick=()=>{const it=b.parentElement,o=!it.classList.contains('open');$$('.ai').forEach(x=>{x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded',false)});if(o){it.classList.add('open');b.setAttribute('aria-expanded',true)}});
+$$('.ai>button').forEach(b=>b.onclick=()=>{const it=b.parentElement,o=!it.classList.contains('open');$$('.ai').forEach(x=>{x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded',false)});if(o){it.classList.add('open');b.setAttribute('aria-expanded',true);
+  // the service photo opens with its panel: the frame wipes up while the picture settles
+  if(!PX.reduced){const ph=it.querySelector('.ph');ph.animate([{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)'}],{duration:1100,delay:150,easing:'cubic-bezier(.76,0,.24,1)',fill:'backwards'});
+   ph.querySelector('img').animate([{transform:'scale(1.4)'},{transform:'none'}],{duration:1600,delay:150,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'})}}});
+$$('.ai .ph').forEach((ph,i)=>{const s=D.services[i],p=PX.byImg[s.gallery[0]]||D.projects.find(x=>x.s===s.id);if(p)ph.dataset.lb=p.id});
 
 /* about columns: infinite opposite drift, boosted by scroll velocity */
 const C1=pick(['V16-012','V12-034','V14-028','V15-012','V16-051D','V13-046','V17-002R','V11-060']),C2=pick(['V14-014','V08-002','Institute_for_Digital_Innovation_1','V13-001D','VA_Hostpital_Fredericksburg_1','V13-007D','V11-027D','M06-010']);
@@ -264,7 +285,7 @@ $('#stats').innerHTML=[[PX.stats.years,'Years in business'],[PX.stats.projects,'
  const tick=()=>{const h=c1.scrollHeight/2;const s=.5+Math.min(8,Math.abs(v)*.6);y1=(y1-s)%h;y2=(y2+s)%h;c1.style.transform=`translateY(${y1}px)`;c2.style.transform=`translateY(${y2-h}px)`;v*=.92;requestAnimationFrame(tick)};if(!PX.reduced)tick()})();
 
 /* press */
-$('#cards').innerHTML=D.press.slice(0,8).map(p=>`<a class="pc" href="${p.pdf}" target="_blank" rel="noopener" data-r="up"><div class="ph">${I('assets/img/n/'+p.img+'.jpg',500,p.t)}</div><h3>${esc(p.t)}</h3><small>Read the article ↗</small></a>`).join('');
+$('#cards').innerHTML=D.press.slice(0,8).map((p,i)=>`<a class="pc" href="${p.pdf}" target="_blank" rel="noopener" data-r="up" style="--d:${(i%4)*.08}s"><div class="ph" data-m="color">${I('assets/img/n/'+p.img+'.jpg',500,p.t)}</div><h3>${esc(p.t)}</h3><small>Read the article ↗</small></a>`).join('');
 
 /* contact */
 $('#em').textContent=D.company.email;$('#ph').textContent=D.company.phone;$('#yr').textContent=new Date().getFullYear();
