@@ -4,6 +4,10 @@
   'use strict';
   const D = window.PILLAR;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // every option opens at its top: no browser scroll restoration, no #hash jump on arrival
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  const toTop = () => { window.scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true, force: true }); };
+  window.addEventListener('pageshow', () => { toTop(); requestAnimationFrame(toTop); setTimeout(toTop, 60); setTimeout(toTop, 250); });
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
@@ -386,6 +390,7 @@
   function init(cfg = {}) {
     Grade.setup(cfg.look); Grade.looks = cfg.looks || {};
     if (cfg.lenis !== false) smooth(cfg.lenisOpts);
+    toTop(); requestAnimationFrame(toTop); window.addEventListener('load', toTop, { once: true });
     gradeImages();
     let fontsOk = false, t;
     const go = () => { fontsOk = true; reveal(); counters(); };
