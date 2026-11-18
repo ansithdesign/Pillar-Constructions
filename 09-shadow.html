@@ -249,7 +249,7 @@ textarea{min-height:90px;resize:vertical}
 <script>
 const NIGHT={ev:-.45,contrast:.38,sat:.42,blue:.72,warm:.36,gamma:[1,.97,.92],sh:[.02,0,-.012],shAmt:.5,hi:[.06,.035,0],hiAmt:.5,vig:.45,grain:.04,fade:.02,css:'brightness(.62) contrast(1.2) saturate(.45) sepia(.3)'};
 const DAY={ev:-.04,contrast:.2,sat:.58,blue:.5,warm:.2,hi:[.03,.02,0],hiAmt:.4,sh:[.01,0,-.01],shAmt:.3,grain:.03,vig:.14};
-PX.init({id:'12',cursor:true,look:NIGHT,looks:{day:DAY}});
+PX.init({id:'09',cursor:true,look:NIGHT,looks:{day:DAY}});
 document.documentElement.style.setProperty('--px-cursor-bg','#b08a5c');document.documentElement.style.setProperty('--px-cursor-fg','#0e0d0c');
 const {D,SV,stats,img,pick,esc,loc,svcShort,$,$$}=PX;
 const I=(src,w=0,alt='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''} alt="${esc(alt)}">`;

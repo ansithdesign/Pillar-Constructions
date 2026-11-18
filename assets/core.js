@@ -12,15 +12,15 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
   const OPTIONS = [
-    ['02', 'anatomy', 'Anatomy', 'stillform.homes', 'Exploded wall-panel anatomy, photo cloud'],
-    ['03', 'oxblood', 'Oxblood', 'casainterior.framer.website', 'Dark rooms, rounded cards, giant wordmark'],
-    ['04', 'filmstrip', 'Filmstrip', 'korda.framer.media', 'Focus filmstrip, accordion services'],
-    ['06', 'monolith', 'Monolith', 'architecttura.framer.website', 'Name bar, expanding hero, stacked honours'],
-    ['08', 'index', 'Index', 'knoll.framer.website', 'Numbered index, list-first catalogue'],
-    ['09', 'warmth', 'Warmth', 'luneo.framer.website', 'Staggered gallery, timeless warmth'],
-    ['10', 'studio', 'Studio', 'mirellstudio.framer.website', 'Split wordmark, project slider with specs'],
-    ['11', 'nord', 'Nord', 'norda.framer.website', 'Stacked preloader, awards table, partners'],
-    ['12', 'shadow', 'Shadow', 'oynx-atelier.framer.ai', 'Shadow and stone, horizontal monographs'],
+    ['01', 'anatomy', 'Anatomy', 'stillform.homes', 'Exploded wall-panel anatomy, photo cloud'],
+    ['02', 'oxblood', 'Oxblood', 'casainterior.framer.website', 'Dark rooms, rounded cards, giant wordmark'],
+    ['03', 'filmstrip', 'Filmstrip', 'korda.framer.media', 'Focus filmstrip, accordion services'],
+    ['04', 'monolith', 'Monolith', 'architecttura.framer.website', 'Name bar, expanding hero, stacked honours'],
+    ['05', 'index', 'Index', 'knoll.framer.website', 'Numbered index, list-first catalogue'],
+    ['06', 'warmth', 'Warmth', 'luneo.framer.website', 'Staggered gallery, timeless warmth'],
+    ['07', 'studio', 'Studio', 'mirellstudio.framer.website', 'Split wordmark, project slider with specs'],
+    ['08', 'nord', 'Nord', 'norda.framer.website', 'Stacked preloader, awards table, partners'],
+    ['09', 'shadow', 'Shadow', 'oynx-atelier.framer.ai', 'Shadow and stone, horizontal monographs'],
   ];
   const optHref = (o) => `${o[0]}-${o[1]}.html`;
 
