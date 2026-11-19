@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Monolith</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;600&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/final.css">
+<style>
+/* Layout: the final structure as a concrete-dark opener, then gallery-white pages split 1:1. The photograph opens from a vertical slit, black slabs carrying the four numbers slide over the sticky photograph while the About heading darkens word by word, the trade rows switch the photograph stack, the panel is taken apart in concrete-dark, the reel carries the three featured buildings sideways, one builder speaks, and the dark close holds the call to action and the footer. */
+:root{
+  --ink:#121212; --white:#fff; --off:#f5f4f1; --mute:#9a978f; --line:rgba(18,18,18,.1); --stone:#2a2724;
+  --sans:"Epilogue","Helvetica Neue",Arial,sans-serif;
+  --gut:max(12px,env(safe-area-inset-left,0px));
+  --px-lb-bg:#121212; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-lb-weight:300; --px-sw-bg:rgba(18,18,18,.88);
+  --fn-bg:var(--white); --fn-fg:var(--ink); --fn-mute:var(--mute); --fn-line:var(--line); --fn-line2:rgba(18,18,18,.28); --fn-acc:var(--ink); --fn-disp:var(--sans); --fn-text:var(--sans); --fn-hw:300; --fn-gut:var(--gut); --fn-dbg:var(--ink); --fn-dfg:#fff; --fn-dmute:#8a877f; --fn-dline:rgba(255,255,255,.14); --fn-dacc:#d8d5ce; --fn-r:0px; --fn-btn-r:0px; --fn-btn-bg:#fff; --fn-btn-fg:var(--ink);
+}
+body{background:var(--white);color:var(--ink);font:300 15px/1.5 var(--sans)}
+h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.05em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.up{font:400 10px/1.3 var(--sans);letter-spacing:.02em;text-transform:uppercase}
+.up b{font-weight:600}
+.grey{color:#bdbab3}
+
+/* name bar */
+.nb{position:fixed;z-index:60;right:var(--gut);top:calc(50vh - 22px);display:flex;height:44px;width:min(50vw,740px);transition:top 1s var(--px-ease-io)}
+.nb.dock{top:12px}
+.nb a{flex:1;background:#fff;color:var(--ink);display:flex;align-items:center;padding:0 14px;font:300 clamp(20px,1.9vw,30px)/1 var(--sans);letter-spacing:-.03em}
+.nb button{width:44px;background:var(--ink);color:#fff;display:grid;place-items:center}
+.nb button span{display:grid;gap:4px}.nb button span i{display:block;width:16px;height:1px;background:#fff;transition:transform .4s}
+.nb button[aria-expanded="true"] span i:first-child{transform:translateY(2.5px) rotate(45deg)}
+.nb button[aria-expanded="true"] span i:last-child{transform:translateY(-2.5px) rotate(-45deg)}
+.nb nav{position:absolute;top:100%;left:0;right:0;background:#fff;display:grid;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--px-ease-io)}
+.nb nav.open{clip-path:inset(0 0 0 0)}
+.nb nav a{flex:none;height:auto;padding:12px 14px;font-size:18px;border-top:1px solid var(--line)}
+.nb nav a:hover{background:var(--off)}
+
+/* hero */
+.hero{position:relative;height:200vh;background:#0c0b0a}
+.hero .stage{position:sticky;top:0;height:100vh;overflow:hidden;color:#fff}
+.hero .bg{position:absolute;inset:0}.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:#000;opacity:.8;animation:lights 3.2s .4s var(--px-ease) forwards}
+@keyframes lights{to{opacity:.12}}
+.hero .lab{position:absolute;left:var(--gut);top:calc(50vh - 22px);font-size:14px;line-height:1.1;letter-spacing:-.01em}
+.hero h1{position:absolute;left:var(--gut);bottom:56px;font-size:clamp(90px,10vw,170px);line-height:.86;letter-spacing:-.065em}
+.hero .tag{position:absolute;left:calc(50% + 6px);bottom:68px;max-width:30ch}
+.hero .strip{position:absolute;left:0;right:0;bottom:0;height:44px;background:#fff;color:var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut)}
+.hero .strip a{display:flex;gap:10px;align-items:center}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:120px 0}
+.about .l{display:grid;align-content:start;gap:80px}
+.about .r{padding-top:30px}
+.about h2{font-size:clamp(44px,4.2vw,70px);line-height:.98}
+.about h2 .w{color:#d8d5ce;transition:color .3s}
+.sticky{position:sticky;top:12px;height:calc(100vh - 24px);overflow:hidden}
+.sticky>img,.sticky .lead-img img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.awards{position:absolute;inset:0;pointer-events:none}
+.aw h3{font-size:clamp(26px,2.2vw,36px);line-height:1}
+.aw .up{display:flex;justify-content:space-between;color:rgba(255,255,255,.7);gap:10px}
+.aw .up span:last-child{text-align:right;max-width:14ch}
+
+/* services */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-block:140px}
+.svc .thumbs .t{aspect-ratio:3/4;overflow:hidden;opacity:.35;transition:opacity .5s;position:relative}
+.svc .thumbs .t.on{opacity:1}
+.svc .thumbs .t img{width:100%;height:100%;object-fit:cover}
+.svc .thumbs .big{grid-column:1/-1;aspect-ratio:16/10;overflow:hidden;position:relative}
+.svc .thumbs .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.svc h2{font-size:clamp(40px,3.8vw,62px);line-height:1;margin-bottom:22px}
+.svc .intro{margin:0 0 50px}
+.srow{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-top:1px solid var(--line);cursor:default;transition:padding .5s var(--px-ease)}
+.srow h3{font-size:clamp(22px,1.8vw,28px);letter-spacing:-.03em;transition:transform .5s var(--px-ease)}
+.srow p{margin:0;color:#777;font-size:13px;max-width:52ch}
+.srow:hover,.srow.on{padding-left:16px}
+.srow.on h3{font-weight:400}
+
+/* reel */
+.reel{position:relative;background:var(--off)}
+.reel .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;padding-top:80px}
+.reel .hd2{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:0 var(--gut) 30px}
+.reel h2{font-size:clamp(40px,3.8vw,62px);line-height:1;max-width:14ch}
+.reel .row{display:flex;gap:12px;padding-left:var(--gut);align-items:stretch;will-change:transform}
+.card .ph{overflow:hidden;position:relative}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .m{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px}
+.card h3{font-size:26px;letter-spacing:-.03em}
+.card .n{font-size:10px;color:var(--mute)}
+.card:nth-child(even) .ph{margin-top:8vh}
+.reel .prog{position:absolute;left:var(--gut);right:var(--gut);bottom:90px;height:1px;background:var(--line)}
+.reel .prog i{display:block;height:100%;background:var(--ink);width:0}
+
+/* approach */
+
+/* team */
+
+/* contact */
+.ct{background:var(--ink);color:#fff;padding-block:120px 0;overflow:hidden}
+.ct .g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct h2{font-size:clamp(70px,9vw,150px);line-height:.86;letter-spacing:-.065em}
+.ct .grey{color:#5d5a55}
+.ct dl{display:grid;grid-template-columns:auto 1fr;gap:10px 30px;margin:0;align-self:end;font-size:14px}
+.ct dt{color:#8a877f;font-size:10px;text-transform:uppercase;padding-top:4px}
+.ct dd{margin:0}
+.ct .offs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:100px;border-top:1px solid rgba(255,255,255,.14);padding:16px 0 110px;font-size:12px;color:#aaa}
+.ct .offs b{display:block;color:#fff;font-weight:400;font-size:16px;margin-bottom:6px}
+.hero .strip button{display:flex;gap:10px;align-items:center;color:var(--ink)}
+.hero .tag{max-width:34ch;font-size:15px}
+/* about: four numbers on black slabs over the sticky photograph */
+.aw{position:absolute;width:min(240px,40%);aspect-ratio:1;background:var(--ink);color:#fff;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.aw b{font-weight:300;font-size:clamp(64px,6vw,104px);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.apts{margin-top:120px;display:grid;border-top:1px solid var(--line)}
+.apts div{display:grid;grid-template-columns:1fr 1.2fr;gap:12px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.apts h3{font-size:clamp(26px,2.2vw,36px);letter-spacing:-.04em}
+.apts p{margin:0;font-size:14px;color:#777;max-width:32ch}
+.about .r{padding-bottom:120px}
+/* trades */
+.svc .thumbs{position:sticky;top:12px;align-self:start;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.srow{cursor:pointer}
+.srow .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.srow .meta button{font:400 10px/1.3 var(--sans);letter-spacing:.02em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:3px;color:var(--ink)}
+/* featured reel */
+.card{flex:0 0 clamp(420px,46vw,780px);display:grid;grid-template-rows:1fr auto;gap:12px;text-align:left;cursor:zoom-in}
+.reel .stage{padding-bottom:120px;grid-template-columns:minmax(0,1fr)}
+.reel .prog{bottom:96px}
+.card:nth-child(even) .ph{margin-top:6vh}
+.card .gc{display:block;font-size:12px;color:#777;margin-top:4px}
+.reel .hd2 .r{display:grid;justify-items:end;gap:14px}
+.reel .fn-btn{height:44px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;--fn-btn-bg:var(--ink);--fn-btn-fg:#fff}
+.fn-voice{background:var(--white)}
+/* the dark close: call to action and footer */
+.ct .g .r{align-self:end;display:grid;gap:18px}
+.ct .g .r .up{color:#8a877f}
+.ct .g .r p{margin:0;font-size:17px;color:#cfccc6;max-width:34ch}
+.ct .g .r .acts{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.ct .g .r .fn-btn{height:46px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.ct .g .r .tel{font-size:22px;letter-spacing:-.02em;user-select:all;-webkit-user-select:all}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:12px;margin-top:110px;border-top:1px solid rgba(255,255,255,.14);padding-top:18px;font-size:13px;color:#aaa}
+.fgrid h4{margin:0 0 14px;font:400 10px/1.3 var(--sans);text-transform:uppercase;color:#8a877f}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.fgrid a{color:#fff;opacity:.85}.fgrid a:hover{opacity:1}
+.fgrid .brand p{font-size:20px;letter-spacing:-.03em;color:#fff;margin:0 0 14px;max-width:22ch}
+.fgrid .aff{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+.fgrid .aff img{height:22px;width:auto;max-width:80px;object-fit:contain;filter:grayscale(1) brightness(1.8);opacity:.55}
+.fgrid .v{display:block;color:#fff;font-size:17px;user-select:all;-webkit-user-select:all;margin-bottom:8px}
+.ct .offs{margin-top:60px}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding:16px 0 90px;font:400 10px/1.3 var(--sans);text-transform:uppercase;color:#8a877f}
+.legal a{color:inherit}
+@media (max-width:820px){.about,.svc,.ct .g{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}.ct .offs{grid-template-columns:1fr 1fr}}
+</style>
+<style>.px-sw{display:none!important}
+.hk-sw{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5000;display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(18,18,17,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.28),inset 0 0 0 1px rgba(243,241,236,.16);font:500 12px/1 system-ui,sans-serif;color:#f3f1ec;text-decoration:none}
+.hk-sw a{height:34px;padding:0 14px;border-radius:999px;display:flex;align-items:center;gap:8px;color:rgba(243,241,236,.6);text-decoration:none;white-space:nowrap}
+.hk-sw a:hover{color:#f3f1ec;background:rgba(255,255,255,.1)}
+.hk-sw a.on{background:#f3f1ec;color:#111}
+@media(max-width:640px){.hk-sw a span{display:none}.hk-sw a.on span{display:inline}}
+</style>
+<style>.about,.svc,.ct .g{column-gap:clamp(48px,7vw,128px)!important}</style>
+<link rel="stylesheet" href="assets/core2.css">
+<link rel="stylesheet" href="assets/fx2.css">
+<style>
+.fxs-mono{--k-bg:#f5f4f1;--k-fg:#121212;--k-mute:#9a978f;--k-line:rgba(18,18,18,.12);--k-line2:rgba(18,18,18,.28);--k-accent:#121212;--k-disp:"Epilogue","Helvetica Neue",Arial,sans-serif;--k-text:"Epilogue","Helvetica Neue",Arial,sans-serif;--k-gut:max(12px,env(safe-area-inset-left,0px));--k-h-weight:300;--k-paper:#fff;position:relative;background:var(--k-bg);color:var(--k-fg);font:300 15px/1.5 var(--k-text)}
+.fxs-mono *{box-sizing:border-box}
+.fxs-mono .fx-h{font-size:clamp(40px,4.4vw,72px);letter-spacing:-.055em}
+.fxs-mono .k-eyebrow{font:400 10px/1.3 var(--k-text);letter-spacing:.04em;text-transform:uppercase;color:var(--k-mute)}
+.fxs-mono .k-eyebrow::before{background:var(--k-fg)}
+.fxs-mono .bk-line{margin:0;max-width:30ch;font:300 clamp(18px,1.5vw,22px)/1.35 var(--k-text);letter-spacing:-.02em}
+.fxs-mono .bk-txt h3{font-size:clamp(34px,3.2vw,56px)}
+.fxs-mono .fx-go{align-self:flex-start;margin-top:6px;background:none;border:0;border-bottom:1px solid currentColor;padding:0 0 3px;font:400 10px/1.3 var(--k-text);letter-spacing:.04em;text-transform:uppercase;color:var(--k-fg);cursor:pointer}
+.fxs-mono img{max-width:none}
+.fxs-mono .bk-left,.fxs-mono .pg-f,.fxs-mono .pg-b{box-shadow:0 10px 28px rgba(0,0,0,.06)}
+.fxs-mono .pg-f::after{background:linear-gradient(90deg,rgba(0,0,0,calc(.02 + var(--sh,0) * .1)),transparent 26%)}
+.fxs-mono .pg-b::after{background:linear-gradient(270deg,rgba(0,0,0,calc(.015 + var(--sh,0) * .08)),transparent 26%)}
+</style>
+<style>.fn-ly4{background-image:linear-gradient(115deg,rgba(255,255,255,.35),transparent 40%,rgba(0,0,0,.12)) !important;background-color:#c9ccce !important}</style>
+<style>
+.pf{background:#111;color:#f1f1ef;border:1px solid rgba(241,241,239,.16);margin:0;position:relative;z-index:2;font:300 15px/1.5 "Epilogue","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.pf *{box-sizing:border-box}
+.pf-in{padding:clamp(40px,5vw,72px) clamp(20px,3vw,48px) 28px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;max-width:none}
+.pf h3{margin:0 0 28px;font-weight:300;font-size:clamp(36px,4.6vw,76px);line-height:.95;letter-spacing:-.055em}
+.pf-btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:99px;background:#f1f1ef;color:#111;border:0;font:400 11px/1 "Epilogue",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.pf-r{display:grid;gap:18px;justify-items:start}
+.pf-r a.big{font-size:clamp(20px,2vw,30px);letter-spacing:-.03em;color:#f1f1ef;text-decoration:none}
+.pf-up{font:400 10px/1.3 "Epilogue",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8c8b8f}
+.pf-copy{grid-column:1/-1;border-top:1px solid rgba(241,241,239,.16);padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.pf-copy img{display:block;height:22px;width:auto}
+.pf{padding-bottom:84px}
+@media (max-width:760px){.pf-in{grid-template-columns:1fr}}
+</style>
+<style>.ct{display:none!important}</style>
+<style>:root{--gut:clamp(24px,5.5vw,104px)}.fxs-mono{--k-gut:var(--gut)}.pf-in{padding-left:var(--gut);padding-right:var(--gut)}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+.awr{--void:#071016;--fog:#93A3AD;--scan:#62E6F7;--gx:max(var(--gut,0px),clamp(28px,4.4vw,64px));background:var(--void);color:#fff;font-family:"Archivo",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.55;padding:clamp(100px,14vh,180px) 0 clamp(60px,8vh,100px);overflow:hidden;position:relative;z-index:2;-webkit-font-smoothing:antialiased}
+.awr *{box-sizing:border-box}
+.aw-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-inline:var(--gx)}
+.aw-title{margin:0;font-size:clamp(40px,5.4vw,92px);font-weight:500;font-stretch:112%;letter-spacing:-.04em;line-height:1;max-width:14ch}
+.aw-intro{margin:0;font-size:15px;color:var(--fog);max-width:34ch}
+.aw-stage{height:min(70vh,640px);overflow:hidden;margin-top:20px}
+.aw-ring{height:100%;perspective:1400px;display:grid;place-items:center;touch-action:pan-y;cursor:grab;outline-offset:-4px}
+.aw-ring:active{cursor:grabbing}
+.aw-track{position:relative;width:280px;height:340px;transform-style:preserve-3d;list-style:none;margin:0;padding:0}
+.aw-yr{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:border-color .4s,background .4s}
+.aw-yr b{font-size:72px;font-weight:300;font-stretch:118%;letter-spacing:-.05em;line-height:1;margin-bottom:auto;font-variant-numeric:tabular-nums}
+.aw-yr p{margin:0 0 6px;font-size:17px;font-weight:500;line-height:1.25}
+.aw-yr em{font-style:normal;font-size:13px;color:var(--fog)}
+.aw-yr.is-front{border-color:var(--scan);background:linear-gradient(160deg,rgba(98,230,247,.16),rgba(98,230,247,.03))}
+.aw-yr.is-front b{color:var(--scan)}
+@media (max-width:760px){.aw-head{flex-direction:column;align-items:flex-start}.aw-ring{height:520px}.aw-track{width:230px;height:300px}.aw-yr b{font-size:56px}}
+
+</style>
+<style id="lm-css">.lm{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;pointer-events:auto;cursor:pointer}
+.lm-svg{width:clamp(120px,14vw,220px);height:auto;overflow:visible;display:block}
+.lm-cap{position:absolute;left:50%;bottom:12vh;transform:translateX(-50%);font:500 11px/1 system-ui,sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:0}
+html.lm-lock,html.lm-lock body{overflow:hidden!important}
+@media (prefers-reduced-motion:reduce){.lm{display:none}}
+#lm{background:transparent}
+#lm .lm-l,#lm .lm-r{position:absolute;top:0;bottom:0;width:50.5%;background:#fff}
+#lm .lm-l{left:0}#lm .lm-r{right:0}
+#lm .lm-svg{position:relative;z-index:2}
+#lm .lm-p{fill:#121212}
+#lm .lm-n{position:absolute;left:max(12px,env(safe-area-inset-left,0px));bottom:16px;z-index:2;font:300 clamp(60px,9vw,150px)/.8 "Epilogue",system-ui,sans-serif;letter-spacing:-.06em;color:#121212;font-variant-numeric:tabular-nums}
+#lm .lm-cap{z-index:2;color:#121212;bottom:auto;top:16px;left:auto;right:max(12px,env(safe-area-inset-right,0px));transform:none;letter-spacing:.04em;font-size:10px}
+</style>
+</head>
+<body>
+<div class="lm" id="lm" role="presentation"><div class="lm-l"></div><div class="lm-r"></div><svg class="lm-svg " viewBox="34 10 139 107" aria-hidden="true"><g><path class="lm-p" d="M79.54 78.00C90.79 77.80 134.43 77.98 145.50 78.00C156.57 78.03 145.80 78.07 145.97 78.17C146.14 78.26 146.22 78.24 146.50 78.58C146.78 78.91 147.39 79.74 147.67 80.17C147.95 80.59 147.97 80.83 148.17 81.13C148.36 81.43 148.67 81.72 148.83 81.97C149.00 82.23 149.03 82.46 149.17 82.67C149.31 82.87 149.33 82.69 149.67 83.20C150.00 83.71 150.83 85.20 151.17 85.71C151.50 86.21 151.33 85.72 151.67 86.23C152.00 86.74 152.83 88.25 153.17 88.76C153.50 89.27 153.50 89.02 153.67 89.29C153.84 89.55 153.96 89.94 154.20 90.33C154.43 90.73 154.83 91.33 155.09 91.67C155.35 92.00 155.63 92.06 155.77 92.33C155.91 92.61 155.95 93.10 155.93 93.33C155.92 93.57 155.79 93.66 155.67 93.75C155.54 93.83 169.33 93.86 155.17 93.86C141.00 93.86 84.94 93.74 70.67 93.76C56.39 93.77 69.75 93.93 69.50 93.94C69.25 93.94 69.17 93.78 69.17 93.78L69.06 93.33C69.06 93.33 69.49 93.05 69.68 92.83C69.86 92.62 69.97 92.25 70.17 92.04C70.36 91.84 70.83 91.61 70.83 91.61L71.00 90.23C71.00 90.23 71.47 89.97 71.67 89.77C71.86 89.58 71.98 89.25 72.17 89.07C72.36 88.88 72.80 88.67 72.80 88.67C72.80 88.67 72.86 87.55 73.00 87.23C73.14 86.92 73.49 86.95 73.67 86.77C73.84 86.60 73.86 86.38 74.07 86.17C74.27 85.95 74.74 85.82 74.89 85.50C75.05 85.18 75.00 84.23 75.00 84.23C75.00 84.23 75.47 83.97 75.67 83.77C75.86 83.58 75.97 83.26 76.17 83.06C76.36 82.87 76.83 82.61 76.83 82.61C76.83 82.61 76.77 81.69 76.94 81.33C77.12 80.98 77.72 80.85 77.89 80.50C78.07 80.15 77.73 79.64 78.00 79.22C78.27 78.80 68.29 78.20 79.54 78.00ZM64.31 101.00C80.40 100.94 144.30 100.93 160.50 100.99C176.70 101.05 161.14 101.00 161.50 101.33C161.86 101.66 161.39 101.01 162.67 102.96C163.94 104.91 167.95 111.20 169.17 113.04C170.38 114.88 169.75 113.62 169.95 114.00C170.15 114.38 170.37 115.33 170.37 115.33C170.37 115.33 170.20 115.64 170.00 115.74C169.80 115.83 188.25 115.87 169.17 115.90C150.08 115.93 74.52 115.96 55.50 115.92C36.48 115.88 55.04 115.67 55.04 115.67L54.99 115.33C54.99 115.33 55.73 114.85 55.90 114.50C56.06 114.15 56.00 113.23 56.00 113.23C56.00 113.23 56.47 112.97 56.67 112.77C56.86 112.58 56.98 112.25 57.17 112.06C57.36 111.88 57.80 111.67 57.80 111.67C57.80 111.67 57.86 110.55 58.00 110.23C58.14 109.92 58.47 109.97 58.67 109.78C58.86 109.58 58.98 109.25 59.17 109.06C59.35 108.88 59.80 108.67 59.80 108.67C59.80 108.67 59.85 107.55 60.00 107.23C60.15 106.92 60.47 106.97 60.67 106.78C60.86 106.58 60.98 106.25 61.17 106.06C61.35 105.88 61.80 105.67 61.80 105.67C61.80 105.67 61.85 104.55 62.00 104.23C62.15 103.92 62.47 103.97 62.67 103.77C62.86 103.58 62.98 103.25 63.17 103.07C63.35 102.88 63.79 102.67 63.79 102.67C63.79 102.67 63.89 101.61 63.98 101.33C64.07 101.06 48.22 101.06 64.31 101.00Z"/><path class="lm-p" d="M77.63 78.00C80.60 77.99 78.31 77.95 78.50 77.98C78.69 78.01 78.69 78.08 78.74 78.17C78.79 78.25 78.80 78.50 78.80 78.50C78.80 78.50 78.16 78.84 78.00 79.19C77.84 79.54 78.01 80.24 77.83 80.60C77.66 80.96 77.10 81.00 76.94 81.33C76.77 81.67 76.83 82.60 76.83 82.60C76.83 82.60 76.36 82.86 76.17 83.06C75.97 83.25 75.86 83.57 75.67 83.77C75.47 83.96 75.00 84.22 75.00 84.22L74.83 85.60C74.83 85.60 74.36 85.86 74.17 86.06C73.97 86.25 73.86 86.57 73.67 86.77C73.47 86.96 73.00 87.22 73.00 87.22L72.83 88.60C72.83 88.60 72.36 88.86 72.17 89.06C71.97 89.25 71.86 89.58 71.67 89.77C71.48 89.95 71.04 90.17 71.04 90.17C71.04 90.17 70.98 91.29 70.83 91.60C70.69 91.92 70.36 91.87 70.17 92.06C69.97 92.25 69.86 92.58 69.67 92.77C69.47 92.96 69.18 92.92 69.00 93.21C68.82 93.50 69.26 93.42 68.61 94.50C67.96 95.58 65.76 98.67 65.11 99.67C64.46 100.67 64.88 100.25 64.69 100.50C64.51 100.75 64.14 100.80 64.00 101.15C63.86 101.50 63.83 102.60 63.83 102.60C63.83 102.60 63.36 102.86 63.17 103.06C62.97 103.25 62.86 103.58 62.67 103.77C62.48 103.95 62.04 104.17 62.04 104.17C62.04 104.17 61.98 105.28 61.83 105.60C61.69 105.91 61.36 105.86 61.17 106.06C60.97 106.25 60.86 106.58 60.67 106.77C60.48 106.95 60.04 107.17 60.04 107.17C60.04 107.17 59.98 108.28 59.83 108.60C59.69 108.91 59.36 108.86 59.17 109.06C58.97 109.25 58.86 109.58 58.67 109.77C58.48 109.95 58.04 110.17 58.04 110.17C58.04 110.17 57.98 111.28 57.83 111.60C57.69 111.91 57.36 111.86 57.17 112.06C56.97 112.25 56.86 112.58 56.67 112.76C56.48 112.95 56.04 113.17 56.04 113.17C56.04 113.17 56.00 114.28 55.83 114.61C55.66 114.95 55.22 114.98 55.02 115.17C54.83 115.35 54.81 115.59 54.67 115.71C54.52 115.83 57.17 115.86 54.17 115.89C51.17 115.92 39.69 115.90 36.67 115.88C33.64 115.86 36.19 115.85 36.00 115.78C35.81 115.72 35.54 115.50 35.54 115.50C35.54 115.50 35.46 115.27 35.53 115.00C35.61 114.73 35.64 114.45 36.00 113.88C36.36 113.31 37.15 112.36 37.67 111.58C38.18 110.79 38.75 109.68 39.08 109.17C39.42 108.65 39.34 109.00 39.67 108.50C40.00 108.00 40.73 106.67 41.05 106.17C41.38 105.67 41.28 106.03 41.63 105.50C41.97 104.97 42.80 103.50 43.12 103.00C43.45 102.50 42.40 104.32 43.57 102.50C44.75 100.68 48.98 93.93 50.17 92.10C51.35 90.27 50.50 91.79 50.67 91.53C50.84 91.26 50.86 91.02 51.19 90.50C51.53 89.98 52.34 88.93 52.67 88.41C53.00 87.90 52.99 87.70 53.17 87.43C53.34 87.17 53.37 87.35 53.71 86.83C54.04 86.32 54.83 84.86 55.17 84.33C55.52 83.81 55.44 84.17 55.78 83.67C56.11 83.16 56.85 81.77 57.17 81.29C57.48 80.81 57.50 81.01 57.67 80.77C57.83 80.53 57.87 80.26 58.15 79.83C58.42 79.41 58.91 78.51 59.33 78.21C59.75 77.90 57.62 78.05 60.67 78.01C63.72 77.98 74.66 78.01 77.63 78.00Z"/><path class="lm-p" d="M112.18 27.00C112.27 26.93 112.36 26.91 112.50 26.92C112.64 26.94 112.81 26.93 113.00 27.09C113.19 27.25 111.89 25.20 113.67 27.90C115.44 30.60 121.91 40.55 123.67 43.29C125.42 46.03 123.86 43.79 124.19 44.33C124.52 44.88 125.24 45.83 125.67 46.56C126.10 47.28 126.41 47.70 126.77 48.67C127.12 49.63 127.59 51.36 127.78 52.33C127.97 53.31 127.90 53.81 127.91 54.50C127.93 55.19 127.89 55.94 127.85 56.50C127.81 57.06 127.84 57.18 127.67 57.86C127.50 58.54 127.08 59.95 126.83 60.59C126.58 61.23 126.34 61.35 126.17 61.70C125.99 62.04 126.24 62.03 125.78 62.67C125.31 63.30 124.00 64.83 123.36 65.50C122.71 66.17 122.39 66.32 121.91 66.67C121.44 67.01 121.12 67.24 120.50 67.56C119.88 67.89 119.14 68.30 118.17 68.64C117.19 68.98 115.69 69.39 114.67 69.61C113.64 69.82 113.06 69.87 112.00 69.95C110.94 70.04 112.78 70.10 108.33 70.13C103.89 70.15 89.22 70.18 85.33 70.13C81.45 70.08 85.09 69.97 85.03 69.83C84.97 69.70 84.96 69.33 84.96 69.33C84.96 69.33 85.72 68.85 85.89 68.50C86.07 68.15 86.00 67.23 86.00 67.23C86.00 67.23 86.47 66.97 86.67 66.78C86.86 66.58 86.98 66.25 87.17 66.07C87.36 65.88 87.80 65.67 87.80 65.67C87.80 65.67 87.86 64.55 88.00 64.23C88.14 63.92 88.47 63.97 88.67 63.78C88.86 63.58 88.98 63.25 89.17 63.07C89.36 62.88 89.80 62.67 89.80 62.67C89.80 62.67 89.86 61.55 90.00 61.23C90.14 60.92 90.47 60.97 90.67 60.77C90.86 60.58 90.98 60.25 91.17 60.07C91.35 59.88 91.64 59.93 91.79 59.67C91.93 59.41 91.96 58.75 92.04 58.50C92.12 58.25 92.16 58.24 92.27 58.17C92.37 58.09 91.18 58.07 92.67 58.05C94.15 58.04 99.42 58.12 101.17 58.09C102.92 58.05 102.75 57.91 103.17 57.83C103.58 57.76 103.34 57.84 103.67 57.65C104.00 57.46 104.65 57.14 105.15 56.67C105.66 56.20 106.31 55.56 106.70 54.83C107.08 54.11 107.31 52.89 107.46 52.33C107.60 51.78 107.54 51.78 107.54 51.50C107.54 51.22 107.59 51.21 107.44 50.67C107.29 50.12 106.96 48.82 106.67 48.23C106.37 47.63 106.06 47.40 105.67 47.07C105.28 46.74 104.86 46.45 104.33 46.26C103.81 46.07 103.14 45.94 102.50 45.95C101.86 45.96 100.91 46.30 100.50 46.31C100.09 46.32 100.15 46.16 100.05 46.00C99.96 45.84 99.91 45.50 99.93 45.33C99.95 45.17 100.03 45.12 100.17 45.01C100.31 44.90 100.59 44.83 100.76 44.67C100.93 44.51 100.99 44.23 101.17 44.06C101.35 43.88 101.69 43.92 101.83 43.61C101.98 43.29 102.05 42.17 102.05 42.17C102.05 42.17 102.48 41.96 102.67 41.78C102.85 41.59 102.97 41.26 103.17 41.06C103.36 40.87 103.83 40.61 103.83 40.61L104.00 39.23C104.00 39.23 104.47 38.97 104.67 38.78C104.86 38.58 104.97 38.26 105.17 38.07C105.36 37.87 105.83 37.61 105.83 37.61L106.00 36.23C106.00 36.23 106.47 35.97 106.67 35.78C106.86 35.58 106.98 35.25 107.17 35.07C107.36 34.88 107.80 34.67 107.80 34.67C107.80 34.67 107.86 33.55 108.00 33.23C108.14 32.92 108.47 32.97 108.67 32.78C108.86 32.58 108.97 32.26 109.17 32.07C109.36 31.87 109.83 31.61 109.83 31.61C109.83 31.61 109.79 30.66 109.95 30.33C110.10 30.01 110.57 29.88 110.78 29.67C110.98 29.46 111.00 29.24 111.17 29.07C111.34 28.90 111.67 28.79 111.79 28.67C111.92 28.54 111.90 28.56 111.92 28.33C111.94 28.11 111.88 27.56 111.92 27.33C111.96 27.11 112.08 27.07 112.18 27.00Z"/><path class="lm-p" d="M102.36 11.83C102.36 11.83 102.78 11.87 103.00 11.99C103.22 12.12 103.47 12.34 103.67 12.61C103.86 12.88 104.00 13.35 104.17 13.61C104.34 13.87 104.36 13.66 104.70 14.17C105.03 14.67 105.84 16.14 106.17 16.64C106.50 17.14 106.02 16.16 106.68 17.17C107.34 18.17 109.46 21.65 110.13 22.67C110.79 23.68 110.33 22.75 110.67 23.25C111.00 23.75 111.80 25.18 112.13 25.67C112.47 26.15 112.57 26.02 112.66 26.17C112.75 26.31 112.79 26.35 112.67 26.54C112.55 26.74 112.07 26.99 111.93 27.33C111.80 27.68 111.83 28.60 111.83 28.60C111.83 28.60 111.36 28.86 111.17 29.06C110.97 29.25 110.85 29.58 110.67 29.77C110.48 29.95 110.04 30.17 110.04 30.17C110.04 30.17 109.98 31.28 109.83 31.60C109.69 31.91 109.36 31.86 109.17 32.06C108.97 32.25 108.86 32.57 108.67 32.77C108.47 32.96 108.00 33.22 108.00 33.22C108.00 33.22 108.04 34.18 107.89 34.50C107.73 34.82 107.26 34.96 107.06 35.17C106.86 35.38 106.84 35.59 106.67 35.77C106.49 35.94 106.15 35.91 106.00 36.22C105.85 36.54 105.79 37.67 105.79 37.67C105.79 37.67 105.35 37.87 105.17 38.06C104.98 38.24 104.86 38.57 104.67 38.77C104.47 38.96 104.00 39.22 104.00 39.22L103.83 40.60C103.83 40.60 103.36 40.86 103.17 41.06C102.97 41.25 102.86 41.57 102.67 41.77C102.47 41.96 102.15 41.90 102.00 42.22C101.85 42.54 101.79 43.67 101.79 43.67C101.79 43.67 101.35 43.88 101.17 44.06C100.98 44.24 100.85 44.59 100.67 44.77C100.48 44.95 100.21 44.87 100.05 45.17C99.88 45.46 99.95 46.13 99.67 46.55C99.38 46.97 98.68 47.26 98.33 47.67C97.98 48.08 97.82 48.66 97.57 49.00C97.32 49.34 97.07 49.54 96.83 49.68C96.60 49.82 99.17 49.83 96.17 49.86C93.17 49.88 81.81 49.86 78.83 49.83C75.86 49.80 78.33 49.70 78.33 49.70C78.33 49.70 78.12 49.39 78.16 49.17C78.19 48.94 78.29 48.72 78.54 48.33C78.80 47.94 79.24 47.51 79.67 46.83C80.11 46.16 80.82 44.83 81.17 44.30C81.51 43.77 81.41 44.18 81.74 43.67C82.07 43.15 82.84 41.72 83.17 41.22C83.49 40.72 83.36 41.18 83.69 40.67C84.02 40.16 84.83 38.67 85.15 38.17C85.48 37.67 85.30 38.17 85.63 37.67C85.96 37.17 86.78 35.68 87.12 35.17C87.46 34.65 87.34 35.06 87.67 34.56C87.99 34.06 88.75 32.68 89.08 32.17C89.42 31.66 89.32 32.03 89.67 31.50C90.01 30.97 90.82 29.50 91.14 29.00C91.46 28.50 90.42 30.31 91.59 28.50C92.77 26.69 96.99 19.95 98.17 18.13C99.35 16.30 98.49 17.83 98.67 17.56C98.84 17.29 98.71 17.27 99.21 16.50C99.71 15.73 101.20 13.63 101.67 12.91C102.13 12.19 101.89 12.35 102.00 12.17C102.12 11.99 102.36 11.83 102.36 11.83ZM72.76 58.17C73.01 58.09 70.60 58.07 73.67 58.05C76.73 58.03 88.16 58.01 91.17 58.05C94.18 58.10 91.72 58.33 91.72 58.33C91.72 58.33 91.91 59.11 91.93 59.33C91.94 59.56 91.94 59.54 91.81 59.67C91.68 59.79 91.36 59.89 91.17 60.07C90.98 60.26 90.86 60.58 90.67 60.77C90.48 60.95 90.04 61.17 90.04 61.17C90.04 61.17 89.98 62.29 89.83 62.60C89.69 62.92 89.36 62.86 89.17 63.06C88.97 63.25 88.86 63.58 88.67 63.77C88.48 63.95 88.04 64.17 88.04 64.17C88.04 64.17 87.98 65.28 87.83 65.60C87.69 65.91 87.36 65.86 87.17 66.06C86.97 66.25 86.86 66.58 86.67 66.77C86.48 66.95 86.04 67.17 86.04 67.17C86.04 67.17 86.00 68.28 85.83 68.61C85.67 68.95 85.25 68.92 85.03 69.17C84.81 69.41 84.50 70.08 84.50 70.08C84.50 70.08 68.86 70.18 65.67 70.18C62.47 70.19 65.43 70.16 65.33 70.10C65.23 70.04 65.13 69.96 65.07 69.83C65.01 69.70 64.97 69.47 64.97 69.33C64.98 69.19 64.83 69.41 65.12 69.00C65.40 68.59 65.66 68.40 66.67 66.86C67.68 65.33 70.25 61.18 71.17 59.79C72.08 58.40 71.90 58.79 72.17 58.52C72.43 58.24 72.51 58.24 72.76 58.17Z"/></g></svg><span class="lm-n">000</span><span class="lm-cap">Pillar Construction · Since 1995</span></div>
+<script id="lm-js">(()=>{const el=document.getElementById('lm');if(!el)return;
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.remove();return}
+document.documentElement.classList.add('lm-lock');
+const done=()=>{document.documentElement.classList.remove('lm-lock');el.remove();window.ScrollTrigger&&ScrollTrigger.refresh()};
+let ended=false;const end=()=>{if(ended)return;ended=true;done()};
+el.addEventListener('click',()=>{el.getAnimations({subtree:true}).forEach(a=>a.finish())});
+const ps=[...el.querySelectorAll('.lm-p')],svg=el.querySelector('.lm-svg'),cap=el.querySelector('.lm-cap');
+const E='cubic-bezier(.76,0,.24,1)',O='cubic-bezier(.16,1,.3,1)';
+const from=[[0,-260],[-320,0],[0,260],[320,0]];
+ps.forEach((p,i)=>{p.style.transformBox='fill-box';p.style.transformOrigin='center';
+ p.animate([{transform:`translate(${from[i][0]}px,${from[i][1]}px)`,opacity:0},{transform:'none',opacity:1}],{duration:1000,delay:150+i*170,easing:O,fill:'both'});});
+const n=el.querySelector('.lm-n');let t0=performance.now();
+(function c(){const k=Math.min(1,(performance.now()-t0)/1700);n.textContent=String(Math.round(k*100)).padStart(3,'0');if(k<1&&!ended)requestAnimationFrame(c)})();
+cap.animate([{opacity:0},{opacity:1}],{duration:500,delay:200,fill:'forwards'});
+[svg,n,cap].forEach(x=>x.animate([{opacity:1},{opacity:0}],{duration:350,delay:1950,fill:'forwards'}));
+el.querySelector('.lm-l').animate([{transform:'none'},{transform:'translateX(-101%)'}],{duration:1100,delay:2150,easing:E,fill:'forwards'});
+const a=el.querySelector('.lm-r').animate([{transform:'none'},{transform:'translateX(101%)'}],{duration:1100,delay:2150,easing:E,fill:'forwards'});
+a.finished.then(end);
+setTimeout(end,6000);})();</script>
+<div class="nb" id="nb">
+  <a href="#top">PILLAR CONSTRUCTION</a><button type="button" id="mb" aria-label="Menu" aria-expanded="false"><span><i></i><i></i></span></button>
+  <nav id="nv" aria-label="Main"><a href="#about">About</a><a href="#services">Specialties</a><a href="#panels">Exterior Panels</a><a href="#reel">Projects</a><a href="#contact" data-contact>Contact</a></nav>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="stage">
+      <div class="bg"><img id="hbg" data-g="assets/img/p/hero-night.jpg" data-eager alt="Glass office building at night"></div>
+      <div class="shade"></div>
+      <div class="lab">Finish experts<br>since 1995</div>
+      <h1 id="h1">Materialize<br>your idea.</h1>
+      <p class="tag up" id="tag"></p>
+      <div class="strip up"><span>Washington DC · Houston · Orlando · New Jersey</span><button type="button" data-contact>Start a<br>project ↗</button></div>
+    </div>
+  </section>
+
+  <section class="about wrap" id="about">
+    <div class="l">
+      <div class="up">About Pillar</div>
+      <div class="sticky" id="stk">
+        <img data-g="assets/img/s/fog-towers.jpg" alt="Glass towers in fog">
+        <div class="awards" id="awards"></div>
+      </div>
+    </div>
+    <div class="r">
+      <p class="up" style="max-width:40ch;margin:0 0 60px"><b>A specialty contractor</b> <span class="grey">for interiors and the building skin, working across the Mid-Atlantic, the Northeast and the South.</span></p>
+      <h2 id="ah">Three decades of finished buildings.</h2>
+      <div class="apts" id="apts"></div>
+    </div>
+  </section>
+
+  <section class="fxs-mono" id="services" aria-label="Our specialties"></section>
+
+  <div id="panelsHost"></div>
+
+  <section class="reel" id="reel">
+    <div class="stage">
+      <div class="hd2"><div><div class="up" style="margin-bottom:22px">Featured projects</div><h2 data-split="lines">Recent buildings.</h2></div><div class="r"><span class="up" id="rc"></span><button class="fn-btn" type="button" data-fn-all>View all projects</button></div></div>
+      <div class="row" id="row" data-lb-group></div>
+      <div class="prog"><i id="rp"></i></div>
+    </div>
+  </section>
+
+  <div id="voiceHost"></div>
+
+  <section class="ct wrap" id="contact">
+    <div class="g">
+      <h2 data-split="lines">Let's build<br><span class="grey">what's next.</span></h2>
+      <div class="r"><div class="up">We are just a click away</div><p>Bring us in while the design is still taking shape.</p><div class="acts"><button class="fn-btn" type="button" data-contact>Contact us</button><span class="tel" id="ctel"></span></div></div>
+    </div>
+    <div class="fgrid" id="fgrid"></div>
+    <div class="offs" id="offs"></div>
+    <div class="legal" id="footer"><span>© 1999–<span id="yr"></span> Pillar Construction, Inc.</span><span>Concept homepage · photography graded live</span><a href="verdigris.html">All design options</a></div>
+  </section>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/final.js"></script>
+<script>(function(){if(window.PX&&!PX.drag){
+  function drag(el, onMove, opts = {}) {
+    let down = false, lx = 0, ly = 0, vx = 0, vy = 0, moved = 0, raf = 0;
+    const fr = opts.friction || 0.94;
+    const glide = () => { vx *= fr; vy *= fr; if (Math.abs(vx) + Math.abs(vy) < .05) { raf = 0; onMove(0, 0, 0, true); return; } onMove(vx, vy, Math.hypot(vx, vy)); raf = requestAnimationFrame(glide); };
+    el.addEventListener('pointerdown', (e) => { if (e.button) return; down = true; moved = 0; lx = e.clientX; ly = e.clientY; vx = vy = 0; cancelAnimationFrame(raf); raf = 0; el.classList.add('px-dragging'); });
+    addEventListener('pointermove', (e) => { if (!down) return; const dx = e.clientX - lx, dy = e.clientY - ly; lx = e.clientX; ly = e.clientY; moved += Math.abs(dx) + Math.abs(dy); vx = dx; vy = dy; onMove(dx, dy, Math.hypot(dx, dy)); });
+    addEventListener('pointerup', () => { if (!down) return; down = false; el.classList.remove('px-dragging'); if (!raf) raf = requestAnimationFrame(glide); });
+    el.addEventListener('click', (e) => { if (moved > 8) { e.preventDefault(); e.stopPropagation(); } }, true);
+    el.addEventListener('dragstart', (e) => e.preventDefault());
+  }
+PX.drag=drag;}})();
+</script>
+<script src="assets/kit2.js"></script>
+<script src="assets/fx2.js"></script>
+<script>
+PX.init({id:'04',cursor:true,
+ look:{ev:-.04,contrast:.2,sat:.36,blue:.62,warm:.2,fade:.03,lift:[.012,.01,.006],hi:[.03,.024,.012],hiAmt:.5,sh:[.004,-.004,-.01],shAmt:.3,grain:.03,vig:.36,css:'saturate(.38) sepia(.15) contrast(1.04)'},
+ looks:{mono:{ev:.02,contrast:.28,mono:1,hi:[.03,.02,.005],hiAmt:.6,sh:[0,-.004,-.012],shAmt:.4,grain:.03},warm:{ev:.03,contrast:.18,sat:.8,warm:.15,hi:[.02,.012,0],hiAmt:.4,grain:.02}}});
+document.documentElement.style.setProperty('--px-cursor-bg','#121212');document.documentElement.style.setProperty('--px-cursor-fg','#fff');
+const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX, C=FN.C;
+const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+
+/* final copy */
+$('#tag').textContent=C.hero.line;
+$('#apts').innerHTML=C.about.pts.map(([b,t])=>`<div><h3>${esc(b)}</h3><p class="up">${esc(t)}</p></div>`).join('');
+$('#panelsHost').outerHTML=FN.panels();
+$('#voiceHost').outerHTML=FN.voice();
+
+/* name bar docks to the top once the hero scrolls */
+ScrollTrigger.create({start:120,onUpdate:s=>$('#nb').classList.toggle('dock',s.scroll()>120)});
+$('#mb').onclick=()=>{const o=$('#nv').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o)};
+$$('#nv a').forEach(a=>a.onclick=()=>{$('#nv').classList.remove('open');$('#mb').setAttribute('aria-expanded',false)});
+
+/* hero: the photograph opens from a vertical slit as the lights come up; the title rises from the strip */
+if(!PX.reduced)gsap.fromTo('.hero .bg',{clipPath:'inset(0% 49.5% 0% 49.5%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:2.2,ease:'expo.inOut',delay:.25});
+gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:true}})
+ .to('#hbg',{scale:1.18,ease:'none'},0).fromTo('#h1',{yPercent:60,opacity:0},{yPercent:0,opacity:1,ease:'power2.out',duration:.5},0).fromTo('#tag',{opacity:0},{opacity:1,duration:.3},.3).to('.hero .lab',{opacity:0,duration:.2},0);
+
+/* heading words darken with scroll */
+$('#ah').innerHTML=$('#ah').textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+gsap.to('#ah .w',{color:'#121212',stagger:.1,ease:'none',scrollTrigger:{trigger:'#ah',start:'top 85%',end:'bottom 50%',scrub:true}});
+
+/* the four numbers slide over the sticky photograph on black slabs */
+const POS=[['56%','8%'],['4%','34%'],['50%','58%'],['10%','76%']];
+$('#awards').innerHTML=C.about.stats.map(([v,l],i)=>`<div class="aw" style="left:${POS[i][0]};top:${POS[i][1]}"><div class="up"><span>${PX.pad(i+1)}</span><span>${esc(l)}</span></div><b data-fn-count="${v}">${v}</b></div>`).join('');
+$$('.aw').forEach((el,i)=>gsap.fromTo(el,{yPercent:240,opacity:0},{yPercent:-60,opacity:1,ease:'none',scrollTrigger:{trigger:'.about',start:`top+=${i*16}% center`,end:`top+=${i*16+40}% top`,scrub:true}}));
+gsap.fromTo('#stk>img',{scale:1.3},{scale:1,ease:'none',scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom bottom',scrub:true}});
+
+/* specialties: five trades as a book that turns its pages */
+(()=>{const TR=FN.svcs();
+FX.book($('#services'),{eyebrow:C.spec.eyebrow,title:C.spec.h,sub:C.spec.lede,cover:'Our specialties',fin:'From the first stud to the last panel.',end:230,
+ items:TR.map(s=>({id:s.id,img:s.img,n:s.name,line:s.line,count:s.count,short:s.short,svc:s.id})),
+ sheet:(t,n)=>t?`<div class="bk-txt"><span class="k-eyebrow">Trade ${PX.pad(n)} of ${PX.pad(TR.length)}</span><h3>${esc(t.n)}</h3><p class="bk-line">${esc(t.line)}</p><dl><div><dt>Projects</dt><dd>${t.count} on record</dd></div><div><dt>Scope</dt><dd>${esc(t.short)}</dd></div></dl><button class="fx-go" type="button" data-fn-svc="${t.svc}">View projects <span aria-hidden="true">↗</span></button></div>`:`<div class="bk-txt end"><h3>From the first stud to the last panel.</h3></div>`});
+$$('#services .pg-f').forEach((a,i)=>{a.removeAttribute('data-lb');a.dataset.fnSvc=TR[i].id;a.dataset.cursor='Projects'});
+})();
+/* reel: the three featured buildings travel sideways while pinned */
+const RL=FN.work();
+$('#row').innerHTML=RL.map((p,i)=>`<button class="card" data-lb="${p.id}" data-cursor="Open"><div class="ph">${I(img(p.img),1400,p.n)}</div><div class="m"><div><h3>${esc(p.n)}</h3>${p.g?`<span class="gc">General contractor · ${esc(p.g)}</span>`:''}</div><span class="n">${PX.pad(i+1)} — ${esc(loc(p))}</span></div></button>`).join('');
+$('#reel').style.height='240vh';
+const rt=gsap.to('#row',{x:()=>-Math.max(0,$('#row').scrollWidth-innerWidth+24),ease:'none',scrollTrigger:{trigger:'#reel',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true,onUpdate:s=>{$('#rp').style.width=(s.progress*100)+'%';$('#rc').textContent=`${PX.pad(Math.min(RL.length,1+Math.floor(s.progress*RL.length*.999)))} / ${PX.pad(RL.length)}`}}});
+PX.hdrift($$('#row .card .ph img'),rt,12);
+$$('#row .card').forEach(c=>{c.dataset.skew=.5;c.dataset.skewAxis='x'});
+
+/* the dark close: call to action and footer in the final's words */
+const F=C.foot;
+$('#ctel').textContent=D.company.phone;
+$('#fgrid').innerHTML=`<div class="brand"><p>${esc(F.line)}</p>${esc(D.company.legal)}<br>5649-S General Washington Drive<br>Alexandria, Virginia 22312<div class="aff">${D.affiliations.map(a=>`<a href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(a.n)}"><img src="${FN.logo(a.img)}" alt="${esc(a.n)}" loading="lazy"></a>`).join('')}</div></div>
+ <div><h4>Specialties</h4><ul>${F.svc.map(([l,h])=>`<li><a href="${h}" target="_blank" rel="noopener">${esc(l)}</a></li>`).join('')}</ul></div>
+ <div><h4>Company</h4><ul>${F.co.map(([l,h])=>`<li><a href="${h}" target="_blank" rel="noopener">${esc(l)}</a></li>`).join('')}</ul></div>
+ <div><h4>Contact</h4><span class="v">${esc(D.company.email)}</span><span class="v">${esc(D.company.phone)}</span></div>`;
+$('#offs').innerHTML=D.offices.map(o=>`<div><b>${esc(o.c)}</b>${o.a.map(esc).join('<br>')}<br>${esc(o.p)}</div>`).join('');
+$('#yr').textContent=new Date().getFullYear();
+FN.wire();
+</script>
+<section class="awr" id="aw-record" aria-labelledby="aw-title"><div class="aw-head"><h2 id="aw-title" class="aw-title">Two decades of craft and safety awards</h2><p class="aw-intro">Washington Building Congress, ABC, AGC and ENR. Drag the ring or keep scrolling.</p></div><div class="aw-stage"><div class="aw-ring" id="aw-ring" tabindex="0" aria-label="Awards by year. Use arrow keys to rotate."><ol class="aw-track" id="aw-track"><li class="aw-yr"><b>2024</b><p>Craftsmanship Award</p><em>Washington Building Congress</em></li><li class="aw-yr"><b>2023</b><p>Craftsmanship Award</p><em>Washington Building Congress</em></li><li class="aw-yr"><b>2022</b><p>ENR Top 600. S.T.E.P. Gold</p><em>ENR, Associated Builders and Contractors</em></li><li class="aw-yr"><b>2021</b><p>ENR Top 600, rank 354</p><em>Engineering News-Record</em></li><li class="aw-yr"><b>2018</b><p>Subby Award</p><em>ASA Metro Washington</em></li><li class="aw-yr"><b>2017</b><p>Corporate Safety Program</p><em>AGC Washington Contractor Awards</em></li><li class="aw-yr"><b>2016</b><p>Best Corporate Safety Program</p><em>Washington Contractor Awards</em></li><li class="aw-yr"><b>2015</b><p>Gold Award, Acoustical Solutions</p><em>CISCA, Milken Institute SPH at GWU</em></li><li class="aw-yr"><b>2010</b><p>Subcontractor of the Year</p><em>ABC of Metro Washington</em></li><li class="aw-yr"><b>2009</b><p>S.T.E.P. Platinum</p><em>Associated Builders and Contractors</em></li><li class="aw-yr"><b>2008</b><p>Paragon Award, incident rate below national average</p><em>Associated Builders and Contractors</em></li><li class="aw-yr"><b>2005</b><p>Carson V. Carlisle Jr. Safety Award</p><em>DC Metropolitan Subcontractors Association</em></li><li class="aw-yr"><b>2003</b><p>Chapter Safety Award</p><em>ABC of Metro Washington</em></li></ol></div></div></section>
+
+<footer class="pf" id="pf"><div class="pf-in"><div><h3>Let's build<br>what's next.</h3><a class="pf-btn" href="#" data-contact>Start a project →</a></div><div class="pf-r"><a class="big" href="mailto:info@PillarConstruction.com">info@PillarConstruction.com</a><a class="big" href="tel:+17039415891">703.941.5891</a><span class="pf-up">5649-S General Washington Drive, Alexandria</span></div><div class="pf-copy"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction"><span class="pf-up">© 2026 Pillar Construction, Inc.</span></div></div></footer>
+<nav class="hk-sw" aria-label="Options"><a href="verdigris.html"><b>1</b><span>Verdigris</span></a><a href="monolith.html" class=on aria-current=page><b>2</b><span>Monolith</span></a><a href="anatomy.html"><b>3</b><span>Anatomy</span></a><a href="nord.html"><b>4</b><span>Nord</span></a></nav>
+<script>window.__TRANS=["#about"];</script>
+<script>
+(()=>{const ring=document.getElementById('aw-ring'),track=document.getElementById('aw-track'),cards=[...track.querySelectorAll('.aw-yr')];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const N=cards.length,A=360/N;let R=600;
+const layout=()=>{const cw=track.offsetWidth;R=Math.round((cw/2)/Math.tan(Math.PI/N)*1.12);cards.forEach((c,i)=>c.style.transform=`rotateY(${i*A}deg) translateZ(${R}px)`)};
+layout();addEventListener('resize',layout);
+const S={rot:0,drag:0,v:0,scroll:0};let down=false,lx=0,front=-1,ny=0;
+addEventListener('pointermove',e=>{ny=(e.clientY/innerHeight)*2-1},{passive:true});
+ring.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;lx=e.clientX;ring.setPointerCapture(e.pointerId)});
+ring.addEventListener('pointermove',e=>{if(!down)return;S.v=(e.clientX-lx)*.25;S.drag+=S.v;lx=e.clientX});
+const up=()=>down=false;ring.addEventListener('pointerup',up);ring.addEventListener('pointercancel',up);
+ring.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();S.drag-=A}if(e.key==='ArrowLeft'){e.preventDefault();S.drag+=A}});
+if(!reduce)gsap.fromTo(ring,{yPercent:48},{yPercent:0,ease:'none',scrollTrigger:{trigger:'#aw-record',start:'top 80%',end:'top 10%',scrub:true}});
+if(!reduce)ScrollTrigger.create({trigger:'#aw-record',start:'top bottom',end:'bottom top',scrub:true,onUpdate:s=>S.scroll=-s.progress*200});
+let vis=false;ScrollTrigger.create({trigger:'#aw-record',start:'top bottom',end:'bottom top',onToggle:s=>vis=s.isActive});
+gsap.ticker.add(()=>{if(!vis)return;if(!down){S.drag+=S.v;S.v*=.93}
+ const target=S.scroll+S.drag;S.rot=reduce?target:S.rot+(target-S.rot)*.1;
+ const tilt=fine&&!reduce?-ny*6:0;
+ track.style.transform=`translateZ(${-R}px) rotateX(${tilt}deg) rotateY(${S.rot}deg)`;
+ const f=((Math.round(-S.rot/A)%N)+N)%N;if(f!==front){front=f;cards.forEach((c,i)=>c.classList.toggle('is-front',i===f))}});
+})();
+
+</script>
+<script>
+(()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches||!window.gsap||!window.ScrollTrigger)return;
+const list=['.awr','.pf'].concat(window.__TRANS||[]);
+list.forEach(s=>{const el=document.querySelector(s);if(!el)return;
+ gsap.fromTo(el,{clipPath:'inset(72px 4vw 0px 4vw round 40px)'},{clipPath:'inset(0px 0vw 0px 0vw round 0px)',ease:'none',immediateRender:true,scrollTrigger:{trigger:el,start:'top 96%',end:'top 30%',scrub:true}});
+});
+})();
+
+</script>
+<script>(()=>{if(!window.ScrollTrigger)return;
+let busy=false,h=0,t=0;
+const go=()=>{busy=true;ScrollTrigger.sort();ScrollTrigger.refresh();};
+ScrollTrigger.addEventListener('refresh',()=>{h=document.body.scrollHeight;busy=false;});
+const later=(ms)=>{clearTimeout(t);t=setTimeout(go,ms);};
+go();
+addEventListener('load',()=>later(300));
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>later(100));
+if(document.fonts)document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',()=>later(150));
+document.addEventListener('load',e=>{if(e.target&&e.target.tagName==='IMG')later(400);},true);
+if(window.ResizeObserver)new ResizeObserver(()=>{if(busy)return;const nh=document.body.scrollHeight;if(Math.abs(nh-h)>2)later(250);}).observe(document.body);
+})();</script>
+</body>
+</html>

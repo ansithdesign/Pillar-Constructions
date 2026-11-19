@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillar Nord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/final.css">
+<style>
+/* Layout: the final structure on white Scandinavian sheets with + registration marks; photography does the colour. Photographs stack into a pile and lift away, the hero slideshow turns through four buildings under the giant name, the About story sits beside drifting photographs, the scroll walks down the trades while each wipes its photograph in, the Pillar wave opens like a window onto a panel building, the layers and numbers follow on a sheet, three featured buildings unveil, the builders' names run as a marquee that follows the scroll around one quote, and the dark footer holds the call to action. */
+:root{
+  --white:#fff; --ink:#000; --mute:#8d8d8d; --line:rgba(0,0,0,.1); --dark:#0b0b0b; --soft:#f6f6f6;
+  --sans:"Albert Sans","Helvetica Neue",Arial,sans-serif;
+  --gut:max(24px,env(safe-area-inset-left,0px)); --l:max(24px,9.5vw);
+  --px-lb-bg:#0b0b0b; --px-lb-font:var(--sans); --px-lb-display:var(--sans); --px-lb-weight:500; --px-sw-bg:rgba(11,11,11,.88);
+  --fn-bg:var(--white); --fn-fg:var(--ink); --fn-mute:var(--mute); --fn-line:var(--line); --fn-acc:#2f6e8a; --fn-disp:var(--sans); --fn-text:var(--sans); --fn-hw:500; --fn-gut:var(--gut); --fn-dbg:var(--dark); --fn-dfg:#fff; --fn-r:0px; --fn-btn-r:0px;
+}
+body{background:var(--white);color:var(--ink);font:400 14px/1.55 var(--sans)}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.04em;text-wrap:balance}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.plus{position:absolute;font-size:14px;color:var(--mute);font-weight:300}
+.cap{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.wave{width:36px;height:22px}
+
+.hd{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding-top:22px;padding-bottom:22px;color:#fff;mix-blend-mode:difference}
+.hd button{font-size:9px;font-weight:600;letter-spacing:.12em}
+.menu{position:fixed;inset:0;z-index:45;background:var(--dark);color:#fff;display:grid;grid-template-columns:1fr 1fr;align-content:center;padding-left:var(--l);opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .5s}
+.menu a{font-size:clamp(28px,2.6vw,40px);letter-spacing:-.03em;line-height:1.5;opacity:.85}
+.menu a:hover{opacity:1}
+
+/* intro stack */
+.intro{position:fixed;inset:0;z-index:90;background:#fff;display:grid;place-items:center;pointer-events:none}
+.intro .card{position:absolute;width:min(30vw,420px);aspect-ratio:4/3;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.intro .card img{width:100%;height:100%;object-fit:cover}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:700px;overflow:hidden;color:#fff;background:#9fb9cc}
+.hs{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.hs.on{opacity:1}
+.hs img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s linear}
+.hs.on img{transform:scale(1)}
+.hero h1{position:absolute;left:var(--gut);bottom:-3.4vw;z-index:2;font-size:clamp(150px,21vw,360px);line-height:1;letter-spacing:-.07em;font-weight:500}
+.hero .ctl{position:absolute;right:var(--gut);bottom:30%;z-index:2;text-align:right;display:grid;gap:10px;justify-items:end}
+.hero .ctl .cnt{display:flex;align-items:center;gap:12px;font-size:10px}
+.hero .ctl .cnt i{width:44px;height:1px;background:rgba(255,255,255,.6);position:relative;overflow:hidden}
+.hero .ctl .cnt i b{position:absolute;inset:0;background:#fff;transform-origin:left;animation:hb 6s linear infinite}
+@keyframes hb{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero .ctl .nm{font-size:9px;letter-spacing:.14em;font-weight:600;text-transform:uppercase}
+
+/* about */
+.about{position:relative;padding:120px var(--gut) 60px var(--l);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.about h2{font-size:clamp(34px,2.8vw,46px);line-height:1.06;max-width:12ch}
+.about .txt{font-size:11px;color:#555;max-width:44ch;margin:24px 0 0}
+.about .txt b{color:#000;font-weight:600}
+.nums div{border-top:1px solid var(--ink);padding-top:12px}
+.nums b{display:block;font-size:clamp(46px,4vw,64px);font-weight:400;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.col2{display:grid;gap:12px;align-content:start}
+.col2 .ph{overflow:hidden;position:relative}.col2 .ph img{width:100%;height:100%;object-fit:cover}
+.col2 .a{aspect-ratio:16/10}.col2 .b{aspect-ratio:16/9;width:80%;justify-self:end}
+
+/* statement over facade */
+.facade{position:relative;height:320vh}
+.facade .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.facade .bg,.facade .full{position:absolute;inset:0}.facade .bg img,.facade .full img{width:100%;height:100%;object-fit:cover;will-change:transform}
+/* the Pillar wave is the window: a mask that grows with the scroll until the facade is the whole screen */
+.facade .bg{--ms:26vw;-webkit-mask:var(--wave) center/var(--ms) auto no-repeat;mask:var(--wave) center/var(--ms) auto no-repeat}
+.facade .full{opacity:0}
+.facade{--wave:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2234 10 139 107%22%3E%3Cg fill=%22%23000%22%3E%3Cpath d=%22M79.54 78.00C90.79 77.80 134.43 77.98 145.50 78.00C156.57 78.03 145.80 78.07 145.97 78.17C146.14 78.26 146.22 78.24 146.50 78.58C146.78 78.91 147.39 79.74 147.67 80.17C147.95 80.59 147.97 80.83 148.17 81.13C148.36 81.43 148.67 81.72 148.83 81.97C149.00 82.23 149.03 82.46 149.17 82.67C149.31 82.87 149.33 82.69 149.67 83.20C150.00 83.71 150.83 85.20 151.17 85.71C151.50 86.21 151.33 85.72 151.67 86.23C152.00 86.74 152.83 88.25 153.17 88.76C153.50 89.27 153.50 89.02 153.67 89.29C153.84 89.55 153.96 89.94 154.20 90.33C154.43 90.73 154.83 91.33 155.09 91.67C155.35 92.00 155.63 92.06 155.77 92.33C155.91 92.61 155.95 93.10 155.93 93.33C155.92 93.57 155.79 93.66 155.67 93.75C155.54 93.83 169.33 93.86 155.17 93.86C141.00 93.86 84.94 93.74 70.67 93.76C56.39 93.77 69.75 93.93 69.50 93.94C69.25 93.94 69.17 93.78 69.17 93.78L69.06 93.33C69.06 93.33 69.49 93.05 69.68 92.83C69.86 92.62 69.97 92.25 70.17 92.04C70.36 91.84 70.83 91.61 70.83 91.61L71.00 90.23C71.00 90.23 71.47 89.97 71.67 89.77C71.86 89.58 71.98 89.25 72.17 89.07C72.36 88.88 72.80 88.67 72.80 88.67C72.80 88.67 72.86 87.55 73.00 87.23C73.14 86.92 73.49 86.95 73.67 86.77C73.84 86.60 73.86 86.38 74.07 86.17C74.27 85.95 74.74 85.82 74.89 85.50C75.05 85.18 75.00 84.23 75.00 84.23C75.00 84.23 75.47 83.97 75.67 83.77C75.86 83.58 75.97 83.26 76.17 83.06C76.36 82.87 76.83 82.61 76.83 82.61C76.83 82.61 76.77 81.69 76.94 81.33C77.12 80.98 77.72 80.85 77.89 80.50C78.07 80.15 77.73 79.64 78.00 79.22C78.27 78.80 68.29 78.20 79.54 78.00ZM64.31 101.00C80.40 100.94 144.30 100.93 160.50 100.99C176.70 101.05 161.14 101.00 161.50 101.33C161.86 101.66 161.39 101.01 162.67 102.96C163.94 104.91 167.95 111.20 169.17 113.04C170.38 114.88 169.75 113.62 169.95 114.00C170.15 114.38 170.37 115.33 170.37 115.33C170.37 115.33 170.20 115.64 170.00 115.74C169.80 115.83 188.25 115.87 169.17 115.90C150.08 115.93 74.52 115.96 55.50 115.92C36.48 115.88 55.04 115.67 55.04 115.67L54.99 115.33C54.99 115.33 55.73 114.85 55.90 114.50C56.06 114.15 56.00 113.23 56.00 113.23C56.00 113.23 56.47 112.97 56.67 112.77C56.86 112.58 56.98 112.25 57.17 112.06C57.36 111.88 57.80 111.67 57.80 111.67C57.80 111.67 57.86 110.55 58.00 110.23C58.14 109.92 58.47 109.97 58.67 109.78C58.86 109.58 58.98 109.25 59.17 109.06C59.35 108.88 59.80 108.67 59.80 108.67C59.80 108.67 59.85 107.55 60.00 107.23C60.15 106.92 60.47 106.97 60.67 106.78C60.86 106.58 60.98 106.25 61.17 106.06C61.35 105.88 61.80 105.67 61.80 105.67C61.80 105.67 61.85 104.55 62.00 104.23C62.15 103.92 62.47 103.97 62.67 103.77C62.86 103.58 62.98 103.25 63.17 103.07C63.35 102.88 63.79 102.67 63.79 102.67C63.79 102.67 63.89 101.61 63.98 101.33C64.07 101.06 48.22 101.06 64.31 101.00Z%22/%3E%3Cpath d=%22M77.63 78.00C80.60 77.99 78.31 77.95 78.50 77.98C78.69 78.01 78.69 78.08 78.74 78.17C78.79 78.25 78.80 78.50 78.80 78.50C78.80 78.50 78.16 78.84 78.00 79.19C77.84 79.54 78.01 80.24 77.83 80.60C77.66 80.96 77.10 81.00 76.94 81.33C76.77 81.67 76.83 82.60 76.83 82.60C76.83 82.60 76.36 82.86 76.17 83.06C75.97 83.25 75.86 83.57 75.67 83.77C75.47 83.96 75.00 84.22 75.00 84.22L74.83 85.60C74.83 85.60 74.36 85.86 74.17 86.06C73.97 86.25 73.86 86.57 73.67 86.77C73.47 86.96 73.00 87.22 73.00 87.22L72.83 88.60C72.83 88.60 72.36 88.86 72.17 89.06C71.97 89.25 71.86 89.58 71.67 89.77C71.48 89.95 71.04 90.17 71.04 90.17C71.04 90.17 70.98 91.29 70.83 91.60C70.69 91.92 70.36 91.87 70.17 92.06C69.97 92.25 69.86 92.58 69.67 92.77C69.47 92.96 69.18 92.92 69.00 93.21C68.82 93.50 69.26 93.42 68.61 94.50C67.96 95.58 65.76 98.67 65.11 99.67C64.46 100.67 64.88 100.25 64.69 100.50C64.51 100.75 64.14 100.80 64.00 101.15C63.86 101.50 63.83 102.60 63.83 102.60C63.83 102.60 63.36 102.86 63.17 103.06C62.97 103.25 62.86 103.58 62.67 103.77C62.48 103.95 62.04 104.17 62.04 104.17C62.04 104.17 61.98 105.28 61.83 105.60C61.69 105.91 61.36 105.86 61.17 106.06C60.97 106.25 60.86 106.58 60.67 106.77C60.48 106.95 60.04 107.17 60.04 107.17C60.04 107.17 59.98 108.28 59.83 108.60C59.69 108.91 59.36 108.86 59.17 109.06C58.97 109.25 58.86 109.58 58.67 109.77C58.48 109.95 58.04 110.17 58.04 110.17C58.04 110.17 57.98 111.28 57.83 111.60C57.69 111.91 57.36 111.86 57.17 112.06C56.97 112.25 56.86 112.58 56.67 112.76C56.48 112.95 56.04 113.17 56.04 113.17C56.04 113.17 56.00 114.28 55.83 114.61C55.66 114.95 55.22 114.98 55.02 115.17C54.83 115.35 54.81 115.59 54.67 115.71C54.52 115.83 57.17 115.86 54.17 115.89C51.17 115.92 39.69 115.90 36.67 115.88C33.64 115.86 36.19 115.85 36.00 115.78C35.81 115.72 35.54 115.50 35.54 115.50C35.54 115.50 35.46 115.27 35.53 115.00C35.61 114.73 35.64 114.45 36.00 113.88C36.36 113.31 37.15 112.36 37.67 111.58C38.18 110.79 38.75 109.68 39.08 109.17C39.42 108.65 39.34 109.00 39.67 108.50C40.00 108.00 40.73 106.67 41.05 106.17C41.38 105.67 41.28 106.03 41.63 105.50C41.97 104.97 42.80 103.50 43.12 103.00C43.45 102.50 42.40 104.32 43.57 102.50C44.75 100.68 48.98 93.93 50.17 92.10C51.35 90.27 50.50 91.79 50.67 91.53C50.84 91.26 50.86 91.02 51.19 90.50C51.53 89.98 52.34 88.93 52.67 88.41C53.00 87.90 52.99 87.70 53.17 87.43C53.34 87.17 53.37 87.35 53.71 86.83C54.04 86.32 54.83 84.86 55.17 84.33C55.52 83.81 55.44 84.17 55.78 83.67C56.11 83.16 56.85 81.77 57.17 81.29C57.48 80.81 57.50 81.01 57.67 80.77C57.83 80.53 57.87 80.26 58.15 79.83C58.42 79.41 58.91 78.51 59.33 78.21C59.75 77.90 57.62 78.05 60.67 78.01C63.72 77.98 74.66 78.01 77.63 78.00Z%22/%3E%3Cpath d=%22M112.18 27.00C112.27 26.93 112.36 26.91 112.50 26.92C112.64 26.94 112.81 26.93 113.00 27.09C113.19 27.25 111.89 25.20 113.67 27.90C115.44 30.60 121.91 40.55 123.67 43.29C125.42 46.03 123.86 43.79 124.19 44.33C124.52 44.88 125.24 45.83 125.67 46.56C126.10 47.28 126.41 47.70 126.77 48.67C127.12 49.63 127.59 51.36 127.78 52.33C127.97 53.31 127.90 53.81 127.91 54.50C127.93 55.19 127.89 55.94 127.85 56.50C127.81 57.06 127.84 57.18 127.67 57.86C127.50 58.54 127.08 59.95 126.83 60.59C126.58 61.23 126.34 61.35 126.17 61.70C125.99 62.04 126.24 62.03 125.78 62.67C125.31 63.30 124.00 64.83 123.36 65.50C122.71 66.17 122.39 66.32 121.91 66.67C121.44 67.01 121.12 67.24 120.50 67.56C119.88 67.89 119.14 68.30 118.17 68.64C117.19 68.98 115.69 69.39 114.67 69.61C113.64 69.82 113.06 69.87 112.00 69.95C110.94 70.04 112.78 70.10 108.33 70.13C103.89 70.15 89.22 70.18 85.33 70.13C81.45 70.08 85.09 69.97 85.03 69.83C84.97 69.70 84.96 69.33 84.96 69.33C84.96 69.33 85.72 68.85 85.89 68.50C86.07 68.15 86.00 67.23 86.00 67.23C86.00 67.23 86.47 66.97 86.67 66.78C86.86 66.58 86.98 66.25 87.17 66.07C87.36 65.88 87.80 65.67 87.80 65.67C87.80 65.67 87.86 64.55 88.00 64.23C88.14 63.92 88.47 63.97 88.67 63.78C88.86 63.58 88.98 63.25 89.17 63.07C89.36 62.88 89.80 62.67 89.80 62.67C89.80 62.67 89.86 61.55 90.00 61.23C90.14 60.92 90.47 60.97 90.67 60.77C90.86 60.58 90.98 60.25 91.17 60.07C91.35 59.88 91.64 59.93 91.79 59.67C91.93 59.41 91.96 58.75 92.04 58.50C92.12 58.25 92.16 58.24 92.27 58.17C92.37 58.09 91.18 58.07 92.67 58.05C94.15 58.04 99.42 58.12 101.17 58.09C102.92 58.05 102.75 57.91 103.17 57.83C103.58 57.76 103.34 57.84 103.67 57.65C104.00 57.46 104.65 57.14 105.15 56.67C105.66 56.20 106.31 55.56 106.70 54.83C107.08 54.11 107.31 52.89 107.46 52.33C107.60 51.78 107.54 51.78 107.54 51.50C107.54 51.22 107.59 51.21 107.44 50.67C107.29 50.12 106.96 48.82 106.67 48.23C106.37 47.63 106.06 47.40 105.67 47.07C105.28 46.74 104.86 46.45 104.33 46.26C103.81 46.07 103.14 45.94 102.50 45.95C101.86 45.96 100.91 46.30 100.50 46.31C100.09 46.32 100.15 46.16 100.05 46.00C99.96 45.84 99.91 45.50 99.93 45.33C99.95 45.17 100.03 45.12 100.17 45.01C100.31 44.90 100.59 44.83 100.76 44.67C100.93 44.51 100.99 44.23 101.17 44.06C101.35 43.88 101.69 43.92 101.83 43.61C101.98 43.29 102.05 42.17 102.05 42.17C102.05 42.17 102.48 41.96 102.67 41.78C102.85 41.59 102.97 41.26 103.17 41.06C103.36 40.87 103.83 40.61 103.83 40.61L104.00 39.23C104.00 39.23 104.47 38.97 104.67 38.78C104.86 38.58 104.97 38.26 105.17 38.07C105.36 37.87 105.83 37.61 105.83 37.61L106.00 36.23C106.00 36.23 106.47 35.97 106.67 35.78C106.86 35.58 106.98 35.25 107.17 35.07C107.36 34.88 107.80 34.67 107.80 34.67C107.80 34.67 107.86 33.55 108.00 33.23C108.14 32.92 108.47 32.97 108.67 32.78C108.86 32.58 108.97 32.26 109.17 32.07C109.36 31.87 109.83 31.61 109.83 31.61C109.83 31.61 109.79 30.66 109.95 30.33C110.10 30.01 110.57 29.88 110.78 29.67C110.98 29.46 111.00 29.24 111.17 29.07C111.34 28.90 111.67 28.79 111.79 28.67C111.92 28.54 111.90 28.56 111.92 28.33C111.94 28.11 111.88 27.56 111.92 27.33C111.96 27.11 112.08 27.07 112.18 27.00Z%22/%3E%3Cpath d=%22M102.36 11.83C102.36 11.83 102.78 11.87 103.00 11.99C103.22 12.12 103.47 12.34 103.67 12.61C103.86 12.88 104.00 13.35 104.17 13.61C104.34 13.87 104.36 13.66 104.70 14.17C105.03 14.67 105.84 16.14 106.17 16.64C106.50 17.14 106.02 16.16 106.68 17.17C107.34 18.17 109.46 21.65 110.13 22.67C110.79 23.68 110.33 22.75 110.67 23.25C111.00 23.75 111.80 25.18 112.13 25.67C112.47 26.15 112.57 26.02 112.66 26.17C112.75 26.31 112.79 26.35 112.67 26.54C112.55 26.74 112.07 26.99 111.93 27.33C111.80 27.68 111.83 28.60 111.83 28.60C111.83 28.60 111.36 28.86 111.17 29.06C110.97 29.25 110.85 29.58 110.67 29.77C110.48 29.95 110.04 30.17 110.04 30.17C110.04 30.17 109.98 31.28 109.83 31.60C109.69 31.91 109.36 31.86 109.17 32.06C108.97 32.25 108.86 32.57 108.67 32.77C108.47 32.96 108.00 33.22 108.00 33.22C108.00 33.22 108.04 34.18 107.89 34.50C107.73 34.82 107.26 34.96 107.06 35.17C106.86 35.38 106.84 35.59 106.67 35.77C106.49 35.94 106.15 35.91 106.00 36.22C105.85 36.54 105.79 37.67 105.79 37.67C105.79 37.67 105.35 37.87 105.17 38.06C104.98 38.24 104.86 38.57 104.67 38.77C104.47 38.96 104.00 39.22 104.00 39.22L103.83 40.60C103.83 40.60 103.36 40.86 103.17 41.06C102.97 41.25 102.86 41.57 102.67 41.77C102.47 41.96 102.15 41.90 102.00 42.22C101.85 42.54 101.79 43.67 101.79 43.67C101.79 43.67 101.35 43.88 101.17 44.06C100.98 44.24 100.85 44.59 100.67 44.77C100.48 44.95 100.21 44.87 100.05 45.17C99.88 45.46 99.95 46.13 99.67 46.55C99.38 46.97 98.68 47.26 98.33 47.67C97.98 48.08 97.82 48.66 97.57 49.00C97.32 49.34 97.07 49.54 96.83 49.68C96.60 49.82 99.17 49.83 96.17 49.86C93.17 49.88 81.81 49.86 78.83 49.83C75.86 49.80 78.33 49.70 78.33 49.70C78.33 49.70 78.12 49.39 78.16 49.17C78.19 48.94 78.29 48.72 78.54 48.33C78.80 47.94 79.24 47.51 79.67 46.83C80.11 46.16 80.82 44.83 81.17 44.30C81.51 43.77 81.41 44.18 81.74 43.67C82.07 43.15 82.84 41.72 83.17 41.22C83.49 40.72 83.36 41.18 83.69 40.67C84.02 40.16 84.83 38.67 85.15 38.17C85.48 37.67 85.30 38.17 85.63 37.67C85.96 37.17 86.78 35.68 87.12 35.17C87.46 34.65 87.34 35.06 87.67 34.56C87.99 34.06 88.75 32.68 89.08 32.17C89.42 31.66 89.32 32.03 89.67 31.50C90.01 30.97 90.82 29.50 91.14 29.00C91.46 28.50 90.42 30.31 91.59 28.50C92.77 26.69 96.99 19.95 98.17 18.13C99.35 16.30 98.49 17.83 98.67 17.56C98.84 17.29 98.71 17.27 99.21 16.50C99.71 15.73 101.20 13.63 101.67 12.91C102.13 12.19 101.89 12.35 102.00 12.17C102.12 11.99 102.36 11.83 102.36 11.83ZM72.76 58.17C73.01 58.09 70.60 58.07 73.67 58.05C76.73 58.03 88.16 58.01 91.17 58.05C94.18 58.10 91.72 58.33 91.72 58.33C91.72 58.33 91.91 59.11 91.93 59.33C91.94 59.56 91.94 59.54 91.81 59.67C91.68 59.79 91.36 59.89 91.17 60.07C90.98 60.26 90.86 60.58 90.67 60.77C90.48 60.95 90.04 61.17 90.04 61.17C90.04 61.17 89.98 62.29 89.83 62.60C89.69 62.92 89.36 62.86 89.17 63.06C88.97 63.25 88.86 63.58 88.67 63.77C88.48 63.95 88.04 64.17 88.04 64.17C88.04 64.17 87.98 65.28 87.83 65.60C87.69 65.91 87.36 65.86 87.17 66.06C86.97 66.25 86.86 66.58 86.67 66.77C86.48 66.95 86.04 67.17 86.04 67.17C86.04 67.17 86.00 68.28 85.83 68.61C85.67 68.95 85.25 68.92 85.03 69.17C84.81 69.41 84.50 70.08 84.50 70.08C84.50 70.08 68.86 70.18 65.67 70.18C62.47 70.19 65.43 70.16 65.33 70.10C65.23 70.04 65.13 69.96 65.07 69.83C65.01 69.70 64.97 69.47 64.97 69.33C64.98 69.19 64.83 69.41 65.12 69.00C65.40 68.59 65.66 68.40 66.67 66.86C67.68 65.33 70.25 61.18 71.17 59.79C72.08 58.40 71.90 58.79 72.17 58.52C72.43 58.24 72.51 58.24 72.76 58.17Z%22/%3E%3C/g%3E%3C/svg%3E")}
+.facade .lbl{position:absolute;left:50%;top:calc(50% + 12vw);transform:translateX(-50%);font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);z-index:2}
+.facade .mark{position:relative;z-index:2;width:clamp(120px,14vw,220px);color:#fff}
+.facade h2{position:absolute;left:var(--gut);bottom:6vh;z-index:3;color:#fff;font-size:clamp(46px,5.4vw,90px);line-height:1;max-width:16ch}
+.facade .wsh{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,20,30,.6),transparent 60%);z-index:1;opacity:0}
+
+/* awards */
+
+/* services */
+.services{position:relative;padding:60px var(--gut) 120px var(--l);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.services h2{font-size:clamp(46px,4.4vw,72px)}
+.services .lead{font-size:11px;color:#555;max-width:44ch;margin:20px 0 40px}
+.services .ph{aspect-ratio:16/9;overflow:hidden;position:relative}
+.services .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.services .list{align-self:end;border-top:1px solid var(--line)}
+.sr{border-bottom:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:80px 1fr;cursor:default}
+.sr .n{font-size:10px;color:var(--mute)}
+.sr h3{font-size:18px;letter-spacing:-.02em}
+.sr p{grid-column:2;margin:0;font-size:12px;color:#555;max-height:0;opacity:0;overflow:hidden;transition:max-height .7s var(--px-ease),opacity .5s,margin .5s}
+.sr:hover p,.sr.on p{max-height:6em;opacity:1;margin-top:8px}
+
+/* partners */
+
+/* article */
+.article{position:relative;padding:40px var(--gut) 120px var(--l)}
+.article .ph{aspect-ratio:21/8;overflow:hidden;margin-right:12vw;position:relative}.article .ph img{width:100%;height:100%;object-fit:cover}
+.article h3{font-size:clamp(26px,2.2vw,34px);line-height:1.08}
+.article p{font-size:11px;color:#555;margin:14px 0 22px}
+.article a{font-size:13px;border-bottom:1px solid #000}
+
+/* marquee + quote */
+.mq{position:relative;height:clamp(240px,26vw,380px);overflow:hidden;display:grid;align-items:center}
+.mq .row{display:flex;white-space:nowrap;font-size:clamp(70px,7.4vw,124px);letter-spacing:-.05em;font-weight:500;will-change:transform}
+.mq .row span{padding-right:.4em}
+.mq .pt{position:absolute;left:50%;top:0;bottom:0;width:clamp(150px,13vw,210px);transform:translateX(-50%);overflow:hidden;z-index:2}
+.mq .pt img{width:100%;height:100%;object-fit:cover}
+.qrow{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding:30px var(--gut) 120px var(--l)}
+.qrow blockquote{margin:0;font-size:clamp(20px,1.7vw,26px);line-height:1.25;letter-spacing:-.02em;max-width:44ch;transition:opacity .4s}
+.qrow cite{display:block;font-style:normal;font-size:10px;color:var(--mute);margin-top:14px}
+
+/* footer */
+.ft{position:relative;background:var(--dark);color:#fff;padding:110px var(--gut) 100px var(--l);overflow:hidden}
+.ft .ghost{position:absolute;left:var(--gut);bottom:-4vw;font-size:clamp(200px,28vw,480px);line-height:1;letter-spacing:-.07em;color:#1b1b1b;font-weight:500;pointer-events:none}
+.ft p{font-size:16px;max-width:30ch;margin:0 0 20px}
+.ft .msg{font-size:12px;color:#aaa}
+.ft .base{position:relative;display:flex;justify-content:space-between;margin-top:140px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#888}
+/* hero copy above the giant name */
+.hero .hc{position:absolute;left:var(--gut);top:120px;z-index:3;max-width:min(560px,46vw);text-shadow:0 1px 30px rgba(0,0,0,.25)}
+.hero .hc .cap{display:block;margin-bottom:18px}
+.hero .hc h1{font-size:clamp(48px,5vw,84px);line-height:.95;letter-spacing:-.05em;font-weight:500;position:static}
+.hero .hc p{font-size:15px;max-width:38ch;margin:18px 0 0;line-height:1.45}
+.hero .hc .acts{display:flex;gap:18px;margin-top:24px;align-items:center}
+.hero .hc .acts button,.hero .hc .acts a{font-size:12px;border-bottom:1px solid #fff;padding-bottom:3px;color:#fff;letter-spacing:.02em}
+.hero .word{position:absolute;left:var(--gut);bottom:-3.4vw;z-index:2;font-size:clamp(150px,21vw,360px);line-height:1;letter-spacing:-.07em;font-weight:500}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 45%);pointer-events:none}
+/* about */
+.about .apts{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line);max-width:52ch}
+.about .apts li{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:11px;color:#555}
+.about .apts b{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#000}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:60px}
+/* trades */
+.sr{cursor:pointer}
+.sr .go{grid-column:2;justify-self:start;margin-top:10px;font-size:11px;border-bottom:1px solid #000;padding-bottom:2px;opacity:0;transition:opacity .4s}
+.sr:hover .go,.sr.on .go{opacity:1}
+/* panel sheet */
+.article .t{margin-left:30%;max-width:560px;margin-top:40px}
+.article .lys{list-style:none;margin:24px 0;padding:0;border-top:1px solid var(--line)}
+.article .lys li{display:grid;grid-template-columns:60px 1fr 1.1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:11px;color:#555;align-items:baseline}
+.article .lys li b{font-size:15px;font-weight:500;color:#000;letter-spacing:-.02em}
+.article .lys li span{font-size:10px;color:var(--mute)}
+.article .pst{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:30px 0}
+.article .pst div{border-top:1px solid var(--ink);padding-top:10px}
+.article .pst b{display:block;font-size:clamp(40px,3.4vw,56px);font-weight:400;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.article .pst b small{font-size:.3em;margin-left:3px;color:#2f6e8a}
+.article .pst span{display:block;font-size:10px;color:#555;margin-top:8px;max-width:22ch}
+.article .acts{display:flex;gap:22px;flex-wrap:wrap}
+.article .acts a,.article .acts button{font-size:13px;border-bottom:1px solid #000;padding-bottom:2px;color:#000}
+/* featured */
+.work{position:relative;padding:60px var(--gut) 120px var(--l)}
+.work .hd2{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px}
+.work h2{font-size:clamp(46px,4.4vw,72px);line-height:1}
+.work .hd2 button{font-size:13px;border-bottom:1px solid #000;padding-bottom:2px}
+.work .g{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px}
+.work .p{display:grid;gap:12px;text-align:left;cursor:zoom-in}
+.work .p .ph{overflow:hidden;position:relative}.work .p .ph img{width:100%;height:100%;object-fit:cover}
+.work .p:first-child{grid-column:1/-1;margin-right:12vw}.work .p:first-child .ph{aspect-ratio:21/8}
+.work .p:nth-child(2) .ph{aspect-ratio:4/3}.work .p:nth-child(3){margin-top:14vh}.work .p:nth-child(3) .ph{aspect-ratio:3/4;width:80%}
+.work .p .m{display:grid;grid-template-columns:1fr auto;gap:4px 20px;font-size:11px;color:#555}
+.work .p h3{font-size:clamp(20px,1.6vw,26px);letter-spacing:-.03em;color:#000}
+.work .p .m .cap{align-self:start;color:var(--mute)}
+/* marquee of builders around one quote */
+.mq .row span{padding-right:.5em}
+.qrow{grid-template-columns:1fr}
+.qrow .ql{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:16px;display:block}
+.qrow blockquote{font-size:clamp(24px,2.2vw,36px);max-width:36ch}
+/* footer with the call to action */
+.ft .g{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.ft .cta .cap{color:#777;display:block;margin-bottom:18px}
+.ft .cta h2{font-size:clamp(46px,4.6vw,80px);line-height:1;letter-spacing:-.05em}
+.ft .cta p{font-size:16px;color:#aaa;margin:18px 0 26px}
+.ft .cta .acts{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.ft .cta button{font-size:16px;border-bottom:1px solid #fff;padding-bottom:3px;color:#fff}
+.ft .cta .tel{font-size:22px;letter-spacing:-.02em;user-select:all;-webkit-user-select:all}
+.ft .site{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;font-size:13px;color:#aaa}
+.ft .site .cap{color:#777;display:block;margin-bottom:10px}
+.ft .site a{display:block;color:#fff;font-size:clamp(15px,1.15vw,18px);line-height:1.6}
+.ft .site .v{display:block;color:#fff;user-select:all;-webkit-user-select:all}
+.ft .aff{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;position:relative}
+.ft .aff img{height:22px;width:auto;max-width:80px;object-fit:contain;filter:grayscale(1) brightness(1.8);opacity:.5}
+@media (max-width:820px){.hero .hc{right:var(--gut);max-width:none}.about,.services,.ft .g{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}.work .g{grid-template-columns:1fr}.article .t{margin-left:0}}
+</style>
+<style>.px-sw{display:none!important}
+.hk-sw{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5000;display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(18,18,17,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.28),inset 0 0 0 1px rgba(243,241,236,.16);font:500 12px/1 system-ui,sans-serif;color:#f3f1ec;text-decoration:none}
+.hk-sw a{height:34px;padding:0 14px;border-radius:999px;display:flex;align-items:center;gap:8px;color:rgba(243,241,236,.6);text-decoration:none;white-space:nowrap}
+.hk-sw a:hover{color:#f3f1ec;background:rgba(255,255,255,.1)}
+.hk-sw a.on{background:#f3f1ec;color:#111}
+@media(max-width:640px){.hk-sw a span{display:none}.hk-sw a.on span{display:inline}}
+</style>
+<style>.hero .ctl .cnt,.ctl .cnt{display:none!important}</style>
+<style>
+.pmark-link{position:fixed;left:var(--gut);top:22px;z-index:51;display:block;line-height:0}
+.pmark{display:block;width:34px;height:26px}
+.hd button{margin-left:auto}
+</style>
+<style>
+.pf{background:#111;color:#f1f1ef;border:1px solid rgba(241,241,239,.16);margin:0;position:relative;z-index:2;font:300 15px/1.5 "Epilogue","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.pf *{box-sizing:border-box}
+.pf-in{padding:clamp(40px,5vw,72px) clamp(20px,3vw,48px) 28px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;max-width:none}
+.pf h3{margin:0 0 28px;font-weight:300;font-size:clamp(36px,4.6vw,76px);line-height:.95;letter-spacing:-.055em}
+.pf-btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:99px;background:#f1f1ef;color:#111;border:0;font:400 11px/1 "Epilogue",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.pf-r{display:grid;gap:18px;justify-items:start}
+.pf-r a.big{font-size:clamp(20px,2vw,30px);letter-spacing:-.03em;color:#f1f1ef;text-decoration:none}
+.pf-up{font:400 10px/1.3 "Epilogue",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8c8b8f}
+.pf-copy{grid-column:1/-1;border-top:1px solid rgba(241,241,239,.16);padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.pf-copy img{display:block;height:22px;width:auto}
+.pf{padding-bottom:84px}
+@media (max-width:760px){.pf-in{grid-template-columns:1fr}}
+</style>
+<style>footer.ft{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+.awr{--void:#071016;--fog:#93A3AD;--scan:#62E6F7;--gx:max(var(--gut,0px),clamp(28px,4.4vw,64px));background:var(--void);color:#fff;font-family:"Archivo",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.55;padding:clamp(100px,14vh,180px) 0 clamp(60px,8vh,100px);overflow:hidden;position:relative;z-index:2;-webkit-font-smoothing:antialiased}
+.awr *{box-sizing:border-box}
+.aw-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-inline:var(--gx)}
+.aw-title{margin:0;font-size:clamp(40px,5.4vw,92px);font-weight:500;font-stretch:112%;letter-spacing:-.04em;line-height:1;max-width:14ch}
+.aw-intro{margin:0;font-size:15px;color:var(--fog);max-width:34ch}
+.aw-stage{height:min(70vh,640px);overflow:hidden;margin-top:20px}
+.aw-ring{height:100%;perspective:1400px;display:grid;place-items:center;touch-action:pan-y;cursor:grab;outline-offset:-4px}
+.aw-ring:active{cursor:grabbing}
+.aw-track{position:relative;width:280px;height:340px;transform-style:preserve-3d;list-style:none;margin:0;padding:0}
+.aw-yr{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:border-color .4s,background .4s}
+.aw-yr b{font-size:72px;font-weight:300;font-stretch:118%;letter-spacing:-.05em;line-height:1;margin-bottom:auto;font-variant-numeric:tabular-nums}
+.aw-yr p{margin:0 0 6px;font-size:17px;font-weight:500;line-height:1.25}
+.aw-yr em{font-style:normal;font-size:13px;color:var(--fog)}
+.aw-yr.is-front{border-color:var(--scan);background:linear-gradient(160deg,rgba(98,230,247,.16),rgba(98,230,247,.03))}
+.aw-yr.is-front b{color:var(--scan)}
+@media (max-width:760px){.aw-head{flex-direction:column;align-items:flex-start}.aw-ring{height:520px}.aw-track{width:230px;height:300px}.aw-yr b{font-size:56px}}
+
+</style>
+</head>
+<body>
+<div class="intro" id="intro" aria-hidden="true"></div>
+<a class="pmark-link" href="#top" aria-label="Pillar Construction home"><svg class="pmark" viewBox="34 10 139 107" width="34" height="26" role="img" aria-label="Pillar" preserveAspectRatio="xMinYMid meet"><defs><linearGradient id="pmg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#aadeea"/><stop offset=".5" stop-color="#4ec1d6"/><stop offset="1" stop-color="#0ba5c4"/></linearGradient></defs><g fill="url(#pmg)"><path d="M79.54 78.00C90.79 77.80 134.43 77.98 145.50 78.00C156.57 78.03 145.80 78.07 145.97 78.17C146.14 78.26 146.22 78.24 146.50 78.58C146.78 78.91 147.39 79.74 147.67 80.17C147.95 80.59 147.97 80.83 148.17 81.13C148.36 81.43 148.67 81.72 148.83 81.97C149.00 82.23 149.03 82.46 149.17 82.67C149.31 82.87 149.33 82.69 149.67 83.20C150.00 83.71 150.83 85.20 151.17 85.71C151.50 86.21 151.33 85.72 151.67 86.23C152.00 86.74 152.83 88.25 153.17 88.76C153.50 89.27 153.50 89.02 153.67 89.29C153.84 89.55 153.96 89.94 154.20 90.33C154.43 90.73 154.83 91.33 155.09 91.67C155.35 92.00 155.63 92.06 155.77 92.33C155.91 92.61 155.95 93.10 155.93 93.33C155.92 93.57 155.79 93.66 155.67 93.75C155.54 93.83 169.33 93.86 155.17 93.86C141.00 93.86 84.94 93.74 70.67 93.76C56.39 93.77 69.75 93.93 69.50 93.94C69.25 93.94 69.17 93.78 69.17 93.78L69.06 93.33C69.06 93.33 69.49 93.05 69.68 92.83C69.86 92.62 69.97 92.25 70.17 92.04C70.36 91.84 70.83 91.61 70.83 91.61L71.00 90.23C71.00 90.23 71.47 89.97 71.67 89.77C71.86 89.58 71.98 89.25 72.17 89.07C72.36 88.88 72.80 88.67 72.80 88.67C72.80 88.67 72.86 87.55 73.00 87.23C73.14 86.92 73.49 86.95 73.67 86.77C73.84 86.60 73.86 86.38 74.07 86.17C74.27 85.95 74.74 85.82 74.89 85.50C75.05 85.18 75.00 84.23 75.00 84.23C75.00 84.23 75.47 83.97 75.67 83.77C75.86 83.58 75.97 83.26 76.17 83.06C76.36 82.87 76.83 82.61 76.83 82.61C76.83 82.61 76.77 81.69 76.94 81.33C77.12 80.98 77.72 80.85 77.89 80.50C78.07 80.15 77.73 79.64 78.00 79.22C78.27 78.80 68.29 78.20 79.54 78.00ZM64.31 101.00C80.40 100.94 144.30 100.93 160.50 100.99C176.70 101.05 161.14 101.00 161.50 101.33C161.86 101.66 161.39 101.01 162.67 102.96C163.94 104.91 167.95 111.20 169.17 113.04C170.38 114.88 169.75 113.62 169.95 114.00C170.15 114.38 170.37 115.33 170.37 115.33C170.37 115.33 170.20 115.64 170.00 115.74C169.80 115.83 188.25 115.87 169.17 115.90C150.08 115.93 74.52 115.96 55.50 115.92C36.48 115.88 55.04 115.67 55.04 115.67L54.99 115.33C54.99 115.33 55.73 114.85 55.90 114.50C56.06 114.15 56.00 113.23 56.00 113.23C56.00 113.23 56.47 112.97 56.67 112.77C56.86 112.58 56.98 112.25 57.17 112.06C57.36 111.88 57.80 111.67 57.80 111.67C57.80 111.67 57.86 110.55 58.00 110.23C58.14 109.92 58.47 109.97 58.67 109.78C58.86 109.58 58.98 109.25 59.17 109.06C59.35 108.88 59.80 108.67 59.80 108.67C59.80 108.67 59.85 107.55 60.00 107.23C60.15 106.92 60.47 106.97 60.67 106.78C60.86 106.58 60.98 106.25 61.17 106.06C61.35 105.88 61.80 105.67 61.80 105.67C61.80 105.67 61.85 104.55 62.00 104.23C62.15 103.92 62.47 103.97 62.67 103.77C62.86 103.58 62.98 103.25 63.17 103.07C63.35 102.88 63.79 102.67 63.79 102.67C63.79 102.67 63.89 101.61 63.98 101.33C64.07 101.06 48.22 101.06 64.31 101.00Z"/><path d="M77.63 78.00C80.60 77.99 78.31 77.95 78.50 77.98C78.69 78.01 78.69 78.08 78.74 78.17C78.79 78.25 78.80 78.50 78.80 78.50C78.80 78.50 78.16 78.84 78.00 79.19C77.84 79.54 78.01 80.24 77.83 80.60C77.66 80.96 77.10 81.00 76.94 81.33C76.77 81.67 76.83 82.60 76.83 82.60C76.83 82.60 76.36 82.86 76.17 83.06C75.97 83.25 75.86 83.57 75.67 83.77C75.47 83.96 75.00 84.22 75.00 84.22L74.83 85.60C74.83 85.60 74.36 85.86 74.17 86.06C73.97 86.25 73.86 86.57 73.67 86.77C73.47 86.96 73.00 87.22 73.00 87.22L72.83 88.60C72.83 88.60 72.36 88.86 72.17 89.06C71.97 89.25 71.86 89.58 71.67 89.77C71.48 89.95 71.04 90.17 71.04 90.17C71.04 90.17 70.98 91.29 70.83 91.60C70.69 91.92 70.36 91.87 70.17 92.06C69.97 92.25 69.86 92.58 69.67 92.77C69.47 92.96 69.18 92.92 69.00 93.21C68.82 93.50 69.26 93.42 68.61 94.50C67.96 95.58 65.76 98.67 65.11 99.67C64.46 100.67 64.88 100.25 64.69 100.50C64.51 100.75 64.14 100.80 64.00 101.15C63.86 101.50 63.83 102.60 63.83 102.60C63.83 102.60 63.36 102.86 63.17 103.06C62.97 103.25 62.86 103.58 62.67 103.77C62.48 103.95 62.04 104.17 62.04 104.17C62.04 104.17 61.98 105.28 61.83 105.60C61.69 105.91 61.36 105.86 61.17 106.06C60.97 106.25 60.86 106.58 60.67 106.77C60.48 106.95 60.04 107.17 60.04 107.17C60.04 107.17 59.98 108.28 59.83 108.60C59.69 108.91 59.36 108.86 59.17 109.06C58.97 109.25 58.86 109.58 58.67 109.77C58.48 109.95 58.04 110.17 58.04 110.17C58.04 110.17 57.98 111.28 57.83 111.60C57.69 111.91 57.36 111.86 57.17 112.06C56.97 112.25 56.86 112.58 56.67 112.76C56.48 112.95 56.04 113.17 56.04 113.17C56.04 113.17 56.00 114.28 55.83 114.61C55.66 114.95 55.22 114.98 55.02 115.17C54.83 115.35 54.81 115.59 54.67 115.71C54.52 115.83 57.17 115.86 54.17 115.89C51.17 115.92 39.69 115.90 36.67 115.88C33.64 115.86 36.19 115.85 36.00 115.78C35.81 115.72 35.54 115.50 35.54 115.50C35.54 115.50 35.46 115.27 35.53 115.00C35.61 114.73 35.64 114.45 36.00 113.88C36.36 113.31 37.15 112.36 37.67 111.58C38.18 110.79 38.75 109.68 39.08 109.17C39.42 108.65 39.34 109.00 39.67 108.50C40.00 108.00 40.73 106.67 41.05 106.17C41.38 105.67 41.28 106.03 41.63 105.50C41.97 104.97 42.80 103.50 43.12 103.00C43.45 102.50 42.40 104.32 43.57 102.50C44.75 100.68 48.98 93.93 50.17 92.10C51.35 90.27 50.50 91.79 50.67 91.53C50.84 91.26 50.86 91.02 51.19 90.50C51.53 89.98 52.34 88.93 52.67 88.41C53.00 87.90 52.99 87.70 53.17 87.43C53.34 87.17 53.37 87.35 53.71 86.83C54.04 86.32 54.83 84.86 55.17 84.33C55.52 83.81 55.44 84.17 55.78 83.67C56.11 83.16 56.85 81.77 57.17 81.29C57.48 80.81 57.50 81.01 57.67 80.77C57.83 80.53 57.87 80.26 58.15 79.83C58.42 79.41 58.91 78.51 59.33 78.21C59.75 77.90 57.62 78.05 60.67 78.01C63.72 77.98 74.66 78.01 77.63 78.00Z"/><path d="M112.18 27.00C112.27 26.93 112.36 26.91 112.50 26.92C112.64 26.94 112.81 26.93 113.00 27.09C113.19 27.25 111.89 25.20 113.67 27.90C115.44 30.60 121.91 40.55 123.67 43.29C125.42 46.03 123.86 43.79 124.19 44.33C124.52 44.88 125.24 45.83 125.67 46.56C126.10 47.28 126.41 47.70 126.77 48.67C127.12 49.63 127.59 51.36 127.78 52.33C127.97 53.31 127.90 53.81 127.91 54.50C127.93 55.19 127.89 55.94 127.85 56.50C127.81 57.06 127.84 57.18 127.67 57.86C127.50 58.54 127.08 59.95 126.83 60.59C126.58 61.23 126.34 61.35 126.17 61.70C125.99 62.04 126.24 62.03 125.78 62.67C125.31 63.30 124.00 64.83 123.36 65.50C122.71 66.17 122.39 66.32 121.91 66.67C121.44 67.01 121.12 67.24 120.50 67.56C119.88 67.89 119.14 68.30 118.17 68.64C117.19 68.98 115.69 69.39 114.67 69.61C113.64 69.82 113.06 69.87 112.00 69.95C110.94 70.04 112.78 70.10 108.33 70.13C103.89 70.15 89.22 70.18 85.33 70.13C81.45 70.08 85.09 69.97 85.03 69.83C84.97 69.70 84.96 69.33 84.96 69.33C84.96 69.33 85.72 68.85 85.89 68.50C86.07 68.15 86.00 67.23 86.00 67.23C86.00 67.23 86.47 66.97 86.67 66.78C86.86 66.58 86.98 66.25 87.17 66.07C87.36 65.88 87.80 65.67 87.80 65.67C87.80 65.67 87.86 64.55 88.00 64.23C88.14 63.92 88.47 63.97 88.67 63.78C88.86 63.58 88.98 63.25 89.17 63.07C89.36 62.88 89.80 62.67 89.80 62.67C89.80 62.67 89.86 61.55 90.00 61.23C90.14 60.92 90.47 60.97 90.67 60.77C90.86 60.58 90.98 60.25 91.17 60.07C91.35 59.88 91.64 59.93 91.79 59.67C91.93 59.41 91.96 58.75 92.04 58.50C92.12 58.25 92.16 58.24 92.27 58.17C92.37 58.09 91.18 58.07 92.67 58.05C94.15 58.04 99.42 58.12 101.17 58.09C102.92 58.05 102.75 57.91 103.17 57.83C103.58 57.76 103.34 57.84 103.67 57.65C104.00 57.46 104.65 57.14 105.15 56.67C105.66 56.20 106.31 55.56 106.70 54.83C107.08 54.11 107.31 52.89 107.46 52.33C107.60 51.78 107.54 51.78 107.54 51.50C107.54 51.22 107.59 51.21 107.44 50.67C107.29 50.12 106.96 48.82 106.67 48.23C106.37 47.63 106.06 47.40 105.67 47.07C105.28 46.74 104.86 46.45 104.33 46.26C103.81 46.07 103.14 45.94 102.50 45.95C101.86 45.96 100.91 46.30 100.50 46.31C100.09 46.32 100.15 46.16 100.05 46.00C99.96 45.84 99.91 45.50 99.93 45.33C99.95 45.17 100.03 45.12 100.17 45.01C100.31 44.90 100.59 44.83 100.76 44.67C100.93 44.51 100.99 44.23 101.17 44.06C101.35 43.88 101.69 43.92 101.83 43.61C101.98 43.29 102.05 42.17 102.05 42.17C102.05 42.17 102.48 41.96 102.67 41.78C102.85 41.59 102.97 41.26 103.17 41.06C103.36 40.87 103.83 40.61 103.83 40.61L104.00 39.23C104.00 39.23 104.47 38.97 104.67 38.78C104.86 38.58 104.97 38.26 105.17 38.07C105.36 37.87 105.83 37.61 105.83 37.61L106.00 36.23C106.00 36.23 106.47 35.97 106.67 35.78C106.86 35.58 106.98 35.25 107.17 35.07C107.36 34.88 107.80 34.67 107.80 34.67C107.80 34.67 107.86 33.55 108.00 33.23C108.14 32.92 108.47 32.97 108.67 32.78C108.86 32.58 108.97 32.26 109.17 32.07C109.36 31.87 109.83 31.61 109.83 31.61C109.83 31.61 109.79 30.66 109.95 30.33C110.10 30.01 110.57 29.88 110.78 29.67C110.98 29.46 111.00 29.24 111.17 29.07C111.34 28.90 111.67 28.79 111.79 28.67C111.92 28.54 111.90 28.56 111.92 28.33C111.94 28.11 111.88 27.56 111.92 27.33C111.96 27.11 112.08 27.07 112.18 27.00Z"/><path d="M102.36 11.83C102.36 11.83 102.78 11.87 103.00 11.99C103.22 12.12 103.47 12.34 103.67 12.61C103.86 12.88 104.00 13.35 104.17 13.61C104.34 13.87 104.36 13.66 104.70 14.17C105.03 14.67 105.84 16.14 106.17 16.64C106.50 17.14 106.02 16.16 106.68 17.17C107.34 18.17 109.46 21.65 110.13 22.67C110.79 23.68 110.33 22.75 110.67 23.25C111.00 23.75 111.80 25.18 112.13 25.67C112.47 26.15 112.57 26.02 112.66 26.17C112.75 26.31 112.79 26.35 112.67 26.54C112.55 26.74 112.07 26.99 111.93 27.33C111.80 27.68 111.83 28.60 111.83 28.60C111.83 28.60 111.36 28.86 111.17 29.06C110.97 29.25 110.85 29.58 110.67 29.77C110.48 29.95 110.04 30.17 110.04 30.17C110.04 30.17 109.98 31.28 109.83 31.60C109.69 31.91 109.36 31.86 109.17 32.06C108.97 32.25 108.86 32.57 108.67 32.77C108.47 32.96 108.00 33.22 108.00 33.22C108.00 33.22 108.04 34.18 107.89 34.50C107.73 34.82 107.26 34.96 107.06 35.17C106.86 35.38 106.84 35.59 106.67 35.77C106.49 35.94 106.15 35.91 106.00 36.22C105.85 36.54 105.79 37.67 105.79 37.67C105.79 37.67 105.35 37.87 105.17 38.06C104.98 38.24 104.86 38.57 104.67 38.77C104.47 38.96 104.00 39.22 104.00 39.22L103.83 40.60C103.83 40.60 103.36 40.86 103.17 41.06C102.97 41.25 102.86 41.57 102.67 41.77C102.47 41.96 102.15 41.90 102.00 42.22C101.85 42.54 101.79 43.67 101.79 43.67C101.79 43.67 101.35 43.88 101.17 44.06C100.98 44.24 100.85 44.59 100.67 44.77C100.48 44.95 100.21 44.87 100.05 45.17C99.88 45.46 99.95 46.13 99.67 46.55C99.38 46.97 98.68 47.26 98.33 47.67C97.98 48.08 97.82 48.66 97.57 49.00C97.32 49.34 97.07 49.54 96.83 49.68C96.60 49.82 99.17 49.83 96.17 49.86C93.17 49.88 81.81 49.86 78.83 49.83C75.86 49.80 78.33 49.70 78.33 49.70C78.33 49.70 78.12 49.39 78.16 49.17C78.19 48.94 78.29 48.72 78.54 48.33C78.80 47.94 79.24 47.51 79.67 46.83C80.11 46.16 80.82 44.83 81.17 44.30C81.51 43.77 81.41 44.18 81.74 43.67C82.07 43.15 82.84 41.72 83.17 41.22C83.49 40.72 83.36 41.18 83.69 40.67C84.02 40.16 84.83 38.67 85.15 38.17C85.48 37.67 85.30 38.17 85.63 37.67C85.96 37.17 86.78 35.68 87.12 35.17C87.46 34.65 87.34 35.06 87.67 34.56C87.99 34.06 88.75 32.68 89.08 32.17C89.42 31.66 89.32 32.03 89.67 31.50C90.01 30.97 90.82 29.50 91.14 29.00C91.46 28.50 90.42 30.31 91.59 28.50C92.77 26.69 96.99 19.95 98.17 18.13C99.35 16.30 98.49 17.83 98.67 17.56C98.84 17.29 98.71 17.27 99.21 16.50C99.71 15.73 101.20 13.63 101.67 12.91C102.13 12.19 101.89 12.35 102.00 12.17C102.12 11.99 102.36 11.83 102.36 11.83ZM72.76 58.17C73.01 58.09 70.60 58.07 73.67 58.05C76.73 58.03 88.16 58.01 91.17 58.05C94.18 58.10 91.72 58.33 91.72 58.33C91.72 58.33 91.91 59.11 91.93 59.33C91.94 59.56 91.94 59.54 91.81 59.67C91.68 59.79 91.36 59.89 91.17 60.07C90.98 60.26 90.86 60.58 90.67 60.77C90.48 60.95 90.04 61.17 90.04 61.17C90.04 61.17 89.98 62.29 89.83 62.60C89.69 62.92 89.36 62.86 89.17 63.06C88.97 63.25 88.86 63.58 88.67 63.77C88.48 63.95 88.04 64.17 88.04 64.17C88.04 64.17 87.98 65.28 87.83 65.60C87.69 65.91 87.36 65.86 87.17 66.06C86.97 66.25 86.86 66.58 86.67 66.77C86.48 66.95 86.04 67.17 86.04 67.17C86.04 67.17 86.00 68.28 85.83 68.61C85.67 68.95 85.25 68.92 85.03 69.17C84.81 69.41 84.50 70.08 84.50 70.08C84.50 70.08 68.86 70.18 65.67 70.18C62.47 70.19 65.43 70.16 65.33 70.10C65.23 70.04 65.13 69.96 65.07 69.83C65.01 69.70 64.97 69.47 64.97 69.33C64.98 69.19 64.83 69.41 65.12 69.00C65.40 68.59 65.66 68.40 66.67 66.86C67.68 65.33 70.25 61.18 71.17 59.79C72.08 58.40 71.90 58.79 72.17 58.52C72.43 58.24 72.51 58.24 72.76 58.17Z"/></g></svg></a>
+<header class="hd wrap"><button type="button" id="mb" aria-expanded="false">MENU</button></header>
+<nav class="menu" id="menu" aria-label="Main"><div><a href="#about">About</a><br><a href="#services">Specialties</a><br><a href="#article">Exterior Panels</a></div><div><a href="#work">Projects</a><br><a href="#voice">What builders say</a><br><a href="#foot" data-contact>Contact</a></div></nav>
+
+<main id="top">
+  <section class="hero" id="hero" data-lb-group>
+    <div class="hc" data-r="up"><span class="cap" id="heb"></span><h1>Materialize your idea.</h1><p id="hline"></p><div class="acts"><button type="button" data-contact>Start a project</button><a href="#services">Our specialties</a></div></div>
+    <div class="word" aria-hidden="true" data-split="chars">Pillar</div>
+    <div class="ctl"><div class="cnt"><span id="hc">01</span><i><b></b></i><span id="ht">04</span></div><span class="nm" id="hnm"></span></div>
+  </section>
+
+  <section class="about" id="about">
+    <span class="plus" style="left:var(--gut);top:120px">+</span>
+    <div><h2 data-split="lines">Three decades of finished buildings.</h2>
+      <p class="txt" data-r="up" id="alede"></p>
+      <ul class="apts" id="apts"></ul>
+      <div class="nums" id="nums"></div></div>
+    <div class="col2"><div class="ph a" data-m="unveil drift" data-dir="left"><img data-g="assets/img/s/white-cubes.jpg" data-gw="1000" alt=""></div><div class="ph b" data-m="unveil drift" data-dir="right" data-delay=".15"><img data-g="assets/img/s/twin-towers.jpg" data-gw="800" alt=""></div></div>
+  </section>
+
+  <section class="services" id="services">
+    <span class="plus" style="left:var(--gut);top:60px">+</span>
+    <div><h2 data-split="lines">Five trades. One crew.</h2><p class="lead" data-r="up" id="slede"></p><div class="ph" id="sph"></div></div>
+    <div class="list" id="slist"></div>
+  </section>
+
+  <section class="facade" aria-label="Pillar Exterior Panels">
+    <div class="stage">
+      <div class="bg" id="fmask"><img id="fbg" data-g="assets/img/p/EP_003.jpg" data-eager alt=""></div><div class="full" id="ffull"><img id="ffimg" data-g="assets/img/p/EP_003.jpg" data-eager alt=""></div><div class="wsh" id="fwsh"></div>
+      <span class="lbl" id="flbl">Keep scrolling</span>
+      <h2 id="fh"><span class="cap" style="display:block;margin-bottom:16px;opacity:.8">Pillar Exterior Panels</span>The wall arrives finished.</h2>
+    </div>
+  </section>
+
+  <section class="article" id="article">
+    <div class="ph" data-m="unveil drift" data-dir="right" data-amt="10"><img data-g="assets/img/h/pillar_ep_1.jpg" alt="A Pillar Exterior Panel being set"></div>
+    <div class="t" data-r="up"><span class="plus" style="position:static">+</span><p style="font-size:15px;color:#000;max-width:44ch" id="plede"></p><ol class="lys" id="lys"></ol><div class="pst" id="pst"></div><div class="acts"><a id="br" target="_blank" rel="noopener">Learn more ↗</a><button type="button" data-fn-panelproj>See panel projects</button></div></div>
+  </section>
+
+  <section class="work" id="work">
+    <span class="plus" style="left:var(--gut);top:60px">+</span>
+    <div class="hd2"><div><span class="cap" style="display:block;margin-bottom:14px">Featured projects</span><h2 data-split="lines">Recent buildings.</h2></div><button type="button" data-fn-all>View all projects</button></div>
+    <div class="g" id="wg" data-lb-group></div>
+  </section>
+
+  <section aria-label="What builders say" id="voice">
+    <div class="mq"><div class="row" id="mrow"></div><div class="pt" id="mpt"></div></div>
+    <div class="qrow"><div><span class="ql">From the general contractors</span><blockquote id="qq"></blockquote><cite id="qc"></cite></div></div>
+  </section>
+</main>
+
+<footer class="ft" id="foot">
+  <div class="ghost" aria-hidden="true" data-m="chars" data-start="top bottom" data-end="bottom bottom">Pillar</div>
+  <div class="g">
+    <div class="cta"><span class="cap">We are just a click away</span><h2>Let's build<br>what's next.</h2><p>Bring us in while the design is still taking shape.</p><div class="acts"><button type="button" data-contact>Contact us</button><span class="tel" id="ctel"></span></div></div>
+    <div class="site" id="fsite"></div>
+  </div>
+  <div class="aff" id="faff"></div>
+  <div class="base"><span>© 1999–<span id="yr"></span> Pillar Construction, Inc. Interior and exterior finish experts since 1995.</span><a href="verdigris.html">All design options</a></div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/final.js"></script>
+<script>
+PX.init({id:'06',cursor:true,curtain:false,look:{ev:.02,contrast:.26,sat:.82,blue:-.04,gain:[.96,1,1.04],lift:[0,.012,.02],hi:[.02,.02,0],hiAmt:.35,sh:[-.03,.01,.04],shAmt:.6,grain:.02,vig:.28,css:'contrast(1.08) saturate(.9) hue-rotate(6deg)'},looks:{mono:{contrast:.3,mono:1,grain:.02}}});
+const {D,SV,img,pick,esc,loc,svcShort,$,$$}=PX, C=FN.C;
+const I=(src,w=0,alt='',gl='')=>`<img data-g="${src}"${w?` data-gw="${w}"`:''}${gl?` data-gl="${gl}"`:''} alt="${esc(alt)}">`;
+gsap.registerPlugin(ScrollTrigger);
+$('#mb').onclick=()=>{const o=$('#menu').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o);$('#mb').textContent=o?'CLOSE':'MENU'};$$('#menu a').forEach(a=>a.onclick=()=>{$('#menu').classList.remove('open');$('#mb').textContent='MENU'});
+
+/* final copy */
+$('#heb').textContent=C.hero.eyebrow;$('#hline').textContent=C.hero.line;$('#alede').textContent=C.about.lede;$('#slede').textContent=C.spec.lede;$('#plede').textContent=C.panels.lede;$('#ctel').textContent=D.company.phone;
+$('#apts').innerHTML=C.about.pts.map(([b,t])=>`<li><b>${esc(b)}</b><span>${esc(t)}</span></li>`).join('');
+
+/* hero slideshow: the final's four buildings turn on their own */
+const HS=FN.heroes().slice(0,1).map(p=>({...p,img:'hero-night'}));let hi=0,ht;
+$('#hero').insertAdjacentHTML('afterbegin',HS.map((p,i)=>`<div class="hs ${i?'':'on'}" data-lb="${p.id}">${I(img(p.img),0,p.n).replace('<img','<img data-eager')}</div>`).join(''));
+function hs(i){hi=(i+HS.length)%HS.length;$$('.hs').forEach((s,j)=>s.classList.toggle('on',j===hi));$('#hc').textContent=PX.pad(hi+1);$('#ht').textContent=PX.pad(HS.length);$('#hnm').textContent=`${HS[hi].n} · ${loc(HS[hi])}`;clearTimeout(ht);}
+hs(0);
+const hT={trigger:'#hero',start:'top top',end:'bottom top',scrub:true};
+gsap.to('#hero .hs img',{yPercent:12,ease:'none',scrollTrigger:hT});
+gsap.to('#hero .word',{yPercent:-35,letterSpacing:'.01em',ease:'none',scrollTrigger:hT});
+gsap.to('#hero .hc',{yPercent:-30,opacity:0,ease:'none',scrollTrigger:{...hT,end:'60% top'}});
+
+/* intro removed */
+$('#intro')?.remove();
+
+/* four numbers */
+$('#nums').innerHTML=C.about.stats.map(s=>`<div data-r="up"><b data-count="${s[0]}">0</b><span class="cap">${s[1]}</span></div>`).join('');
+
+/* trades: the scroll walks down the list; each trade wipes its photograph over the last */
+const TR=FN.svcs();
+$('#sph').innerHTML=TR.map(s=>I(img(s.img),1200,s.name)).join('');const swP=PX.swapper($('#sph'));
+$('#slist').innerHTML=TR.map((s,i)=>`<div class="sr ${i?'':'on'}" data-i="${i}"><span class="n">/ 0${i+1}</span><h3>${esc(s.name)} <span style="font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0">${s.count} projects</span></h3><p>${esc(s.line)}</p><button class="go" type="button" data-fn-svc="${s.id}">${C.spec.go} ↗</button></div>`).join('');
+let sv=0;const pickR=i=>{if(i===sv)return;sv=i;$$('.sr').forEach((x,j)=>x.classList.toggle('on',j===i));swP(i)};
+$$('.sr').forEach(r=>r.addEventListener('mouseenter',()=>pickR(+r.dataset.i)));
+ScrollTrigger.create({trigger:'#services',start:'top 45%',end:'bottom 75%',onUpdate:st=>pickR(Math.min(TR.length-1,Math.floor(st.progress*TR.length)))});
+
+/* facade: the Pillar wave opens like a window onto a panel building, then the panel statement rises */
+gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.facade',start:'top top',end:'bottom bottom',scrub:.4}})
+ .fromTo('#fmask',{'--ms':'26vw'},{'--ms':'720vw',duration:.6,ease:'power3.in'},0)
+ .fromTo('#fbg,#ffimg',{scale:1.35},{scale:1,duration:.75},0)
+ .to('#flbl',{opacity:0,duration:.1},.05)
+ .to('#ffull',{opacity:1,duration:.2},.42)
+ .to('#fwsh',{opacity:1,duration:.2},.6)
+ .fromTo('#fh',{yPercent:120,opacity:0},{yPercent:0,opacity:1,duration:.25},.62)
+ .to({},{duration:.13});
+
+/* the panel sheet: four layers, three numbers */
+$('#lys').innerHTML=C.panels.layers.map(([t,d],i)=>`<li><span>0${i+1}</span><b>${esc(t)}</b>${esc(d)}.</li>`).join('');
+$('#pst').innerHTML=C.panels.stats.map(s=>`<div><b data-fn-count="${s.v}">${s.v}<small>${esc(s.u)}</small></b><span>${esc(s.d)}</span></div>`).join('');
+$('#br').href=C.panels.brochure;
+
+/* featured: three buildings unveil on the sheet */
+const WK=FN.work();
+$('#wg').innerHTML=WK.map((p,i)=>`<button class="p" data-lb="${p.id}" data-cursor="View"><div class="ph" data-m="unveil drift" data-dir="${['right','left','up'][i]}" data-delay="${i*.08}">${I(img(p.img),1400,p.n)}</div><div class="m"><h3>${esc(p.n)}</h3><span class="cap">/ 0${i+1}</span><span>${esc(loc(p))} · ${svcShort[p.s]}</span><span>${esc(p.g||'')}</span></div></button>`).join('');
+
+/* the builders' names run as a marquee that follows the scroll, around one photograph and one quote */
+$('#mrow').innerHTML=Array(2).fill(C.voice.trust.map(n=>`<span>${esc(n)} ~</span>`).join('')).join('');
+(()=>{let x=0,dir=1,v=0;const r=$('#mrow');const loop=()=>{const lv=PX.lenis?PX.lenis.velocity||0:0;if(Math.abs(lv)>.5)dir=Math.sign(lv);v+=(Math.abs(lv)-v)*.1;
+ x-=(.6+v*.9)*dir;const w=r.scrollWidth/2;if(-x>w)x+=w;if(x>0)x-=w;r.style.transform=`translateX(${x}px)`;requestAnimationFrame(loop)};if(!PX.reduced)loop()})();
+const VP=FN.P(C.voice.img);
+$('#mpt').innerHTML=I(img(C.voice.img),500,VP?VP.n:'');
+$('#qq').innerHTML=FN.words('“'+C.voice.q+'”');$('#qc').textContent=`— ${C.voice.by}, ${C.voice.role}`;
+gsap.fromTo('#qq .fn-w',{opacity:.15},{opacity:1,stagger:.04,ease:'none',scrollTrigger:{trigger:'#qq',start:'top 85%',end:'bottom 55%',scrub:true}});
+
+/* footer in the final's words */
+const F=C.foot;
+$('#fsite').innerHTML=`<div><span class="cap">/ Specialties</span>${F.svc.map(([l,h])=>`<a href="${h}" target="_blank" rel="noopener">${esc(l)}</a>`).join('')}</div>
+ <div><span class="cap">/ Company</span>${F.co.map(([l,h])=>`<a href="${h}" target="_blank" rel="noopener">${esc(l)}</a>`).join('')}</div>
+ <div><span class="cap">/ Offices</span>${D.offices.map(o=>`<div>${esc(o.c)} · ${esc(o.p)}</div>`).join('')}<div style="margin-top:10px">${esc(D.company.legal)}, 5649-S General Washington Drive, Alexandria, Virginia 22312</div></div>
+ <div><span class="cap">/ Contact</span><span class="v">${esc(D.company.email)}</span><span class="v">${esc(D.company.phone)}</span></div>`;
+$('#faff').innerHTML=D.affiliations.map(a=>`<a href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(a.n)}"><img src="${FN.logo(a.img)}" alt="${esc(a.n)}" loading="lazy"></a>`).join('');
+$('#yr').textContent=new Date().getFullYear();
+PX.parallax();
+FN.wire();
+</script>
+<section class="awr" id="aw-record" aria-labelledby="aw-title"><div class="aw-head"><h2 id="aw-title" class="aw-title">Two decades of craft and safety awards</h2><p class="aw-intro">Washington Building Congress, ABC, AGC and ENR. Drag the ring or keep scrolling.</p></div><div class="aw-stage"><div class="aw-ring" id="aw-ring" tabindex="0" aria-label="Awards by year. Use arrow keys to rotate."><ol class="aw-track" id="aw-track"><li class="aw-yr"><b>2024</b><p>Craftsmanship Award</p><em>Washington Building Congress</em></li><li class="aw-yr"><b>2023</b><p>Craftsmanship Award</p><em>Washington Building Congress</em></li><li class="aw-yr"><b>2022</b><p>ENR Top 600. S.T.E.P. Gold</p><em>ENR, Associated Builders and Contractors</em></li><li class="aw-yr"><b>2021</b><p>ENR Top 600, rank 354</p><em>Engineering News-Record</em></li><li class="aw-yr"><b>2018</b><p>Subby Award</p><em>ASA Metro Washington</em></li><li class="aw-yr"><b>2017</b><p>Corporate Safety Program</p><em>AGC Washington Contractor Awards</em></li><li class="aw-yr"><b>2016</b><p>Best Corporate Safety Program</p><em>Washington Contractor Awards</em></li><li class="aw-yr"><b>2015</b><p>Gold Award, Acoustical Solutions</p><em>CISCA, Milken Institute SPH at GWU</em></li><li class="aw-yr"><b>2010</b><p>Subcontractor of the Year</p><em>ABC of Metro Washington</em></li><li class="aw-yr"><b>2009</b><p>S.T.E.P. Platinum</p><em>Associated Builders and Contractors</em></li><li class="aw-yr"><b>2008</b><p>Paragon Award, incident rate below national average</p><em>Associated Builders and Contractors</em></li><li class="aw-yr"><b>2005</b><p>Carson V. Carlisle Jr. Safety Award</p><em>DC Metropolitan Subcontractors Association</em></li><li class="aw-yr"><b>2003</b><p>Chapter Safety Award</p><em>ABC of Metro Washington</em></li></ol></div></div></section>
+
+<footer class="pf" id="pf"><div class="pf-in"><div><h3>Let's build<br>what's next.</h3><a class="pf-btn" href="#" data-contact>Start a project →</a></div><div class="pf-r"><a class="big" href="mailto:info@PillarConstruction.com">info@PillarConstruction.com</a><a class="big" href="tel:+17039415891">703.941.5891</a><span class="pf-up">5649-S General Washington Drive, Alexandria</span></div><div class="pf-copy"><img src="assets/img/pillar-logo.svg" alt="Pillar Construction"><span class="pf-up">© 2026 Pillar Construction, Inc.</span></div></div></footer>
+<nav class="hk-sw" aria-label="Options"><a href="verdigris.html"><b>1</b><span>Verdigris</span></a><a href="monolith.html"><b>2</b><span>Monolith</span></a><a href="anatomy.html"><b>3</b><span>Anatomy</span></a><a href="nord.html" class=on aria-current=page><b>4</b><span>Nord</span></a></nav>
+<script>window.__TRANS=["#about"];</script>
+<script>
+(()=>{const ring=document.getElementById('aw-ring'),track=document.getElementById('aw-track'),cards=[...track.querySelectorAll('.aw-yr')];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const N=cards.length,A=360/N;let R=600;
+const layout=()=>{const cw=track.offsetWidth;R=Math.round((cw/2)/Math.tan(Math.PI/N)*1.12);cards.forEach((c,i)=>c.style.transform=`rotateY(${i*A}deg) translateZ(${R}px)`)};
+layout();addEventListener('resize',layout);
+const S={rot:0,drag:0,v:0,scroll:0};let down=false,lx=0,front=-1,ny=0;
+addEventListener('pointermove',e=>{ny=(e.clientY/innerHeight)*2-1},{passive:true});
+ring.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;lx=e.clientX;ring.setPointerCapture(e.pointerId)});
+ring.addEventListener('pointermove',e=>{if(!down)return;S.v=(e.clientX-lx)*.25;S.drag+=S.v;lx=e.clientX});
+const up=()=>down=false;ring.addEventListener('pointerup',up);ring.addEventListener('pointercancel',up);
+ring.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();S.drag-=A}if(e.key==='ArrowLeft'){e.preventDefault();S.drag+=A}});
+if(!reduce)gsap.fromTo(ring,{yPercent:48},{yPercent:0,ease:'none',scrollTrigger:{trigger:'#aw-record',start:'top 80%',end:'top 10%',scrub:true}});
+if(!reduce)ScrollTrigger.create({trigger:'#aw-record',start:'top bottom',end:'bottom top',scrub:true,onUpdate:s=>S.scroll=-s.progress*200});
+let vis=false;ScrollTrigger.create({trigger:'#aw-record',start:'top bottom',end:'bottom top',onToggle:s=>vis=s.isActive});
+gsap.ticker.add(()=>{if(!vis)return;if(!down){S.drag+=S.v;S.v*=.93}
+ const target=S.scroll+S.drag;S.rot=reduce?target:S.rot+(target-S.rot)*.1;
+ const tilt=fine&&!reduce?-ny*6:0;
+ track.style.transform=`translateZ(${-R}px) rotateX(${tilt}deg) rotateY(${S.rot}deg)`;
+ const f=((Math.round(-S.rot/A)%N)+N)%N;if(f!==front){front=f;cards.forEach((c,i)=>c.classList.toggle('is-front',i===f))}});
+})();
+
+</script>
+<script>
+(()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches||!window.gsap||!window.ScrollTrigger)return;
+const list=['.awr','.pf'].concat(window.__TRANS||[]);
+list.forEach(s=>{const el=document.querySelector(s);if(!el)return;
+ gsap.fromTo(el,{clipPath:'inset(72px 4vw 0px 4vw round 40px)'},{clipPath:'inset(0px 0vw 0px 0vw round 0px)',ease:'none',immediateRender:true,scrollTrigger:{trigger:el,start:'top 96%',end:'top 30%',scrub:true}});
+});
+})();
+
+</script>
+<script>(()=>{if(!window.ScrollTrigger)return;
+let busy=false,h=0,t=0;
+const go=()=>{busy=true;ScrollTrigger.sort();ScrollTrigger.refresh();};
+ScrollTrigger.addEventListener('refresh',()=>{h=document.body.scrollHeight;busy=false;});
+const later=(ms)=>{clearTimeout(t);t=setTimeout(go,ms);};
+go();
+addEventListener('load',()=>later(300));
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>later(100));
+if(document.fonts)document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',()=>later(150));
+document.addEventListener('load',e=>{if(e.target&&e.target.tagName==='IMG')later(400);},true);
+if(window.ResizeObserver)new ResizeObserver(()=>{if(busy)return;const nh=document.body.scrollHeight;if(Math.abs(nh-h)>2)later(250);}).observe(document.body);
+})();</script>
+</body>
+</html>
