@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+<title>Pillar Monolith</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pillar Construction: drywall, rainscreen, EIFS and stucco, restoration and factory-built exterior panels since 1995.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&display=swap">
+<link rel="preload" as="image" href="assets/hero-2000.webp" imagesrcset="assets/hero-1000.webp 1000w, assets/hero-2000.webp 2000w" imagesizes="100vw">
+<script>(function(){var d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('pillar-intro-monolith'))return;sessionStorage.setItem('pillar-intro-monolith','1')}catch(e){return}d.classList.add('intro');setTimeout(function(){d.classList.remove('intro')},3600)})();</script>
+<style>
+/* ===== shared base: every colour, face and radius comes from the option's tokens ===== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:96px;scrollbar-gutter:stable}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;font-kerning:normal}
+img{max-width:100%;display:block}
+svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit;-webkit-tap-highlight-color:transparent}
+input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{list-style:none;padding:0}
+:focus-visible{outline:2px solid var(--focus,var(--acc));outline-offset:3px}
+::selection{background:var(--fg);color:var(--bg)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:fixed;z-index:400;left:max(16px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 12px);padding:13px 20px;border-radius:var(--btn-r);background:var(--fg);color:var(--bg);font-weight:600;transform:translateY(-180%);transition:transform .4s var(--e-out)}
+.skip:focus{transform:none}
+.lbl{font:var(--lbl-w,500) 12px/1.35 var(--text);letter-spacing:var(--lbl-ls,.14em);text-transform:uppercase;color:var(--mute)}
+.mono{font-family:var(--mono);font-size:12px;line-height:1.5}
+.room{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* below-the-fold reveals, applied by script only when motion is allowed */
+.rv-pre{opacity:0;transform:translate3d(0,26px,0)}
+.rv-pre.rv-in{opacity:1;transform:none;transition:opacity .9s var(--e-out),transform 1.1s var(--e-out);transition-delay:var(--d,0s)}
+
+/* ---------- controls ---------- */
+.btn{--b:var(--btn-bg);--f:var(--btn-fg);display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:52px;padding:0 24px;border-radius:var(--btn-r);background:var(--b);color:var(--f);font:var(--btn-w,600) var(--btn-fs,15px)/1.1 var(--text);letter-spacing:var(--btn-ls,.005em);text-transform:var(--btn-tt,none);white-space:nowrap;transition:background-color .35s,color .35s,box-shadow .35s}
+.btn:has(> i){padding-right:8px}
+.btn > i{flex:none;width:38px;height:38px;border-radius:var(--btn-r);display:grid;place-items:center;background:var(--f);color:var(--b);transition:transform .55s var(--e-out)}
+.btn > i svg{width:17px;height:17px}
+.btn:hover{--b:var(--btn-hover,var(--btn-bg))}
+.btn:hover > i{transform:translateX(3px)}
+.btn .ic{width:16px;height:16px;transition:transform .5s var(--e-out)}
+.btn:hover .ic{transform:translate(2px,-2px)}
+.btn-line{--b:transparent;--f:currentColor;box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn-line:hover{--b:transparent;box-shadow:inset 0 0 0 1px currentColor}
+.lnk{display:inline-flex;align-items:center;gap:10px;padding:6px 0 7px;font:var(--lnk-w,500) var(--lnk-fs,14px)/1.2 var(--text);letter-spacing:var(--lnk-ls,0);text-transform:var(--lnk-tt,none);background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .6s var(--e-out),opacity .3s}
+.lnk:hover{background-size:0 1px;background-position:100% 100%}
+.lnk svg{width:16px;height:16px;transition:transform .5s var(--e-out)}
+.lnk:hover svg{transform:translateX(3px)}
+.circ{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line-2);color:currentColor;transition:background-color .35s,color .35s,box-shadow .35s,transform .55s var(--e-out)}
+.circ svg{width:18px;height:18px}
+.x{min-height:44px;padding:0 18px;border-radius:var(--btn-r);font:600 14px/1 var(--text);letter-spacing:0;text-transform:none;box-shadow:inset 0 0 0 1px var(--line-2);transition:background-color .3s,color .3s}
+.acts{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+
+/* ---------- intro: two leaves part as the mark assembles and the count reaches 100 ---------- */
+.lm{position:fixed;inset:0;z-index:300;display:none;place-items:center;cursor:pointer;color:var(--lm-fg)}
+html.intro .lm,.lm.leaving{display:grid}
+html.intro{overflow:hidden}
+.lm-l,.lm-r{position:absolute;top:0;bottom:0;width:50.5%;background:var(--lm-bg)}
+.lm-l{left:0}.lm-r{right:0}
+.lm svg{position:relative;z-index:2;width:clamp(92px,10vw,156px);height:auto;overflow:visible}
+.lm-p{fill:var(--lm-mark)}
+.lm-n{position:absolute;z-index:2;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);font:300 clamp(64px,9vw,150px)/.8 var(--disp);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.lm-cap{position:absolute;z-index:2;right:max(20px,env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 20px);font:500 12px/1 var(--text);letter-spacing:.06em;text-transform:uppercase;opacity:0}
+
+/* ---------- awards ring ---------- */
+.aw{background:var(--aw-bg);color:var(--aw-fg);overflow:hidden;padding-block:clamp(96px,11vw,168px) clamp(48px,6vw,96px);--fg:var(--aw-fg);--mute:var(--aw-mute);--line:var(--aw-line);--line-2:var(--aw-line-2)}
+.aw-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 64px;padding-inline:var(--pad)}
+.aw-title{font:var(--aw-hw,400) clamp(38px,5vw,84px)/.96 var(--disp);letter-spacing:var(--h-ls,-.04em);max-width:13ch;text-wrap:balance}
+.aw-intro{max-width:34ch;color:var(--aw-mute);font-size:clamp(16px,1.2vw,18px);line-height:1.55}
+.aw-stage{height:clamp(440px,48vw,580px);display:grid;place-items:center}
+.aw-ring{width:100%;height:100%;perspective:1500px;display:grid;place-items:center;touch-action:pan-y;cursor:grab;outline-offset:-2px;border-radius:var(--r)}
+.aw-ring.drag{cursor:grabbing}
+.aw-track{position:relative;width:clamp(208px,19vw,264px);aspect-ratio:4/5;transform-style:preserve-3d}
+.aw-card{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:24px;border-radius:var(--aw-r,16px);background:var(--aw-card);box-shadow:inset 0 0 0 1px var(--aw-line);backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:box-shadow .5s,background-color .5s;user-select:none}
+.aw-card b{font:300 clamp(52px,4.8vw,70px)/1 var(--disp);letter-spacing:-.05em;margin-bottom:auto;font-variant-numeric:tabular-nums;transition:color .5s}
+.aw-card p{font-weight:600;font-size:16px;line-height:1.3}
+.aw-card em{font-style:normal;font-size:13px;line-height:1.4;color:var(--aw-mute)}
+.aw-card.is-front{background:var(--aw-front);box-shadow:inset 0 0 0 1px var(--aw-acc)}
+.aw-card.is-front b{color:var(--aw-acc)}
+
+/* ---------- closing footer ---------- */
+.pf-room{padding-bottom:calc(var(--pf-gap,16px) + env(safe-area-inset-bottom,0px))}
+.pf{border-radius:var(--r);background:var(--pf-bg);color:var(--pf-fg);padding:clamp(64px,7vw,112px) var(--pad) clamp(28px,3vw,40px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px 64px;align-items:end;--fg:var(--pf-fg);--mute:var(--pf-mute);--line:var(--pf-line);--line-2:var(--pf-line-2);--btn-bg:var(--pf-btn-bg);--btn-fg:var(--pf-btn-fg);--btn-hover:var(--pf-btn-hover)}
+.pf-l{display:grid;gap:36px;justify-items:start}
+.pf-h{font:var(--pf-hw,400) clamp(46px,6.6vw,108px)/.92 var(--disp);letter-spacing:var(--h-ls,-.045em)}
+.pf-r{display:grid;gap:10px;justify-items:start;min-width:0}
+.pf-big{font:var(--pf-bw,400) clamp(22px,2.4vw,38px)/1.2 var(--disp);letter-spacing:-.025em;overflow-wrap:anywhere;transition:opacity .3s}
+.pf-big:hover{opacity:.7}
+.pf-r .lbl{margin-top:12px;color:var(--pf-mute)}
+.pf-bar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:clamp(12px,2.6vw,36px);padding-top:24px;border-top:1px solid var(--pf-line)}
+.pf-bar .lbl{color:var(--pf-mute)}
+.pf-logo{height:28px;width:auto;color:var(--pf-logo,var(--pf-fg))}
+
+/* ---------- cursor label (mouse only) ---------- */
+.cur{position:fixed;left:0;top:0;z-index:70;width:84px;height:84px;margin:-42px 0 0 -42px;pointer-events:none;display:none}
+.cur i{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--cur-bg,var(--fg));color:var(--cur-fg,var(--bg));font:600 11px/1 var(--text);font-style:normal;letter-spacing:.1em;text-transform:uppercase;transform:scale(0);transition:transform .45s var(--e-out)}
+.cur.on i{transform:scale(1)}
+@media (hover:hover) and (pointer:fine){.cur{display:block}}
+
+/* ---------- dialogs ---------- */
+html.is-locked{overflow:hidden;background:var(--lock-bg,var(--dk-bg))}
+html.is-locked:has(#dw.open){--lock-bg:var(--pp-bg)}
+.dlg{position:fixed;inset:0;z-index:80;visibility:hidden}
+.dlg.open{visibility:visible}
+.dlg-bg{position:absolute;inset:0;background:rgba(5,6,8,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .5s}
+.dlg.open .dlg-bg{opacity:1}
+.dw{display:flex;justify-content:flex-end;transition:visibility 0s .8s}
+.dw.open{transition:none}
+.dw-p{position:relative;width:min(600px,100%);height:100%;overflow-y:auto;overscroll-behavior:contain;display:grid;align-content:start;gap:32px;padding:calc(env(safe-area-inset-top,0px) + 32px) max(28px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) clamp(28px,4vw,48px);background:var(--pp-bg);color:var(--pp-fg);--fg:var(--pp-fg);--mute:var(--pp-mute);--line:var(--pp-line);--line-2:var(--pp-line-2);--btn-bg:var(--pp-fg);--btn-fg:var(--pp-bg);--btn-hover:var(--pp-fg);transform:translateX(102%);transition:transform .8s var(--e-out)}
+.dw.open .dw-p{transform:none}
+.dw-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.dw-top > div{display:grid;gap:12px}
+.dw-top h2{font:var(--h-w,400) clamp(30px,2.8vw,42px)/1 var(--disp);letter-spacing:var(--h-ls,-.035em)}
+.dw form{display:grid;grid-template-columns:1fr 1fr;gap:24px 20px}
+.dw label{display:grid;gap:8px;font:500 12px/1.3 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--pp-mute)}
+.dw .w{grid-column:1/-1}
+.dw input,.dw select,.dw textarea{width:100%;font:400 17px/1.4 var(--text);letter-spacing:0;text-transform:none;color:var(--pp-fg);background:transparent;border:0;border-bottom:1px solid var(--pp-line-2);border-radius:0;padding:8px 0 12px;transition:border-color .3s;color-scheme:var(--pp-scheme,light)}
+.dw select{appearance:none;-webkit-appearance:none;cursor:pointer;background:linear-gradient(45deg,transparent 50%,currentColor 50%) right 7px center/6px 6px no-repeat,linear-gradient(-45deg,transparent 50%,currentColor 50%) right 1px center/6px 6px no-repeat;padding-right:26px}
+.dw textarea{resize:vertical;min-height:112px}
+.dw input:focus,.dw select:focus,.dw textarea:focus{outline:none;border-bottom-color:var(--pp-fg)}
+.dw input::placeholder,.dw textarea::placeholder{color:var(--pp-faint)}
+.dw [aria-invalid="true"]{border-bottom-color:#b4381f}
+.f-msg{font-size:15px;line-height:1.5}
+.f-msg:empty{display:none}
+.f-msg.err{color:#a3341f}
+.dw-direct{display:grid;gap:8px;padding-top:24px;border-top:1px solid var(--pp-line);color:var(--pp-mute);font-size:15px}
+.dw-direct .lbl{margin-bottom:4px}
+.dw-direct b{font:400 22px/1.25 var(--disp);letter-spacing:-.02em;color:var(--pp-fg);user-select:all;-webkit-user-select:all;overflow-wrap:anywhere}
+.dw .x:hover,.ax .x:hover,.vw .x:hover{background:var(--fg);color:var(--bg)}
+
+.ax,.vw{--fg:var(--dk-fg);--mute:var(--dk-mute);--faint:var(--dk-faint);--line:var(--dk-line);--line-2:var(--dk-line-2);--bg:var(--dk-bg);color:var(--dk-fg)}
+.ax{background:var(--dk-bg);display:grid;grid-template-rows:auto minmax(0,1fr);opacity:0;transition:opacity .45s,visibility 0s .45s}
+.ax.open{opacity:1;transition:opacity .45s}
+.ax-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px 28px;padding:calc(env(safe-area-inset-top,0px) + 20px) max(20px,env(safe-area-inset-right,0px)) 20px max(20px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--dk-line)}
+.ax-h{font:var(--h-w,400) clamp(26px,2.4vw,36px)/1 var(--disp);letter-spacing:-.03em;white-space:nowrap}
+.ax-h b{font-weight:inherit;color:var(--dk-acc);font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chips button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 15px;border-radius:var(--btn-r);font-size:14px;line-height:1;font-weight:500;color:var(--dk-mute);box-shadow:inset 0 0 0 1px var(--dk-line-2);transition:background-color .3s,color .3s,box-shadow .3s}
+.chips button sup{font:400 11px/1 var(--mono);top:0;opacity:.75}
+.chips button:hover{color:var(--dk-fg)}
+.chips button[aria-pressed="true"]{background:var(--dk-fg);color:var(--dk-bg);box-shadow:none}
+.ax-body{overflow-y:auto;overscroll-behavior:contain;padding:28px max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 48px) max(20px,env(safe-area-inset-left,0px))}
+.ax-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:30px 16px}
+.ax-grid li{content-visibility:auto;contain-intrinsic-size:auto 320px}
+.ax-card{display:grid;gap:12px;width:100%;text-align:left}
+.ax-card .ph{display:block;aspect-ratio:4/3;border-radius:var(--r-sm);overflow:hidden;background:var(--dk-card)}
+.ax-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--e-out)}
+.ax-card:hover img,.ax-card:focus-visible img{transform:scale(1.05)}
+.ax-card b{display:block;font:500 17px/1.25 var(--disp);letter-spacing:-.01em}
+.ax-card .m{display:block;margin-top:4px;font:400 12px/1.5 var(--mono);color:var(--dk-mute)}
+
+.vw{background:var(--dk-bg);display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;opacity:0;transition:opacity .4s,visibility 0s .4s}
+.vw.open{opacity:1;transition:opacity .4s}
+.vw-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 18px) max(20px,env(safe-area-inset-right,0px)) 14px max(20px,env(safe-area-inset-left,0px))}
+.vw-n{color:var(--dk-mute);font-variant-numeric:tabular-nums}
+.vw-n #vw-n{color:var(--dk-fg)}
+.vw-tr{margin-left:14px;color:var(--dk-acc)}
+.vw-stage{position:relative;min-height:0;margin:0 max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px));touch-action:pan-y}
+.vw-img{position:absolute;max-width:none;object-fit:cover;border-radius:var(--r-sm);user-select:none;-webkit-user-drag:none;background:var(--dk-card);cursor:pointer}
+.vw-fly{position:fixed;left:0;top:0;z-index:90;object-fit:cover;border-radius:var(--r-sm);pointer-events:none;max-width:none}
+.vw-bot{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:18px max(20px,env(safe-area-inset-right,0px)) 14px max(20px,env(safe-area-inset-left,0px))}
+.vw-info{display:grid;gap:10px;min-width:0}
+.vw-info h3{font:var(--h-w,400) clamp(26px,2.5vw,40px)/1.05 var(--disp);letter-spacing:-.03em}
+.vw-dl{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:14px}
+.vw-dl div{display:grid;gap:2px}
+.vw-dl dt{font:500 11px/1.3 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--dk-faint)}
+.vw-dl dd{color:var(--dk-mute)}
+.vw-nav{display:flex;gap:8px}
+.vw .circ:hover{background:var(--dk-fg);color:var(--dk-bg);box-shadow:none}
+.vw-thumbs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 18px) max(20px,env(safe-area-inset-left,0px))}
+.vw-thumbs::-webkit-scrollbar{display:none}
+.vw-thumbs:empty{display:none}
+.vw-thumbs button{flex:none;width:64px;height:46px;border-radius:6px;overflow:hidden;opacity:.4;transition:opacity .3s,width .5s var(--e-out)}
+.vw-thumbs button:hover{opacity:.8}
+.vw-thumbs button.on{opacity:1;width:86px}
+.vw-thumbs img{width:100%;height:100%;object-fit:cover}
+
+@media (max-width:899px){
+  .aw-head{grid-template-columns:1fr}
+  .pf{grid-template-columns:1fr;align-items:start}
+  .ax-top{grid-template-columns:minmax(0,1fr) auto}
+  .ax-top .chips{grid-column:1/-1;grid-row:2;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * max(20px,env(safe-area-inset-left,0px)));padding-inline:max(20px,env(safe-area-inset-left,0px))}
+  .ax-top .chips::-webkit-scrollbar{display:none}
+  .ax-top .chips button{flex:none}
+}
+@media (max-width:599px){
+  .btn{min-height:50px}
+  .pf-bar{flex-direction:column;align-items:flex-start}
+  .dw form{grid-template-columns:1fr}
+  .vw-bot{flex-direction:column;align-items:stretch}
+  .vw-nav{justify-content:flex-end}
+  .ax-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px 12px}
+  .ax-card b{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important}
+}
+
+/* Layout: a concrete-dark opener, then white gallery pages split one to one. Square corners, light Epilogue set tight; the photographs are toned towards stone so the page stays monochrome. */
+:root{
+  --ink:#121212; --white:#ffffff; --off:#f4f3f0; --stone:#2a2724; --mute:#6c6862; --faint:rgba(18,18,18,.42); --line:rgba(18,18,18,.12); --line-2:rgba(18,18,18,.32);
+  --bg:var(--white); --fg:var(--ink); --acc:var(--ink);
+  --disp:"Epilogue","Helvetica Neue",Arial,sans-serif; --text:"Epilogue","Helvetica Neue",Arial,sans-serif; --mono:"Epilogue","Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(20px,5.5vw,104px); --r:0px; --r-sm:0px; --btn-r:0px;
+  --btn-bg:var(--ink); --btn-fg:#fff; --btn-hover:#000; --btn-w:500; --btn-fs:13px; --btn-ls:.06em; --btn-tt:uppercase;
+  --h-w:300; --h-ls:-.05em; --lbl-w:500; --lbl-ls:.06em;
+  --dk-bg:#121212; --dk-fg:#f4f3f0; --dk-mute:rgba(244,243,240,.64); --dk-faint:rgba(244,243,240,.42); --dk-line:rgba(244,243,240,.13); --dk-line-2:rgba(244,243,240,.32); --dk-acc:#d8d5ce; --dk-card:#1e1d1b;
+  --pp-bg:#ffffff; --pp-fg:#121212; --pp-mute:#6c6862; --pp-faint:rgba(18,18,18,.4); --pp-line:rgba(18,18,18,.12); --pp-line-2:rgba(18,18,18,.32);
+  --lm-bg:#ffffff; --lm-fg:#121212; --lm-mark:#121212;
+  --aw-bg:#121212; --aw-fg:#f4f3f0; --aw-mute:rgba(244,243,240,.62); --aw-line:rgba(244,243,240,.14); --aw-line-2:rgba(244,243,240,.32); --aw-card:linear-gradient(160deg,rgba(244,243,240,.07),rgba(244,243,240,.015)); --aw-front:linear-gradient(160deg,rgba(244,243,240,.17),rgba(244,243,240,.04)); --aw-acc:#f4f3f0; --aw-r:0px; --aw-hw:300;
+  --pf-bg:#121212; --pf-fg:#f4f3f0; --pf-mute:rgba(244,243,240,.62); --pf-line:rgba(244,243,240,.14); --pf-line-2:rgba(244,243,240,.32); --pf-btn-bg:#f4f3f0; --pf-btn-fg:#121212; --pf-btn-hover:#fff; --pf-hw:300; --pf-bw:300; --pf-gap:0px;
+  --cur-bg:#121212; --cur-fg:#fff;
+  --e-out:cubic-bezier(.16,1,.3,1); --e-io:cubic-bezier(.76,0,.24,1);
+  color-scheme:light;
+}
+h1,h2,h3{font-weight:300;letter-spacing:-.05em;text-wrap:balance}
+.sec-h{font:300 clamp(40px,4.6vw,76px)/.98 var(--disp);letter-spacing:-.055em}
+.photo{filter:saturate(.42) sepia(.12) contrast(1.05)}
+
+/* ---------- name bar ---------- */
+.nb{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 12px);right:max(12px,env(safe-area-inset-right,0px));display:flex;width:min(46vw,620px);height:50px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.nb-logo{flex:1;display:flex;align-items:center;padding:0 16px;background:#fff;color:var(--ink)}
+.nb-logo svg{height:26px;width:auto}
+.nb-btn{width:50px;flex:none;background:var(--ink);color:#fff;display:grid;place-items:center;transition:background-color .3s}
+.nb-btn:hover{background:#000}
+.nb-ic{display:grid;gap:5px}
+.nb-ic i{display:block;width:18px;height:1.5px;background:#fff;transition:transform .45s var(--e-out)}
+.nb-btn[aria-expanded="true"] .nb-ic i:first-child{transform:translateY(3.25px) rotate(45deg)}
+.nb-btn[aria-expanded="true"] .nb-ic i:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+.nb-nav{position:absolute;top:100%;left:0;right:0;display:grid;background:#fff;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .65s var(--e-io),visibility 0s .65s;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.nb-nav.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .65s var(--e-io)}
+.nb-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;font:300 22px/1.1 var(--disp);letter-spacing:-.03em;border-top:1px solid var(--line);transition:background-color .3s,padding .5s var(--e-out)}
+.nb-nav a::after{content:"↗";font-size:15px;opacity:0;transition:opacity .3s}
+.nb-nav a:hover{background:var(--off);padding-left:24px}
+.nb-nav a:hover::after{opacity:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:170vh;background:#0c0b0a}
+.hero-stage{position:sticky;top:0;height:100vh;height:100svh;min-height:600px;overflow:hidden;color:#fff}
+.hero-bg{position:absolute;inset:0;animation:slit 2.2s .25s var(--e-io) both}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:42% 50%;filter:saturate(.55) contrast(1.05)}
+@keyframes slit{from{clip-path:inset(0 49.6% 0 49.6%)}to{clip-path:inset(0 0 0 0)}}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,.08) 46%,rgba(0,0,0,.28));animation:lights 2.6s .3s var(--e-out) both}
+@keyframes lights{from{background-color:rgba(0,0,0,.82)}to{background-color:rgba(0,0,0,0)}}
+.hero-lab{position:absolute;left:var(--pad);top:calc(env(safe-area-inset-top,0px) + 26px);font:400 15px/1.2 var(--text);letter-spacing:-.01em}
+.hero h1{position:absolute;left:calc(var(--pad) - .06em);bottom:clamp(76px,9vh,104px);font:300 clamp(64px,10.4vw,176px)/.86 var(--disp);letter-spacing:-.065em;animation:up 1.1s .9s var(--e-out) both}
+.hero-tag{position:absolute;left:calc(50% + 8px);bottom:clamp(88px,10vh,120px);max-width:34ch;font-size:clamp(16px,1.15vw,18px);line-height:1.5;color:rgba(255,255,255,.88);animation:up 1.1s 1.05s var(--e-out) both}
+.strip{position:absolute;left:0;right:0;bottom:0;height:52px;background:#fff;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 var(--pad);font:500 12px/1.2 var(--text);letter-spacing:.06em;text-transform:uppercase}
+.strip button{display:inline-flex;align-items:center;gap:8px;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:8px 0}
+.strip button svg{width:15px;height:15px;transition:transform .5s var(--e-out)}
+.strip button:hover svg{transform:translate(2px,-2px)}
+html.intro .hero-bg,html.intro .hero-shade,html.intro .hero h1,html.intro .hero-tag{animation-play-state:paused}
+@keyframes up{from{opacity:0;transform:translate3d(0,30px,0)}}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,7vw,128px);padding:clamp(96px,10vw,150px) var(--pad) clamp(96px,10vw,150px) 0}
+.ab-l{display:grid;align-content:start;gap:28px}
+.ab-l > .lbl{padding-left:var(--pad)}
+.stk{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+.stk img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.12) brightness(.92);transform:scale(1.15)}
+.slabs{position:absolute;inset:0;pointer-events:none}
+.sl4{position:absolute;width:min(232px,42%);aspect-ratio:1;background:var(--ink);color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.sl4:nth-child(1){left:54%;top:8%}.sl4:nth-child(2){left:6%;top:32%}.sl4:nth-child(3){left:48%;top:56%}.sl4:nth-child(4){left:10%;top:76%}
+.sl4 .lbl{display:flex;justify-content:space-between;gap:10px;color:rgba(255,255,255,.72);font-size:11px}
+.sl4 .lbl span:last-child{text-align:right;max-width:14ch}
+.sl4 b{font:300 clamp(64px,6vw,104px)/.88 var(--disp);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.ab-r{padding-top:56px}
+.ab-lede{max-width:40ch;margin-bottom:64px;font-size:clamp(17px,1.25vw,19px);line-height:1.5}
+.ab-lede b{font-weight:600}
+.ab-lede span{color:var(--mute)}
+.ab-h{font:300 clamp(46px,4.6vw,78px)/.98 var(--disp);letter-spacing:-.055em;max-width:11ch}
+.apts{margin-top:clamp(64px,8vw,120px);display:grid;border-top:1px solid var(--line)}
+.apts div{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.apts h3{font:300 clamp(26px,2.2vw,36px)/1.05 var(--disp);letter-spacing:-.045em}
+.apts p{color:var(--mute);font-size:16px;line-height:1.5;max-width:34ch}
+
+/* ---------- specialties book ---------- */
+.bks{background:var(--off)}
+.bk-pin{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);align-items:center;height:100vh;height:100svh;min-height:640px;overflow:hidden}
+.bk-l{padding-left:var(--pad);display:grid;gap:22px;align-content:center}
+.bk-sub{color:var(--mute);font-size:clamp(17px,1.25vw,19px);line-height:1.5;max-width:30ch}
+.bk-n{margin-top:18px;font:300 22px/1 var(--disp);letter-spacing:-.02em;color:var(--mute);font-variant-numeric:tabular-nums}
+.bk-n span{color:var(--ink)}
+.bk-stage{height:100%;perspective:2400px;display:grid;place-items:center;cursor:grab;touch-action:pan-y}
+.bk-stage:active{cursor:grabbing}
+.bk{position:relative;width:min(29vw,440px);aspect-ratio:3/4;transform-style:preserve-3d;margin-left:min(29vw,440px)}
+.bk-left{position:absolute;right:100%;top:0;width:100%;height:100%;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.pg{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;will-change:transform}
+.pg-f,.pg-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.pg-f{display:block;width:100%;background:#ddd}
+.pg-f img{width:100%;height:100%;object-fit:cover}
+.pg-f::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,calc(.03 + var(--sh,0) * .14)),transparent 26%);pointer-events:none}
+.pg-no{position:absolute;right:16px;bottom:14px;z-index:2;color:#fff;font:500 12px/1 var(--text);letter-spacing:.12em;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+.pg-b{transform:rotateY(180deg);background:#fff}
+.pg-b::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(0,0,0,calc(.02 + var(--sh,0) * .1)),transparent 26%);pointer-events:none}
+.bk-txt{position:absolute;inset:0;padding:clamp(24px,2.6vw,40px);display:flex;flex-direction:column;justify-content:flex-end;gap:14px;color:var(--ink)}
+.bk-txt h3{font:300 clamp(32px,3vw,52px)/.95 var(--disp);letter-spacing:-.05em}
+.bk-txt .line{color:var(--mute);font-size:16px;line-height:1.45;max-width:28ch}
+.bk-txt dl{display:grid;border-top:1px solid var(--line);margin-top:6px}
+.bk-txt dl div{display:grid;grid-template-columns:96px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.bk-txt dt{color:var(--mute);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.bk-txt dd{margin:0}
+.bk-go{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;margin-top:6px;padding:6px 0;font:500 12px/1 var(--text);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid currentColor}
+.bk-go svg{width:14px;height:14px}
+.bk-list{display:none}
+
+/* ---------- exterior panel ---------- */
+.pn{background:var(--ink);color:#f4f3f0;--fg:#f4f3f0;--mute:rgba(244,243,240,.64);--faint:rgba(244,243,240,.42);--line:rgba(244,243,240,.13);--line-2:rgba(244,243,240,.36);--btn-bg:#f4f3f0;--btn-fg:#121212;--btn-hover:#fff}
+.pn-pin{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;height:100vh;height:100svh;min-height:640px;overflow:hidden}
+.orbit{position:relative;height:100%;perspective:1700px;display:grid;place-items:center;cursor:grab;touch-action:pan-y}
+.orbit.drag{cursor:grabbing}
+.orbit::before{content:"";position:absolute;inset:0;background:radial-gradient(48% 44% at 50% 55%,rgba(216,213,206,.12),transparent 70%)}
+.orbit-hint{position:absolute;left:var(--pad);bottom:36px;color:var(--faint);font-size:11px}
+.wl{position:relative;width:min(330px,58vw);aspect-ratio:3/4;transform-style:preserve-3d}
+.ly{position:absolute;inset:0;transform-style:preserve-3d;outline:1px solid rgba(255,255,255,.14);filter:brightness(.62) saturate(.85);transition:filter .5s,outline-color .5s}
+.ly.on{outline:2px solid #f4f3f0;filter:none}
+.ly1{background:linear-gradient(#8e959d,#8e959d) top/100% 9px no-repeat,linear-gradient(#8e959d,#8e959d) bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,#8e959d 0 8px,transparent 8px calc(25% - 1px),#8e959d calc(25% - 1px) 25%)}
+.ly2{background:radial-gradient(circle,rgba(30,22,8,.55) 1.6px,transparent 2.2px) 0 0/25% 12.5%,linear-gradient(transparent calc(50% - 1px),rgba(30,22,8,.5) calc(50% - 1px) 50%,transparent 50%),linear-gradient(160deg,#cdb478,#b2985b)}
+.ly3{background:linear-gradient(115deg,rgba(255,255,255,.22),transparent 35%,rgba(255,255,255,.08) 58%,transparent 72%),#2f3a3d;opacity:.96}
+.ly4{background:linear-gradient(115deg,rgba(255,255,255,.3),transparent 40%,rgba(0,0,0,.14)),#c9ccce;box-shadow:0 50px 90px rgba(0,0,0,.45)}
+.ly4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 calc(33.33% - 2px),rgba(0,0,0,.42) calc(33.33% - 2px) 33.33%),repeating-linear-gradient(90deg,transparent 0 calc(50% - 2px),rgba(0,0,0,.42) calc(50% - 2px) 50%)}
+.pn-copy{padding:clamp(48px,6vw,96px) var(--pad) clamp(48px,6vw,96px) 0;display:grid;gap:22px;align-content:center}
+.pn-lede{color:var(--mute);font-size:clamp(17px,1.2vw,19px);line-height:1.5;max-width:40ch}
+.lys{border-top:1px solid var(--line);margin:8px 0 10px}
+.lys li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--faint);transition:color .45s}
+.lys li.on{color:var(--fg)}
+.lys .n{font:500 12px/1.9 var(--text);letter-spacing:.08em}
+.lys h3{font:400 18px/1.35 var(--text);letter-spacing:-.01em}
+.lys p{font-size:15px;line-height:1.5;color:var(--mute);max-height:0;opacity:0;overflow:hidden;transition:max-height .6s var(--e-out),opacity .5s,margin .6s var(--e-out)}
+.lys li.on p{max-height:48px;opacity:1;margin-top:4px}
+.btn-lt{--b:#f4f3f0;--f:#121212}
+.btn-lt:hover{--b:#fff}
+.pn .btn-line{--f:#f4f3f0}
+.pn-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px;padding:20px var(--pad) clamp(96px,10vw,140px)}
+.pn-stats div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
+.pn-stats dd{font:300 clamp(52px,5.2vw,92px)/.88 var(--disp);letter-spacing:-.055em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pn-stats dd small{font:500 .28em/1 var(--text);letter-spacing:.02em;margin-left:6px;color:#d8d5ce}
+.pn-stats dt{color:var(--mute);font-size:15px;line-height:1.45;max-width:28ch}
+
+/* ---------- reel ---------- */
+.reel{position:relative;background:var(--off)}
+.reel-stage{height:100vh;height:100svh;min-height:640px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:clamp(88px,10vh,120px) 0 clamp(40px,6vh,72px);overflow:hidden}
+.reel-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:0 var(--pad) clamp(24px,4vh,40px)}
+.reel-hd > div:first-child{display:grid;gap:20px}
+.reel-r{display:grid;justify-items:end;gap:16px}
+.reel-r .mono{font:300 22px/1 var(--disp);letter-spacing:-.02em;color:var(--mute);font-variant-numeric:tabular-nums}
+.reel-r .mono span{color:var(--ink)}
+.reel-vp{min-height:0;overflow:hidden}
+.reel-row{display:flex;gap:16px;height:100%;padding-left:var(--pad);will-change:transform}
+.card{flex:0 0 clamp(420px,46vw,780px);display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px;text-align:left;cursor:zoom-in}
+.card:nth-child(even){padding-top:6vh}
+.card .ph{position:relative;overflow:hidden;background:#ddd}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:filter .6s}
+.card:hover .ph img{filter:saturate(.75) sepia(.06) contrast(1.05)}
+.card .m{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.card b{display:block;font:300 clamp(24px,2vw,30px)/1.1 var(--disp);letter-spacing:-.04em}
+.card .gc{display:block;margin-top:4px;font-size:14px;color:var(--mute)}
+.card .n{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.reel-prog{margin:clamp(20px,3vh,32px) var(--pad) 0;height:1px;background:var(--line)}
+.reel-prog i{display:block;height:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
+
+/* ---------- voice ---------- */
+.voice{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:center;padding:clamp(110px,12vw,170px) var(--pad)}
+.v-ph{position:relative;height:min(68vh,640px);overflow:hidden;background:#ddd}
+.v-ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.v-ph figcaption{position:absolute;left:18px;bottom:16px;color:#fff;font:500 12px/1.3 var(--text);letter-spacing:.06em;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.v-tx{display:grid;gap:32px}
+.v-q{display:grid;gap:30px}
+.v-q p{font:300 clamp(32px,3.4vw,58px)/1.08 var(--disp);letter-spacing:-.045em;text-wrap:balance}
+.v-q p::before{content:"\201C"}.v-q p::after{content:"\201D"}
+.v-q footer{display:grid;gap:4px}
+.v-q footer b{font-weight:600;font-size:17px}
+.v-q footer span{color:var(--mute);font-size:15px}
+.v-trust{padding-top:24px;border-top:1px solid var(--line);display:grid;gap:14px}
+.v-trust ul{display:flex;flex-wrap:wrap;gap:8px 28px}
+.v-trust li{font:300 19px/1.3 var(--disp);letter-spacing:-.02em;color:var(--mute)}
+
+/* ---------- awards + footer, squared to the gallery ---------- */
+.aw{border-top:0}
+.pf-room{padding-left:0;padding-right:0}
+.pf{border-top:1px solid rgba(244,243,240,.1)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1099px){
+  .bk{width:min(34vw,380px);margin-left:min(34vw,380px)}
+  .pn-pin{grid-template-columns:1fr 1fr}
+}
+@media (max-width:899px){
+  .nb{left:max(12px,env(safe-area-inset-left,0px));width:auto}
+  .hero{height:auto}
+  .hero-stage{position:relative;height:100svh}
+  .hero h1{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 132px);font-size:clamp(60px,17vw,120px)}
+  .hero-lab{display:none}
+  .hero-tag{left:var(--pad);right:var(--pad);bottom:84px}
+  .strip{font-size:11px;letter-spacing:.04em}
+  .strip span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .about{grid-template-columns:1fr;padding:clamp(80px,14vw,120px) 0}
+  .ab-l{gap:20px}
+  .stk{position:relative;height:auto;aspect-ratio:3/4;max-height:80svh}
+  .stk img{transform:none}
+  .slabs{position:static;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#fff}
+  .sl4{position:static;width:auto;aspect-ratio:auto;min-height:150px;gap:24px}
+  .stk{display:grid;grid-template-rows:minmax(0,1fr) auto;aspect-ratio:auto;max-height:none;background:none}
+  .stk img{aspect-ratio:4/3;height:auto}
+  .ab-r{padding:48px var(--pad) 0}
+  .ab-lede{margin-bottom:40px}
+  .apts div{grid-template-columns:1fr;gap:6px}
+  .bk-pin{display:block;height:auto;min-height:0;padding:clamp(80px,14vw,120px) 0 32px}
+  .bk-l{padding:0 var(--pad)}
+  .bk-n,.bk-stage{display:none}
+  .bk-list{display:grid;gap:16px;padding:0 var(--pad) clamp(80px,14vw,120px)}
+  .bk-card{display:grid;background:#fff;text-align:left;width:100%}
+  .bk-card .ph{aspect-ratio:4/3;overflow:hidden}
+  .bk-card img{width:100%;height:100%;object-fit:cover}
+  .bk-card .tx{display:grid;gap:10px;padding:22px 20px 24px}
+  .bk-card .tx .lbl{font-size:11px}
+  .bk-card h3{font:300 32px/1 var(--disp);letter-spacing:-.05em}
+  .bk-card p{color:var(--mute);font-size:16px;line-height:1.45}
+  .bk-card .bk-go{margin-top:4px}
+  .pn-pin{grid-template-columns:1fr;height:auto;min-height:0}
+  .orbit{height:min(70svh,560px)}
+  .pn-copy{padding:8px var(--pad) 56px}
+  .pn-stats{grid-template-columns:1fr;gap:24px}
+  .reel-stage{height:auto;min-height:0;display:block;padding:clamp(80px,14vw,120px) 0 clamp(56px,10vw,80px)}
+  .reel-hd{flex-direction:column;align-items:flex-start}
+  .reel-r{justify-items:start}
+  .reel-r .mono{display:none}
+  .reel-vp{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .reel-vp::-webkit-scrollbar{display:none}
+  .reel-row{height:auto;padding-right:var(--pad)}
+  .card{flex-basis:min(82vw,520px);scroll-snap-align:start;scroll-margin-left:var(--pad)}
+  .card:nth-child(even){padding-top:0}
+  .card .ph{aspect-ratio:4/5}
+  .card .ph img{transform:none}
+  .card .m{flex-direction:column;gap:4px}
+  .reel-prog{display:none}
+  .voice{grid-template-columns:1fr;padding:clamp(80px,14vw,120px) var(--pad)}
+  .v-ph{height:auto;aspect-ratio:4/3}
+}
+@media (max-width:599px){
+  .nb{height:48px}
+  .nb-btn{width:48px}
+  .strip{height:auto;min-height:52px;padding-block:8px}
+  .strip span{display:none}
+  .strip{justify-content:flex-end}
+  .sl4 b{font-size:56px}
+}
+
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+<symbol id="logo" viewBox="34 10 386 107"><g><path fill="#0ba5c4" fill-rule="evenodd" d="M79.5 78C90.8 77.8 134.4 78 145.5 78C156.6 78 145.8 78.1 146 78.2C146.1 78.3 146.2 78.2 146.5 78.6C146.8 78.9 147.4 79.7 147.7 80.2C147.9 80.6 148 80.8 148.2 81.1C148.4 81.4 148.7 81.7 148.8 82C149 82.2 149 82.5 149.2 82.7C149.3 82.9 149.3 82.7 149.7 83.2C150 83.7 150.8 85.2 151.2 85.7C151.5 86.2 151.3 85.7 151.7 86.2C152 86.7 152.8 88.3 153.2 88.8C153.5 89.3 153.5 89 153.7 89.3C153.8 89.5 154 89.9 154.2 90.3C154.4 90.7 154.8 91.3 155.1 91.7C155.3 92 155.6 92.1 155.8 92.3C155.9 92.6 155.9 93.1 155.9 93.3C155.9 93.6 155.8 93.7 155.7 93.8C155.5 93.8 169.3 93.9 155.2 93.9C141 93.9 84.9 93.7 70.7 93.8C56.4 93.8 69.8 93.9 69.5 93.9C69.3 93.9 69.2 93.8 69.2 93.8L69.1 93.3C69.1 93.3 69.5 93 69.7 92.8C69.9 92.6 70 92.3 70.2 92C70.4 91.8 70.8 91.6 70.8 91.6L71 90.2C71 90.2 71.5 90 71.7 89.8C71.9 89.6 72 89.3 72.2 89.1C72.4 88.9 72.8 88.7 72.8 88.7C72.8 88.7 72.9 87.5 73 87.2C73.1 86.9 73.5 87 73.7 86.8C73.8 86.6 73.9 86.4 74.1 86.2C74.3 86 74.7 85.8 74.9 85.5C75 85.2 75 84.2 75 84.2C75 84.2 75.5 84 75.7 83.8C75.9 83.6 76 83.3 76.2 83.1C76.4 82.9 76.8 82.6 76.8 82.6C76.8 82.6 76.8 81.7 76.9 81.3C77.1 81 77.7 80.8 77.9 80.5C78.1 80.2 77.7 79.6 78 79.2C78.3 78.8 68.3 78.2 79.5 78ZM64.3 101C80.4 100.9 144.3 100.9 160.5 101C176.7 101 161.1 101 161.5 101.3C161.9 101.7 161.4 101 162.7 103C163.9 104.9 167.9 111.2 169.2 113C170.4 114.9 169.8 113.6 169.9 114C170.2 114.4 170.4 115.3 170.4 115.3C170.4 115.3 170.2 115.6 170 115.7C169.8 115.8 188.3 115.9 169.2 115.9C150.1 115.9 74.5 116 55.5 115.9C36.5 115.9 55 115.7 55 115.7L55 115.3C55 115.3 55.7 114.8 55.9 114.5C56.1 114.2 56 113.2 56 113.2C56 113.2 56.5 113 56.7 112.8C56.9 112.6 57 112.3 57.2 112.1C57.4 111.9 57.8 111.7 57.8 111.7C57.8 111.7 57.9 110.5 58 110.2C58.1 109.9 58.5 110 58.7 109.8C58.9 109.6 59 109.3 59.2 109.1C59.4 108.9 59.8 108.7 59.8 108.7C59.8 108.7 59.9 107.5 60 107.2C60.1 106.9 60.5 107 60.7 106.8C60.9 106.6 61 106.3 61.2 106.1C61.4 105.9 61.8 105.7 61.8 105.7C61.8 105.7 61.9 104.5 62 104.2C62.1 103.9 62.5 104 62.7 103.8C62.9 103.6 63 103.3 63.2 103.1C63.4 102.9 63.8 102.7 63.8 102.7C63.8 102.7 63.9 101.6 64 101.3C64.1 101.1 48.2 101.1 64.3 101Z"/><path fill="#4ec1d6" fill-rule="evenodd" d="M77.6 78C80.6 78 78.3 78 78.5 78C78.7 78 78.7 78.1 78.7 78.2C78.8 78.3 78.8 78.5 78.8 78.5C78.8 78.5 78.2 78.8 78 79.2C77.8 79.5 78 80.2 77.8 80.6C77.7 81 77.1 81 76.9 81.3C76.8 81.7 76.8 82.6 76.8 82.6C76.8 82.6 76.4 82.9 76.2 83.1C76 83.3 75.9 83.6 75.7 83.8C75.5 84 75 84.2 75 84.2L74.8 85.6C74.8 85.6 74.4 85.9 74.2 86.1C74 86.3 73.9 86.6 73.7 86.8C73.5 87 73 87.2 73 87.2L72.8 88.6C72.8 88.6 72.4 88.9 72.2 89.1C72 89.3 71.9 89.6 71.7 89.8C71.5 90 71 90.2 71 90.2C71 90.2 71 91.3 70.8 91.6C70.7 91.9 70.4 91.9 70.2 92.1C70 92.3 69.9 92.6 69.7 92.8C69.5 93 69.2 92.9 69 93.2C68.8 93.5 69.3 93.4 68.6 94.5C68 95.6 65.8 98.7 65.1 99.7C64.5 100.7 64.9 100.3 64.7 100.5C64.5 100.8 64.1 100.8 64 101.2C63.9 101.5 63.8 102.6 63.8 102.6C63.8 102.6 63.4 102.9 63.2 103.1C63 103.3 62.9 103.6 62.7 103.8C62.5 104 62 104.2 62 104.2C62 104.2 62 105.3 61.8 105.6C61.7 105.9 61.4 105.9 61.2 106.1C61 106.3 60.9 106.6 60.7 106.8C60.5 107 60 107.2 60 107.2C60 107.2 60 108.3 59.8 108.6C59.7 108.9 59.4 108.9 59.2 109.1C59 109.3 58.9 109.6 58.7 109.8C58.5 110 58 110.2 58 110.2C58 110.2 58 111.3 57.8 111.6C57.7 111.9 57.4 111.9 57.2 112.1C57 112.3 56.9 112.6 56.7 112.8C56.5 113 56 113.2 56 113.2C56 113.2 56 114.3 55.8 114.6C55.7 115 55.2 115 55 115.2C54.8 115.3 54.8 115.6 54.7 115.7C54.5 115.8 57.2 115.9 54.2 115.9C51.2 115.9 39.7 115.9 36.7 115.9C33.6 115.9 36.2 115.8 36 115.8C35.8 115.7 35.5 115.5 35.5 115.5C35.5 115.5 35.5 115.3 35.5 115C35.6 114.7 35.6 114.5 36 113.9C36.4 113.3 37.1 112.4 37.7 111.6C38.2 110.8 38.8 109.7 39.1 109.2C39.4 108.7 39.3 109 39.7 108.5C40 108 40.7 106.7 41 106.2C41.4 105.7 41.3 106 41.6 105.5C42 105 42.8 103.5 43.1 103C43.5 102.5 42.4 104.3 43.6 102.5C44.8 100.7 49 93.9 50.2 92.1C51.4 90.3 50.5 91.8 50.7 91.5C50.8 91.3 50.9 91 51.2 90.5C51.5 90 52.3 88.9 52.7 88.4C53 87.9 53 87.7 53.2 87.4C53.3 87.2 53.4 87.3 53.7 86.8C54 86.3 54.8 84.9 55.2 84.3C55.5 83.8 55.4 84.2 55.8 83.7C56.1 83.2 56.9 81.8 57.2 81.3C57.5 80.8 57.5 81 57.7 80.8C57.8 80.5 57.9 80.3 58.1 79.8C58.4 79.4 58.9 78.5 59.3 78.2C59.8 77.9 57.6 78 60.7 78C63.7 78 74.7 78 77.6 78Z"/><path fill="#83d2e1" fill-rule="evenodd" d="M112.2 27C112.3 26.9 112.4 26.9 112.5 26.9C112.6 26.9 112.8 26.9 113 27.1C113.2 27.3 111.9 25.2 113.7 27.9C115.4 30.6 121.9 40.5 123.7 43.3C125.4 46 123.9 43.8 124.2 44.3C124.5 44.9 125.2 45.8 125.7 46.6C126.1 47.3 126.4 47.7 126.8 48.7C127.1 49.6 127.6 51.4 127.8 52.3C128 53.3 127.9 53.8 127.9 54.5C127.9 55.2 127.9 55.9 127.8 56.5C127.8 57.1 127.8 57.2 127.7 57.9C127.5 58.5 127.1 60 126.8 60.6C126.6 61.2 126.3 61.4 126.2 61.7C126 62 126.2 62 125.8 62.7C125.3 63.3 124 64.8 123.4 65.5C122.7 66.2 122.4 66.3 121.9 66.7C121.4 67 121.1 67.2 120.5 67.6C119.9 67.9 119.1 68.3 118.2 68.6C117.2 69 115.7 69.4 114.7 69.6C113.6 69.8 113.1 69.9 112 70C110.9 70 112.8 70.1 108.3 70.1C103.9 70.2 89.2 70.2 85.3 70.1C81.5 70.1 85.1 70 85 69.8C85 69.7 85 69.3 85 69.3C85 69.3 85.7 68.8 85.9 68.5C86.1 68.2 86 67.2 86 67.2C86 67.2 86.5 67 86.7 66.8C86.9 66.6 87 66.3 87.2 66.1C87.4 65.9 87.8 65.7 87.8 65.7C87.8 65.7 87.9 64.5 88 64.2C88.1 63.9 88.5 64 88.7 63.8C88.9 63.6 89 63.3 89.2 63.1C89.4 62.9 89.8 62.7 89.8 62.7C89.8 62.7 89.9 61.5 90 61.2C90.1 60.9 90.5 61 90.7 60.8C90.9 60.6 91 60.3 91.2 60.1C91.3 59.9 91.6 59.9 91.8 59.7C91.9 59.4 92 58.8 92 58.5C92.1 58.3 92.2 58.2 92.3 58.2C92.4 58.1 91.2 58.1 92.7 58C94.2 58 99.4 58.1 101.2 58.1C102.9 58 102.8 57.9 103.2 57.8C103.6 57.8 103.3 57.8 103.7 57.6C104 57.5 104.7 57.1 105.2 56.7C105.7 56.2 106.3 55.6 106.7 54.8C107.1 54.1 107.3 52.9 107.5 52.3C107.6 51.8 107.5 51.8 107.5 51.5C107.5 51.2 107.6 51.2 107.4 50.7C107.3 50.1 107 48.8 106.7 48.2C106.4 47.6 106.1 47.4 105.7 47.1C105.3 46.7 104.9 46.5 104.3 46.3C103.8 46.1 103.1 45.9 102.5 46C101.9 46 100.9 46.3 100.5 46.3C100.1 46.3 100.2 46.2 100 46C100 45.8 99.9 45.5 99.9 45.3C100 45.2 100 45.1 100.2 45C100.3 44.9 100.6 44.8 100.8 44.7C100.9 44.5 101 44.2 101.2 44.1C101.3 43.9 101.7 43.9 101.8 43.6C102 43.3 102 42.2 102 42.2C102 42.2 102.5 42 102.7 41.8C102.8 41.6 103 41.3 103.2 41.1C103.4 40.9 103.8 40.6 103.8 40.6L104 39.2C104 39.2 104.5 39 104.7 38.8C104.9 38.6 105 38.3 105.2 38.1C105.4 37.9 105.8 37.6 105.8 37.6L106 36.2C106 36.2 106.5 36 106.7 35.8C106.9 35.6 107 35.3 107.2 35.1C107.4 34.9 107.8 34.7 107.8 34.7C107.8 34.7 107.9 33.5 108 33.2C108.1 32.9 108.5 33 108.7 32.8C108.9 32.6 109 32.3 109.2 32.1C109.4 31.9 109.8 31.6 109.8 31.6C109.8 31.6 109.8 30.7 110 30.3C110.1 30 110.6 29.9 110.8 29.7C111 29.5 111 29.2 111.2 29.1C111.3 28.9 111.7 28.8 111.8 28.7C111.9 28.5 111.9 28.6 111.9 28.3C111.9 28.1 111.9 27.6 111.9 27.3C112 27.1 112.1 27.1 112.2 27Z"/><path fill="#aadeea" fill-rule="evenodd" d="M102.4 11.8C102.4 11.8 102.8 11.9 103 12C103.2 12.1 103.5 12.3 103.7 12.6C103.9 12.9 104 13.3 104.2 13.6C104.3 13.9 104.4 13.7 104.7 14.2C105 14.7 105.8 16.1 106.2 16.6C106.5 17.1 106 16.2 106.7 17.2C107.3 18.2 109.5 21.6 110.1 22.7C110.8 23.7 110.3 22.8 110.7 23.3C111 23.8 111.8 25.2 112.1 25.7C112.5 26.1 112.6 26 112.7 26.2C112.8 26.3 112.8 26.4 112.7 26.5C112.5 26.7 112.1 27 111.9 27.3C111.8 27.7 111.8 28.6 111.8 28.6C111.8 28.6 111.4 28.9 111.2 29.1C111 29.3 110.8 29.6 110.7 29.8C110.5 29.9 110 30.2 110 30.2C110 30.2 110 31.3 109.8 31.6C109.7 31.9 109.4 31.9 109.2 32.1C109 32.3 108.9 32.6 108.7 32.8C108.5 33 108 33.2 108 33.2C108 33.2 108 34.2 107.9 34.5C107.7 34.8 107.3 35 107.1 35.2C106.9 35.4 106.8 35.6 106.7 35.8C106.5 35.9 106.2 35.9 106 36.2C105.8 36.5 105.8 37.7 105.8 37.7C105.8 37.7 105.3 37.9 105.2 38.1C105 38.2 104.9 38.6 104.7 38.8C104.5 39 104 39.2 104 39.2L103.8 40.6C103.8 40.6 103.4 40.9 103.2 41.1C103 41.3 102.9 41.6 102.7 41.8C102.5 42 102.2 41.9 102 42.2C101.8 42.5 101.8 43.7 101.8 43.7C101.8 43.7 101.3 43.9 101.2 44.1C101 44.2 100.8 44.6 100.7 44.8C100.5 45 100.2 44.9 100 45.2C99.9 45.5 100 46.1 99.7 46.5C99.4 47 98.7 47.3 98.3 47.7C98 48.1 97.8 48.7 97.6 49C97.3 49.3 97.1 49.5 96.8 49.7C96.6 49.8 99.2 49.8 96.2 49.9C93.2 49.9 81.8 49.9 78.8 49.8C75.9 49.8 78.3 49.7 78.3 49.7C78.3 49.7 78.1 49.4 78.2 49.2C78.2 48.9 78.3 48.7 78.5 48.3C78.8 47.9 79.2 47.5 79.7 46.8C80.1 46.2 80.8 44.8 81.2 44.3C81.5 43.8 81.4 44.2 81.7 43.7C82.1 43.1 82.8 41.7 83.2 41.2C83.5 40.7 83.4 41.2 83.7 40.7C84 40.2 84.8 38.7 85.2 38.2C85.5 37.7 85.3 38.2 85.6 37.7C86 37.2 86.8 35.7 87.1 35.2C87.5 34.6 87.3 35.1 87.7 34.6C88 34.1 88.8 32.7 89.1 32.2C89.4 31.7 89.3 32 89.7 31.5C90 31 90.8 29.5 91.1 29C91.5 28.5 90.4 30.3 91.6 28.5C92.8 26.7 97 19.9 98.2 18.1C99.3 16.3 98.5 17.8 98.7 17.6C98.8 17.3 98.7 17.3 99.2 16.5C99.7 15.7 101.2 13.6 101.7 12.9C102.1 12.2 101.9 12.3 102 12.2C102.1 12 102.4 11.8 102.4 11.8ZM72.8 58.2C73 58.1 70.6 58.1 73.7 58C76.7 58 88.2 58 91.2 58C94.2 58.1 91.7 58.3 91.7 58.3C91.7 58.3 91.9 59.1 91.9 59.3C91.9 59.6 91.9 59.5 91.8 59.7C91.7 59.8 91.4 59.9 91.2 60.1C91 60.3 90.9 60.6 90.7 60.8C90.5 61 90 61.2 90 61.2C90 61.2 90 62.3 89.8 62.6C89.7 62.9 89.4 62.9 89.2 63.1C89 63.3 88.9 63.6 88.7 63.8C88.5 64 88 64.2 88 64.2C88 64.2 88 65.3 87.8 65.6C87.7 65.9 87.4 65.9 87.2 66.1C87 66.3 86.9 66.6 86.7 66.8C86.5 67 86 67.2 86 67.2C86 67.2 86 68.3 85.8 68.6C85.7 69 85.3 68.9 85 69.2C84.8 69.4 84.5 70.1 84.5 70.1C84.5 70.1 68.9 70.2 65.7 70.2C62.5 70.2 65.4 70.2 65.3 70.1C65.2 70 65.1 70 65.1 69.8C65 69.7 65 69.5 65 69.3C65 69.2 64.8 69.4 65.1 69C65.4 68.6 65.7 68.4 66.7 66.9C67.7 65.3 70.3 61.2 71.2 59.8C72.1 58.4 71.9 58.8 72.2 58.5C72.4 58.2 72.5 58.2 72.8 58.2Z"/></g><g transform="translate(185 116) scale(0.82) translate(-185 -116)"><path fill="currentColor" fill-rule="evenodd" d="M317.8 18.8C318.1 18.8 318.4 18.8 318.7 18.8C318.9 18.9 319.2 19 319.4 19.2C319.6 19.3 319.7 19.4 319.8 19.7C319.8 19.9 320 15 319.9 20.7C319.9 26.3 319.4 41.1 319.4 53.7C319.3 66.2 319.3 87.6 319.3 96C319.4 104.4 319.5 101.9 319.6 103.8C319.8 105.8 319.8 106.8 320.1 107.7C320.3 108.5 320.6 108.5 321.1 108.8C321.5 109.1 320 109.3 322.7 109.4C325.4 109.5 334.5 109.5 337.2 109.4C339.8 109.4 338.1 109.2 338.5 109.1C338.9 108.9 339.1 109 339.5 108.5C339.9 108.1 340.4 107.1 340.6 106.5C340.8 105.9 340.8 113.2 340.8 105C340.9 96.8 340.9 67.1 340.8 57.5C340.8 47.9 340.7 50.6 340.6 47.3C340.5 44 340.1 39.4 340 37.7C339.8 35.9 339.9 37.1 339.7 36.7C339.6 36.3 339.3 35.6 338.9 35.2C338.6 34.7 338.2 34.3 337.8 33.9C337.5 33.6 337.3 33.4 336.8 33.1C336.4 32.8 335.7 32.4 335.1 32.2C334.6 31.9 334.2 32 333.5 31.8C332.8 31.5 331.2 31 330.7 30.7C330.1 30.4 330.2 30.2 330.1 29.8C330 29.5 330 29 330.1 28.7C330.1 28.4 330.1 28.2 330.3 28C330.5 27.7 330.3 27.5 331.2 27.1C332 26.8 333.8 26.4 335.5 25.8C337.3 25.2 339.8 24.4 341.6 23.7C343.5 23 345 22.4 346.7 21.7C348.4 20.9 350.8 19.6 351.8 19.2C352.9 18.7 352.7 18.9 353 18.8C353.3 18.8 353.6 18.7 353.8 18.8C354.1 18.9 354.7 19.2 354.7 19.2C354.7 19.2 355.2 17.9 355.2 20.7C355.2 23.4 354.9 28.8 354.9 35.5C354.8 42.2 354.7 50.4 354.7 60.7C354.7 70.9 354.7 89.6 354.7 97.2C354.8 104.7 354.9 104.1 355 105.8C355.1 107.5 355.2 107 355.3 107.5C355.5 107.9 355.8 108.3 355.9 108.5C356.1 108.7 356 108.7 356.3 108.8C356.7 109 356.8 109.3 358 109.4C359.2 109.5 362.2 109.3 363.3 109.4C364.4 109.5 364.4 109.7 364.7 109.9C364.9 110.1 364.9 110.2 365 110.7C365 111.2 365 112.5 364.9 113C364.9 113.5 364.9 113.5 364.8 113.7C364.7 113.8 364.6 114 364.3 114.1C364.1 114.2 364.2 114.4 363.3 114.4C362.5 114.4 361.7 114.2 359.3 114.1C357 114 363.3 113.9 349.3 113.9C335.4 113.9 289.2 113.9 275.8 113.9C262.5 113.9 271.4 113.9 269.3 114C267.3 114.1 264.6 114.4 263.5 114.4C262.4 114.4 262.8 114.2 262.5 114C262.3 113.9 262.1 113.7 262 113.5C261.9 113.3 261.9 113.2 261.9 112.7C261.9 112.2 261.8 111 261.9 110.5C261.9 110 262 110 262.3 109.8C262.6 109.6 262.5 109.4 263.7 109.3C264.8 109.3 268 109.5 269.2 109.4C270.3 109.3 270.1 109 270.4 108.8C270.7 108.7 270.6 108.8 270.8 108.5C270.9 108.2 270.9 109.4 271 107C271.1 104.6 271.3 98.9 271.4 94C271.4 89.1 271.4 80.6 271.4 77.3C271.3 74.1 271.3 75.3 271.2 74.5C271.1 73.7 271.1 73.1 270.8 72.5C270.6 71.9 270.2 71.4 269.8 71C269.5 70.6 269.1 70.3 268.7 70C268.2 69.7 268 69.5 267.3 69.2C266.6 68.9 265.1 68.5 264.5 68.2C263.9 68 263.8 67.9 263.6 67.7C263.4 67.4 263.2 67.2 263.2 66.8C263.1 66.5 263.1 65.8 263.2 65.5C263.3 65.2 263.3 65.2 263.6 65C263.9 64.8 264.6 64.3 265.2 64.1C265.7 63.8 266.2 63.8 266.7 63.7C267.1 63.5 267.6 63.2 268 63C268.4 62.9 269 62.8 269.4 62.7C269.8 62.5 269.9 62.3 270.3 62.2C270.8 62 271.6 61.8 272.1 61.7C272.6 61.5 272.7 61.3 273.2 61.1C273.6 60.9 274.4 60.8 274.8 60.7C275.3 60.5 275.4 60.3 275.8 60.1C276.3 60 277.1 59.8 277.5 59.7C278 59.5 278 59.3 278.4 59.2C278.9 59 279.8 58.8 280.2 58.7C280.6 58.5 280.5 58.3 281.2 58.1C281.8 57.9 283.4 57.5 284 57.4C284.6 57.3 284.3 57.4 284.5 57.5C284.7 57.5 284.8 57.6 285 57.8C285.2 57.9 285.4 58.1 285.5 58.3C285.6 58.4 285.6 58 285.6 58.7C285.6 59.3 285.4 61 285.3 62.2C285.3 63.3 285.2 59 285.2 65.5C285.2 72 285.2 94.7 285.2 101.3C285.3 107.9 285.3 104.2 285.4 105.2C285.5 106.1 285.6 106.7 285.7 107.2C285.8 107.7 285.9 107.9 286 108.2C286.1 108.4 286.3 108.6 286.5 108.8C286.7 109 287.1 109.2 287.3 109.3C287.6 109.4 285.4 109.4 287.8 109.4C290.3 109.4 299.3 109.5 302 109.4C304.7 109.3 303.3 109.1 303.8 108.8C304.2 108.6 304.5 108.3 304.7 107.8C305 107.4 305.3 106.7 305.4 106.2C305.5 105.7 305.5 113.1 305.5 104.8C305.6 96.6 305.6 66.4 305.5 56.5C305.5 46.6 305.3 48.6 305.2 45.5C305.1 42.4 304.9 39.5 304.8 38C304.7 36.5 304.7 37.2 304.5 36.7C304.3 36.2 304 35.6 303.7 35.2C303.4 34.7 303.2 34.5 302.8 34.2C302.5 33.8 302.2 33.5 301.7 33.2C301.2 32.8 300.9 32.6 299.8 32.2C298.8 31.8 296.1 31 295.3 30.8C294.6 30.5 295.2 30.6 295.1 30.5C295 30.4 295 30.3 294.9 30C294.9 29.7 294.8 28.9 294.9 28.5C294.9 28.1 295 27.9 295.2 27.7C295.3 27.5 294.4 27.7 295.8 27.2C297.2 26.7 301.3 25.4 303.5 24.7C305.7 23.9 307.3 23.3 308.9 22.7C310.6 22 312.7 21.1 313.7 20.6C314.7 20.2 314.5 20.1 315 19.9C315.5 19.6 316.1 19.3 316.6 19.2C317.1 19 317.4 18.9 317.8 18.8ZM186.2 20.3C187.9 20.3 192 20.6 195.3 20.7C198.7 20.7 202.4 20.8 206.2 20.7C209.9 20.7 214.8 20.4 217.7 20.3C220.6 20.2 220.8 20.2 223.5 20.3C226.2 20.4 231.1 20.6 233.8 20.9C236.5 21.2 238 21.6 239.7 21.9C241.3 22.3 242.7 22.8 243.8 23.2C244.9 23.5 245.4 23.8 246.2 24.2C246.9 24.5 247.6 24.8 248.4 25.3C249.3 25.9 250.6 26.7 251.5 27.3C252.3 28 252.9 28.5 253.6 29.2C254.3 29.8 254.9 30.5 255.6 31.3C256.2 32.2 257.1 33.5 257.6 34.3C258.2 35.2 258.3 35.5 258.7 36.3C259 37 259.4 37.8 259.7 38.7C260 39.7 260.4 41.3 260.6 42C260.8 42.7 260.7 42.3 260.8 43.2C260.8 44.1 261.1 45.9 261 47.5C261 49.1 260.8 51.1 260.6 52.5C260.3 53.9 259.9 55.2 259.6 56.2C259.2 57.2 258.9 57.8 258.6 58.5C258.3 59.2 258.1 59.4 257.6 60.2C257.2 60.9 256.5 61.9 255.7 62.8C254.9 63.8 253.7 65 252.8 65.7C252 66.5 251.5 66.9 250.5 67.5C249.5 68.2 247.8 69.2 246.8 69.7C245.7 70.2 245.3 70.3 244.4 70.7C243.6 71 242.9 71.3 241.7 71.6C240.5 71.9 239.1 72.3 237.3 72.7C235.5 73 232.4 73.3 230.8 73.5C229.3 73.6 229.8 73.6 228 73.7C226.3 73.7 222.2 73.7 220.3 73.6C218.5 73.6 217.7 73.5 216.8 73.4C216 73.3 215.7 73.2 215.3 73.2C215 73.2 214.8 73.2 214.7 73.3C214.5 73.4 214.3 73.6 214.2 73.8C214.1 74.1 214.1 70.2 214.1 74.7C214.1 79.1 214.1 95.6 214.2 100.5C214.2 105.4 214.2 103.5 214.2 104.3C214.3 105.2 214.3 105.1 214.5 105.7C214.6 106.2 214.9 107 215.2 107.5C215.5 108 216 108.3 216.3 108.5C216.6 108.8 216.6 108.8 217 108.8C217.4 108.9 217.1 108.9 218.5 109C219.9 109 224 108.9 225.3 109C226.7 109 226.3 109.1 226.5 109.2C226.7 109.4 226.7 109.5 226.7 109.7C226.8 109.8 226.8 109.8 226.8 110.3C226.9 110.9 226.9 112.6 226.8 113.2C226.8 113.7 226.8 113.6 226.7 113.8C226.6 113.9 226.4 114 226.2 114.1C225.9 114.2 226.6 114.4 225.2 114.4C223.7 114.3 221 114.1 217.3 114C213.6 113.9 207.2 113.9 203 113.9C198.8 113.9 194.9 114 192.3 114.1C189.8 114.2 188.6 114.4 187.7 114.4C186.8 114.4 187.2 114.3 187 114.2C186.8 114 186.4 114.1 186.3 113.5C186.1 112.9 186.2 111 186.2 110.3C186.2 109.7 186.2 109.8 186.3 109.6C186.4 109.4 186.5 109.3 186.7 109.2C186.9 109.1 186.5 109 187.5 108.9C188.5 108.9 191.6 109 192.8 108.9C194.1 108.9 194.4 108.8 194.8 108.7C195.3 108.6 195.2 108.6 195.5 108.4C195.8 108.1 196.2 107.7 196.5 107.3C196.7 107 196.8 106.8 196.9 106.2C197.1 105.6 197 108.1 197.1 103.7C197.2 99.2 197.4 91 197.5 79.3C197.6 67.7 197.5 42.1 197.5 33.7C197.5 25.3 197.4 29.9 197.3 28.8C197.3 27.8 197.2 27.8 197.1 27.5C196.9 27.2 196.9 27.1 196.7 26.8C196.5 26.6 196.1 26.2 195.7 26.1C195.2 25.9 195.7 25.8 194.2 25.7C192.7 25.6 188 25.7 186.7 25.7C185.3 25.7 186.2 25.6 185.9 25.5C185.7 25.4 185.5 25.1 185.3 25C185.2 24.8 185.1 25.1 185.1 24.5C185.1 23.9 185 22.3 185.1 21.7C185.1 21.1 185.1 21.1 185.3 20.9C185.5 20.7 184.6 20.4 186.2 20.3ZM216.9 25C218.1 24.9 220.9 24.8 222.3 24.9C223.8 24.9 224.5 25 225.7 25.2C226.8 25.4 228.4 25.9 229.3 26.3C230.3 26.6 230.8 26.9 231.5 27.2C232.2 27.5 232.8 27.9 233.3 28.3C233.9 28.6 234.1 28.7 234.7 29.2C235.2 29.6 236.1 30.3 236.7 31C237.4 31.7 238.2 32.6 238.7 33.3C239.2 34 239.4 34.4 239.8 35C240.1 35.6 240.4 36.1 240.7 37C241.1 37.9 241.5 38.7 241.8 40.2C242.1 41.7 242.4 44.5 242.5 46C242.6 47.5 242.6 47.9 242.4 49.3C242.3 50.8 242.2 53 241.8 54.5C241.6 56 241 57.2 240.7 58.1C240.3 59 240.1 59.3 239.8 59.8C239.4 60.4 238.9 61 238.6 61.5C238.2 62 238 62.2 237.5 62.7C237 63.2 236.3 63.9 235.5 64.5C234.7 65.2 233.3 66.1 232.5 66.6C231.7 67.2 231.3 67.3 230.5 67.7C229.8 68 228.7 68.5 227.8 68.7C227 69 226.2 69.1 225.5 69.2C224.8 69.3 224.8 69.4 223.7 69.4C222.6 69.4 220.4 69.3 219 69.2C217.6 69.1 216 68.8 215.2 68.7C214.5 68.5 214.7 68.4 214.5 68.2C214.3 68 214.2 74.4 214.1 67.5C214.1 60.6 214.1 33.6 214.1 26.7C214.2 19.8 214.2 26.3 214.3 26C214.5 25.8 214.7 25.5 215.1 25.3C215.5 25.2 215.7 25.1 216.9 25ZM274.7 28.2C275.5 28 275.9 28 276.5 28C277.1 28 277.8 28 278.5 28.1C279.3 28.4 280.4 28.8 281 29.2C281.7 29.5 282.1 29.9 282.5 30.3C282.9 30.7 283.1 31 283.5 31.5C283.9 32.1 284.4 33 284.6 33.7C284.8 34.3 284.8 34.8 284.8 35.3C284.9 35.9 284.8 36.7 284.8 37.2C284.7 37.7 284.7 37.9 284.5 38.3C284.3 38.8 284.1 39.5 283.7 40C283.4 40.5 283 41.1 282.6 41.5C282.3 41.9 282.1 42.1 281.6 42.5C281 42.9 280.1 43.4 279.4 43.7C278.7 43.9 277.9 44 277.3 44.1C276.7 44.1 276.3 44.2 275.8 44.2C275.3 44.2 274.9 44.1 274.3 44C273.8 43.9 273.2 43.8 272.7 43.6C272.1 43.4 271.4 43 271 42.7C270.6 42.4 270.3 42.1 270 41.8C269.6 41.5 269.5 41.4 269.1 41C268.8 40.6 268.3 40 268.1 39.3C267.8 38.7 267.6 37.7 267.4 37.2C267.3 36.6 267.3 36.5 267.3 36.2C267.3 35.9 267.3 35.9 267.5 35.3C267.6 34.8 267.9 33.7 268.2 33C268.5 32.3 268.9 31.8 269.3 31.3C269.7 30.9 270.1 30.6 270.5 30.2C270.9 29.8 271.3 29.5 272 29.2C272.7 28.8 274 28.4 274.7 28.2ZM459.9 57C460.4 57 461.4 56.9 462.2 56.9C462.9 56.9 463.5 57 464.2 57.2C464.8 57.4 465.4 57.7 466 58.2C466.6 58.6 467.2 59.3 467.7 59.9C468.1 60.5 468.4 61.1 468.6 61.7C468.8 62.2 468.8 62.6 468.8 63.2C468.8 63.7 468.8 64.3 468.7 64.8C468.5 65.4 468.1 66.1 467.8 66.7C467.4 67.2 467 67.8 466.5 68.3C466 68.8 465.5 69.2 464.8 69.6C464.1 70 463 70.4 462.3 70.6C461.7 70.8 461.4 70.7 461 70.7C460.6 70.7 460.3 70.6 459.7 70.5C459.1 70.3 458 70 457.3 69.8C456.7 69.5 456.1 69.1 455.7 68.9C455.2 68.7 455.2 68.7 454.7 68.7C454.2 68.6 453.3 68.6 452.7 68.6C452.1 68.7 451.6 68.9 451 69.2C450.4 69.4 449.9 69.8 449.4 70.3C448.9 70.8 448.3 71.5 447.9 72.2C447.5 72.8 447.3 73.1 447 74.2C446.7 75.2 446.3 73.7 446.2 78.6C446 83.5 446.1 99.2 446.2 103.7C446.2 108.2 446.2 105 446.3 105.7C446.4 106.3 446.6 107.1 446.8 107.5C446.9 107.9 447 108.1 447.2 108.3C447.3 108.5 447.4 108.5 447.6 108.7C447.8 108.8 448 109 448.3 109.1C448.6 109.2 448.2 109.3 449.3 109.4C450.5 109.4 454 109.2 455.2 109.3C456.3 109.4 456.1 109.7 456.3 109.8C456.6 109.9 456.6 110 456.7 110.1C456.8 110.2 456.8 110 456.8 110.5C456.9 111 456.9 112.5 456.8 113C456.8 113.5 456.8 113.5 456.6 113.7C456.5 113.9 456.2 114 456 114.2C455.8 114.3 456.2 114.4 455.3 114.4C454.5 114.4 453.2 114.2 450.8 114.1C448.5 114 444.7 113.9 441.3 113.9C438 113.9 433.4 114 430.8 114C428.3 114.1 427 114.2 426 114.2C425 114.3 425 114.4 424.7 114.4C424.3 114.4 424.1 114.3 423.8 114.1C423.6 114 423.4 113.8 423.3 113.7C423.1 113.5 423.1 113.7 423.1 113.2C423.1 112.7 423 111.2 423 110.7C423.1 110.1 423.1 110.2 423.3 110C423.6 109.8 423.5 109.4 424.5 109.3C425.5 109.2 428.1 109.5 429.2 109.4C430.2 109.3 430.3 109.1 430.7 109C431 108.8 431.2 108.7 431.4 108.5C431.6 108.3 431.8 108.1 431.9 107.8C432 107.6 432.1 107.5 432.1 107.2C432.2 106.8 432.3 110.5 432.3 105.8C432.3 101.1 432.3 84.1 432.3 79C432.2 73.9 432 76 431.9 75.2C431.8 74.4 431.9 74.7 431.7 74.3C431.5 73.8 431.2 73.2 430.8 72.7C430.5 72.2 430.1 71.8 429.6 71.3C429.1 70.9 428.7 70.6 428 70.2C427.2 69.7 425.8 69 425.1 68.7C424.5 68.3 424.4 68.2 424.2 67.9C424 67.7 423.9 67.5 423.9 67.2C423.9 66.9 423.8 66.5 424.1 66.2C424.4 65.8 424.8 65.5 425.7 65.1C426.5 64.6 428.3 64 429 63.6C429.7 63.3 429.7 63.2 430 63C430.3 62.9 430.7 62.8 431.1 62.7C431.4 62.5 431.6 62.2 432 62.1C432.4 61.9 432.9 61.8 433.2 61.7C433.5 61.5 433.6 61.3 434 61.1C434.4 61 435 60.8 435.3 60.7C435.7 60.5 435.7 60.3 436 60.2C436.4 60 437.1 59.8 437.4 59.7C437.8 59.5 437.8 59.3 438.1 59.2C438.5 59 439.1 58.9 439.5 58.7C439.9 58.5 439.7 58.4 440.3 58.2C440.8 58 442.3 57.5 442.8 57.5C443.4 57.4 443.3 57.6 443.5 57.7C443.7 57.8 443.7 57.7 443.8 58C444 58.3 444.2 59.1 444.4 59.7C444.5 60.3 444.5 60.4 444.7 61.7C444.8 63 445 66.4 445.2 67.5C445.3 68.6 445.5 68 445.5 68C445.5 68 446.1 68.1 446.3 68.1C446.5 68.1 446.5 68.1 446.7 67.8C446.8 67.6 446.8 67.4 447.2 66.8C447.6 66.1 448.5 64.8 449.2 64C449.8 63.3 450.4 62.7 451 62C451.6 61.4 452.2 60.8 453.1 60.2C453.9 59.5 455.3 58.7 456.2 58.2C457.1 57.7 458.1 57.4 458.7 57.2C459.3 57 459.3 57 459.9 57ZM392.2 57.5C393.8 57.4 395.1 57.4 396.5 57.5C397.9 57.5 399.8 57.8 400.7 58C401.6 58.1 401.3 58 401.8 58.2C402.4 58.4 403.2 58.8 403.8 59.1C404.4 59.4 405 59.8 405.5 60.2C406 60.5 406.3 60.8 406.7 61.2C407 61.5 407.3 61.8 407.7 62.3C408 62.9 408.5 63.6 408.8 64.5C409.1 65.3 409.4 66.5 409.5 67.5C409.6 68.5 409.6 64.8 409.7 70.2C409.8 75.5 409.9 94.1 409.9 99.5C410 104.9 410 101.9 410.1 102.7C410.1 103.4 410.1 103.6 410.3 104.2C410.5 104.8 411.1 105.9 411.3 106.3C411.6 106.8 411.6 106.7 411.8 106.8C412 106.9 412.2 107 412.5 107.1C412.8 107.1 413.1 107.3 413.7 107.2C414.2 107.2 415.1 107 415.7 106.8C416.2 106.6 416.5 106.2 416.8 105.9C417.2 105.6 417.5 105.2 417.8 105C418.1 104.8 418.2 104.6 418.5 104.7C418.8 104.7 419.4 104.9 419.8 105.2C420.1 105.4 420.5 105.8 420.7 106C420.9 106.3 420.9 106.4 421 106.7C421 106.9 420.9 107.3 420.9 107.5C420.8 107.8 420.8 107.9 420.6 108.2C420.5 108.4 420.3 108.6 420.1 108.8C419.9 109.1 420.1 109.2 419.7 109.7C419.3 110.2 418.5 111.2 417.8 111.8C417.2 112.5 416.6 113 415.6 113.7C414.7 114.3 412.9 115.2 412 115.5C411.1 115.9 410.9 115.8 410 115.8C409.1 115.9 407.1 115.8 406.3 115.8C405.6 115.7 405.8 115.8 405.3 115.5C404.9 115.4 404.1 114.9 403.5 114.6C402.9 114.3 402.4 114 401.8 113.6C401.3 113.2 400.6 112.6 400.2 112.1C399.7 111.6 399.3 111.2 399 110.7C398.7 110.2 398.4 109.6 398.1 109.2C398 108.7 397.9 108.4 397.8 108.2C397.8 108 397.8 108 397.7 107.9C397.6 107.8 397.6 107.7 397.3 107.8C397.1 107.8 396.8 107.8 396.3 108.1C395.9 108.4 395.3 109.2 394.8 109.7C394.4 110.1 394.3 110.2 393.6 110.7C392.9 111.2 391.4 112.1 390.5 112.6C389.6 113.1 389.5 113.2 388.3 113.6C387.2 114.1 384.6 115.1 383.5 115.5C382.4 115.9 383 115.7 381.8 115.8C380.7 115.8 377.6 115.8 376.5 115.8C375.4 115.8 375.7 115.8 375.3 115.8C375 115.7 375.1 115.8 374.5 115.5C373.9 115.2 372.6 114.2 372 113.8C371.4 113.4 371.5 113.4 371.2 113C370.9 112.7 370.5 112.4 370.1 111.8C369.8 111.3 369.3 110.6 369 109.8C368.7 109.1 368.4 107.9 368.2 107.3C368.1 106.8 368.1 107.1 368.1 106.5C368.1 105.9 368 104.9 368 104C368 103.1 367.9 102.4 368.1 101.3C368.3 100.3 368.9 98.6 369.1 97.8C369.4 97.1 369.5 97.3 369.7 97C369.8 96.7 369.8 96.4 370.1 96C370.3 95.6 370.8 94.8 371.2 94.3C371.6 93.9 371.7 93.7 372.2 93.2C372.7 92.7 373.7 91.8 374.3 91.3C375 90.8 375.4 90.5 376 90.1C376.6 89.7 377.4 89.3 377.8 89C378.3 88.8 378.5 88.8 378.8 88.6C379.2 88.5 379.5 88.2 379.8 88C380.2 87.8 380.6 87.8 381 87.6C381.4 87.4 381.6 87.2 382 87C382.3 86.8 382.7 86.8 383 86.7C383.3 86.5 383.6 86.2 384 86C384.4 85.9 384.8 85.8 385.1 85.7C385.4 85.5 385.6 85.3 386 85.1C386.4 84.9 386.9 84.8 387.2 84.7C387.6 84.5 387.6 84.3 388 84.1C388.4 84 389 83.8 389.3 83.7C389.6 83.5 389.7 83.3 390 83.2C390.3 83 391 82.8 391.3 82.7C391.6 82.5 391.7 82.3 392 82.2C392.3 82 392.5 82 393 81.8C393.5 81.5 394.5 80.9 395 80.6C395.5 80.3 395.6 80.1 395.8 79.9C396 79.7 396.1 80.4 396.1 79.3C396.2 78.3 396.2 75.3 396.1 73.5C396 71.7 395.9 69.7 395.6 68.5C395.4 67.3 395.1 66.9 394.7 66.3C394.4 65.8 394.1 65.5 393.6 65.2C393.1 64.8 392.2 64.4 391.7 64.2C391.1 63.9 391.1 63.9 390.3 63.9C389.6 63.8 388.4 63.7 387.3 63.7C386.3 63.8 385.2 63.8 384.2 64.1C383.2 64.3 382 64.8 381.3 65.2C380.6 65.5 380.4 65.7 380 66C379.6 66.3 379.2 66.8 379.1 67.2C378.9 67.6 378.9 67.5 378.9 68.3C379 69.1 379.4 71.1 379.4 72C379.5 72.9 379.5 73.1 379.4 73.8C379.2 74.6 378.9 75.8 378.7 76.5C378.4 77.2 378.2 77.3 377.8 77.7C377.5 78.1 377.2 78.5 376.7 78.8C376.1 79.2 375.3 79.5 374.7 79.8C374 80 373.4 80 372.7 80C372 80 371.1 80 370.5 80C369.9 79.9 369.7 79.9 369.3 79.7C368.9 79.5 368.5 79.3 368.2 78.8C367.8 78.4 367.3 77.7 367.1 77.2C366.9 76.6 366.9 76.1 366.9 75.5C366.9 74.9 366.9 74.4 367.1 73.5C367.3 72.6 367.6 71.4 368.2 70.4C368.7 69.3 369.7 68 370.2 67.3C370.7 66.6 370.5 66.9 371.3 66.2C372.1 65.5 374 64 375.2 63.2C376.4 62.3 377.9 61.6 378.7 61.1C379.5 60.7 379.6 60.9 380 60.7C380.4 60.5 380.6 60.2 381 60C381.4 59.9 382 59.8 382.4 59.7C382.7 59.5 382.8 59.3 383.3 59.1C383.9 59 384.9 58.8 385.5 58.7C386 58.5 385.7 58.4 386.8 58.2C387.9 58 390.5 57.6 392.2 57.5ZM395.1 85.3C395.2 85.3 395.4 85.2 395.5 85.2C395.6 85.2 395.8 85.2 395.8 85.3C395.9 85.3 396 85.4 396 85.5C396.1 85.6 396.1 83.4 396.1 86C396.1 88.6 396.1 98.6 396.1 101.3C396.1 104.1 396.1 102 396.1 102.3C396 102.7 396 102.9 395.8 103.3C395.6 103.7 395.1 104.3 394.7 104.7C394.4 105.1 394.1 105.3 393.6 105.7C393.2 106 392.7 106.4 392.2 106.7C391.8 106.9 391.4 107 391.1 107.2C390.7 107.3 390.9 107.5 390.3 107.7C389.7 107.8 388.5 108.1 387.7 108.1C386.9 108.1 386.1 108 385.5 107.7C384.9 107.5 384.4 107 384 106.7C383.6 106.3 383.5 106.2 383.2 105.7C382.9 105.1 382.4 104.2 382.2 103.5C381.9 102.8 381.9 102.3 381.9 101.7C381.8 101.1 381.8 100.6 381.8 100C381.8 99.4 381.9 98.6 381.9 98C382 97.4 382.1 96.8 382.3 96.2C382.5 95.6 382.9 94.9 383.1 94.3C383.4 93.8 383.5 93.6 384 93.1C384.5 92.5 385.2 91.7 385.9 91C386.7 90.3 387.3 89.8 388.4 89.2C389.4 88.5 390.9 87.6 392 87C393.1 86.5 394.1 86 394.7 85.7C395.2 85.4 394.9 85.4 395.1 85.3Z"/></g></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<div class="lm" id="lm" aria-hidden="true"><div class="lm-l"></div><div class="lm-r"></div><svg class="lm-svg" viewBox="34 10 139 107" aria-hidden="true"><g><path class="lm-p" d="M79.54 78.00C90.79 77.80 134.43 77.98 145.50 78.00C156.57 78.03 145.80 78.07 145.97 78.17C146.14 78.26 146.22 78.24 146.50 78.58C146.78 78.91 147.39 79.74 147.67 80.17C147.95 80.59 147.97 80.83 148.17 81.13C148.36 81.43 148.67 81.72 148.83 81.97C149.00 82.23 149.03 82.46 149.17 82.67C149.31 82.87 149.33 82.69 149.67 83.20C150.00 83.71 150.83 85.20 151.17 85.71C151.50 86.21 151.33 85.72 151.67 86.23C152.00 86.74 152.83 88.25 153.17 88.76C153.50 89.27 153.50 89.02 153.67 89.29C153.84 89.55 153.96 89.94 154.20 90.33C154.43 90.73 154.83 91.33 155.09 91.67C155.35 92.00 155.63 92.06 155.77 92.33C155.91 92.61 155.95 93.10 155.93 93.33C155.92 93.57 155.79 93.66 155.67 93.75C155.54 93.83 169.33 93.86 155.17 93.86C141.00 93.86 84.94 93.74 70.67 93.76C56.39 93.77 69.75 93.93 69.50 93.94C69.25 93.94 69.17 93.78 69.17 93.78L69.06 93.33C69.06 93.33 69.49 93.05 69.68 92.83C69.86 92.62 69.97 92.25 70.17 92.04C70.36 91.84 70.83 91.61 70.83 91.61L71.00 90.23C71.00 90.23 71.47 89.97 71.67 89.77C71.86 89.58 71.98 89.25 72.17 89.07C72.36 88.88 72.80 88.67 72.80 88.67C72.80 88.67 72.86 87.55 73.00 87.23C73.14 86.92 73.49 86.95 73.67 86.77C73.84 86.60 73.86 86.38 74.07 86.17C74.27 85.95 74.74 85.82 74.89 85.50C75.05 85.18 75.00 84.23 75.00 84.23C75.00 84.23 75.47 83.97 75.67 83.77C75.86 83.58 75.97 83.26 76.17 83.06C76.36 82.87 76.83 82.61 76.83 82.61C76.83 82.61 76.77 81.69 76.94 81.33C77.12 80.98 77.72 80.85 77.89 80.50C78.07 80.15 77.73 79.64 78.00 79.22C78.27 78.80 68.29 78.20 79.54 78.00ZM64.31 101.00C80.40 100.94 144.30 100.93 160.50 100.99C176.70 101.05 161.14 101.00 161.50 101.33C161.86 101.66 161.39 101.01 162.67 102.96C163.94 104.91 167.95 111.20 169.17 113.04C170.38 114.88 169.75 113.62 169.95 114.00C170.15 114.38 170.37 115.33 170.37 115.33C170.37 115.33 170.20 115.64 170.00 115.74C169.80 115.83 188.25 115.87 169.17 115.90C150.08 115.93 74.52 115.96 55.50 115.92C36.48 115.88 55.04 115.67 55.04 115.67L54.99 115.33C54.99 115.33 55.73 114.85 55.90 114.50C56.06 114.15 56.00 113.23 56.00 113.23C56.00 113.23 56.47 112.97 56.67 112.77C56.86 112.58 56.98 112.25 57.17 112.06C57.36 111.88 57.80 111.67 57.80 111.67C57.80 111.67 57.86 110.55 58.00 110.23C58.14 109.92 58.47 109.97 58.67 109.78C58.86 109.58 58.98 109.25 59.17 109.06C59.35 108.88 59.80 108.67 59.80 108.67C59.80 108.67 59.85 107.55 60.00 107.23C60.15 106.92 60.47 106.97 60.67 106.78C60.86 106.58 60.98 106.25 61.17 106.06C61.35 105.88 61.80 105.67 61.80 105.67C61.80 105.67 61.85 104.55 62.00 104.23C62.15 103.92 62.47 103.97 62.67 103.77C62.86 103.58 62.98 103.25 63.17 103.07C63.35 102.88 63.79 102.67 63.79 102.67C63.79 102.67 63.89 101.61 63.98 101.33C64.07 101.06 48.22 101.06 64.31 101.00Z"/><path class="lm-p" d="M77.63 78.00C80.60 77.99 78.31 77.95 78.50 77.98C78.69 78.01 78.69 78.08 78.74 78.17C78.79 78.25 78.80 78.50 78.80 78.50C78.80 78.50 78.16 78.84 78.00 79.19C77.84 79.54 78.01 80.24 77.83 80.60C77.66 80.96 77.10 81.00 76.94 81.33C76.77 81.67 76.83 82.60 76.83 82.60C76.83 82.60 76.36 82.86 76.17 83.06C75.97 83.25 75.86 83.57 75.67 83.77C75.47 83.96 75.00 84.22 75.00 84.22L74.83 85.60C74.83 85.60 74.36 85.86 74.17 86.06C73.97 86.25 73.86 86.57 73.67 86.77C73.47 86.96 73.00 87.22 73.00 87.22L72.83 88.60C72.83 88.60 72.36 88.86 72.17 89.06C71.97 89.25 71.86 89.58 71.67 89.77C71.48 89.95 71.04 90.17 71.04 90.17C71.04 90.17 70.98 91.29 70.83 91.60C70.69 91.92 70.36 91.87 70.17 92.06C69.97 92.25 69.86 92.58 69.67 92.77C69.47 92.96 69.18 92.92 69.00 93.21C68.82 93.50 69.26 93.42 68.61 94.50C67.96 95.58 65.76 98.67 65.11 99.67C64.46 100.67 64.88 100.25 64.69 100.50C64.51 100.75 64.14 100.80 64.00 101.15C63.86 101.50 63.83 102.60 63.83 102.60C63.83 102.60 63.36 102.86 63.17 103.06C62.97 103.25 62.86 103.58 62.67 103.77C62.48 103.95 62.04 104.17 62.04 104.17C62.04 104.17 61.98 105.28 61.83 105.60C61.69 105.91 61.36 105.86 61.17 106.06C60.97 106.25 60.86 106.58 60.67 106.77C60.48 106.95 60.04 107.17 60.04 107.17C60.04 107.17 59.98 108.28 59.83 108.60C59.69 108.91 59.36 108.86 59.17 109.06C58.97 109.25 58.86 109.58 58.67 109.77C58.48 109.95 58.04 110.17 58.04 110.17C58.04 110.17 57.98 111.28 57.83 111.60C57.69 111.91 57.36 111.86 57.17 112.06C56.97 112.25 56.86 112.58 56.67 112.76C56.48 112.95 56.04 113.17 56.04 113.17C56.04 113.17 56.00 114.28 55.83 114.61C55.66 114.95 55.22 114.98 55.02 115.17C54.83 115.35 54.81 115.59 54.67 115.71C54.52 115.83 57.17 115.86 54.17 115.89C51.17 115.92 39.69 115.90 36.67 115.88C33.64 115.86 36.19 115.85 36.00 115.78C35.81 115.72 35.54 115.50 35.54 115.50C35.54 115.50 35.46 115.27 35.53 115.00C35.61 114.73 35.64 114.45 36.00 113.88C36.36 113.31 37.15 112.36 37.67 111.58C38.18 110.79 38.75 109.68 39.08 109.17C39.42 108.65 39.34 109.00 39.67 108.50C40.00 108.00 40.73 106.67 41.05 106.17C41.38 105.67 41.28 106.03 41.63 105.50C41.97 104.97 42.80 103.50 43.12 103.00C43.45 102.50 42.40 104.32 43.57 102.50C44.75 100.68 48.98 93.93 50.17 92.10C51.35 90.27 50.50 91.79 50.67 91.53C50.84 91.26 50.86 91.02 51.19 90.50C51.53 89.98 52.34 88.93 52.67 88.41C53.00 87.90 52.99 87.70 53.17 87.43C53.34 87.17 53.37 87.35 53.71 86.83C54.04 86.32 54.83 84.86 55.17 84.33C55.52 83.81 55.44 84.17 55.78 83.67C56.11 83.16 56.85 81.77 57.17 81.29C57.48 80.81 57.50 81.01 57.67 80.77C57.83 80.53 57.87 80.26 58.15 79.83C58.42 79.41 58.91 78.51 59.33 78.21C59.75 77.90 57.62 78.05 60.67 78.01C63.72 77.98 74.66 78.01 77.63 78.00Z"/><path class="lm-p" d="M112.18 27.00C112.27 26.93 112.36 26.91 112.50 26.92C112.64 26.94 112.81 26.93 113.00 27.09C113.19 27.25 111.89 25.20 113.67 27.90C115.44 30.60 121.91 40.55 123.67 43.29C125.42 46.03 123.86 43.79 124.19 44.33C124.52 44.88 125.24 45.83 125.67 46.56C126.10 47.28 126.41 47.70 126.77 48.67C127.12 49.63 127.59 51.36 127.78 52.33C127.97 53.31 127.90 53.81 127.91 54.50C127.93 55.19 127.89 55.94 127.85 56.50C127.81 57.06 127.84 57.18 127.67 57.86C127.50 58.54 127.08 59.95 126.83 60.59C126.58 61.23 126.34 61.35 126.17 61.70C125.99 62.04 126.24 62.03 125.78 62.67C125.31 63.30 124.00 64.83 123.36 65.50C122.71 66.17 122.39 66.32 121.91 66.67C121.44 67.01 121.12 67.24 120.50 67.56C119.88 67.89 119.14 68.30 118.17 68.64C117.19 68.98 115.69 69.39 114.67 69.61C113.64 69.82 113.06 69.87 112.00 69.95C110.94 70.04 112.78 70.10 108.33 70.13C103.89 70.15 89.22 70.18 85.33 70.13C81.45 70.08 85.09 69.97 85.03 69.83C84.97 69.70 84.96 69.33 84.96 69.33C84.96 69.33 85.72 68.85 85.89 68.50C86.07 68.15 86.00 67.23 86.00 67.23C86.00 67.23 86.47 66.97 86.67 66.78C86.86 66.58 86.98 66.25 87.17 66.07C87.36 65.88 87.80 65.67 87.80 65.67C87.80 65.67 87.86 64.55 88.00 64.23C88.14 63.92 88.47 63.97 88.67 63.78C88.86 63.58 88.98 63.25 89.17 63.07C89.36 62.88 89.80 62.67 89.80 62.67C89.80 62.67 89.86 61.55 90.00 61.23C90.14 60.92 90.47 60.97 90.67 60.77C90.86 60.58 90.98 60.25 91.17 60.07C91.35 59.88 91.64 59.93 91.79 59.67C91.93 59.41 91.96 58.75 92.04 58.50C92.12 58.25 92.16 58.24 92.27 58.17C92.37 58.09 91.18 58.07 92.67 58.05C94.15 58.04 99.42 58.12 101.17 58.09C102.92 58.05 102.75 57.91 103.17 57.83C103.58 57.76 103.34 57.84 103.67 57.65C104.00 57.46 104.65 57.14 105.15 56.67C105.66 56.20 106.31 55.56 106.70 54.83C107.08 54.11 107.31 52.89 107.46 52.33C107.60 51.78 107.54 51.78 107.54 51.50C107.54 51.22 107.59 51.21 107.44 50.67C107.29 50.12 106.96 48.82 106.67 48.23C106.37 47.63 106.06 47.40 105.67 47.07C105.28 46.74 104.86 46.45 104.33 46.26C103.81 46.07 103.14 45.94 102.50 45.95C101.86 45.96 100.91 46.30 100.50 46.31C100.09 46.32 100.15 46.16 100.05 46.00C99.96 45.84 99.91 45.50 99.93 45.33C99.95 45.17 100.03 45.12 100.17 45.01C100.31 44.90 100.59 44.83 100.76 44.67C100.93 44.51 100.99 44.23 101.17 44.06C101.35 43.88 101.69 43.92 101.83 43.61C101.98 43.29 102.05 42.17 102.05 42.17C102.05 42.17 102.48 41.96 102.67 41.78C102.85 41.59 102.97 41.26 103.17 41.06C103.36 40.87 103.83 40.61 103.83 40.61L104.00 39.23C104.00 39.23 104.47 38.97 104.67 38.78C104.86 38.58 104.97 38.26 105.17 38.07C105.36 37.87 105.83 37.61 105.83 37.61L106.00 36.23C106.00 36.23 106.47 35.97 106.67 35.78C106.86 35.58 106.98 35.25 107.17 35.07C107.36 34.88 107.80 34.67 107.80 34.67C107.80 34.67 107.86 33.55 108.00 33.23C108.14 32.92 108.47 32.97 108.67 32.78C108.86 32.58 108.97 32.26 109.17 32.07C109.36 31.87 109.83 31.61 109.83 31.61C109.83 31.61 109.79 30.66 109.95 30.33C110.10 30.01 110.57 29.88 110.78 29.67C110.98 29.46 111.00 29.24 111.17 29.07C111.34 28.90 111.67 28.79 111.79 28.67C111.92 28.54 111.90 28.56 111.92 28.33C111.94 28.11 111.88 27.56 111.92 27.33C111.96 27.11 112.08 27.07 112.18 27.00Z"/><path class="lm-p" d="M102.36 11.83C102.36 11.83 102.78 11.87 103.00 11.99C103.22 12.12 103.47 12.34 103.67 12.61C103.86 12.88 104.00 13.35 104.17 13.61C104.34 13.87 104.36 13.66 104.70 14.17C105.03 14.67 105.84 16.14 106.17 16.64C106.50 17.14 106.02 16.16 106.68 17.17C107.34 18.17 109.46 21.65 110.13 22.67C110.79 23.68 110.33 22.75 110.67 23.25C111.00 23.75 111.80 25.18 112.13 25.67C112.47 26.15 112.57 26.02 112.66 26.17C112.75 26.31 112.79 26.35 112.67 26.54C112.55 26.74 112.07 26.99 111.93 27.33C111.80 27.68 111.83 28.60 111.83 28.60C111.83 28.60 111.36 28.86 111.17 29.06C110.97 29.25 110.85 29.58 110.67 29.77C110.48 29.95 110.04 30.17 110.04 30.17C110.04 30.17 109.98 31.28 109.83 31.60C109.69 31.91 109.36 31.86 109.17 32.06C108.97 32.25 108.86 32.57 108.67 32.77C108.47 32.96 108.00 33.22 108.00 33.22C108.00 33.22 108.04 34.18 107.89 34.50C107.73 34.82 107.26 34.96 107.06 35.17C106.86 35.38 106.84 35.59 106.67 35.77C106.49 35.94 106.15 35.91 106.00 36.22C105.85 36.54 105.79 37.67 105.79 37.67C105.79 37.67 105.35 37.87 105.17 38.06C104.98 38.24 104.86 38.57 104.67 38.77C104.47 38.96 104.00 39.22 104.00 39.22L103.83 40.60C103.83 40.60 103.36 40.86 103.17 41.06C102.97 41.25 102.86 41.57 102.67 41.77C102.47 41.96 102.15 41.90 102.00 42.22C101.85 42.54 101.79 43.67 101.79 43.67C101.79 43.67 101.35 43.88 101.17 44.06C100.98 44.24 100.85 44.59 100.67 44.77C100.48 44.95 100.21 44.87 100.05 45.17C99.88 45.46 99.95 46.13 99.67 46.55C99.38 46.97 98.68 47.26 98.33 47.67C97.98 48.08 97.82 48.66 97.57 49.00C97.32 49.34 97.07 49.54 96.83 49.68C96.60 49.82 99.17 49.83 96.17 49.86C93.17 49.88 81.81 49.86 78.83 49.83C75.86 49.80 78.33 49.70 78.33 49.70C78.33 49.70 78.12 49.39 78.16 49.17C78.19 48.94 78.29 48.72 78.54 48.33C78.80 47.94 79.24 47.51 79.67 46.83C80.11 46.16 80.82 44.83 81.17 44.30C81.51 43.77 81.41 44.18 81.74 43.67C82.07 43.15 82.84 41.72 83.17 41.22C83.49 40.72 83.36 41.18 83.69 40.67C84.02 40.16 84.83 38.67 85.15 38.17C85.48 37.67 85.30 38.17 85.63 37.67C85.96 37.17 86.78 35.68 87.12 35.17C87.46 34.65 87.34 35.06 87.67 34.56C87.99 34.06 88.75 32.68 89.08 32.17C89.42 31.66 89.32 32.03 89.67 31.50C90.01 30.97 90.82 29.50 91.14 29.00C91.46 28.50 90.42 30.31 91.59 28.50C92.77 26.69 96.99 19.95 98.17 18.13C99.35 16.30 98.49 17.83 98.67 17.56C98.84 17.29 98.71 17.27 99.21 16.50C99.71 15.73 101.20 13.63 101.67 12.91C102.13 12.19 101.89 12.35 102.00 12.17C102.12 11.99 102.36 11.83 102.36 11.83ZM72.76 58.17C73.01 58.09 70.60 58.07 73.67 58.05C76.73 58.03 88.16 58.01 91.17 58.05C94.18 58.10 91.72 58.33 91.72 58.33C91.72 58.33 91.91 59.11 91.93 59.33C91.94 59.56 91.94 59.54 91.81 59.67C91.68 59.79 91.36 59.89 91.17 60.07C90.98 60.26 90.86 60.58 90.67 60.77C90.48 60.95 90.04 61.17 90.04 61.17C90.04 61.17 89.98 62.29 89.83 62.60C89.69 62.92 89.36 62.86 89.17 63.06C88.97 63.25 88.86 63.58 88.67 63.77C88.48 63.95 88.04 64.17 88.04 64.17C88.04 64.17 87.98 65.28 87.83 65.60C87.69 65.91 87.36 65.86 87.17 66.06C86.97 66.25 86.86 66.58 86.67 66.77C86.48 66.95 86.04 67.17 86.04 67.17C86.04 67.17 86.00 68.28 85.83 68.61C85.67 68.95 85.25 68.92 85.03 69.17C84.81 69.41 84.50 70.08 84.50 70.08C84.50 70.08 68.86 70.18 65.67 70.18C62.47 70.19 65.43 70.16 65.33 70.10C65.23 70.04 65.13 69.96 65.07 69.83C65.01 69.70 64.97 69.47 64.97 69.33C64.98 69.19 64.83 69.41 65.12 69.00C65.40 68.59 65.66 68.40 66.67 66.86C67.68 65.33 70.25 61.18 71.17 59.79C72.08 58.40 71.90 58.79 72.17 58.52C72.43 58.24 72.51 58.24 72.76 58.17Z"/></g></svg><span class="lm-n">000</span><span class="lm-cap">Pillar Construction · Since 1995</span></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="page">
+<div class="nb" id="nb">
+  <a class="nb-logo" href="#top" aria-label="Pillar Construction, back to top"><svg viewBox="0 0 386 107" aria-hidden="true"><use href="#logo"/></svg></a>
+  <button class="nb-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nv"><span class="sr">Menu</span><span class="nb-ic" aria-hidden="true"><i></i><i></i></span></button>
+  <nav class="nb-nav" id="nv" aria-label="Main" inert><a href="#about">About</a><a href="#services">Specialties</a><a href="#panels">Exterior Panels</a><a href="#reel">Projects</a><a href="#contact" data-contact>Contact</a></nav>
+</div>
+
+<main id="main">
+  <!-- the opener: the photograph opens from a vertical slit as the lights come up -->
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="hero-stage">
+      <div class="hero-bg"><img src="assets/hero-2000.webp" srcset="assets/hero-1000.webp 1000w, assets/hero-2000.webp 2000w" sizes="100vw" width="2000" height="1276" alt="Constitution Square, Washington DC, at dusk" fetchpriority="high" decoding="async"></div>
+      <div class="hero-shade"></div>
+      <p class="hero-lab">Finish experts<br>since 1995</p>
+      <h1 id="hero-h">Materialize<br>your idea.</h1>
+      <p class="hero-tag">Drywall, rainscreen, EIFS, restoration and factory-built exterior panels, delivered by our own crews.</p>
+      <div class="strip"><span>Washington DC · Houston · Orlando · New Jersey</span><button type="button" data-contact>Start a project <svg aria-hidden="true"><use href="#i-out"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- about: four numbers on black slabs slide over the sticky photograph -->
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="ab-l">
+      <p class="lbl">About Pillar</p>
+      <div class="stk" id="stk">
+        <img src="assets/p/8521Rt.webp" alt="Avocet, Bethesda, Maryland" loading="lazy" decoding="async">
+        <div class="slabs" id="slabs">
+          <div class="sl4"><p class="lbl"><span>01</span><span>Years building</span></p><b data-count="years">31</b></div>
+          <div class="sl4"><p class="lbl"><span>02</span><span>Projects on record</span></p><b data-count="total">208</b></div>
+          <div class="sl4"><p class="lbl"><span>03</span><span>States</span></p><b data-count="states">12</b></div>
+          <div class="sl4"><p class="lbl"><span>04</span><span>Offices</span></p><b data-count="offices">4</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="ab-r">
+      <p class="ab-lede"><b>A specialty contractor</b> <span>for interiors and the building skin, working across the Mid-Atlantic, the Northeast and the South.</span></p>
+      <h2 class="ab-h" id="about-h">Three decades of finished buildings.</h2>
+      <div class="apts">
+        <div data-rv><h3>Self-performed</h3><p>The crew that plans the wall is the crew that builds it.</p></div>
+        <div data-rv style="--d:.07s"><h3>In at design</h3><p>Value engineering before the drawings are fixed.</p></div>
+        <div data-rv style="--d:.14s"><h3>Four offices</h3><p>Washington DC, Houston, Orlando and New Jersey.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- specialties: the five trades as a book that turns its pages -->
+  <section class="bks" id="services" aria-labelledby="spec-h">
+    <div class="bk-pin" id="bk-pin">
+      <div class="bk-l">
+        <p class="lbl">Our specialties</p>
+        <h2 class="sec-h" id="spec-h">Five trades. One crew.</h2>
+        <p class="bk-sub">From the first stud to the last panel, built by our own people.</p>
+        <p class="bk-n mono" aria-hidden="true"><span id="bk-n">01</span> / 05</p>
+      </div>
+      <div class="bk-stage" id="bk-stage"><div class="bk" id="bk"></div></div>
+    </div>
+    <ol class="bk-list" id="bk-list"></ol>
+  </section>
+
+  <!-- the exterior panel, taken apart in concrete-dark -->
+  <section class="pn" id="panels" aria-labelledby="ep-h">
+    <div class="pn-pin" id="pn-pin">
+      <div class="orbit" id="orbit" data-cursor="Drag">
+        <div class="wl" id="wl"><div class="ly ly1"></div><div class="ly ly2"></div><div class="ly ly3"></div><div class="ly ly4"></div></div>
+        <p class="orbit-hint lbl">Drag to turn the panel · scroll to take it apart</p>
+      </div>
+      <div class="pn-copy">
+        <p class="lbl">Pillar Exterior Panels</p>
+        <h2 class="sec-h" id="ep-h">The wall arrives finished.</h2>
+        <p class="pn-lede">Framing, sheathing and air barrier, built in our plant and set floor by floor. No change to your specifications.</p>
+        <ol class="lys" id="lys"></ol>
+        <div class="acts">
+          <a class="btn btn-lt" href="https://www.pillarconstruction.com/pdf/Pillar_Exterior_Panel.pdf" target="_blank" rel="noopener">Learn more <svg class="ic" aria-hidden="true"><use href="#i-out"/></svg></a>
+          <button class="btn btn-line" type="button" data-trade="4">See panel projects</button>
+        </div>
+      </div>
+    </div>
+    <dl class="pn-stats">
+      <div data-rv><dt>To a weathertight floor after the concrete formwork comes off</dt><dd><span data-count="2">2</span><small>wks</small></dd></div>
+      <div data-rv style="--d:.07s"><dt>Of the most dangerous near slab-edge labor hours removed</dt><dd><span data-count="90">90</span><small>%</small></dd></div>
+      <div data-rv style="--d:.14s"><dt>Off the project critical path, from one month upward</dt><dd><span data-count="2">2</span><small>mo</small></dd></div>
+    </dl>
+  </section>
+
+  <!-- the reel carries the featured buildings sideways -->
+  <section class="reel" id="reel" aria-labelledby="reel-h">
+    <div class="reel-stage" id="reel-stage">
+      <div class="reel-hd">
+        <div><p class="lbl">Featured projects</p><h2 class="sec-h" id="reel-h">Recent buildings.</h2></div>
+        <div class="reel-r"><p class="mono" aria-hidden="true"><span id="rc">01</span> / 05</p><button class="btn" type="button" data-all>View all projects</button></div>
+      </div>
+      <div class="reel-vp" id="reel-vp"><div class="reel-row" id="row"></div></div>
+      <div class="reel-prog" aria-hidden="true"><i id="rp"></i></div>
+    </div>
+  </section>
+
+  <!-- one builder speaks -->
+  <section class="voice" aria-labelledby="voice-h">
+    <figure class="v-ph" data-frame id="v-ph"><figcaption id="v-cap"></figcaption></figure>
+    <div class="v-tx">
+      <p class="lbl" id="voice-h">From the general contractors</p>
+      <blockquote class="v-q"><p id="vq">In our experience, Pillar's dedication to schedule and craftsmanship is surpassed by none in their field.</p><footer><b>Performance Contracting Inc.</b><span>Sr. Project Manager</span></footer></blockquote>
+      <div class="v-trust"><p class="lbl">Trusted on site by</p><ul><li>Clark</li><li>Whiting-Turner</li><li>Suffolk</li><li>DPR</li><li>Hensel Phelps</li><li>Bovis Lend Lease</li></ul></div>
+    </div>
+  </section>
+
+<section class="aw" id="awards" aria-labelledby="aw-h">
+    <header class="aw-head">
+      <h2 class="aw-title" id="aw-h">Two decades of craft and safety awards</h2>
+      <p class="aw-intro" data-rv>Washington Building Congress, ABC, AGC and ENR. Drag the ring or keep scrolling.</p>
+    </header>
+    <div class="aw-stage"><div class="aw-ring" id="aw-ring" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Awards by year. Use the left and right arrow keys to turn the ring."><ol class="aw-track" id="aw-track"></ol></div></div>
+  </section>
+</main>
+<footer class="room pf-room" id="contact" aria-labelledby="pf-h">
+  <div class="pf">
+    <div class="pf-l"><h2 class="pf-h" id="pf-h">Let's build<br>what's next.</h2><button class="btn" type="button" data-contact data-mag>Start a project <i><svg aria-hidden="true"><use href="#i-arrow"/></svg></i></button></div>
+    <div class="pf-r"><a class="pf-big" href="mailto:info@PillarConstruction.com">info@PillarConstruction.com</a><a class="pf-big" href="tel:+17039415891">703.941.5891</a><p class="lbl">5649-S General Washington Drive, Alexandria, Virginia</p></div>
+    <div class="pf-bar"><svg class="pf-logo" viewBox="0 0 386 107" role="img" aria-label="Pillar Construction"><use href="#logo"/></svg><p class="lbl">© <span data-year>2026</span> Pillar Construction, Inc.</p></div>
+  </div>
+</footer>
+</div>
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="dlg dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dw-h" inert>
+  <div class="dlg-bg" data-close></div>
+  <div class="dw-p">
+    <header class="dw-top"><div><p class="lbl">How can we help?</p><h2 id="dw-h">Start a project</h2></div><button class="x" type="button" data-close>Close</button></header>
+    <form id="dw-form" novalidate>
+      <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" placeholder="Jane Smith"></label>
+      <label for="f-mail">Email<input id="f-mail" name="email" type="email" autocomplete="email" placeholder="jane@company.com"></label>
+      <label for="f-co">Company<input id="f-co" name="company" autocomplete="organization" placeholder="General contractor or owner"></label>
+      <label for="f-trade">Trade<select id="f-trade" name="trade"></select></label>
+      <label for="f-msg" class="w">About the project<textarea id="f-msg" name="message" rows="4" placeholder="Building type, location, schedule and where design stands today"></textarea></label>
+      <div class="w"><button class="btn" type="submit">Send enquiry <i><svg aria-hidden="true"><use href="#i-arrow"/></svg></i></button></div>
+      <p class="f-msg w" id="f-out" role="status" aria-live="polite"></p>
+    </form>
+    <div class="dw-direct"><p class="lbl">Or reach the estimating team directly</p><b>info@PillarConstruction.com</b><b>703.941.5891</b><span>5649-S General Washington Drive, Alexandria, VA 22312</span></div>
+  </div>
+</div>
+<div class="dlg ax" id="ax" role="dialog" aria-modal="true" aria-labelledby="ax-h" inert>
+  <div class="ax-top"><h2 class="ax-h" id="ax-h">All projects</h2><div class="chips" id="ax-chips" role="group" aria-label="Filter by trade"></div><button class="x" type="button" data-close>Close</button></div>
+  <div class="ax-body" id="ax-body"><ul class="ax-grid" id="ax-grid"></ul></div>
+</div>
+<div class="dlg vw" id="vw" role="dialog" aria-modal="true" aria-labelledby="vw-t" inert>
+  <div class="vw-top"><p class="mono vw-n"><span id="vw-n">01</span> / <span id="vw-tot">01</span><span class="vw-tr" id="vw-tr"></span></p><button class="x" type="button" data-close>Close</button></div>
+  <div class="vw-stage" id="vw-stage"><img class="vw-img" id="vw-img" alt=""></div>
+  <div class="vw-bot"><div class="vw-info"><h3 id="vw-t"></h3><dl class="vw-dl" id="vw-dl"></dl></div><div class="vw-nav"><button class="circ" type="button" data-d="-1" aria-label="Previous project"><svg aria-hidden="true"><use href="#i-left"/></svg></button><button class="circ" type="button" data-d="1" aria-label="Next project"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div></div>
+  <div class="vw-thumbs" id="vw-thumbs" aria-label="Projects in this set"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script>
+/* Pillar homepage, shared behaviour. Content and every control work without GSAP or WebGL;
+   scroll effects arrive with GSAP, and the 3D panel falls back to a photograph without WebGL. */
+(() => {
+  'use strict';
+  const DATA = {"projects":[{"n":"Waterfront Station Residential","c":"Washington","st":"DC","g":"James G. Davis Construction","ar":"Perkins Eastman DC","r":[[0,"V15-003D"],[1,"V15-003D"],[4,"EP_002"]]},{"n":"West Rosslyn Apartments","c":"Arlington","st":"VA","g":"Whiting-Turner","ar":"","r":[[0,"7655Rt"]]},{"n":"Square 696","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[0,"7699Rt"]]},{"n":"Avocet","c":"Bethesda","st":"MD","g":"Balfour Beatty","ar":"","r":[[0,"8521Rt"],[1,"Avocet_1"]]},{"n":"The Wharf","c":"Washington","st":"DC","g":"Donohoe","ar":"","r":[[0,"6565Rt"],[1,"The_Wharf_1"]]},{"n":"Institute for Digital Innovation, GMU","c":"Arlington","st":"VA","g":"Clark Construction","ar":"","r":[[0,"Institute_for_Digital_Innovation_1"]]},{"n":"Fredericksburg VA Health Care Center","c":"Fredericksburg","st":"VA","g":"Harvey-Cleary Builders","ar":"","r":[[0,"VA_Hostpital_Fredericksburg_1"]]},{"n":"Reunion Sq","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[0,"Reunion_Sq_1"]]},{"n":"Park and Rose","c":"Rockville","st":"MD","g":"Clark Construction","ar":"","r":[[0,"Park_and_Rose_1"]]},{"n":"The Westerly Waterfront","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[0,"The_Westerly_Waterfront_1"],[1,"The_Westerly_Waterfront_1"]]},{"n":"SOME (So Others Might Eat)","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[0,"SOME_1"],[1,"SOME_1"]]},{"n":"Bishop O'Connell High School","c":"Arlington","st":"VA","g":"Scott Long Construction","ar":"","r":[[1,"7535Rt"]]},{"n":"Lima Hotel","c":"Washington","st":"DC","g":"","ar":"","r":[[1,"7726Rt"]]},{"n":"West Elementary School","c":"Washington","st":"DC","g":"Gilbane","ar":"","r":[[1,"7934Rt"]]},{"n":"Adventist Hospital Silver Spring","c":"Silver Spring","st":"MD","g":"Turner Construction","ar":"","r":[[1,"8061Rt"]]},{"n":"Kingdom Fellowship Church","c":"Rockville","st":"MD","g":"Davis Construction","ar":"","r":[[1,"8191Rt"]]},{"n":"Sheppard Pratt Hospital","c":"Elkridge","st":"MD","g":"Lewis Construction","ar":"","r":[[1,"8302Rt"]]},{"n":"The Silva Apartments","c":"Washington","st":"DC","g":"Davis Construction","ar":"","r":[[1,"8621Rt"]]},{"n":"Oakville Inova","c":"Alexandria","st":"VA","g":"DPR Construction","ar":"","r":[[1,"Oakvile_Inova_1"]]},{"n":"1701 H Street NE","c":"Washington","st":"DC","g":"Davis Construction","ar":"","r":[[1,"1701_H_ST_1"]]},{"n":"Anna Gooding School","c":"Washington","st":"DC","g":"Gilbane","ar":"","r":[[1,"Anna_Gooding_School_1"]]},{"n":"Harbour Point Baltimore","c":"Baltimore","st":"MD","g":"Armada Hoffler","ar":"","r":[[1,"Harbour_Point_Baltimore_1"]]},{"n":"Elizabeth House","c":"Silver Spring","st":"MD","g":"Costello Construction","ar":"","r":[[1,"Elizabeth_Hosue_1"]]},{"n":"1224 M Street NW","c":"Washington","st":"DC","g":"Eichberg Construction","ar":"","r":[[1,"1224_M_ST_1"]]},{"n":"College Park City Hall","c":"College Park","st":"MD","g":"Davis Construction","ar":"","r":[[1,"College_Park_City_Hall_1"]]},{"n":"The Jameson Kinkora","c":"Gaithersburg","st":"MD","g":"Bozzuto","ar":"","r":[[2,"9483Rt"]]},{"n":"801 N Fairfax","c":"Alexandria","st":"VA","g":"Eichberg Construction","ar":"","r":[[2,"801_N_Fairfax_1"]]},{"n":"1515 North Capitol, SOME","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[4,"EP_001"]]},{"n":"West Falls Church","c":"Falls Church","st":"VA","g":"Clark Construction","ar":"","r":[[4,"EP_003"]]},{"n":"2009 8th Street","c":"Washington","st":"DC","g":"Clark Builders Group","ar":"Hickok Cole","r":[[1,"V19-019R"]]},{"n":"150 I Street","c":"Washington","st":"DC","g":"WCS Construction","ar":"SK+I Architecture","r":[[1,"V18-014R"]]},{"n":"Alice West Fleet Elementary School","c":"Arlington","st":"VA","g":"Whiting-Turner","ar":"VMDO Architects","r":[[1,"V18-005R"]]},{"n":"Ward 3 Family Housing & Parking","c":"Washington","st":"DC","g":"Smoot Construction","ar":"Ayers Saint Gros","r":[[1,"V18-043R"]]},{"n":"Davenport Residence","c":"Bumpass","st":"VA","g":"Jeff Davenport","ar":"Jeff Davenport","r":[[1,"V18-002R"]]},{"n":"Falls Church Anglican","c":"Falls Church","st":"VA","g":"Coakley Williams Construction","ar":"LS3P Associates","r":[[2,"V18-024"]]},{"n":"Gateway at King-Beauregard","c":"Alexandria","st":"VA","g":"Whiting-Turner","ar":"Davis Carter Scott","r":[[2,"V18-012"]]},{"n":"McHenry Row III Hotel","c":"Baltimore","st":"MD","g":"Kinsley Construction","ar":"Warehaus","r":[[2,"V18-020"]]},{"n":"Medical Towers Hotel Conversion","c":"Houston","st":"TX","g":"Texas HRE Construction","ar":"BRR Architecture","r":[[2,"T18-003"]]},{"n":"The Oxford","c":"Oxon Hill","st":"MD","g":"CBG Building Co","ar":"Soto Architecture and Urban Design","r":[[2,"V18-004"]]},{"n":"750 North Glebe","c":"Arlington","st":"VA","g":"Clark Construction","ar":"WDG Architecture","r":[[0,"V17-028D"]]},{"n":"The Boro, Block A3","c":"Tysons","st":"VA","g":"Clark Construction","ar":"Shalom Baranes Associates","r":[[0,"V17-014D"]]},{"n":"Constitution Square OB3","c":"Washington","st":"DC","g":"Balfour Beatty","ar":"HOK","r":[[0,"V17-004D"]]},{"n":"Project Joshua","c":"Sterling","st":"VA","g":"Turner Construction","ar":"Corgan","r":[[0,"V17-026D"]]},{"n":"Half & N Street","c":"Washington","st":"DC","g":"Lendlease","ar":"Hord Coplan Macht","r":[[1,"V17-015R"]]},{"n":"INOVA Loudoun Hospital, North Tower","c":"Leesburg","st":"VA","g":"DPR Construction","ar":"HDR","r":[[1,"V17-030R"]]},{"n":"Ripley East","c":"Silver Spring","st":"MD","g":"Lendlease","ar":"Design Collective","r":[[1,"V17-007R"]]},{"n":"2 Shore Lane Condos","c":"Jersey City","st":"NJ","g":"Plaza Construction","ar":"Poskanzer Skott Architects","r":[[1,"TS17-002"]]},{"n":"Smith Springs Community Center","c":"Nashville","st":"TN","g":"American Constructors","ar":"Hastings Architecture Associates","r":[[1,"V17-002R"]]},{"n":"Kulkarni Residence","c":"McLean","st":"VA","g":"KohlMark Builders","ar":"Studio Z Design Concepts","r":[[1,"V17-005R"]]},{"n":"Autograph Hotel","c":"Charlottesville","st":"VA","g":"Donohoe","ar":"BBGM","r":[[1,"V17-006R"]]},{"n":"Martha's Table","c":"Washington","st":"DC","g":"Whiting-Turner","ar":"Cox Graae + Spack Architects","r":[[1,"V17-009R"]]},{"n":"Audi Richmond Dealership","c":"Henrico","st":"VA","g":"Loughridge & Co","ar":"Freeman Morgan Architects","r":[[1,"V17-012R"]]},{"n":"1100 15th Street","c":"Washington","st":"DC","g":"Clark Construction","ar":"WDG Architecture","r":[[2,"V17-013"]]},{"n":"DC United Soccer Stadium","c":"Washington","st":"DC","g":"Turner Construction","ar":"Populous Architects","r":[[2,"V17-022"]]},{"n":"Alta at Berwyn House Rebuild","c":"College Park","st":"MD","g":"College Park Builders","ar":"Dwell Design Studio","r":[[2,"V17-029"]]},{"n":"Jades Shopping Center Renovation","c":"Vienna","st":"VA","g":"Jer-Tag Enterprises","ar":"Rounds Vanduzer Architects","r":[[3,"V17-016"]]},{"n":"Ballston Quarter Mixed Use Residential","c":"Arlington","st":"VA","g":"Clark Construction","ar":"RTKL","r":[[0,"V16-035D"]]},{"n":"33 N Street","c":"Washington","st":"DC","g":"Balfour Beatty","ar":"Hickok Cole","r":[[0,"V16-018D"]]},{"n":"St. Matthews Redevelopment","c":"Washington","st":"DC","g":"Clark Construction","ar":"Shalom Baranes Associates","r":[[0,"V16-046D"]]},{"n":"Chevy Chase Lake Apartments","c":"Chevy Chase","st":"MD","g":"Donohoe","ar":"Design Collective","r":[[0,"V16-051D"]]},{"n":"1345 K Street","c":"Washington","st":"DC","g":"ADI Construction","ar":"Nelson Architects","r":[[1,"V16-038"],[2,"V16-038"]]},{"n":"Credit Union of Texas","c":"Dallas","st":"TX","g":"Highland Builders","ar":"Shermshock","r":[[1,"T16-006"]]},{"n":"Monroe Condos","c":"Asbury Park","st":"NJ","g":"Claremont Construction Group","ar":"Lessard Design","r":[[1,"TS16-002"]]},{"n":"Hampden Row Residential","c":"Bethesda","st":"MD","g":"Toll Bros","ar":"VOA","r":[[1,"V16-001"]]},{"n":"Greer Environmental Sciences Center","c":"Virginia Beach","st":"VA","g":"Hourigan Construction","ar":"VMDO Architects","r":[[1,"V16-010R"]]},{"n":"Four Seasons Residence","c":"Baltimore","st":"MD","g":"Armada Hoffler","ar":"Beatty, Harvey, Coco Architects","r":[[1,"V16-043D"]]},{"n":"MICA - 100 Dolphin Street","c":"Baltimore","st":"MD","g":"Southway Builders","ar":"","r":[[1,"V16-053R"]]},{"n":"Residence Inn, Johns Hopkins Campus","c":"Baltimore","st":"MD","g":"Hensel Phelps","ar":"Gensler","r":[[2,"V16-011"]]},{"n":"Hyatt House Downtown Austin","c":"Austin","st":"TX","g":"Journeyman Construction","ar":"Law Kingdon Architecture","r":[[2,"T16-002"]]},{"n":"Midlane Phase II - Azalea Residential II","c":"Houston","st":"TX","g":"Street Lights Residential","ar":"Looney Ricks Kiss","r":[[2,"T16-003"]]},{"n":"Chelsea Montrose","c":"Houston","st":"TX","g":"SLR Montrose Construction","ar":"Gromatzky Dupree & Associates","r":[[2,"T16-004"]]},{"n":"Houston Space Center","c":"Houston","st":"TX","g":"Space Center Houston","ar":"PGAL","r":[[2,"T16-007"]]},{"n":"Hudson Park III Tower","c":"Yonkers","st":"NY","g":"Plaza Construction","ar":"EDI International","r":[[2,"TS16-007"]]},{"n":"Pike and Rose Block 7","c":"North Bethesda","st":"MD","g":"Clark Multifamily Builders","ar":"WDG Architecture","r":[[2,"V16-003"]]},{"n":"Congressional Country Club","c":"Bethesda","st":"MD","g":"Lansdowne Construction","ar":"Bowie Gridley Architects","r":[[2,"V16-012"]]},{"n":"Proton Center, Sibley Hospital","c":"Washington","st":"DC","g":"Brasfield & Gorrie","ar":"VOA","r":[[2,"V16-014"]]},{"n":"DC Bar Core & Shell","c":"Washington","st":"DC","g":"Harvey-Cleary Builders","ar":"Hartman-Cox Architects","r":[[2,"V16-022"]]},{"n":"Hanover Cross Street Baltimore","c":"Baltimore","st":"MD","g":"Hanover Company","ar":"Wallace Garcia Wilson Architects","r":[[2,"V16-028"]]},{"n":"Camden Washingtonian","c":"Gaithersburg","st":"MD","g":"Camden Development","ar":"KTGY Architects","r":[[2,"V16-036"]]},{"n":"2 Eye Street","c":"Washington","st":"DC","g":"John Moriarty & Assoc","ar":"SK+I Architecture","r":[[2,"V16-047"]]},{"n":"The Yards Parcel O-2 Apartments","c":"Washington","st":"DC","g":"Clark Construction","ar":"WDG Architecture","r":[[2,"V16-048"]]},{"n":"1785 Massachusetts Avenue (Andrew Mellon Building)","c":"Washington","st":"DC","g":"Grunley Construction","ar":"Hartman-Cox Architects","r":[[0,"V15-004D"]]},{"n":"700 Penn","c":"Washington","st":"DC","g":"Clark Construction","ar":"Esocoff & Associates Architects","r":[[0,"V15-043D"]]},{"n":"1244 S. Capitol Street Residential","c":"Washington","st":"DC","g":"Clark Construction","ar":"Eric Colbert & Associates","r":[[0,"V15-054D"]]},{"n":"703 Newton Place","c":"Washington","st":"DC","g":"Lock 7 Development","ar":"Square 134 Architects","r":[[1,"V15-012"]]},{"n":"Logan 13 Condominiums","c":"Washington","st":"DC","g":"Holladay Construction","ar":"Eric Colbert & Associates","r":[[1,"V15-020R"]]},{"n":"Jerry's Ford, Leesburg","c":"Leesburg","st":"VA","g":"Lansdowne Construction","ar":"Penney Design Group","r":[[1,"V15-027R"]]},{"n":"Rechler Residence","c":"Water Mill","st":"NY","g":"Racanelli Construction","ar":"Roger Ferris + Partners","r":[[1,"V15-053R"]]},{"n":"555 Tuckahoe Road","c":"Yonkers","st":"NY","g":"Project Builders Construction Corp","ar":"Peter Hentschel","r":[[1,"V15-048"]]},{"n":"8th & Nueces Apartments","c":"Austin","st":"TX","g":"JE Dunn Construction","ar":"Rhode Partners","r":[[2,"T15-002"]]},{"n":"Topgolf Webster","c":"Webster","st":"TX","g":"Turner Construction","ar":"","r":[[2,"T15-003"]]},{"n":"Village of River Oaks","c":"Houston","st":"TX","g":"SpawGlass Construction Corp.","ar":"House + Partners","r":[[2,"T15-004"]]},{"n":"River Tides","c":"Yonkers","st":"NY","g":"FM Home Improvement","ar":"Warshauer Mellusi Warshauer Architects","r":[[2,"V15-022"]]},{"n":"145 East 57th St","c":"New York","st":"NY","g":"PB Interiors Corp","ar":"Dan Ionescu Architects","r":[[2,"V15-028"]]},{"n":"Elysium Fourteen","c":"Washington","st":"DC","g":"Hoar Construction","ar":"PGN Architects","r":[[2,"V15-035"]]},{"n":"M-Line Tower Apartments","c":"Dallas","st":"TX","g":"Andres Construction Services","ar":"GFF Architecture","r":[[2,"T15-006"]]},{"n":"Element 28","c":"Bethesda","st":"MD","g":"KBR Building Group","ar":"R2L Architects","r":[[0,"V14-025D"],[1,"V14-025D"]]},{"n":"Rosslyn Central Office Building","c":"Arlington","st":"VA","g":"Clark Construction","ar":"Beyer Blinder Belle","r":[[0,"V14-039D"]]},{"n":"1000 F Street","c":"Washington","st":"DC","g":"James G. Davis Construction","ar":"Shalom Baranes Associates","r":[[0,"V14-045D"]]},{"n":"National Science Foundation Block 8","c":"Alexandria","st":"VA","g":"Balfour Beatty","ar":"WDG Architecture","r":[[0,"V14-053D"]]},{"n":"Wisconsin Ave Retail","c":"Washington","st":"DC","g":"Ellisdale Construction","ar":"BCT Architects","r":[[1,"V14-019"]]},{"n":"Woodrow Wilson Library","c":"Falls Church","st":"VA","g":"Rand Construction","ar":"Bowie Gridley Architects","r":[[1,"V14-002"]]},{"n":"Hampton Inn & Suites DC Ballpark","c":"Washington","st":"DC","g":"Sigal Construction","ar":"BBGM","r":[[1,"V14-013R"]]},{"n":"PT2SO","c":"Washington","st":"DC","g":"Eichberg Construction","ar":"Inscape Studio","r":[[1,"V14-018R"]]},{"n":"Hytorc","c":"South Hackensack","st":"NJ","g":"Aspen Associates","ar":"","r":[[1,"V14-044"]]},{"n":"School of Music Liberty University","c":"Lynchburg","st":"VA","g":"Construction Management Associates","ar":"VMDO Architects","r":[[1,"V14-047R"]]},{"n":"Hotel Granduca of Austin","c":"West Lake Hills","st":"TX","g":"Ludlow & Associates Construction","ar":"Gromatzky Dupree & Associates","r":[[2,"T14-002"]]},{"n":"1600 Pennsylvania Ave","c":"Washington","st":"DC","g":"James G. Davis Construction","ar":"Eric Colbert & Associates","r":[[2,"V14-020"]]},{"n":"Verde Pointe","c":"Arlington","st":"VA","g":"Clark Construction","ar":"Antunovich Associates","r":[[2,"V14-008"]]},{"n":"1734 6th Street","c":"Washington","st":"DC","g":"Ditto Residential","ar":"DEP Designs","r":[[2,"V14-036"]]},{"n":"Belfiore Condominium","c":"Houston","st":"TX","g":"Ludlow & Associates Construction","ar":"Kirksey","r":[[2,"T14-001"]]},{"n":"Harbor Square","c":"Ossining","st":"NY","g":"FM Home Improvement","ar":"Ginsburg","r":[[2,"V14-028"]]},{"n":"Summer House","c":"Stamford","st":"CT","g":"Erland Construction","ar":"Lessard Design","r":[[2,"V14-041"]]},{"n":"Performix","c":"McLean","st":"VA","g":"Pillar Construction","ar":"DemianWilbur","r":[[3,"V14-014"]]},{"n":"55 North Water Street","c":"Norwalk","st":"CT","g":"","ar":"Simpson Gumpertz & Heger","r":[[3,"V14-024"]]},{"n":"Hyatt Regency Tysons Corner","c":"Tysons","st":"VA","g":"Harvey-Cleary Builders","ar":"RTKL","r":[[0,"V13-030D"],[1,"V13-030D"]]},{"n":"601 Massachusetts Avenue","c":"Washington","st":"DC","g":"Clark Construction","ar":"Duda Paine Architects","r":[[0,"V13-007D"]]},{"n":"Tysons Corner Center Hotel & Plaza","c":"Tysons","st":"VA","g":"Harvey-Cleary Builders","ar":"RTKL","r":[[0,"V13-020D"]]},{"n":"Vinson Hall","c":"McLean","st":"VA","g":"Whiting-Turner","ar":"SFCS","r":[[0,"V13-001D"],[2,"V13-001D"]]},{"n":"Hyatt Place","c":"Washington","st":"DC","g":"Clark Construction","ar":"WDG Architecture","r":[[1,"V13-052R"]]},{"n":"Silver Spring Library","c":"Silver Spring","st":"MD","g":"Costello Construction","ar":"The Lukmire Partnership","r":[[1,"V13-010R"]]},{"n":"Fort Totten Square","c":"Washington","st":"DC","g":"Clark Builders Group","ar":"Hickok Cole","r":[[1,"V13-038"]]},{"n":"Howard University IRB","c":"Washington","st":"DC","g":"Turner Construction","ar":"HDR","r":[[1,"V13-045R"]]},{"n":"EVEN Hotel","c":"Rockville","st":"MD","g":"Digney York Associates","ar":"RTKL","r":[[1,"V13-046"]]},{"n":"Forest City West Village","c":"Dallas","st":"TX","g":"Rogers-O'Brien Construction","ar":"Good, Fulton & Farrell","r":[[2,"T13-006"]]},{"n":"7th & Rio","c":"Austin","st":"TX","g":"JE Dunn Construction","ar":"Rhode Partners","r":[[2,"T13-013"]]},{"n":"Fairway Pine","c":"The Woodlands","st":"TX","g":"Holder Construction Group","ar":"Morris Architects","r":[[2,"T13-012"]]},{"n":"2800 Weslayan","c":"Houston","st":"TX","g":"CF Jordan Construction","ar":"RTKL","r":[[2,"T13-016"]]},{"n":"East & West Wing Women's Hospital","c":"Houston","st":"TX","g":"JE Dunn Construction","ar":"Earl Swensson","r":[[2,"T13-017"]]},{"n":"Turkish American Community Center","c":"Lanham","st":"MD","g":"Balfour Beatty","ar":"Fentress Architects","r":[[2,"V13-040"]]},{"n":"DC Water Warehouse & Visitor Center","c":"Washington","st":"DC","g":"Rand Construction","ar":"Samaha","r":[[2,"V13-043"]]},{"n":"Safeway #3250","c":"Alexandria","st":"VA","g":"Chesapeake Contracting Group","ar":"Freeman Morgan Architects","r":[[2,"V13-044"]]},{"n":"S-3","c":"Stamford","st":"CT","g":"BLT Management","ar":"EDI International","r":[[2,"V13-048"]]},{"n":"Milken Institute School of Public Health, GWU","c":"Washington","st":"DC","g":"Whiting-Turner","ar":"Payette Associates","r":[[0,"V12-033D"]]},{"n":"Hilton Garden Inn - West End","c":"Washington","st":"DC","g":"Turner Construction","ar":"Shalom Baranes Associates","r":[[0,"V12-055D"],[1,"V12-055D"]]},{"n":"Fauquier High School Renovations","c":"Warrenton","st":"VA","g":"Whiting-Turner","ar":"VMDO Architects","r":[[0,"V12-058D"]]},{"n":"4500 East West Highway","c":"Bethesda","st":"MD","g":"Clark Construction","ar":"Shalom Baranes Associates","r":[[0,"V12-059D"]]},{"n":"Place at Founders Square","c":"Arlington","st":"VA","g":"KBR Building Group","ar":"RTKL","r":[[0,"V12-017D"]]},{"n":"Capital One, West Creek","c":"Richmond","st":"VA","g":"Hourigan Construction","ar":"Odell Associates","r":[[1,"V12-026"]]},{"n":"Hotel Zero Degrees","c":"Norwalk","st":"CT","g":"RMS Construction","ar":"Beinfield","r":[[1,"V12-042"]]},{"n":"IMF Concordia Hotel","c":"Washington","st":"DC","g":"Turner Construction","ar":"Bonstra Haresign","r":[[1,"V12-039"]]},{"n":"Orion","c":"Silver Spring","st":"MD","g":"Triangle-Orion","ar":"AR Meyers & Associates","r":[[1,"V12-013"]]},{"n":"Yale & Towne Y-2","c":"Stamford","st":"CT","g":"BLT Management","ar":"EDI International","r":[[2,"V12-034"]]},{"n":"ACC Callaway House","c":"Austin","st":"TX","g":"Harvey-Cleary Builders","ar":"STG Design","r":[[2,"T12-004"]]},{"n":"SkyHouse Apartments","c":"Austin","st":"TX","g":"Batson Cook Company","ar":"SmallwoodStewart","r":[[2,"T12-015"]]},{"n":"The Domain, College Park","c":"College Park","st":"MD","g":"Hanover Company","ar":"Lessard Design","r":[[2,"V12-021"]]},{"n":"C-5 / C-5A Harbor Point","c":"Stamford","st":"CT","g":"BLT Management","ar":"EDI International","r":[[2,"V12-035"]]},{"n":"Park 7","c":"Washington","st":"DC","g":"McCullough Construction","ar":"Eric Colbert & Associates","r":[[2,"V12-056"]]},{"n":"Church of Jesus Christ of Latter-day Saints","c":"Washington","st":"DC","g":"Forrester Construction","ar":"Stanmyra+Noel","r":[[0,"V11-005D"]]},{"n":"USCG Station Sabine Pass","c":"Sabine","st":"TX","g":"Mortenson","ar":"USCG Facilities","r":[[0,"T11-011"]]},{"n":"Smithsonian Environmental Research Lab","c":"Edgewater","st":"MD","g":"Hensel Phelps","ar":"Ewing Cole","r":[[0,"V11-027D"]]},{"n":"The Monty - Bainbridge Tower","c":"Bethesda","st":"MD","g":"Turner Construction","ar":"SK+I Architecture","r":[[0,"V11-045D"]]},{"n":"Camden NoMa Apartments","c":"Washington","st":"DC","g":"Clark Construction","ar":"WDG Architecture","r":[[0,"V11-066D"]]},{"n":"Highland Park Phase II","c":"Washington","st":"DC","g":"McCullough Construction","ar":"GTM Architects","r":[[0,"V11-036D"],[2,"V11-036D"]]},{"n":"NAVFAC","c":"Bethesda","st":"MD","g":"Walbridge / Brasfield & Gorrie","ar":"CHM Architecture","r":[[0,"V11-030D"]]},{"n":"NIH","c":"Bethesda","st":"MD","g":"Gilbane","ar":"LSY Architecture","r":[[0,"V11-002D"]]},{"n":"Fiat of Alexandria","c":"Alexandria","st":"VA","g":"Geneva Management","ar":"MSKM Architects","r":[[1,"V11-020D"]]},{"n":"Fauquier High School Phase I","c":"Warrenton","st":"VA","g":"Whiting-Turner","ar":"VMDO Architects","r":[[1,"V11-065D"]]},{"n":"Uptown 111 Post Oak","c":"Houston","st":"TX","g":"Synergy","ar":"McCleary","r":[[1,"T11-016"]]},{"n":"Yale & Towne Block Y4-Y5","c":"Stamford","st":"CT","g":"BLT Management","ar":"EDI International","r":[[2,"V11-013"]]},{"n":"14W","c":"Washington","st":"DC","g":"Clark Construction","ar":"Davis Carter Scott","r":[[2,"V11-004D"]]},{"n":"HPC Six","c":"Stamford","st":"CT","g":"BLT Management","ar":"EDI International","r":[[2,"V11-060"]]},{"n":"Dallas Fort Worth International Airport","c":"Dallas","st":"TX","g":"Lemco Construction Services","ar":"Leo A Daly","r":[[2,"T11-017"]]},{"n":"Fantasyland Expansion, Phase II","c":"Lake Buena Vista","st":"FL","g":"Hoar Construction","ar":"Morris Architects","r":[[2,"F11-005"]]},{"n":"Silver Creek Lodge Facade Renovation","c":"Snowshoe","st":"WV","g":"Silver Creek Association","ar":"Peter Fillat Architects","r":[[3,"V11-016"]]},{"n":"Ritz Carlton Amelia Island","c":"Amelia Island","st":"FL","g":"Tadjer-Cohen-Edelson Associates","ar":"Tadjer-Cohen-Edelson Associates","r":[[3,"F11-002"]]},{"n":"Isabella at Montecello Mews","c":"Alexandria","st":"VA","g":"Della Ratta","ar":"ConsultingDesign","r":[[0,"V10-035D"]]},{"n":"Galaxy Apartments","c":"Silver Spring","st":"MD","g":"Clark Builders Group","ar":"AR Meyers & Associates","r":[[1,"V10-068"]]},{"n":"C-7","c":"Stamford","st":"CT","g":"Harbor Point Development","ar":"EDI International","r":[[2,"V10-005"]]},{"n":"Westin Memorial City","c":"Houston","st":"TX","g":"Anslow Bryant Construction","ar":"Morris Architects","r":[[2,"T10-004"]]},{"n":"North Beach Condos","c":"Asbury Park","st":"NJ","g":"Paramount Homes","ar":"The Martin Architectural Group","r":[[3,"V10-041"]]},{"n":"Essex & Sussex Condominium","c":"Spring Lake","st":"NJ","g":"Structural Preservation","ar":"SGH Architects","r":[[3,"V10-002"]]},{"n":"MedImmune P95 Area 6","c":"Gaithersburg","st":"MD","g":"Tompkins Builders","ar":"Kling Stubbins","r":[[0,"V09-079D"]]},{"n":"Wonderworks","c":"Panama City","st":"FL","g":"Welbro Building Corporation","ar":"Goodwin Mills & Cawood","r":[[3,"F09-004"]]},{"n":"Highview @ Hunt Valley","c":"Hunt Valley","st":"MD","g":"Tadjer-Cohen-Edelson Associates","ar":"Tadjer-Cohen-Edelson Associates","r":[[3,"V09-012"]]},{"n":"Department of Employment Services","c":"Washington","st":"DC","g":"Forrester Construction","ar":"Devrouax & Purnell","r":[[0,"V08-064D"]]},{"n":"Army National Guard Readiness Center","c":"Arlington","st":"VA","g":"Tompkins Builders","ar":"CH2M Hill","r":[[0,"V08-106D"]]},{"n":"AU School of International Services","c":"Washington","st":"DC","g":"Whiting-Turner","ar":"","r":[[0,"V08-002"]]},{"n":"Avia Hotel","c":"The Woodlands","st":"TX","g":"CF Jordan Construction","ar":"Law Kingdon Architecture","r":[[1,"T08-010"],[2,"T08-010"]]},{"n":"Legacy Place, Dedham","c":"Dedham","st":"MA","g":"Suffolk Construction","ar":"PCA Architects","r":[[2,"M08-004"]]},{"n":"Courtyard Marriott","c":"Chevy Chase","st":"MD","g":"James G. Davis Construction","ar":"OPX Global","r":[[2,"V08-079"]]},{"n":"Marriott Courtyard US Capitol","c":"Washington","st":"DC","g":"Clark Construction","ar":"","r":[[2,"V08-003"]]},{"n":"Lido Beach Towers","c":"Lido Beach","st":"NY","g":"Flag Waterproofing & Restoration","ar":"Jordan Ruzz, PE","r":[[3,"V08-019"]]},{"n":"Taylor Place","c":"Arlington","st":"VA","g":"United Dominion Realty Trust","ar":"","r":[[3,"V08-040"]]},{"n":"Vista Condominiums","c":"Oakton","st":"VA","g":"Russell Cather Levi Assoc.","ar":"Russell Levi","r":[[3,"V08-059"]]},{"n":"Palm Bay Tower Hospital","c":"Palm Bay","st":"FL","g":"Southmost Drywall","ar":"","r":[[2,"T07-009"]]},{"n":"Vistana","c":"San Antonio","st":"TX","g":"CF Jordan Construction","ar":"Rehler Vaughs","r":[[2,"T07-014"]]},{"n":"Annapolis Towne Centre Residential","c":"Annapolis","st":"MD","g":"BCC Annapolis Towne Centre","ar":"","r":[[2,"V07-085"]]},{"n":"Capital Cove, National Harbor","c":"Oxon Hill","st":"MD","g":"Balfour Beatty","ar":"","r":[[2,"V07-083"]]},{"n":"Dr. P. Phillips Hospital (Sand Lake)","c":"Orlando","st":"FL","g":"Robins & Morton Group","ar":"HKS","r":[[2,"T07-006"]]},{"n":"Town Lake Apartments","c":"Austin","st":"TX","g":"Andres Construction Services","ar":"EDI International","r":[[2,"T07-013"]]},{"n":"1099 New York Ave","c":"Washington","st":"DC","g":"James G. Davis Construction","ar":"Thomas Phifer","r":[[0,"D06-014"],[2,"V06-062"]]},{"n":"2501 Pennsylvania Ave","c":"Washington","st":"DC","g":"2501 Constructors (Tompkins Builders)","ar":"BBGM","r":[[0,"D06-022"]]},{"n":"Vendome","c":"Dallas","st":"TX","g":"Manhattan Construction","ar":"X+lll","r":[[2,"T06-002"],[3,"2000-46"]]},{"n":"West Elm Wayside Commons","c":"Burlington","st":"MA","g":"Fisher Development","ar":"","r":[[2,"M06-010"]]},{"n":"360 Nueces","c":"Austin","st":"TX","g":"JE Dunn Construction","ar":"Preston Partners","r":[[2,"T06-015"]]},{"n":"Jacksonville University Student Housing","c":"Jacksonville","st":"FL","g":"The Haskell Company","ar":"","r":[[2,"T06-018"]]},{"n":"Villages Regional Hospital","c":"The Villages","st":"FL","g":"Robins & Morton Group","ar":"","r":[[2,"T06-013"]]},{"n":"Beauregard Condominiums","c":"Washington","st":"DC","g":"Turner Construction","ar":"SORG Architects","r":[[0,"05-CW011"]]},{"n":"Hilton (Harrison Suites)","c":"Ocean City","st":"MD","g":"Kajima Construction","ar":"","r":[[2,"05-V004"]]},{"n":"Belmont at Freemason","c":"Norfolk","st":"VA","g":"Clancy & Theys","ar":"HumphreysPartner","r":[[2,"05-V054"]]},{"n":"Plaza Harbour Island","c":"Tampa","st":"FL","g":"Hardin Construction Company","ar":"Nichols Brosch","r":[[2,"05-T012"]]},{"n":"Dominion @ Post Oak","c":"Houston","st":"TX","g":"WPM","ar":"EDI International","r":[[2,"2003-4"]]},{"n":"Wilton House at Merrifield","c":"Merrifield","st":"VA","g":"Donohoe","ar":"Dorsky Hodgson","r":[[2,"2003-200"]]},{"n":"555 Massachusetts Avenue","c":"Washington","st":"DC","g":"Clark Construction","ar":"Gordon & Greenberg","r":[[0,"2002-80"]]},{"n":"Cherry Creek Apartments","c":"Glendale","st":"CO","g":"Hanover Company","ar":"Jackson & Ryan","r":[[2,"2002-2"]]},{"n":"1200 Post Oak","c":"Houston","st":"TX","g":"Hanover Company","ar":"Gromatzky Dupree & Associates","r":[[2,"2001-68"]]},{"n":"Pentagon Row","c":"Arlington","st":"VA","g":"Bovis Lend Lease","ar":"BCT Architects","r":[[2,"2001-20"]]}],"aspect":{"V15-003D":1.333,"EP_002":0.827,"7655Rt":0.663,"7699Rt":0.667,"8521Rt":0.688,"Avocet_1":0.667,"6565Rt":1.499,"The_Wharf_1":1.951,"Institute_for_Digital_Innovation_1":1.333,"VA_Hostpital_Fredericksburg_1":0.75,"Reunion_Sq_1":1.333,"Park_and_Rose_1":0.667,"The_Westerly_Waterfront_1":1.546,"SOME_1":0.781,"7535Rt":1.465,"7726Rt":1.499,"7934Rt":1.6,"8061Rt":1.455,"8191Rt":1.6,"8302Rt":1.6,"8621Rt":0.688,"Oakvile_Inova_1":0.63,"1701_H_ST_1":1.502,"Anna_Gooding_School_1":0.736,"Harbour_Point_Baltimore_1":1.499,"Elizabeth_Hosue_1":0.816,"1224_M_ST_1":0.667,"College_Park_City_Hall_1":1.275,"9483Rt":1.455,"801_N_Fairfax_1":1.499,"EP_001":0.884,"EP_003":1.531,"V19-019R":1.499,"V18-014R":1.499,"V18-005R":1.499,"V18-043R":1.499,"V18-002R":1.502,"V18-024":0.667,"V18-012":1.499,"V18-020":0.667,"T18-003":1.076,"V18-004":1.336,"V17-028D":1.499,"V17-014D":1.499,"V17-004D":1.488,"V17-026D":1.702,"V17-015R":1.499,"V17-030R":1.499,"V17-007R":0.667,"TS17-002":1.509,"V17-002R":1.538,"V17-005R":2.471,"V17-006R":1.445,"V17-009R":1.531,"V17-012R":1.499,"V17-013":1.176,"V17-022":1.333,"V17-029":1.919,"V17-016":1.55,"V16-035D":0.666,"V16-018D":0.706,"V16-046D":1.499,"V16-051D":1.499,"V16-038":1.499,"T16-006":1.328,"TS16-002":0.748,"V16-001":1.783,"V16-010R":1.509,"V16-043D":0.991,"V16-053R":1.41,"V16-011":1.499,"T16-002":0.903,"T16-003":1.385,"T16-004":1.053,"T16-007":1.975,"TS16-007":1.37,"V16-003":1.495,"V16-012":1.72,"V16-014":0.958,"V16-022":1.899,"V16-028":1.499,"V16-036":1.763,"V16-047":1.432,"V16-048":1.102,"V15-004D":1.502,"V15-043D":1.187,"V15-054D":1.499,"V15-012":1.499,"V15-020R":1.524,"V15-027R":2.199,"V15-053R":1.553,"V15-048":1.499,"T15-002":1.47,"T15-003":1.407,"T15-004":1.298,"V15-022":1.039,"V15-028":0.619,"V15-035":1.103,"T15-006":1.228,"V14-025D":0.75,"V14-039D":0.753,"V14-045D":1.255,"V14-053D":1.475,"V14-019":2.126,"V14-002":2.098,"V14-013R":1,"V14-018R":0.75,"V14-044":1.778,"V14-047R":1.499,"T14-002":1.502,"V14-020":1.478,"V14-008":1.135,"V14-036":1.056,"T14-001":1.499,"V14-028":1.499,"V14-041":0.941,"V14-014":1.502,"V14-024":1.658,"V13-030D":1.061,"V13-007D":1.499,"V13-020D":1.061,"V13-001D":1.778,"V13-052R":0.666,"V13-010R":1.25,"V13-038":1.739,"V13-045R":0.842,"V13-046":1.499,"T13-006":1.739,"T13-013":1.333,"T13-012":1.333,"T13-016":0.992,"T13-017":1.603,"V13-040":2.199,"V13-043":1.501,"V13-044":1.496,"V13-048":1.29,"V12-033D":1.499,"V12-055D":1.499,"V12-058D":1.524,"V12-059D":2.667,"V12-017D":1.248,"V12-026":0.667,"V12-042":1.499,"V12-039":1.416,"V12-013":1.499,"V12-034":1.502,"T12-004":1.749,"T12-015":0.75,"V12-021":1.678,"V12-035":1.658,"V12-056":1.499,"V11-005D":1.333,"T11-011":1.832,"V11-027D":2.27,"V11-045D":1.174,"V11-066D":1.488,"V11-036D":1.52,"V11-030D":1.798,"V11-002D":1.394,"V11-020D":1.57,"V11-065D":1.524,"T11-016":1.502,"V11-013":1.499,"V11-004D":1.499,"V11-060":1.506,"T11-017":1.5,"F11-005":1.499,"V11-016":1.62,"F11-002":1.641,"V10-035D":1.333,"V10-068":1.353,"V10-005":1.499,"T10-004":1.778,"V10-041":1.798,"V10-002":1.333,"V09-079D":1.855,"F09-004":1.333,"V09-012":1.333,"V08-064D":1.499,"V08-106D":1.744,"V08-002":1.758,"T08-010":1.73,"M08-004":1.333,"V08-079":1.445,"V08-003":1.488,"V08-019":1.333,"V08-040":1.333,"V08-059":1.339,"T07-009":1.333,"T07-014":1.333,"V07-085":1.27,"V07-083":1.478,"T07-006":1.467,"T07-013":1.303,"D06-014":1.499,"V06-062":1.498,"D06-022":1.176,"T06-002":1.149,"2000-46":1.502,"M06-010":1.333,"T06-015":1.499,"T06-018":1.6,"T06-013":1.618,"05-CW011":1.502,"05-V004":1.569,"05-V054":1.524,"05-T012":1.147,"2003-4":0.667,"2003-200":1.249,"2002-80":1.624,"2002-2":1.739,"2001-68":1.24,"2001-20":1.798},"counts":[52,68,87,13,3],"total":208,"states":12};
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const hasG = () => !!(window.gsap && window.ScrollTrigger);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const pad = (n) => String(n).padStart(2, '0');
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const debounce = (fn, ms) => { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; };
+  const EIO = 'cubic-bezier(.76,0,.24,1)', EOUT = 'cubic-bezier(.16,1,.3,1)';
+  const T = (id) => `assets/t/${id}.webp`, P = (id) => `assets/p/${id}.webp`;
+  const desk = () => innerWidth >= 900;
+
+  /* ---------- data ---------- */
+  const PR = DATA.projects, AR = DATA.aspect;
+  const TR = [
+    { name: 'Drywall', short: 'Drywall', low: 'drywall', line: 'Partitions, specialty finishes and acoustical ceilings.', img: 'Institute_for_Digital_Innovation_1' },
+    { name: 'Rainscreen Systems', short: 'Rainscreen', low: 'rainscreen', line: 'Ventilated cladding for the modern building skin.', img: 'V15-020R' },
+    { name: 'EIFS & Stucco', short: 'EIFS & Stucco', low: 'EIFS and stucco', line: 'Millions of square feet, from high-rises to campuses.', img: 'V16-047' },
+    { name: 'Restoration', short: 'Restoration', low: 'restoration', line: 'Existing facades brought back to work and look right.', img: 'V10-002' },
+    { name: 'Pillar Exterior Panels', short: 'Exterior Panels', low: 'exterior panel', line: 'Factory-built wall panels that arrive finished.', img: 'EP_003' },
+  ];
+  const byImg = {};
+  PR.forEach((p) => p.r.forEach(([, im]) => { if (!byImg[im]) byImg[im] = p; }));
+  const loc = (p) => [p.c, p.st].filter(Boolean).join(', ');
+  const tradesOf = (p) => [...new Set(p.r.map(([t]) => t))];
+  const tradeNames = (p) => tradesOf(p).map((t) => TR[t].short).join(' · ');
+  const imgFor = (p, t) => { const m = t == null ? null : p.r.find(([x]) => x === t); return (m || p.r[0])[1]; };
+  const inTrade = (t) => PR.filter((p) => p.r.some(([x]) => x === t)).map((p) => ({ p, im: imgFor(p, t) }));
+  const item = (im) => ({ p: byImg[im], im });
+  const FEAT = ['The_Westerly_Waterfront_1', 'V12-026', 'V18-002R', 'College_Park_City_Hall_1', '6565Rt'].map(item).filter((x) => x.p);
+  const VOICE = { q: "In our experience, Pillar's dedication to schedule and craftsmanship is surpassed by none in their field.", by: 'Performance Contracting Inc.', role: 'Sr. Project Manager', img: 'V19-019R', trust: ['Clark', 'Whiting-Turner', 'Suffolk', 'DPR', 'Hensel Phelps', 'Bovis Lend Lease'] };
+  const LAYERS = [['Cold-formed metal framing', 'Structural backbone, factory-cut and assembled'], ['Exterior sheathing', 'Rigid substrate fastened in controlled conditions'], ['Air-vapor barrier (AVB)', 'Continuous membrane, sealed before it leaves the plant'], ['Cladding of your choice', 'Any of the well-known brands in the industry']];
+  const AW = [
+    ['2024', 'Craftsmanship Award', 'Washington Building Congress'], ['2023', 'Craftsmanship Award', 'Washington Building Congress'],
+    ['2022', 'ENR Top 600 and S.T.E.P. Gold', 'ENR, Associated Builders and Contractors'], ['2021', 'ENR Top 600, rank 354', 'Engineering News-Record'],
+    ['2018', 'Subby Award', 'ASA Metro Washington'], ['2017', 'Corporate Safety Program', 'AGC Washington Contractor Awards'],
+    ['2016', 'Best Corporate Safety Program', 'Washington Contractor Awards'], ['2015', 'Gold Award, Acoustical Solutions', 'CISCA, Milken Institute SPH at GWU'],
+    ['2010', 'Subcontractor of the Year', 'ABC of Metro Washington'], ['2009', 'S.T.E.P. Platinum', 'Associated Builders and Contractors'],
+    ['2008', 'Paragon Award, incident rate below national average', 'Associated Builders and Contractors'],
+    ['2005', 'Carson V. Carlisle Jr. Safety Award', 'DC Metropolitan Subcontractors Association'], ['2003', 'Chapter Safety Award', 'ABC of Metro Washington'],
+  ];
+  const STATS = { years: new Date().getFullYear() - 1995, total: DATA.total, states: DATA.states, offices: 4 };
+  const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight; };
+  const OPT = {};
+
+  /* ---------- intro: two leaves part as the mark assembles and the count reaches 100 ---------- */
+  function intro() {
+    const el = $('#lm');
+    if (!el) return;
+    if (!root.classList.contains('intro') || !el.animate) { root.classList.remove('intro'); el.remove(); return; }
+    const ps = $$('.lm-p', el), svg = $('svg', el), cap = $('.lm-cap', el), n = $('.lm-n', el);
+    const from = [[0, -200], [-240, 0], [0, 200], [240, 0]];
+    let done = false;
+    ps.forEach((p, i) => { p.style.transformBox = 'fill-box'; p.style.transformOrigin = 'center'; p.animate([{ transform: `translate(${from[i % 4][0]}px,${from[i % 4][1]}px)`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 760, delay: 80 + i * 110, easing: EOUT, fill: 'both' }); });
+    if (cap) cap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 120, fill: 'forwards' });
+    const t0 = performance.now();
+    (function count() { if (done || !n) return; const k = Math.min(1, (performance.now() - t0) / 1150); n.textContent = String(Math.round(k * 100)).padStart(3, '0'); if (k < 1) requestAnimationFrame(count); })();
+    const exit = () => {
+      if (done) return; done = true;
+      el.classList.add('leaving'); root.classList.remove('intro');
+      [svg, n, cap].forEach((x) => x && x.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: 'forwards' }));
+      $('.lm-l', el).animate([{ transform: 'none' }, { transform: 'translateX(-101%)' }], { duration: 900, delay: 120, easing: EIO, fill: 'forwards' });
+      $('.lm-r', el).animate([{ transform: 'none' }, { transform: 'translateX(101%)' }], { duration: 900, delay: 120, easing: EIO, fill: 'forwards' }).finished.then(() => el.remove(), () => el.remove());
+      if (hasG()) ScrollTrigger.refresh();
+    };
+    setTimeout(exit, 1450);
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((t) => addEventListener(t, exit, { once: true, passive: true }));
+  }
+
+  /* ---------- menus: one controller for any button + panel ---------- */
+  function menuCtl(btn, panel, o = {}) {
+    let open = false;
+    $$('a', panel).forEach((a, k) => a.style.setProperty('--k', k));
+    const set = (v) => {
+      open = v;
+      panel.classList.toggle('open', v); panel.inert = !v;
+      btn.setAttribute('aria-expanded', String(v));
+      if (o.label) o.label(v);
+      root.classList.toggle('menu-open', v);
+      if (o.lock !== false) { root.classList.toggle('is-locked', v); const main = $('#main'), ft = $('#contact'); if (main) main.inert = v; if (ft) ft.inert = v; }
+    };
+    btn.addEventListener('click', () => set(!open));
+    panel.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
+    if (o.lock === false) document.addEventListener('pointerdown', (e) => { if (open && !panel.contains(e.target) && !btn.contains(e.target)) set(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) { set(false); btn.focus(); } });
+    return { close: () => open && set(false), get open() { return open; } };
+  }
+  let menu = { close() {} };
+
+  /* a header that turns solid once you scroll, hides going down and returns going up */
+  function smartHeader(hd, o = {}) {
+    if (!hd) return;
+    let lastY = scrollY, ticking = false;
+    const solidAt = o.solidAt || 24;
+    const update = () => {
+      ticking = false;
+      const y = scrollY;
+      hd.classList.toggle('is-solid', y > solidAt);
+      if (y < solidAt) hd.classList.remove('is-hidden');
+      else if (Math.abs(y - lastY) > 6) { hd.classList.toggle('is-hidden', o.hide !== false && y > lastY && y > innerHeight * .4 && !root.classList.contains('menu-open') && !hd.contains(document.activeElement)); lastY = y; }
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    hd.addEventListener('focusin', () => hd.classList.remove('is-hidden'));
+    update();
+  }
+
+  /* ---------- in-page links: smooth scroll that knows about pinned sections ---------- */
+  function anchors() {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || a.hasAttribute('data-contact') || e.defaultPrevented) return;
+      const id = a.getAttribute('href').slice(1);
+      const t = id ? document.getElementById(id) : null;
+      if (!t) return;
+      e.preventDefault();
+      const y = id === 'top' ? 0 : t.getBoundingClientRect().top + scrollY - (OPT.anchorOffset || 0);
+      scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+      if (id === 'main') { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
+    });
+  }
+
+  /* ---------- reveals for below-the-fold content (never hides what is already on screen) ---------- */
+  function reveals() {
+    if (reduce || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const el = e.target; io.unobserve(el); el.classList.add('rv-in');
+      setTimeout(() => el.classList.remove('rv-pre', 'rv-in'), 1500);
+    }), { rootMargin: '0px 0px -6% 0px' });
+    $$('[data-rv]').forEach((el) => { if (el.getBoundingClientRect().top > innerHeight * .94) { el.classList.add('rv-pre'); io.observe(el); } });
+  }
+
+  /* ---------- numbers count up once ---------- */
+  function counters() {
+    const els = $$('[data-count]');
+    els.forEach((el) => { const k = el.dataset.count; el.dataset.to = STATS[k] ?? +k; el.textContent = el.dataset.to; });
+    $$('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
+    if (reduce || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target, to = +el.dataset.to, t0 = performance.now(), dur = 1500;
+      const tick = (t) => { const k = Math.min(1, (t - t0) / dur); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 4))); if (k < 1) requestAnimationFrame(tick); };
+      el.textContent = 0; requestAnimationFrame(tick);
+    }), { threshold: .5 });
+    els.forEach((el) => { if (el.getBoundingClientRect().top > innerHeight) io.observe(el); });
+  }
+
+  /* ---------- a wordmark that always spans its box exactly ---------- */
+  function fitWord(el, prop, k = .985) {
+    if (!el) return;
+    const spans = $$(':scope > span', el);
+    const run = () => {
+      el.style.setProperty(prop, '100px');
+      const cs = getComputedStyle(el);
+      const avail = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const tot = spans.length ? spans.reduce((s, x) => s + x.offsetWidth, 0) : el.scrollWidth;
+      if (tot > 0 && avail > 0) el.style.setProperty(prop, (100 * avail / tot * k).toFixed(2) + 'px');
+    };
+    run();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+    addEventListener('resize', debounce(run, 120));
+  }
+
+  /* split text into words for scroll light-up */
+  const words = (el, cls = 'w') => { if (!el || el.dataset.split) return []; el.dataset.split = 1; el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="${cls}">${esc(w)}</span>`).join(' '); return $$('.' + cls, el); };
+
+  /* ---------- dialogs: one stack, background made inert, focus returned on close ---------- */
+  const dlg = (() => {
+    const stack = [], back = [];
+    function open(el, focusEl) {
+      if (stack.includes(el)) return;
+      back.push(document.activeElement);
+      const top = stack[stack.length - 1]; if (top) top.inert = true;
+      stack.push(el); el.inert = false; el.classList.add('open');
+      $('#page').inert = true; root.classList.add('is-locked');
+      const c = $('#cur'); if (c) c.classList.remove('on');
+      const f = focusEl || $('.x', el);
+      setTimeout(() => f && f.focus({ preventScroll: true }), 80);
+    }
+    function close(el = stack[stack.length - 1]) {
+      const k = stack.indexOf(el); if (k < 0) return;
+      stack.splice(k, 1); el.classList.remove('open'); el.inert = true;
+      const top = stack[stack.length - 1];
+      if (top) top.inert = false; else { $('#page').inert = false; root.classList.remove('is-locked'); }
+      const f = back.pop(); if (f && f.focus) f.focus({ preventScroll: true });
+    }
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && stack.length) { e.preventDefault(); close(); } });
+    document.addEventListener('click', (e) => { const c = e.target.closest('[data-close]'); if (c) { const d = c.closest('.dlg'); if (d) close(d); } });
+    return { open, close, get top() { return stack[stack.length - 1]; } };
+  })();
+
+  /* ---------- project viewer ---------- */
+  const viewer = (() => {
+    const el = $('#vw'), stage = $('#vw-stage'), img = $('#vw-img'), th = $('#vw-thumbs');
+    let list = [], i = 0, tok = 0;
+    const fit = (ar) => { const r = stage.getBoundingClientRect(); let w = r.width, h = w / ar; if (h > r.height) { h = r.height; w = h * ar; } return { x: (r.width - w) / 2, y: (r.height - h) / 2, w, h }; };
+    const place = () => { const f = fit(AR[list[i].im] || 1.5); Object.assign(img.style, { left: f.x + 'px', top: f.y + 'px', width: f.w + 'px', height: f.h + 'px' }); };
+    function info() {
+      const { p } = list[i];
+      $('#vw-n').textContent = pad(i + 1); $('#vw-tot').textContent = pad(list.length);
+      $('#vw-tr').textContent = tradeNames(p); $('#vw-t').textContent = p.n; img.alt = p.n;
+      $('#vw-dl').innerHTML = [['Location', loc(p)], ['General contractor', p.g], ['Architect', p.ar]].filter((x) => x[1]).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+      $$('button', th).forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      const b = th.children[i]; if (b) th.scrollTo({ left: b.offsetLeft - th.clientWidth / 2 + 43, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    function load() {
+      const { im } = list[i], t = ++tok;
+      img.src = T(im);
+      const big = new Image(); big.decoding = 'async'; big.src = P(im);
+      const swap = () => { if (t === tok) img.src = big.src; };
+      if (big.decode) big.decode().then(swap, () => {}); else big.onload = swap;
+      if (list.length > 1) [1, -1].forEach((d) => { const x = list[(i + d + list.length) % list.length]; const a = new Image(); a.src = P(x.im); });
+    }
+    function show(k, dir = 0) {
+      if (!list.length) return;
+      i = ((k % list.length) + list.length) % list.length;
+      info(); place(); load();
+      if (dir && !reduce && img.animate) img.animate([{ opacity: 0, transform: `translate3d(${dir * 48}px,0,0)` }, { opacity: 1, transform: 'none' }], { duration: 650, easing: EOUT });
+    }
+    function fly(origin) {
+      if (reduce || !visible(origin) || !img.animate) return;
+      const frame = origin.closest('[data-frame]') || origin.parentElement || origin;
+      const r = frame.getBoundingClientRect(), f = img.getBoundingClientRect();
+      const c = document.createElement('img'); c.className = 'vw-fly'; c.alt = ''; c.src = origin.currentSrc || origin.src;
+      document.body.appendChild(c); img.style.visibility = 'hidden';
+      const rad = getComputedStyle(frame).borderTopLeftRadius || '0px';
+      c.animate([{ left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px', borderRadius: rad }, { left: f.left + 'px', top: f.top + 'px', width: f.width + 'px', height: f.height + 'px', borderRadius: getComputedStyle(img).borderTopLeftRadius }], { duration: 820, easing: EIO, fill: 'forwards' })
+        .finished.then(() => { img.style.visibility = ''; requestAnimationFrame(() => c.remove()); }, () => { img.style.visibility = ''; c.remove(); });
+    }
+    function open(l, k = 0, origin = null) {
+      list = l; if (!list.length) return;
+      th.innerHTML = list.length > 1 ? list.map(({ p, im }, j) => `<button type="button" data-j="${j}" aria-label="${esc(p.n)}"><img src="${T(im)}" alt="" loading="lazy" decoding="async"></button>`).join('') : '';
+      dlg.open(el); show(k); fly(origin);
+    }
+    $$('[data-d]', el).forEach((b) => b.addEventListener('click', () => show(i + +b.dataset.d, +b.dataset.d)));
+    th.addEventListener('click', (e) => { const b = e.target.closest('[data-j]'); if (b) { const j = +b.dataset.j; if (j !== i) show(j, Math.sign(j - i)); } });
+    img.addEventListener('click', () => { if (list.length > 1) show(i + 1, 1); });
+    addEventListener('keydown', (e) => { if (dlg.top !== el) return; if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1, 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1, -1); } });
+    let sx = 0, sy = 0;
+    stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    stage.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) show(i + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); });
+    addEventListener('resize', debounce(() => { if (dlg.top === el) place(); }, 80));
+    return { open };
+  })();
+
+  function openTrade(t, origin) {
+    const list = inTrade(t), k = list.findIndex((x) => x.im === TR[t].img);
+    if (k > 0) list.unshift(list.splice(k, 1)[0]);
+    viewer.open(list, 0, origin);
+  }
+
+  /* ---------- all projects ---------- */
+  const archive = (() => {
+    const el = $('#ax'), grid = $('#ax-grid'), chips = $('#ax-chips'), head = $('#ax-h');
+    let built = false, filt = -1, list = [];
+    function build() {
+      built = true;
+      chips.innerHTML = [[-1, 'All', DATA.total], ...TR.map((t, i) => [i, t.short, DATA.counts[i]])].map(([k, l, c]) => `<button type="button" data-f="${k}" aria-pressed="false">${esc(l)}<sup>${c}</sup></button>`).join('');
+      chips.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b && +b.dataset.f !== filt) { filt = +b.dataset.f; draw(); } });
+      grid.addEventListener('click', (e) => { const b = e.target.closest('[data-i]'); if (b) viewer.open(list, +b.dataset.i, $('img', b)); });
+    }
+    function draw() {
+      $$('button', chips).forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.f === filt)));
+      list = filt < 0 ? PR.map((p) => ({ p, im: imgFor(p) })) : inTrade(filt);
+      head.innerHTML = filt < 0 ? `All <b>${list.length}</b> projects` : `<b>${list.length}</b> ${TR[filt].low} projects`;
+      grid.innerHTML = list.map(({ p, im }, i) => `<li><button class="ax-card" type="button" data-i="${i}"><span class="ph" data-frame><img src="${T(im)}" alt="" loading="lazy" decoding="async" width="640" height="${Math.round(640 / (AR[im] || 1.5))}"></span><span><b>${esc(p.n)}</b><span class="m">${esc(loc(p))} · ${esc(filt < 0 ? tradeNames(p) : TR[filt].short)}</span></span></button></li>`).join('');
+      $('#ax-body').scrollTop = 0;
+    }
+    return { open(t = -1) { if (!built) build(); filt = t; draw(); dlg.open(el); } };
+  })();
+
+  /* ---------- buttons that open things, and the contact form ---------- */
+  function wire() {
+    document.addEventListener('click', (e) => {
+      const c = e.target.closest('[data-contact]');
+      if (c) { e.preventDefault(); menu.close(); dlg.open($('#dw'), fine ? $('#f-name') : null); return; }
+      const t = e.target.closest('[data-trade]');
+      if (t) { e.preventDefault(); const k = +t.dataset.trade; const o = t.dataset.origin ? $(t.dataset.origin) : (t.querySelector('img') || null); openTrade(k, o && o.tagName === 'IMG' ? o : (o ? $('img', o) : null)); return; }
+      const f = e.target.closest('[data-feat]');
+      if (f) { e.preventDefault(); viewer.open(FEAT, +f.dataset.feat, $('img', f)); return; }
+      const v = e.target.closest('[data-view]');
+      if (v) { e.preventDefault(); const x = item(v.dataset.view); if (x.p) viewer.open([x], 0, $('img', v)); return; }
+      if (e.target.closest('[data-all]')) { e.preventDefault(); archive.open(-1); }
+    });
+    const f = $('#dw-form'), out = $('#f-out'), n = $('#f-name'), m = $('#f-mail');
+    $('#f-trade').innerHTML = ['Not sure yet', ...TR.map((t) => t.name)].map((x) => `<option>${esc(x)}</option>`).join('');
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const okN = n.value.trim().length > 1, okM = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.trim());
+      n.setAttribute('aria-invalid', String(!okN)); m.setAttribute('aria-invalid', String(!okM));
+      out.classList.toggle('err', !(okN && okM));
+      if (!okN) { out.textContent = 'Add your name so the team knows who to reply to.'; n.focus(); return; }
+      if (!okM) { out.textContent = 'Check the email address. It needs a name, an @ and a domain.'; m.focus(); return; }
+      out.textContent = `Thanks, ${n.value.trim().split(/\s+/)[0]}. This preview can't send enquiries, so nothing was sent. Email info@PillarConstruction.com or call 703.941.5891 to reach the estimating team.`;
+    });
+    [n, m].forEach((x) => x.addEventListener('input', () => { x.removeAttribute('aria-invalid'); if (out.classList.contains('err')) { out.textContent = ''; out.classList.remove('err'); } }));
+  }
+
+  /* ---------- awards ring: drag, arrow keys, or let the scroll turn it ---------- */
+  let ringScroll = () => {};
+  function ring() {
+    const ringEl = $('#aw-ring'), track = $('#aw-track');
+    if (!ringEl) return;
+    track.innerHTML = AW.map(([y, t, b], i) => `<li class="aw-card" aria-label="${y}: ${esc(t)}, ${esc(b)}" aria-setsize="${AW.length}" aria-posinset="${i + 1}"><b>${y}</b><p>${esc(t)}</p><em>${esc(b)}</em></li>`).join('');
+    const cards = $$('.aw-card', track), N = cards.length, A = 360 / N;
+    let R = 600, raf = 0, vis = false, down = false, lx = 0, front = -1, ny = 0, lastScroll = 0;
+    const S = { rot: 0, drag: 0, v: 0, scroll: 0 };
+    const loop = () => {
+      raf = 0;
+      if (!down) { S.drag += S.v; S.v *= .92; }
+      let target = S.scroll + S.drag;
+      if (!down && Math.abs(S.v) < .05 && performance.now() - lastScroll > 260) { const snap = Math.round(target / A) * A; S.drag += (snap - target) * .09; target = S.scroll + S.drag; }
+      S.rot = reduce ? target : lerp(S.rot, target, .12);
+      const tilt = fine && !reduce ? -ny * 5 : 0;
+      track.style.transform = `translateZ(${-R}px) rotateX(${tilt.toFixed(2)}deg) rotateY(${S.rot.toFixed(3)}deg)`;
+      const f = ((Math.round(-S.rot / A) % N) + N) % N;
+      if (f !== front) { front = f; cards.forEach((c, i) => c.classList.toggle('is-front', i === f)); }
+      const settled = !down && Math.abs(S.v) < .01 && Math.abs(target - S.rot) < .02 && Math.abs(Math.round(target / A) * A - target) < .02;
+      if (vis && !settled) raf = requestAnimationFrame(loop);
+    };
+    const kick = () => { if (vis && !raf) raf = requestAnimationFrame(loop); };
+    const layout = () => { R = Math.round(track.offsetWidth / 2 / Math.tan(Math.PI / N) * 1.1); cards.forEach((c, i) => (c.style.transform = `rotateY(${i * A}deg) translateZ(${R}px)`)); kick(); };
+    new IntersectionObserver((es) => { vis = es[0].isIntersecting; kick(); }, { rootMargin: '80px' }).observe(ringEl);
+    ringEl.addEventListener('pointerdown', (e) => { if (e.button) return; down = true; lx = e.clientX; S.v = 0; ringEl.classList.add('drag'); if (ringEl.setPointerCapture) ringEl.setPointerCapture(e.pointerId); kick(); });
+    ringEl.addEventListener('pointermove', (e) => { if (fine) { ny = e.clientY / innerHeight * 2 - 1; kick(); } if (!down) return; S.v = (e.clientX - lx) * .24; S.drag += S.v; lx = e.clientX; kick(); });
+    const up = () => { if (!down) return; down = false; ringEl.classList.remove('drag'); kick(); };
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => ringEl.addEventListener(t, up));
+    ringEl.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { e.preventDefault(); S.drag -= A; kick(); } if (e.key === 'ArrowLeft') { e.preventDefault(); S.drag += A; kick(); } });
+    ringScroll = (p) => { S.scroll = -p * 170; lastScroll = performance.now(); kick(); };
+    layout(); addEventListener('resize', debounce(layout, 150));
+  }
+
+  /* ---------- the exterior panel in WebGL: layers come apart with the scroll ---------- */
+  function panelGL(cfg) {
+    const sec = $('#panels'), pin = $('#ep-pin'), canvas = $('#ep-gl'), steps = $$('#layers button'), labels = $$('.ep-label');
+    if (!sec || !canvas) return { pins() {} };
+    const S = { step: -1 }, TG = { g: .02, blue: 0, ry: -.55, rx: .14 };
+    const marks = [.34, .5, .64, .78, .9];
+    let scene = null, booted = false, deskMode = false, st = null;
+    const mouse = { x: 0, y: 0 };
+    if (fine) addEventListener('pointermove', (e) => { mouse.x = e.clientX / innerWidth * 2 - 1; mouse.y = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+    const kick = () => scene && scene.kick();
+    const setStep = (n) => { if (n === S.step) return; S.step = n; steps.forEach((b, i) => { b.classList.toggle('is-on', i === n); b.setAttribute('aria-pressed', String(i === n)); }); labels.forEach((l, i) => l.classList.toggle('is-on', i === n)); kick(); };
+    const fromProgress = (p) => {
+      const ex = clamp((p - .06) / .22, 0, 1), col = clamp((p - .9) / .1, 0, 1);
+      TG.g = 1.15 * ex * (1 - col) + .02; TG.blue = ex * (1 - col * .7); TG.ry = -.55 - .45 * ex + .6 * col; TG.rx = .14 + .1 * ex - .1 * col;
+      let n = -1; for (let i = 0; i < 4; i++) if (p >= marks[i] && p < marks[i + 1]) n = i;
+      setStep(n); kick();
+    };
+    const opened = () => { TG.g = .95; TG.blue = 1; TG.ry = -.82; TG.rx = .2; kick(); };
+    steps.forEach((b, i) => b.addEventListener('click', () => {
+      if (deskMode && st) scrollTo({ top: st.start + ((marks[i] + marks[i + 1]) / 2) * (st.end - st.start), behavior: reduce ? 'auto' : 'smooth' });
+      else { setStep(S.step === i ? -1 : i); if (TG.g < .5) opened(); }
+    }));
+    function pins() {
+      if (!hasG() || reduce) { opened(); return; }
+      const mm = gsap.matchMedia();
+      mm.add('(min-width: 900px)', () => { deskMode = true; st = ScrollTrigger.create({ trigger: pin, pin: true, start: cfg.pinStart || 'top top', end: '+=210%', scrub: true, anticipatePin: 1, onUpdate: (s) => fromProgress(s.progress) }); fromProgress(st.progress); return () => { deskMode = false; st = null; }; });
+      mm.add('(max-width: 899px)', () => { const t = ScrollTrigger.create({ trigger: '#ep-canvas', start: 'top 72%', end: 'bottom 18%', onToggle: (s) => { if (s.isActive) opened(); else { TG.g = .02; TG.blue = 0; TG.ry = -.55; TG.rx = .14; kick(); } } }); return () => t.kill(); });
+    }
+    function fallback() {
+      canvas.hidden = true; const lb = $('.ep-labels'); if (lb) lb.hidden = true;
+      const p = byImg.EP_003;
+      $('#ep-canvas').insertAdjacentHTML('afterbegin', `<img class="ep-fallback" src="${P('EP_003')}" alt="${esc(p ? p.n + ', built with Pillar Exterior Panels' : 'A building clad with Pillar Exterior Panels')}" loading="lazy">`);
+    }
+    const loadThree = () => new Promise((res, rej) => {
+      if (window.THREE) return res();
+      const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js'; s.async = true;
+      s.onload = () => (window.THREE ? res() : rej()); s.onerror = rej; document.head.appendChild(s);
+    });
+    function boot() { if (booted) return; booted = true; loadThree().then(() => { try { scene = build(); } catch (e) { fallback(); } }, fallback); }
+    function build() {
+      const THREE = window.THREE, C0 = cfg.colors;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: devicePixelRatio < 2, alpha: true, powerPreference: 'high-performance' });
+      renderer.setClearColor(0x000000, 0);
+      const scene3 = new THREE.Scene(), camera = new THREE.PerspectiveCamera(32, 1, .1, 100);
+      camera.position.set(0, .4, 13);
+      scene3.add(new THREE.AmbientLight(0xffffff, .58));
+      const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(5, 6, 8); scene3.add(key);
+      const rim = new THREE.DirectionalLight(C0.rim, 1.15); rim.position.set(-6, 2, -5); scene3.add(rim);
+      const PW = 4.6, PH = 3.2, OW = 1.6, OH = 1.32;
+      const shape = () => { const s = new THREE.Shape(); s.moveTo(-PW / 2, -PH / 2); s.lineTo(PW / 2, -PH / 2); s.lineTo(PW / 2, PH / 2); s.lineTo(-PW / 2, PH / 2); s.lineTo(-PW / 2, -PH / 2); const h = new THREE.Path(); h.moveTo(-OW / 2, -OH / 2); h.lineTo(-OW / 2, OH / 2); h.lineTo(OW / 2, OH / 2); h.lineTo(OW / 2, -OH / 2); h.lineTo(-OW / 2, -OH / 2); s.holes.push(h); return s; };
+      const edgeMats = [], layers = [];
+      const edges = (mesh, parent) => { const m = new THREE.LineBasicMaterial({ color: C0.edge, transparent: true, opacity: 0 }); edgeMats.push(m); const l = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, 20), m); l.position.copy(mesh.position); l.rotation.copy(mesh.rotation); parent.add(l); };
+      const layer = () => { const g = new THREE.Group(); g.userData.mats = []; layers.push(g); return g; };
+      const frame = layer(), steel = new THREE.MeshStandardMaterial({ color: C0.steel, metalness: .72, roughness: .34, transparent: true }); frame.userData.mats.push(steel);
+      const box = (w, h, x, y) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, .15), steel); m.position.set(x, y, 0); frame.add(m); edges(m, frame); };
+      box(PW, .08, 0, PH / 2 - .04); box(PW, .08, 0, -PH / 2 + .04);
+      [-2.27, -1.76, -1.25, -.84, .84, 1.25, 1.76, 2.27].forEach((x) => box(.06, PH - .16, x, 0));
+      box(OW + .12, .1, 0, OH / 2 + .05); box(OW + .12, .08, 0, -OH / 2 - .04);
+      [-.32, .32].forEach((x) => { const hh = (PH - OH) / 2 - .2; box(.06, hh, x, OH / 2 + hh / 2 + .1); box(.06, hh, x, -OH / 2 - hh / 2 - .08); });
+      const sheath = layer(), gyp = new THREE.MeshStandardMaterial({ color: C0.gyp, roughness: .92, transparent: true }); sheath.userData.mats.push(gyp);
+      const sm = new THREE.Mesh(new THREE.ExtrudeGeometry(shape(), { depth: .04, bevelEnabled: false }), gyp); sheath.add(sm); edges(sm, sheath);
+      const screw = new THREE.MeshBasicMaterial({ color: 0x55636b, transparent: true }); sheath.userData.mats.push(screw);
+      const sg = new THREE.CircleGeometry(.018, 8);
+      [-2.27, -1.76, -1.25, -.84, .84, 1.25, 1.76, 2.27].forEach((x) => { for (let y = -1.5; y <= 1.5; y += .25) { if (Math.abs(x) < .9 && Math.abs(y) < .75) continue; const c = new THREE.Mesh(sg, screw); c.position.set(x, y, .045); sheath.add(c); } });
+      const avb = layer(), membrane = new THREE.MeshStandardMaterial({ color: C0.avb, roughness: .45, metalness: .1, transparent: true }); avb.userData.mats.push(membrane);
+      const am = new THREE.Mesh(new THREE.ExtrudeGeometry(shape(), { depth: .015, bevelEnabled: false }), membrane); avb.add(am); edges(am, avb);
+      const clad = layer(), skin = new THREE.MeshStandardMaterial({ color: C0.skin, roughness: .3, metalness: .4, transparent: true, opacity: .22 }); clad.userData.mats.push(skin);
+      const cm = new THREE.Mesh(new THREE.ExtrudeGeometry(shape(), { depth: .06, bevelEnabled: false }), skin); clad.add(cm); edges(cm, clad);
+      const glass = new THREE.MeshStandardMaterial({ color: C0.glass, transparent: true, opacity: .16, roughness: .05, metalness: .2 }); clad.userData.mats.push(glass);
+      const gm = new THREE.Mesh(new THREE.PlaneGeometry(OW, OH), glass); gm.position.z = .03; clad.add(gm);
+      const jm = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .32 }); clad.userData.mats.push(jm);
+      const jp = []; [-PH / 6, PH / 6].forEach((y) => jp.push(-PW / 2, y, .07, -OW / 2, y, .07, OW / 2, y, .07, PW / 2, y, .07)); [-1.5, 1.5].forEach((x) => jp.push(x, -PH / 2, .07, x, PH / 2, .07));
+      const jg = new THREE.BufferGeometry(); jg.setAttribute('position', new THREE.Float32BufferAttribute(jp, 3)); clad.add(new THREE.LineSegments(jg, jm));
+      const group = new THREE.Group(), base = [-.12, 0, .05, .08];
+      layers.forEach((l, i) => { l.position.z = base[i]; group.add(l); });
+      scene3.add(group);
+      layers.forEach((l) => l.userData.mats.forEach((m) => (m.userData.base = m.opacity)));
+      const C = { g: TG.g, blue: TG.blue, ry: TG.ry, rx: TG.rx, dragY: 0, dragX: 0, vy: 0, vx: 0, mx: 0, my: 0 };
+      let w = 1, h = 1, vis = false, raf = 0, down = false, lx = 0, ly = 0, lw = labels.map(() => 120);
+      const v3 = new THREE.Vector3();
+      const resize = () => {
+        w = canvas.clientWidth; h = canvas.clientHeight; if (!w || !h) return;
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75)); renderer.setSize(w, h, false);
+        camera.aspect = w / h; camera.updateProjectionMatrix();
+        const d = desk(), hw = Math.tan(camera.fov * Math.PI / 360) * camera.position.z * camera.aspect;
+        group.position.x = d ? hw * (cfg.offset ?? .34) : 0; group.scale.setScalar(d ? clamp(hw / 6.8, .6, .9) : .9);
+        lw = labels.map((l) => l.offsetWidth || 120); kick3();
+      };
+      const loop = () => {
+        raf = 0;
+        if (!down) { C.dragY += C.vy; C.dragX += C.vx; C.vy *= .92; C.vx *= .92; C.dragX *= .95; }
+        const k = reduce ? 1 : .085;
+        C.g = lerp(C.g, TG.g, k); C.blue = lerp(C.blue, TG.blue, k); C.ry = lerp(C.ry, TG.ry, reduce ? 1 : .065); C.rx = lerp(C.rx, TG.rx, reduce ? 1 : .065);
+        const mx = fine && !reduce ? mouse.x : 0, my = fine && !reduce ? mouse.y : 0;
+        C.mx = lerp(C.mx, mx, .08); C.my = lerp(C.my, my, .08);
+        group.rotation.y = C.ry + C.dragY + C.mx * .12; group.rotation.x = C.rx + C.dragX - C.my * .06;
+        let moving = Math.abs(C.g - TG.g) + Math.abs(C.blue - TG.blue) + Math.abs(C.ry - TG.ry) + Math.abs(C.rx - TG.rx) > .002 || Math.abs(C.vy) + Math.abs(C.vx) > .0004 || Math.abs(C.dragX) > .002 || Math.abs(C.mx - mx) + Math.abs(C.my - my) > .002 || down;
+        layers.forEach((l, i) => {
+          const tz = base[i] + (i - 1.5) * C.g + (i === S.step ? .35 : 0);
+          l.position.z = lerp(l.position.z, tz, reduce ? 1 : .12); if (Math.abs(l.position.z - tz) > .001) moving = true;
+          const dim = S.step > -1 && i !== S.step;
+          l.userData.mats.forEach((m) => { const to = m.userData.base * (dim ? .16 : 1); m.opacity = lerp(m.opacity, to, reduce ? 1 : .1); if (Math.abs(m.opacity - to) > .002) moving = true; });
+        });
+        edgeMats.forEach((m) => (m.opacity = C.blue * .85));
+        if (desk()) {
+          const lo = clamp((C.g - .25) * 2.5, 0, 1);
+          layers.forEach((l, i) => { v3.set(PW / 2, PH / 2 - i * .12, .05); l.localToWorld(v3); v3.project(camera); const x = Math.min((v3.x * .5 + .5) * w + 32, w - lw[i] - 16), y = (-v3.y * .5 + .5) * h - 12; labels[i].style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0)`; labels[i].style.opacity = lo.toFixed(3); });
+        }
+        renderer.render(scene3, camera);
+        if (vis && moving) raf = requestAnimationFrame(loop);
+      };
+      const kick3 = () => { if (vis && !raf) raf = requestAnimationFrame(loop); };
+      new IntersectionObserver((es) => { vis = es[0].isIntersecting; kick3(); }, { rootMargin: '100px' }).observe(canvas);
+      canvas.addEventListener('pointerdown', (e) => { if (e.button) return; down = true; lx = e.clientX; ly = e.clientY; if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId); kick3(); });
+      canvas.addEventListener('pointermove', (e) => { if (!down) return; C.vy = (e.clientX - lx) * .006; C.vx = (e.clientY - ly) * .004; lx = e.clientX; ly = e.clientY; C.dragY += C.vy; C.dragX = clamp(C.dragX + C.vx, -.6, .6); kick3(); });
+      const up = () => { down = false; kick3(); };
+      canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
+      if (fine) addEventListener('pointermove', () => vis && kick3(), { passive: true });
+      addEventListener('resize', debounce(resize, 100));
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+      resize();
+      return { kick: kick3 };
+    }
+    if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); boot(); } }, { rootMargin: '150% 0px' }).observe(sec); else boot();
+    if ('requestIdleCallback' in window && desk()) requestIdleCallback(() => setTimeout(boot, 2500));
+    return { pins };
+  }
+
+  /* ---------- cursor label and magnetic buttons (mouse only) ---------- */
+  function pointerNiceties() {
+    if (!fine || reduce) return;
+    const c = $('#cur'); if (!c) return;
+    c.innerHTML = '<i></i>';
+    const lab = c.firstChild;
+    let x = -200, y = -200, tx = x, ty = y, raf = 0, on = false;
+    const loop = () => { x += (tx - x) * .24; y += (ty - y) * .24; c.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0)`; raf = on || Math.abs(tx - x) + Math.abs(ty - y) > .4 ? requestAnimationFrame(loop) : 0; };
+    addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; if (on && !raf) raf = requestAnimationFrame(loop); }, { passive: true });
+    document.addEventListener('pointerover', (e) => {
+      const t = e.target.closest('[data-cursor]');
+      if (t && !root.classList.contains('is-locked')) { lab.textContent = t.dataset.cursor; if (!on) { on = true; x = tx; y = ty; c.classList.add('on'); if (!raf) raf = requestAnimationFrame(loop); } }
+      else if (on) { on = false; c.classList.remove('on'); }
+    });
+    $$('[data-mag]').forEach((el) => {
+      el.style.transition = getComputedStyle(el).transition + ', transform .6s cubic-bezier(.16,1,.3,1)';
+      el.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; const r = el.getBoundingClientRect(); el.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * 10}px,${((e.clientY - r.top) / r.height - .5) * 10}px)`; });
+      el.addEventListener('pointerleave', () => (el.style.transform = ''));
+    });
+  }
+
+  /* ===== option ===== */
+  /* ---------- Monolith ---------- */
+  OPT.anchorOffset = 0;
+  const BOOK = { p: 0, drag: 0, cur: 0, pages: [], N: TR.length };
+
+  function buildBook() {
+    const bk = $('#bk');
+    const sheet = (i) => { const t = TR[i]; return `<div class="bk-txt"><p class="lbl">Trade ${pad(i + 1)} of ${pad(TR.length)}</p><h3>${esc(t.name)}</h3><p class="line">${esc(t.line)}</p><dl><div><dt>Projects</dt><dd>${DATA.counts[i]} on record</dd></div><div><dt>Scope</dt><dd>${esc(t.short)}</dd></div></dl><button class="bk-go" type="button" data-trade="${i}" data-origin="#pgimg-${i}">View projects <svg aria-hidden="true"><use href="#i-out"/></svg></button></div>`; };
+    // left page shows the first trade; each turned page shows the next trade's sheet on its back
+    bk.innerHTML = `<div class="bk-left">${sheet(0)}</div>` + TR.map((t, i) => { const p = byImg[t.img]; return `<div class="pg" style="z-index:${TR.length - i}"><button class="pg-f" type="button" data-trade="${i}" data-cursor="Projects" aria-label="See ${esc(t.low)} projects"><img id="pgimg-${i}" class="photo" src="${P(t.img)}" alt="${esc(p ? p.n : t.name)}" loading="lazy" decoding="async" draggable="false"><span class="pg-no">${pad(i + 1)}</span></button><div class="pg-b">${i + 1 < TR.length ? sheet(i + 1) : ''}</div></div>`; }).join('');
+    BOOK.pages = $$('.pg', bk);
+    // phones: the same five trades as a plain list
+    $('#bk-list').innerHTML = TR.map((t, i) => { const p = byImg[t.img]; return `<li><button class="bk-card" type="button" data-trade="${i}"><span class="ph" data-frame><img class="photo" src="${P(t.img)}" alt="${esc(p ? p.n : t.name)}" loading="lazy" decoding="async"></span><span class="tx"><span class="lbl">Trade ${pad(i + 1)} · ${DATA.counts[i]} projects</span><h3>${esc(t.name)}</h3><p>${esc(t.line)}</p><span class="bk-go">View projects <svg aria-hidden="true"><use href="#i-out"/></svg></span></span></button></li>`; }).join('');
+    // drag turns pages too
+    const stage = $('#bk-stage'); let down = false, lx = 0, moved = 0;
+    stage.addEventListener('pointerdown', (e) => { if (e.button) return; down = true; moved = 0; lx = e.clientX; });
+    addEventListener('pointermove', (e) => { if (!down) return; const dx = e.clientX - lx; lx = e.clientX; moved += Math.abs(dx); BOOK.drag = clamp(BOOK.drag - dx / 380, -BOOK.N, BOOK.N); kickBook(); });
+    addEventListener('pointerup', () => { down = false; });
+    stage.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+    drawBook(true);
+  }
+  let bookRaf = 0;
+  const kickBook = () => { if (!bookRaf) bookRaf = requestAnimationFrame(drawBook); };
+  function drawBook(force) {
+    bookRaf = 0;
+    const target = clamp(BOOK.p * (BOOK.N - 1) + BOOK.drag, 0, BOOK.N - 1);
+    BOOK.cur = force === true || reduce ? target : lerp(BOOK.cur, target, .12);
+    BOOK.pages.forEach((pg, i) => { const t = clamp(BOOK.cur - i, 0, 1), e = t * t * (3 - 2 * t); pg.style.transform = `rotateY(${(-e * 180).toFixed(2)}deg)`; pg.style.zIndex = t > .5 ? 100 + i : BOOK.N - i; pg.style.setProperty('--sh', Math.sin(e * Math.PI).toFixed(3)); });
+    // only the spread on show can take keyboard focus
+    const k = Math.round(BOOK.cur);
+    BOOK.pages.forEach((pg, i) => { const f = $('.pg-f', pg), g = $('.pg-b .bk-go', pg); f.tabIndex = i === k ? 0 : -1; if (g) g.tabIndex = i === k - 1 ? 0 : -1; });
+    const lg = $('.bk-left .bk-go'); if (lg) lg.tabIndex = k === 0 ? 0 : -1;
+    const n = $('#bk-n'); if (n) n.textContent = pad(k + 1);
+    if (Math.abs(target - BOOK.cur) > .001) kickBook();
+  }
+
+  /* the CSS panel: drag to turn it, scroll to take it apart */
+  const PANEL = { ox: 58, oz: -36, ex: 0 };
+  function buildPanel() {
+    $('#lys').innerHTML = LAYERS.map(([t, d], i) => `<li${i ? '' : ' class="on"'}><span class="n">${pad(i + 1)}</span><div><h3>${esc(t)}</h3><p>${esc(d)}.</p></div></li>`).join('');
+    const orbit = $('#orbit'), wl = $('#wl'), lys = $$('.ly', wl);
+    const draw = () => { wl.style.transform = `rotateX(${PANEL.ox}deg) rotateZ(${PANEL.oz}deg)`; lys.forEach((l, i) => (l.style.transform = `translateZ(${(i * PANEL.ex).toFixed(1)}px)`)); };
+    PANEL.draw = draw;
+    let down = false, lx = 0, ly = 0;
+    orbit.addEventListener('pointerdown', (e) => { if (e.button) return; down = true; lx = e.clientX; ly = e.clientY; orbit.classList.add('drag'); });
+    addEventListener('pointermove', (e) => { if (!down) return; PANEL.oz += (e.clientX - lx) * .35; PANEL.ox = clamp(PANEL.ox - (e.clientY - ly) * .25, 10, 80); lx = e.clientX; ly = e.clientY; draw(); });
+    addEventListener('pointerup', () => { down = false; orbit.classList.remove('drag'); });
+    PANEL.set = (pr) => { PANEL.ex = Math.min(1, pr * 1.8) * 96; PANEL.oz = -36 + pr * 40; const k = Math.min(3, Math.floor(pr * 4 * .999)); lys.forEach((l, i) => l.classList.toggle('on', i === k)); $$('#lys li').forEach((l, i) => l.classList.toggle('on', i === k)); draw(); };
+    PANEL.set(.6);
+  }
+
+  function buildReel() {
+    $('#row').innerHTML = FEAT.map(({ p, im }, i) => `<button class="card" type="button" data-feat="${i}" data-cursor="Open" aria-label="View ${esc(p.n)}"><span class="ph" data-frame><img class="photo" src="${P(im)}" alt="${esc(p.n)}" loading="lazy" decoding="async"></span><span class="m"><span><b>${esc(p.n)}</b>${p.g ? `<span class="gc">General contractor · ${esc(p.g)}</span>` : ''}</span><span class="n">${pad(i + 1)} · ${esc(loc(p))}</span></span></button>`).join('');
+    const vp = $('#reel-vp');
+    vp.addEventListener('scroll', () => { if (desk()) return; const k = Math.round(vp.scrollLeft / Math.max(1, vp.scrollWidth - vp.clientWidth) * (FEAT.length - 1)); $('#rc').textContent = pad(k + 1); }, { passive: true });
+  }
+
+  OPT.init = () => {
+    menu = menuCtl($('#menu-btn'), $('#nv'), { lock: false, label: (v) => ($('#menu-btn .sr').textContent = v ? 'Close menu' : 'Menu') });
+    buildBook(); buildPanel(); buildReel();
+    const vp = $('#v-ph'), p = byImg[VOICE.img];
+    vp.insertAdjacentHTML('afterbegin', `<img class="photo" src="${P(VOICE.img)}" alt="${esc(p ? p.n : '')}" loading="lazy" decoding="async">`);
+    $('#v-cap').textContent = p ? `${p.n} · ${loc(p)}` : '';
+  };
+
+  OPT.pins = () => {
+    if (!hasG() || reduce) { BOOK.p = 0; drawBook(true); return; }
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 900px)', () => {
+      const a = ScrollTrigger.create({ trigger: '#bk-pin', pin: true, start: 'top top', end: '+=230%', scrub: true, anticipatePin: 1, onUpdate: (s) => { BOOK.p = s.progress; kickBook(); } });
+      const b = ScrollTrigger.create({ trigger: '#pn-pin', pin: true, start: 'top top', end: '+=140%', scrub: true, anticipatePin: 1, onUpdate: (s) => PANEL.set(s.progress) });
+      const row = $('#row'), dist = () => Math.max(0, row.scrollWidth - $('#reel-vp').clientWidth + 24);
+      const tw = gsap.to(row, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '#reel-stage', pin: true, start: 'top top', end: () => '+=' + Math.max(innerHeight * .8, dist()), scrub: .6, invalidateOnRefresh: true, anticipatePin: 1, onUpdate: (s) => { $('#rp').style.transform = `scaleX(${s.progress.toFixed(4)})`; $('#rc').textContent = pad(Math.min(FEAT.length, 1 + Math.floor(s.progress * FEAT.length * .999))); } } });
+      $$('#row .ph img').forEach((im) => gsap.fromTo(im, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: im.parentElement, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true } }));
+      return () => { a.kill(); b.kill(); tw.scrollTrigger && tw.scrollTrigger.kill(); tw.kill(); gsap.set(row, { x: 0 }); PANEL.set(.6); };
+    });
+  };
+
+  OPT.motion = () => {
+    // hero: the photograph pushes in, the label steps aside
+    const ht = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true };
+    gsap.to('.hero-bg img', { scale: 1.16, ease: 'none', scrollTrigger: ht });
+    gsap.to('.hero-lab', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '25% top', scrub: true } });
+    // about: words darken, the four numbers slide over the sticky photograph
+    gsap.fromTo(words($('#about-h')), { color: '#cfccc5' }, { color: '#121212', stagger: .1, ease: 'none', scrollTrigger: { trigger: '#about-h', start: 'top 85%', end: 'bottom 50%', scrub: true } });
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 900px)', () => {
+      $$('.sl4').forEach((el, i) => gsap.fromTo(el, { yPercent: 240, opacity: 0 }, { yPercent: -50, opacity: 1, ease: 'none', scrollTrigger: { trigger: '.about', start: `top+=${i * 16}% center`, end: `top+=${i * 16 + 42}% top`, scrub: true } }));
+      gsap.fromTo('.stk img', { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+    });
+    // voice: the builder's words light up
+    gsap.fromTo(words($('#vq'), 'fw'), { opacity: .16 }, { opacity: 1, stagger: .05, ease: 'none', scrollTrigger: { trigger: '#vq', start: 'top 82%', end: 'bottom 50%', scrub: true } });
+    gsap.fromTo('.v-ph img', { scale: 1.14 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.v-ph', start: 'top bottom', end: 'bottom top', scrub: true } });
+  };
+
+  /* ===== boot ===== */
+  intro(); anchors(); counters(); wire();
+  if (OPT.init) OPT.init();
+  ring(); reveals(); pointerNiceties();
+  const start = () => {
+    if (hasG() && !reduce) gsap.registerPlugin(ScrollTrigger);
+    if (OPT.pins) OPT.pins();
+    if (OPT.motion && hasG() && !reduce) OPT.motion();
+    if (hasG() && !reduce) {
+      const aw = $('#awards'); if (aw) ScrollTrigger.create({ trigger: aw, start: 'top bottom', end: 'bottom top', onUpdate: (s) => ringScroll(s.progress) });
+      if (ScrollTrigger.sort) ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+      addEventListener('load', () => ScrollTrigger.refresh());
+    }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+</script>
+<!--osw--><style>
+.osw{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(16,18,19,.8);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);box-shadow:0 10px 36px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.12);font:500 12px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:0;text-transform:none;transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1),visibility 0s}
+.osw a{height:34px;padding:0 13px;border-radius:999px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.64);text-decoration:none;white-space:nowrap;transition:color .25s,background-color .25s}
+.osw a b{font-weight:600;opacity:.75}
+.osw a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.osw a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.osw a[aria-current="page"]{background:#f4f4f2;color:#111}
+html.is-locked .osw,html.menu-open .osw,html.intro .osw,html.loading .osw{opacity:0;visibility:hidden;transform:translate(-50%,16px);transition:opacity .3s,transform .4s,visibility 0s .4s}
+@media (max-width:640px){.osw a{padding:0 12px}.osw a span{display:none}.osw a[aria-current="page"] span{display:inline}}
+@media print{.osw{display:none}}
+</style>
+<nav class="osw" aria-label="Design options"><a href="verdigris.html"><b>1</b><span>Verdigris</span></a><a href="monolith.html" aria-current="page"><b>2</b><span>Monolith</span></a><a href="anatomy.html"><b>3</b><span>Anatomy</span></a><a href="nord.html"><b>4</b><span>Nord</span></a></nav><!--/osw-->
+</body>
+</html>
